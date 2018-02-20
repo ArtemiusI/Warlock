@@ -1,0 +1,83 @@
+IF
+  Kit(Player1,C0WLOCK2)
+THEN
+  RESPONSE #100
+	ActionOverride(Player1,SetGlobal("C0WLSP1","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("C0WLSP2","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("C0WLSP3","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("C0WLSP4","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
+	ActionOverride(Player1,AddKit(C0WLOCK))
+	ApplySpellRES("c0erase2",Player1)
+	Continue()
+END
+
+IF
+  Kit(Player2,C0WLOCK2)
+THEN
+  RESPONSE #100
+	ActionOverride(Player2,SetGlobal("C0WLSP1","LOCALS",0))
+	ActionOverride(Player2,SetGlobal("C0WLSP2","LOCALS",0))
+	ActionOverride(Player2,SetGlobal("C0WLSP3","LOCALS",0))
+	ActionOverride(Player2,SetGlobal("C0WLSP4","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
+	ActionOverride(Player2,AddKit(C0WLOCK))
+	ApplySpellRES("c0erase2",Player2)
+	Continue()
+END
+
+IF
+  Kit(Player3,C0WLOCK2)
+THEN
+  RESPONSE #100
+	ActionOverride(Player3,SetGlobal("C0WLSP1","LOCALS",0))
+	ActionOverride(Player3,SetGlobal("C0WLSP2","LOCALS",0))
+	ActionOverride(Player3,SetGlobal("C0WLSP3","LOCALS",0))
+	ActionOverride(Player3,SetGlobal("C0WLSP4","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
+	ActionOverride(Player3,AddKit(C0WLOCK))
+	ApplySpellRES("c0erase2",Player3)
+	Continue()
+END
+
+IF
+  Kit(Player4,C0WLOCK2)
+THEN
+  RESPONSE #100
+	ActionOverride(Player4,SetGlobal("C0WLSP1","LOCALS",0))
+	ActionOverride(Player4,SetGlobal("C0WLSP2","LOCALS",0))
+	ActionOverride(Player4,SetGlobal("C0WLSP3","LOCALS",0))
+	ActionOverride(Player4,SetGlobal("C0WLSP4","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
+	ActionOverride(Player4,AddKit(C0WLOCK))
+	ApplySpellRES("c0erase2",Player4)
+	Continue()
+END
+
+IF
+  Kit(Player5,C0WLOCK2)
+THEN
+  RESPONSE #100
+	ActionOverride(Player5,SetGlobal("C0WLSP1","LOCALS",0))
+	ActionOverride(Player5,SetGlobal("C0WLSP2","LOCALS",0))
+	ActionOverride(Player5,SetGlobal("C0WLSP3","LOCALS",0))
+	ActionOverride(Player5,SetGlobal("C0WLSP4","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
+	ActionOverride(Player5,AddKit(C0WLOCK))
+	ApplySpellRES("c0erase2",Player5)
+	Continue()
+END
+
+IF
+  Kit(Player6,C0WLOCK2)
+THEN
+  RESPONSE #100
+	ActionOverride(Player6,SetGlobal("C0WLSP1","LOCALS",0))
+	ActionOverride(Player6,SetGlobal("C0WLSP2","LOCALS",0))
+	ActionOverride(Player6,SetGlobal("C0WLSP3","LOCALS",0))
+	ActionOverride(Player6,SetGlobal("C0WLSP4","LOCALS",0))
+	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
+	ActionOverride(Player6,AddKit(C0WLOCK))
+	ApplySpellRES("c0erase2",Player6)
+	Continue()
+END

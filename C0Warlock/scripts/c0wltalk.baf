@@ -1,0 +1,17 @@
+// Dialog
+
+IF
+  OnCreation()
+  Detect(Lastsummonerof(Myself))
+THEN
+  RESPONSE #100
+	SetGlobal("Start","LOCALS",1)
+END
+
+IF
+  Global("Start","LOCALS",1)
+THEN
+  RESPONSE #100
+    ActionOverride(LastSummonerOf(Myself),StartDialogOverride("c0wltalk",Myself))
+	DestroySelf()
+END
