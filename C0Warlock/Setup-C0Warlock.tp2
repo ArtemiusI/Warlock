@@ -267,6 +267,7 @@ COPY_EXISTING ~DEMNABSU.bcs~ ~override/C0WLNABS.bcs~
 COPY_EXISTING ~DEMGLASU.bcs~ ~override/C0WLGLAS.bcs~
   DECOMPILE_AND_PATCH BEGIN
     REPLACE_TEXTUALLY ~GOODCUTOFF~ ~EVILCUTOFF~
+    REPLACE_TEXTUALLY ~ANYONE~ ~ENEMY~
     REPLACE_TEXTUALLY ~LastSeenBy(Myself)~ ~Nearestenemyof(Myself)~
   END
   BUT_ONLY
@@ -2935,7 +2936,7 @@ SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
 Power: Epic
 Effective Spell Level: 9
 Range: Special
-Duration: 1 hour
+Duration: Instant
 Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: None
