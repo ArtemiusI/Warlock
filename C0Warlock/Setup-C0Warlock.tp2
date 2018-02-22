@@ -278,8 +278,126 @@ COPY_EXISTING ~DEMPITSU.bcs~ ~override/C0WLPITS.bcs~
     REPLACE_TEXTUALLY ~LastSeenBy(Myself)~ ~Nearestenemyof(Myself)~
   END
   BUT_ONLY
+
+////////////////////////////////////////
+///////////ITEMS////////////////////////
+////////////////////////////////////////
+
+ACTION_IF FILE_EXISTS_IN_GAME ~chan15.itm~ THEN BEGIN
+COPY_EXISTING ~chan15.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+	  special = RESOLVE_STR_REF (~Warlock~)
+END
+END
   
-// PROJECTILES
+ACTION_IF FILE_EXISTS_IN_GAME ~misc3m.itm~ THEN BEGIN
+COPY_EXISTING ~misc3m.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+END
+BUT_ONLY
+END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~misc3n.itm~ THEN BEGIN
+COPY_EXISTING ~misc3n.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+END
+BUT_ONLY
+END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~misc3o.itm~ THEN BEGIN
+COPY_EXISTING ~misc3o.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+END
+BUT_ONLY
+END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~wa2harp.itm~ THEN BEGIN
+COPY_EXISTING ~wa2harp.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+END
+BUT_ONLY
+END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~bdhelm11.itm~ THEN BEGIN
+COPY_EXISTING ~bdhelm11.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+END
+BUT_ONLY
+END
+  
+ACTION_IF FILE_EXISTS_IN_GAME ~brac24.itm~ THEN BEGIN
+COPY_EXISTING ~brac24.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+END
+BUT_ONLY
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~brac25.itm~ THEN BEGIN
+COPY_EXISTING ~brac25.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
+	  parameter2 = 9
+	  power = 0
+END
+BUT_ONLY
+END
+  
+////////////////////////////////////////
+/////////PROJECTILES////////////////////
+////////////////////////////////////////
 
 // ELDRITCH BLAST
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp001.PRO~
@@ -2924,6 +3042,7 @@ Duration: 1 turn
 Casting Time: 4
 Area of Effect: The caster
 Saving Throw: None
+
 This spell causes the warlock to be enveloped by an aura of intense flame that both injures opponents and protects the warlock from damage. This shield not only grants the user 125% Fire Resistance, +50% to damage dealt from fire damage and an AC bonus of 4, but also protects <PRO_HIMHER> from attacks made within a 5-ft. radius. An opponent that hits the warlock with any weapons or spells within this radius suffers 2d10+2 fire damage. In addition, the intense heat protects the warlock from all weapons of below +3 enchantment.
 
 However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
