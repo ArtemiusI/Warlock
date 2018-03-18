@@ -1,10 +1,30 @@
 BACKUP ~C0Warlock/backup~
 AUTHOR ~Artemius_I~
-AUTO_TRA ~%MOD_FOLDER%/translations/%s~
+ALWAYS
+  ACTION_IF NOT VARIABLE_IS_SET cd_always THEN BEGIN
+    OUTER_SET cd_always = 1
+    
+    ACTION_DEFINE_ARRAY cdnoconvert BEGIN END // List of tra files that contain ONLY strings for the WeiDU installer and NOT game content
+    ACTION_DEFINE_ARRAY cdreload BEGIN ~setup~ END  // List of tra files that need to be reloaded after conversion because they were previously loaded in the LANGUAGE section
+    
+    // On EE games, convert game content tra files to utf-8 so that games don't crash when encountering international characters.
+    LAF HANDLE_CHARSETS INT_VAR infer_charset = 1 STR_VAR default_language = ~english~ tra_path = EVAL ~%MOD_FOLDER%/tra~ noconvert_array = cdnoconvert reload_array = cdreload END
+    
+    // Load EE-specific text (usability section removed from item descriptions)
+    ACTION_IF ENGINE_IS ~bgee bg2ee~ THEN BEGIN
+      // Load English first in case some entries not available in the chosen language (as in LANGUAGE for setup_ee.tra)
+      LOAD_TRA ~%MOD_FOLDER%/tra/english/setup.tra~
+      LOAD_TRA ~%MOD_FOLDER%/tra/%LANGUAGE%/setup.tra~
+	  
+    END
+  END
+END
 LANGUAGE ~English~
          ~English~
+         ~%MOD_FOLDER%/tra/english/setup.tra~
 
-BEGIN ~Warlock Kit~
+
+BEGIN @0 /* Warlock Kit */
 
 COPY ~%MOD_FOLDER%/2da~ ~override~
 COPY ~%MOD_FOLDER%/bam~ ~override~
@@ -64,9 +84,9 @@ ADD_KIT ~C0WLOCK~
  ~CHAN16 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 
  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
-  SAY ~warlock~
-  SAY ~Warlock~
-  SAY ~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
+  SAY @1 /* warlock */
+  SAY @2 /* Warlock */
+  SAY @3 /* WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
 
 CLASS FEATURES:
 
@@ -96,7 +116,7 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 – 24th level: Regeneration rate increased to one hit point per round.
 
 – Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
-– Hit Die: d6~
+– Hit Die: d6 */
 
 LAF fl#add_kit_ee
   STR_VAR
@@ -156,9 +176,9 @@ ADD_KIT ~C0WLOCK2~
  ~CHAN16 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 
  // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
-  SAY ~warlock~
-  SAY ~Warlock~
-  SAY ~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
+  SAY @1 /* warlock */
+  SAY @2 /* Warlock */
+  SAY @4 /* WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
 
 CLASS FEATURES:
 
@@ -191,11 +211,11 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 – 24th level: Regeneration rate increased to one hit point per round.
 
 – Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
-– Hit Die: d6~
+– Hit Die: d6 */
 
 LAF fl#add_kit_ee
   INT_VAR
-	biography = RESOLVE_STR_REF (~For as long as you recall, you have wielded infernal magic as easily as you draw breath. While your innate magical abilities earned you the fear and scorn of those around you, your mentors sought to raise you as well as they could regardless, urging you to control the dark powers within you and use them for good purposes. Despite this, you have always felt the call of something darker, sinister calling your name, urging you to take a power that is almost within reach.~)
+	biography = RESOLVE_STR_REF (@5 /* For as long as you recall, you have wielded infernal magic as easily as you draw breath. While your innate magical abilities earned you the fear and scorn of those around you, your mentors sought to raise you as well as they could regardless, urging you to control the dark powers within you and use them for good purposes. Despite this, you have always felt the call of something darker, sinister calling your name, urging you to take a power that is almost within reach. */)
   STR_VAR
     kit_name = C0WLOCK2
 	clascolr = ~93 101 100 107 188~
@@ -293,7 +313,7 @@ COPY_EXISTING ~chan15.itm~ ~override~
 	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
 	  parameter2 = 9
 	  power = 0
-	  special = RESOLVE_STR_REF (~Warlock~)
+	  special = RESOLVE_STR_REF (@2 /* Warlock */)
 END
 END
   
@@ -1181,13 +1201,13 @@ COPY ~%MOD_FOLDER%/spells/c0wlsp11.spl~ ~override/c0wlsp43.spl~
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl008.spl~ ~override~
-SAY NAME1 ~Invocations~
-SAY UNIDENTIFIED_DESC ~INVOCATIONS
-A Warlock does not prepare or cast spells as other wielders of arcane magic do. Instead, he possesses a repertoire of attacks, defenses, and abilities known as invocations that require him to focus the wild energy that suffuses his soul. A Warlock can use any invocation he knows at will. The four grades of invocation, in order of their relative power, are least, lesser, greater and dark.~
+SAY NAME1 @6 /* Invocations */
+SAY UNIDENTIFIED_DESC @7 /* INVOCATIONS
+A Warlock does not prepare or cast spells as other wielders of arcane magic do. Instead, he possesses a repertoire of attacks, defenses, and abilities known as invocations that require him to focus the wild energy that suffuses his soul. A Warlock can use any invocation he knows at will. The four grades of invocation, in order of their relative power, are least, lesser, greater and dark. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl100.spl~ ~override~
-SAY NAME1 ~Eldritch Blast~
-SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST
+SAY NAME1 @8 /* Eldritch Blast */
+SAY UNIDENTIFIED_DESC @9 /* ELDRITCH BLAST
 A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
@@ -1195,7 +1215,7 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
-	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.~
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl101.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -1204,10 +1224,10 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp001%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl102.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl102a.spl~
   LPF ADD_SPELL_EFFECT
@@ -1217,7 +1237,7 @@ COPY_EXISTING ~c0wl101.spl~ ~override/c0wl102a.spl~
 	STR_VAR
 	  resource = c0wl102
 END
-SAY NAME1 ~Hideous Blow~
+SAY NAME1 @12 /* Hideous Blow */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl103.spl~
 READ_LONG 0x64 "abil_off"
@@ -1232,7 +1252,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
 END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl200.spl~
 READ_LONG 0x64 "abil_off"
@@ -1247,7 +1267,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
 END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl300.spl~
 READ_LONG 0x64 "abil_off"
@@ -1269,7 +1289,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl400.spl~
 READ_LONG 0x64 "abil_off"
@@ -1291,11 +1311,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl104.spl~ ~override~
-SAY NAME1 ~Beguiling Influence~
-SAY UNIDENTIFIED_DESC ~BEGUILING INFLUENCE
+SAY NAME1 @17 /* Beguiling Influence */
+SAY UNIDENTIFIED_DESC @18 /* BEGUILING INFLUENCE
 (Enchantment/Charm) 
 
 Power: Least
@@ -1306,11 +1326,11 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 8th level and +6 at 16th level.~
+This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 8th level and +6 at 16th level. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl105.spl~ ~override~
-SAY NAME1 ~Dark One's Own Luck~
-SAY UNIDENTIFIED_DESC ~DARK ONE'S OWN LUCK
+SAY NAME1 @19 /* Dark One's Own Luck */
+SAY UNIDENTIFIED_DESC @20 /* DARK ONE'S OWN LUCK
 (Enchantment/Charm)
 
 Power: Least
@@ -1321,11 +1341,11 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16.~
+The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl106.spl~ ~override~
-SAY NAME1 ~Draining Blast~
-SAY UNIDENTIFIED_DESC ~DRAINING BLAST
+SAY NAME1 @21 /* Draining Blast */
+SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
 (Eldritch Essence) 
 
 Power: Least
@@ -1336,7 +1356,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl106a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -1345,17 +1365,17 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp006%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl106_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Slowed~)
+	  parameter1 = RESOLVE_STR_REF (@23 /* Slowed */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl106b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106#.spl~
   LPF ADD_SPELL_EFFECT
@@ -1365,7 +1385,7 @@ COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106#.spl~
 	STR_VAR
 	  resource = c0wl106b
 END
-SAY NAME1 ~Hideous Blow: Draining Blast~
+SAY NAME1 @24 /* Hideous Blow: Draining Blast */
 
 COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106c.spl~
 READ_LONG 0x64 "abil_off"
@@ -1380,7 +1400,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106d.spl~
 READ_LONG 0x64 "abil_off"
@@ -1395,7 +1415,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106e.spl~
 READ_LONG 0x64 "abil_off"
@@ -1417,7 +1437,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106f.spl~
 READ_LONG 0x64 "abil_off"
@@ -1439,11 +1459,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl107.spl~ ~override~
-SAY NAME1 ~Frightful Blast~
-SAY UNIDENTIFIED_DESC ~FRIGHTFUL BLAST
+SAY NAME1 @25 /* Frightful Blast */
+SAY UNIDENTIFIED_DESC @26 /* FRIGHTFUL BLAST
 (Eldritch Essence) 
 
 Power: Least
@@ -1454,7 +1474,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl107a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -1463,17 +1483,17 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp011%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl107_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Frightened~)
+	  parameter1 = RESOLVE_STR_REF (@27 /* Frightened */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl107b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107#.spl~
   LPF ADD_SPELL_EFFECT
@@ -1484,7 +1504,7 @@ COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107#.spl~
 	  resource = c0wl107b
 END
 
-SAY NAME1 ~Hideous Blow: Frightful Blast~
+SAY NAME1 @28 /* Hideous Blow: Frightful Blast */
 
 COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107c.spl~
 READ_LONG 0x64 "abil_off"
@@ -1499,7 +1519,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107d.spl~
 READ_LONG 0x64 "abil_off"
@@ -1514,7 +1534,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107e.spl~
 READ_LONG 0x64 "abil_off"
@@ -1536,7 +1556,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107f.spl~
 READ_LONG 0x64 "abil_off"
@@ -1558,7 +1578,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl108.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -1567,8 +1587,8 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp101%~
 END
-SAY NAME1 ~Darkness~
-SAY UNIDENTIFIED_DESC ~DARKNESS
+SAY NAME1 @29 /* Darkness */
+SAY UNIDENTIFIED_DESC @30 /* DARKNESS
 (Invocation/Evocation) 
 
 Power: Least
@@ -1579,11 +1599,11 @@ Casting Time: 4
 Area of Effect: 20 ft.
 Saving Throw: None
 
-The warlock creates an area of deepest shadow at range in a 20-foot radius. All creatures in the area suffer a -4 penalty to hit rolls and greatly reduced vision range until they leave the area of effect.~
+The warlock creates an area of deepest shadow at range in a 20-foot radius. All creatures in the area suffer a -4 penalty to hit rolls and greatly reduced vision range until they leave the area of effect. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl109.spl~ ~override~
-SAY NAME1 ~Entropic Warding~
-SAY UNIDENTIFIED_DESC ~ENTROPIC WARDING
+SAY NAME1 @31 /* Entropic Warding */
+SAY UNIDENTIFIED_DESC @32 /* ENTROPIC WARDING
 (Abjuration) 
 
 Power: Least
@@ -1594,16 +1614,16 @@ Casting Time: 6
 Area of Effect: the caster
 Saving Throw: None
 
-A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 for the duration.~
+A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 for the duration. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl110.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Dexterity Modification~)
+	  parameter1 = RESOLVE_STR_REF (@33 /* Dexterity Modification */)
 END
-SAY NAME1 ~Leaps and Bounds~
-SAY UNIDENTIFIED_DESC ~LEAPS AND BOUNDS
+SAY NAME1 @34 /* Leaps and Bounds */
+SAY UNIDENTIFIED_DESC @35 /* LEAPS AND BOUNDS
 (Alteration) 
 
 Power: Least
@@ -1614,11 +1634,11 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-This invocation grants the warlock amazing agility. For the duration of the spell, the warlock gains a +2 bonus to Dexterity and Armor Class. An additional +1 bonus is granted for every two points of the warlock's Charisma above 16.~
+This invocation grants the warlock amazing agility. For the duration of the spell, the warlock gains a +2 bonus to Dexterity and Armor Class. An additional +1 bonus is granted for every two points of the warlock's Charisma above 16. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl111.spl~ ~override~
-SAY NAME1 ~See the Unseen~
-SAY UNIDENTIFIED_DESC ~SEE THE UNSEEN
+SAY NAME1 @36 /* See the Unseen */
+SAY UNIDENTIFIED_DESC @37 /* SEE THE UNSEEN
 (Divination) 
 
 Power: Least
@@ -1629,11 +1649,11 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps. <PRO_HESHE> also gains infravision for the duration.~
+With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps. <PRO_HESHE> also gains infravision for the duration. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl201.spl~ ~override~
-SAY NAME1 ~Beshadowed Blast~
-SAY UNIDENTIFIED_DESC ~BESHADOWED BLAST
+SAY NAME1 @38 /* Beshadowed Blast */
+SAY UNIDENTIFIED_DESC @39 /* BESHADOWED BLAST
 (Eldritch Essence) 
 
 Power: Lesser
@@ -1644,7 +1664,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl201a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -1658,11 +1678,11 @@ COPY ~%MOD_FOLDER%/spells/c0wl201_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Blinded~)
+	  parameter1 = RESOLVE_STR_REF (@40 /* Blinded */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl201b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201#.spl~
   LPF ADD_SPELL_EFFECT
@@ -1673,7 +1693,7 @@ COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201#.spl~
 	  resource = c0wl201b
 END
 
-SAY NAME1 ~Hideous Blow: Beshadowed Blast~
+SAY NAME1 @41 /* Hideous Blow: Beshadowed Blast */
 
 COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201c.spl~
 READ_LONG 0x64 "abil_off"
@@ -1688,7 +1708,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201d.spl~
 READ_LONG 0x64 "abil_off"
@@ -1703,7 +1723,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201e.spl~
 READ_LONG 0x64 "abil_off"
@@ -1725,7 +1745,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201f.spl~
 READ_LONG 0x64 "abil_off"
@@ -1747,11 +1767,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl202.spl~ ~override~
-SAY NAME1 ~Brimstone Blast~
-SAY UNIDENTIFIED_DESC ~BRIMSTONE BLAST
+SAY NAME1 @42 /* Brimstone Blast */
+SAY UNIDENTIFIED_DESC @43 /* BRIMSTONE BLAST
 (Eldritch Essence) 
 
 Power: Lesser
@@ -1762,7 +1782,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl202a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -1771,17 +1791,17 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp021%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl202_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Burning~)
+	  parameter1 = RESOLVE_STR_REF (@44 /* Burning */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl202b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202#.spl~
   LPF ADD_SPELL_EFFECT
@@ -1792,7 +1812,7 @@ COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202#.spl~
 	  resource = c0wl202b
 END
 
-SAY NAME1 ~Hideous Blow: Brimstone Blast~
+SAY NAME1 @45 /* Hideous Blow: Brimstone Blast */
 
 COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202c.spl~
 READ_LONG 0x64 "abil_off"
@@ -1807,7 +1827,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202d.spl~
 READ_LONG 0x64 "abil_off"
@@ -1822,7 +1842,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202e.spl~
 READ_LONG 0x64 "abil_off"
@@ -1844,7 +1864,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202f.spl~
 READ_LONG 0x64 "abil_off"
@@ -1866,11 +1886,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl203.spl~ ~override~
-SAY NAME1 ~Hellrime Blast~
-SAY UNIDENTIFIED_DESC ~HELLRIME BLAST
+SAY NAME1 @46 /* Hellrime Blast */
+SAY UNIDENTIFIED_DESC @47 /* HELLRIME BLAST
 (Eldritch Essence) 
 
 Power: Lesser
@@ -1881,7 +1901,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl203a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -1890,17 +1910,17 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp026%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl203_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Chilled~)
+	  parameter1 = RESOLVE_STR_REF (@48 /* Chilled */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl203b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203#.spl~
   LPF ADD_SPELL_EFFECT
@@ -1911,7 +1931,7 @@ COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203#.spl~
 	  resource = c0wl203b
 END
 
-SAY NAME1 ~Hideous Blow: Hellrime Blast~
+SAY NAME1 @49 /* Hideous Blow: Hellrime Blast */
 
 COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203c.spl~
 READ_LONG 0x64 "abil_off"
@@ -1926,7 +1946,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203d.spl~
 READ_LONG 0x64 "abil_off"
@@ -1941,7 +1961,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203e.spl~
 READ_LONG 0x64 "abil_off"
@@ -1963,7 +1983,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203f.spl~
 READ_LONG 0x64 "abil_off"
@@ -1985,16 +2005,16 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl204.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Charmed~)
+	  parameter1 = RESOLVE_STR_REF (@50 /* Charmed */)
 END
-SAY NAME1 ~Charm~
-SAY UNIDENTIFIED_DESC ~CHARM
+SAY NAME1 @51 /* Charm */
+SAY UNIDENTIFIED_DESC @52 /* CHARM
 (Enchantment/Charm) 
 
 Power: Lesser
@@ -2005,16 +2025,16 @@ Casting Time: 5
 Area of Effect: One creature
 Saving Throw: None
 
-This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired.~
+This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl205.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Cursed~)
+	  parameter1 = RESOLVE_STR_REF (@53 /* Cursed */)
 END
-SAY NAME1 ~Curse of Despair~
-SAY UNIDENTIFIED_DESC ~CURSE OF DESPAIR
+SAY NAME1 @54 /* Curse of Despair */
+SAY UNIDENTIFIED_DESC @55 /* CURSE OF DESPAIR
 (Enchantment/Charm) 
 
 Power: Lesser
@@ -2025,16 +2045,16 @@ Casting Time: 4
 Area of Effect: One creature
 Saving Throw: Special
 
-This invocation bestows a permanent curse upon a touched opponent, lowering all the target's ability scores by 3 if the target fails a Save vs. Spells permanently until cured via a Remove Curse spell. Even if the save against this invocation succeeds, the target takes a -1 penalty on attack rolls for one turn. This curse does not stack with itself.~
+This invocation bestows a permanent curse upon a touched opponent, lowering all the target's ability scores by 3 if the target fails a Save vs. Spells permanently until cured via a Remove Curse spell. Even if the save against this invocation succeeds, the target takes a -1 penalty on attack rolls for one turn. This curse does not stack with itself. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl206.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Crippled~)
+	  parameter1 = RESOLVE_STR_REF (@56 /* Crippled */)
 END
-SAY NAME1 ~Dread Seizure~
-SAY UNIDENTIFIED_DESC ~DREAD SEIZURE
+SAY NAME1 @57 /* Dread Seizure */
+SAY UNIDENTIFIED_DESC @58 /* DREAD SEIZURE
 (Enchantment/Charm) 
 
 Power: Lesser
@@ -2045,11 +2065,11 @@ Casting Time: 2
 Area of Effect: One creature
 Saving Throw: Neg.
 
-The warlock speaks a word that sends wracking pain through the limbs of a single target creature. If the target fails a Save vs. Death, it suffers a -3 penalty to attack rolls and Armor Class as well as 50% penalty to movement speed for 3 rounds.~
+The warlock speaks a word that sends wracking pain through the limbs of a single target creature. If the target fails a Save vs. Death, it suffers a -3 penalty to attack rolls and Armor Class as well as 50% penalty to movement speed for 3 rounds. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl207.spl~ ~override~
-SAY NAME1 ~Flee the Scene~
-SAY UNIDENTIFIED_DESC ~FLEE THE SCENE
+SAY NAME1 @59 /* Flee the Scene */
+SAY UNIDENTIFIED_DESC @60 /* FLEE THE SCENE
 (Alteration) 
 
 Power: Lesser
@@ -2060,11 +2080,11 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-This invocation allows the warlock to make a quick escape when necessary. Upon casting this invocation, the warlock teleports to a location within <PRO_HISHER> vision range, becoming invisible and leaving an illusion of <PRO_HIMHER>self behind for one round.~
+This invocation allows the warlock to make a quick escape when necessary. Upon casting this invocation, the warlock teleports to a location within <PRO_HISHER> vision range, becoming invisible and leaving an illusion of <PRO_HIMHER>self behind for one round. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl208.spl~ ~override~
-SAY NAME1 ~The Dead Walk~
-SAY UNIDENTIFIED_DESC ~THE DEAD WALK
+SAY NAME1 @61 /* The Dead Walk */
+SAY UNIDENTIFIED_DESC @62 /* THE DEAD WALK
 (Necromancy) 
 
 Power: Lesser
@@ -2082,16 +2102,16 @@ The warlock can summon undead creatures with <PRO_HISHER> infernal power to serv
   11th – 14th: a 7 HD skeleton warrior wielding a bastard sword +1.
   15th and up: a 9 HD skeleton warrior wielding a two-handed sword +1.
   
-The skeleton warrior can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, one hour passes, or it is turned. This spell cannot be dispelled.~
+The skeleton warrior can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, one hour passes, or it is turned. This spell cannot be dispelled. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl209.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Dispel Effects~)
+	  parameter1 = RESOLVE_STR_REF (@63 /* Dispel Effects */)
 END
-SAY NAME1 ~Voracious Dispelling~
-SAY UNIDENTIFIED_DESC ~VORACIOUS DISPELLING
+SAY NAME1 @64 /* Voracious Dispelling */
+SAY UNIDENTIFIED_DESC @65 /* VORACIOUS DISPELLING
 (Abjuration) 
 
 Power: Lesser
@@ -2104,16 +2124,16 @@ Saving Throw: None
 
 This invocation attempts to dispel magical effects upon a target creature. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Voracious Dispelling is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Voracious Dispelling is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the warlock is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
 
-Additionally, regardless of whether the dispel is successful, the target takes one point of magical damage per two levels of the warlock.~
+Additionally, regardless of whether the dispel is successful, the target takes one point of magical damage per two levels of the warlock. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl210.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Invisible~)
+	  parameter1 = RESOLVE_STR_REF (@66 /* Invisible */)
 END
-SAY NAME1 ~Walk Unseen~
-SAY UNIDENTIFIED_DESC ~WALK UNSEEN
+SAY NAME1 @67 /* Walk Unseen */
+SAY UNIDENTIFIED_DESC @68 /* WALK UNSEEN
 (Illusion/Phantasm) 
 
 Power: Lesser
@@ -2124,11 +2144,11 @@ Casting Time: 2
 Area of Effect: the caster
 Saving Throw: None
 
-The warlock may cast this invocation to become invisible. The effect ends immediately if <PRO_HESHE> attacks or casts a spell. Otherwise, the effect lasts 24 hours.~
+The warlock may cast this invocation to become invisible. The effect ends immediately if <PRO_HESHE> attacks or casts a spell. Otherwise, the effect lasts 24 hours. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl301.spl~ ~override~
-SAY NAME1 ~Bewitching Blast~
-SAY UNIDENTIFIED_DESC ~BEWITCHING BLAST
+SAY NAME1 @69 /* Bewitching Blast */
+SAY UNIDENTIFIED_DESC @70 /* BEWITCHING BLAST
 (Eldritch Essence) 
 
 Power: Greater
@@ -2139,7 +2159,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl301a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -2148,17 +2168,17 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp031%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl301_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Confused~)
+	  parameter1 = RESOLVE_STR_REF (@71 /* Confused */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl301b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301#.spl~
   LPF ADD_SPELL_EFFECT
@@ -2169,7 +2189,7 @@ COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301#.spl~
 	  resource = c0wl301b
 END
 
-SAY NAME1 ~Hideous Blow: Bewitching Blast~
+SAY NAME1 @72 /* Hideous Blow: Bewitching Blast */
 
 COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301c.spl~
 READ_LONG 0x64 "abil_off"
@@ -2184,7 +2204,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301d.spl~
 READ_LONG 0x64 "abil_off"
@@ -2199,7 +2219,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2221,7 +2241,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301f.spl~
 READ_LONG 0x64 "abil_off"
@@ -2243,11 +2263,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl302.spl~ ~override~
-SAY NAME1 ~Electrifying Blast~
-SAY UNIDENTIFIED_DESC ~ELECTRIFYING BLAST
+SAY NAME1 @73 /* Electrifying Blast */
+SAY UNIDENTIFIED_DESC @74 /* ELECTRIFYING BLAST
 (Eldritch Essence) 
 
 Power: Greater
@@ -2258,7 +2278,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl302a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -2267,17 +2287,17 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp036%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl302_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Paralyzed~)
+	  parameter1 = RESOLVE_STR_REF (@75 /* Paralyzed */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl302b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302#.spl~
   LPF ADD_SPELL_EFFECT
@@ -2288,7 +2308,7 @@ COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302#.spl~
 	  resource = c0wl302b
 END
 
-SAY NAME1 ~Hideous Blow: Electrifying Blast~
+SAY NAME1 @76 /* Hideous Blow: Electrifying Blast */
 
 COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302c.spl~
 READ_LONG 0x64 "abil_off"
@@ -2303,7 +2323,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302d.spl~
 READ_LONG 0x64 "abil_off"
@@ -2318,7 +2338,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2340,7 +2360,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302f.spl~
 READ_LONG 0x64 "abil_off"
@@ -2362,11 +2382,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl303.spl~ ~override~
-SAY NAME1 ~Noxious Blast~
-SAY UNIDENTIFIED_DESC ~NOXIOUS BLAST
+SAY NAME1 @77 /* Noxious Blast */
+SAY UNIDENTIFIED_DESC @78 /* NOXIOUS BLAST
 (Eldritch Essence) 
 
 Power: Greater
@@ -2377,7 +2397,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl303a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -2386,17 +2406,17 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp041%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
 
 COPY ~%MOD_FOLDER%/spells/c0wl303_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Weakened~)
+	  parameter1 = RESOLVE_STR_REF (@79 /* Weakened */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl303b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303#.spl~
   LPF ADD_SPELL_EFFECT
@@ -2407,7 +2427,7 @@ COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303#.spl~
 	  resource = c0wl303b
 END
 
-SAY NAME1 ~Hideous Blow: Noxious Blast~
+SAY NAME1 @80 /* Hideous Blow: Noxious Blast */
 
 COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303c.spl~
 READ_LONG 0x64 "abil_off"
@@ -2422,7 +2442,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303d.spl~
 READ_LONG 0x64 "abil_off"
@@ -2437,7 +2457,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2459,7 +2479,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303f.spl~
 READ_LONG 0x64 "abil_off"
@@ -2481,11 +2501,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl304.spl~ ~override~
-SAY NAME1 ~Vitriolic Blast~
-SAY UNIDENTIFIED_DESC ~VITRIOLIC BLAST
+SAY NAME1 @81 /* Vitriolic Blast */
+SAY UNIDENTIFIED_DESC @82 /* VITRIOLIC BLAST
 (Eldritch Essence) 
 
 Power: Greater
@@ -2496,7 +2516,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: None
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl304a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -2505,7 +2525,7 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp046%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
   LPF ALTER_EFFECT
     INT_VAR
 	  resist_dispel = 0
@@ -2515,11 +2535,11 @@ COPY ~%MOD_FOLDER%/spells/c0wl304_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Corrosion~)
+	  parameter1 = RESOLVE_STR_REF (@83 /* Corrosion */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl304b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304#.spl~
   LPF ADD_SPELL_EFFECT
@@ -2530,7 +2550,7 @@ COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304#.spl~
 	  resource = c0wl304b
 END
 
-SAY NAME1 ~Hideous Blow: Vitriolic Blast~
+SAY NAME1 @84 /* Hideous Blow: Vitriolic Blast */
 
 COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304c.spl~
 READ_LONG 0x64 "abil_off"
@@ -2545,7 +2565,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304d.spl~
 READ_LONG 0x64 "abil_off"
@@ -2560,7 +2580,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2582,7 +2602,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304f.spl~
 READ_LONG 0x64 "abil_off"
@@ -2604,13 +2624,13 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl305.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Paralyzed~)
+	  parameter1 = RESOLVE_STR_REF (@75 /* Paralyzed */)
 END
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
@@ -2618,8 +2638,8 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp102%~
 END
-SAY NAME1 ~Chilling Tentacles~
-SAY UNIDENTIFIED_DESC ~CHILLING TENTACLES
+SAY NAME1 @85 /* Chilling Tentacles */
+SAY UNIDENTIFIED_DESC @86 /* CHILLING TENTACLES
 (Conjuration/Summoning)
 
 Power: Greater
@@ -2630,11 +2650,11 @@ Casting Time: 6
 Area of Effect: 15-ft. radius
 Saving Throw: None
 
-This invocation allows you to conjure forth a field of soul-chilling tentacles that ooze from the ground, groping for victims. For every round that a creature is caught in the area of effect, it suffers an attack from tentacles, suffering 1d6+4 crushing damage and becoming paralyzed for one round on a failed Save vs. Breath. In addition, each creature within the area of the invocation takes 2d6 points of cold damage each round regardless of whether they are struck by any tentacles. The tentacles last for 4 rounds.~
+This invocation allows you to conjure forth a field of soul-chilling tentacles that ooze from the ground, groping for victims. For every round that a creature is caught in the area of effect, it suffers an attack from tentacles, suffering 1d6+4 crushing damage and becoming paralyzed for one round on a failed Save vs. Breath. In addition, each creature within the area of the invocation takes 2d6 points of cold damage each round regardless of whether they are struck by any tentacles. The tentacles last for 4 rounds. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl306.spl~ ~override~
-SAY NAME1 ~Devour Magic~
-SAY UNIDENTIFIED_DESC ~DEVOUR MAGIC
+SAY NAME1 @87 /* Devour Magic */
+SAY UNIDENTIFIED_DESC @88 /* DEVOUR MAGIC
 (Abjuration)
 
 Power: Greater
@@ -2647,18 +2667,18 @@ Saving Throw: None
 
 This invocation dispels the magical effects upon any enemies within the area. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Devour Magic is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Devour Magic is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the caster is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
 
-Additionally, for each enemy affected by Devour Magic, the warlock temporarily gains two extra hit points to <PRO_HISHER> maximum for four rounds.~
+Additionally, for each enemy affected by Devour Magic, the warlock temporarily gains two extra hit points to <PRO_HISHER> maximum for four rounds. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl306a.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Dispel Effects~)
+	  parameter1 = RESOLVE_STR_REF (@63 /* Dispel Effects */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl307.spl~ ~override~
-SAY NAME1 ~Tenacious Plague~
-SAY UNIDENTIFIED_DESC ~TENACIOUS PLAGUE
+SAY NAME1 @89 /* Tenacious Plague */
+SAY UNIDENTIFIED_DESC @90 /* TENACIOUS PLAGUE
 (Conjuration/Summoning)
 
 Power: Greater
@@ -2669,7 +2689,7 @@ Casting Time: 6
 Area of Effect: 15 ft. radius
 Saving Throw: None
 
-The Summon Insects spell attracts a cloud or swarm of normal insects to that jump first to the target, then to the nearest allies of the target. This swarm gathers at a point chosen by the caster within the spell's range and attacks any single creature the caster points to. Each victim may make a Saving Throw vs. Breath Weapon with a -4 penalty to escape the swarm; otherwise, they receive 1 point of piercing damage and 1d4 points of magical damage every 2 seconds for the duration of the spell. Moreover, each victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The swarm will repeatedly bite the target, making it very difficult to cast spells (50% chance of spell failure).~
+The Summon Insects spell attracts a cloud or swarm of normal insects to that jump first to the target, then to the nearest allies of the target. This swarm gathers at a point chosen by the caster within the spell's range and attacks any single creature the caster points to. Each victim may make a Saving Throw vs. Breath Weapon with a -4 penalty to escape the swarm; otherwise, they receive 1 point of piercing damage and 1d4 points of magical damage every 2 seconds for the duration of the spell. Moreover, each victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The swarm will repeatedly bite the target, making it very difficult to cast spells (50% chance of spell failure). */
 
 COPY ~%MOD_FOLDER%/spells/c0wl308.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -2678,8 +2698,8 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp103%~
 END
-SAY NAME1 ~Wall of Perilous Flame~
-SAY UNIDENTIFIED_DESC ~WALL OF PERILOUS FLAME
+SAY NAME1 @91 /* Wall of Perilous Flame */
+SAY UNIDENTIFIED_DESC @92 /* WALL OF PERILOUS FLAME
 (Invocation/Evocation)
 
 Power: Greater
@@ -2690,11 +2710,11 @@ Casting Time: 6
 Area of Effect: 15 ft. radius
 Saving Throw: None
 
-You conjure a curtain of fire that deals 2d6 points of damage to any creature that attempts to pass through it. Half the wall's fire damage results from supernatural power and deals magical damage, therefore not being subject to being reduced by resistance to fire. The curtain of flame lasts for 3 rounds before dissipating.~
+You conjure a curtain of fire that deals 2d6 points of damage to any creature that attempts to pass through it. Half the wall's fire damage results from supernatural power and deals magical damage, therefore not being subject to being reduced by resistance to fire. The curtain of flame lasts for 3 rounds before dissipating. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl401.spl~ ~override~
-SAY NAME1 ~Binding Blast~
-SAY UNIDENTIFIED_DESC ~BINDING BLAST
+SAY NAME1 @93 /* Binding Blast */
+SAY UNIDENTIFIED_DESC @94 /* BINDING BLAST
 (Eldritch Essence) 
 
 Power: Dark
@@ -2705,7 +2725,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: None
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl401a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -2714,7 +2734,7 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp051%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 146
@@ -2734,11 +2754,11 @@ COPY ~%MOD_FOLDER%/spells/c0wl401_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Stunned~)
+	  parameter1 = RESOLVE_STR_REF (@95 /* Stunned */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl401b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401#.spl~
   LPF ADD_SPELL_EFFECT
@@ -2749,7 +2769,7 @@ COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401#.spl~
 	  resource = c0wl401b
 END
 
-SAY NAME1 ~Hideous Blow: Binding Blast~
+SAY NAME1 @96 /* Hideous Blow: Binding Blast */
 
 COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401c.spl~
 READ_LONG 0x64 "abil_off"
@@ -2764,7 +2784,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401d.spl~
 READ_LONG 0x64 "abil_off"
@@ -2779,7 +2799,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2801,7 +2821,7 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401f.spl~
 READ_LONG 0x64 "abil_off"
@@ -2823,11 +2843,11 @@ END
 	  savingthrow = 1
 	  special = 0x100
 END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl402.spl~ ~override~
-SAY NAME1 ~Utterdark Blast~
-SAY UNIDENTIFIED_DESC ~UTTERDARK BLAST
+SAY NAME1 @97 /* Utterdark Blast */
+SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
 (Eldritch Essence) 
 
 Power: Dark
@@ -2838,7 +2858,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: None
 
-This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl402a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -2847,7 +2867,7 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp056%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 146
@@ -2868,11 +2888,11 @@ COPY ~%MOD_FOLDER%/spells/c0wl402_.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Four Levels Drained~)
+	  parameter1 = RESOLVE_STR_REF (@99 /* Four Levels Drained */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl402b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402#.spl~
   LPF ADD_SPELL_EFFECT
@@ -2883,7 +2903,7 @@ COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402#.spl~
 	  resource = c0wl402b
 END
 
-SAY NAME1 ~Hideous Blow: Utterdark Blast~
+SAY NAME1 @100 /* Hideous Blow: Utterdark Blast */
 
 COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402c.spl~
 READ_LONG 0x64 "abil_off"
@@ -2898,7 +2918,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402d.spl~
 READ_LONG 0x64 "abil_off"
@@ -2913,7 +2933,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2929,7 +2949,7 @@ END
 	STR_VAR
 	  icon = %c0wl300b%
   END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402f.spl~
 READ_LONG 0x64 "abil_off"
@@ -2945,11 +2965,11 @@ END
 	STR_VAR
 	  icon = %c0wl400b%
   END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl403.spl~ ~override~
-SAY NAME1 ~Dark Foresight~
-SAY UNIDENTIFIED_DESC ~DARK FORESIGHT
+SAY NAME1 @101 /* Dark Foresight */
+SAY UNIDENTIFIED_DESC @102 /* DARK FORESIGHT
 (Divination) 
 
 Power: Dark
@@ -2960,11 +2980,11 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-The warlock's dark powers allow <PRO_HIMHER> to glimpse the future, granting a +10 bonus to Armor Class, +5 bonus to all saving throws, 20% damage resistance and immunity to backstab. The effects of this invocation are non-cumulative.~
+The warlock's dark powers allow <PRO_HIMHER> to glimpse the future, granting a +10 bonus to Armor Class, +5 bonus to all saving throws, 20% damage resistance and immunity to backstab. The effects of this invocation are non-cumulative. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl404.spl~ ~override~
-SAY NAME1 ~Retributive Invisibility~
-SAY UNIDENTIFIED_DESC ~RETRIBUTIVE INVISIBILITY
+SAY NAME1 @103 /* Retributive Invisibility */
+SAY UNIDENTIFIED_DESC @104 /* RETRIBUTIVE INVISIBILITY
 (Illusion/Phantasm) 
 
 Power: Dark
@@ -2975,18 +2995,18 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: Special
 
-This invocation grants the warlock the effects of Improved Invisibility for three rounds. The invisibility cannot be dispelled, and at the end of its duration, a shock wave releases from the warlock's body in a small burst, dealing 4d6 magical damage to all nearby creatures and stunning them for one round. (Save vs. Death to avoid stun and half damage)~
+This invocation grants the warlock the effects of Improved Invisibility for three rounds. The invisibility cannot be dispelled, and at the end of its duration, a shock wave releases from the warlock's body in a small burst, dealing 4d6 magical damage to all nearby creatures and stunning them for one round. (Save vs. Death to avoid stun and half damage) */
 
 COPY ~%MOD_FOLDER%/spells/c0wl404a.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Stunned~)
+	  parameter1 = RESOLVE_STR_REF (@95 /* Stunned */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl405.spl~ ~override~
-SAY NAME1 ~Word of Changing~
-SAY UNIDENTIFIED_DESC ~WORD OF CHANGING
+SAY NAME1 @105 /* Word of Changing */
+SAY UNIDENTIFIED_DESC @106 /* WORD OF CHANGING
 (Alteration) 
 
 Power: Dark
@@ -2997,41 +3017,41 @@ Casting Time: 9
 Area of Effect: the caster
 Saving Throw: None
 
-With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed.~
+With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl405b.spl~ ~override~
-SAY NAME1 ~Shapeshift: Natural Form~
-SAY UNIDENTIFIED_DESC ~Shapeshift: Natural Form
-This ability causes the character to return to <PRO_HISHER> natural shape and ends the polymorph effect.~
+SAY NAME1 @107 /* Shapeshift: Natural Form */
+SAY UNIDENTIFIED_DESC @108 /* Shapeshift: Natural Form
+This ability causes the character to return to <PRO_HISHER> natural shape and ends the polymorph effect. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl501.spl~ ~override~
-SAY NAME1 ~Eldritch Pact~
-SAY UNIDENTIFIED_DESC ~ELDRITCH PACT
-The warlock gains a boon from an otherworldly power, whether fiendish or fey, granting a permanent +20% bonus Magic Resistance, +1 bonus to casting time, and +50% duration to all invocations.~
+SAY NAME1 @109 /* Eldritch Pact */
+SAY UNIDENTIFIED_DESC @110 /* ELDRITCH PACT
+The warlock gains a boon from an otherworldly power, whether fiendish or fey, granting a permanent +20% bonus Magic Resistance, +1 bonus to casting time, and +50% duration to all invocations. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl502.spl~ ~override~
-SAY NAME1 ~Eldritch Focus~
-SAY UNIDENTIFIED_DESC ~ELDRITCH FOCUS
-This ability allows the warlock to temporarily unlock a tremendous amount of eldritch power, gaining immunity to weapon damage and a +20 bonus to Luck for 3 rounds.~
+SAY NAME1 @111 /* Eldritch Focus */
+SAY UNIDENTIFIED_DESC @112 /* ELDRITCH FOCUS
+This ability allows the warlock to temporarily unlock a tremendous amount of eldritch power, gaining immunity to weapon damage and a +20 bonus to Luck for 3 rounds. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl503.spl~ ~override~
-SAY NAME1 ~Eldritch Paragon~
-SAY UNIDENTIFIED_DESC ~ELDRITCH PARAGON
-The warlock's mastery of <PRO_HISHER> powers grants <PRO_HIMHER> a permanent +50% resistance to magical damage, +5 to all saving throws and +20% to damage dealt by magical damage.~
+SAY NAME1 @113 /* Eldritch Paragon */
+SAY UNIDENTIFIED_DESC @114 /* ELDRITCH PARAGON
+The warlock's mastery of <PRO_HISHER> powers grants <PRO_HIMHER> a permanent +50% resistance to magical damage, +5 to all saving throws and +20% to damage dealt by magical damage. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl504.spl~ ~override~
-SAY NAME1 ~Hellfire Pact~
-SAY UNIDENTIFIED_DESC ~HELLFIRE PACT
-The warlock gains a boon from Mephistopheles, Lord of Hellfire, granting a permanent +50% bonus Fire/Cold Resistance and +20% bonus to elemental damage dealt by the warlock.~
+SAY NAME1 @115 /* Hellfire Pact */
+SAY UNIDENTIFIED_DESC @116 /* HELLFIRE PACT
+The warlock gains a boon from Mephistopheles, Lord of Hellfire, granting a permanent +50% bonus Fire/Cold Resistance and +20% bonus to elemental damage dealt by the warlock. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl505.spl~ ~override~
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Constitution Drained~)
+	  parameter1 = RESOLVE_STR_REF (@117 /* Constitution Drained */)
 END
-SAY NAME1 ~Hellfire Shield~
-SAY UNIDENTIFIED_DESC ~HELLFIRE SHIELD
+SAY NAME1 @118 /* Hellfire Shield */
+SAY UNIDENTIFIED_DESC @119 /* HELLFIRE SHIELD
 (Invocation/Evocation)
 
 Level: Epic
@@ -3043,11 +3063,11 @@ Saving Throw: None
 
 This spell causes the warlock to be enveloped by an aura of intense flame that both injures opponents and protects the warlock from damage. This shield not only grants the user 125% Fire Resistance, +50% to damage dealt from fire damage and an AC bonus of 4, but also protects <PRO_HIMHER> from attacks made within a 5-ft. radius. An opponent that hits the warlock with any weapons or spells within this radius suffers 2d10+2 fire damage. In addition, the intense heat protects the warlock from all weapons of below +3 enchantment.
 
-However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl506.spl~ ~override~
-SAY NAME1 ~Hellfire Blast~
-SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+SAY NAME1 @120 /* Hellfire Blast */
+SAY UNIDENTIFIED_DESC @121 /* HELLFIRE BLAST
 (Eldritch Essence) 
 
 Power: Epic
@@ -3060,7 +3080,7 @@ Saving Throw: None
 
 This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
 
-However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl506a.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -3069,7 +3089,7 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp061%~
 END
-SAY NAME1 ~Shape: Blast~
+SAY NAME1 @10 /* Shape: Blast */
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 215
@@ -3084,11 +3104,11 @@ END
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
-	  parameter1 = RESOLVE_STR_REF (~Constitution Drained~)
+	  parameter1 = RESOLVE_STR_REF (@117 /* Constitution Drained */)
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl506b.spl~ ~override~
-SAY NAME1 ~Shape: Hideous Blow~
+SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506#.spl~
   LPF ADD_SPELL_EFFECT
@@ -3099,7 +3119,7 @@ COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506#.spl~
 	  resource = c0wl506b
 END
 
-SAY NAME1 ~Hideous Blow: Hellfire Blast~
+SAY NAME1 @122 /* Hideous Blow: Hellfire Blast */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506c.spl~
 READ_LONG 0x64 "abil_off"
@@ -3114,7 +3134,7 @@ END
 	STR_VAR
 	  icon = %c0wl103b%
   END
-SAY NAME1 ~Shape: Spear~
+SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506d.spl~
 READ_LONG 0x64 "abil_off"
@@ -3129,7 +3149,7 @@ END
 	STR_VAR
 	  icon = %c0wl200b%
   END
-SAY NAME1 ~Shape: Chain~
+SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506e.spl~
 READ_LONG 0x64 "abil_off"
@@ -3146,7 +3166,7 @@ END
 	  icon = %c0wl300b%
 	  special = 256
   END
-SAY NAME1 ~Shape: Cone~
+SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506f.spl~
 READ_LONG 0x64 "abil_off"
@@ -3163,29 +3183,29 @@ END
 	  icon = %c0wl400b%
 	  special = 256
   END
-SAY NAME1 ~Shape: Doom~
+SAY NAME1 @16 /* Shape: Doom */
 
 COPY ~%MOD_FOLDER%/spells/c0wl507.spl~ ~override~
-SAY NAME1 ~Extra Invocation I~
-SAY UNIDENTIFIED_DESC ~EXTRA INVOCATION I
-Choosing this ability allows the wizard to cast one additional Least Invocation.~
+SAY NAME1 @123 /* Extra Invocation I */
+SAY UNIDENTIFIED_DESC @124 /* EXTRA INVOCATION I
+Choosing this ability allows the wizard to cast one additional Least Invocation. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl508.spl~ ~override~
-SAY NAME1 ~Extra Invocation II~
-SAY UNIDENTIFIED_DESC ~EXTRA INVOCATION II
-Choosing this ability allows the wizard to cast one additional Lesser Invocation.~
+SAY NAME1 @125 /* Extra Invocation II */
+SAY UNIDENTIFIED_DESC @126 /* EXTRA INVOCATION II
+Choosing this ability allows the wizard to cast one additional Lesser Invocation. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl509.spl~ ~override~
-SAY NAME1 ~Extra Invocation III~
-SAY UNIDENTIFIED_DESC ~EXTRA INVOCATION III
-Choosing this ability allows the wizard to cast one additional Greater Invocation.~
+SAY NAME1 @127 /* Extra Invocation III */
+SAY UNIDENTIFIED_DESC @128 /* EXTRA INVOCATION III
+Choosing this ability allows the wizard to cast one additional Greater Invocation. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl510.spl~ ~override~
-SAY NAME1 ~Extra Invocation IV~
-SAY UNIDENTIFIED_DESC ~EXTRA INVOCATION IV
-Choosing this ability allows the wizard to cast one additional Dark Invocation.~
+SAY NAME1 @129 /* Extra Invocation IV */
+SAY UNIDENTIFIED_DESC @130 /* EXTRA INVOCATION IV
+Choosing this ability allows the wizard to cast one additional Dark Invocation. */
 
 COPY ~%MOD_FOLDER%/spells/c0wl511.spl~ ~override~
-SAY NAME1 ~Call Fiend~
-SAY UNIDENTIFIED_DESC ~CALL FIEND
-This ability allows the warlock to call upon a powerful fiend from the Lower Planes. Unlike the wizard, the fiend summoned is under the warlock's control and does not need to be warded by a Protection from Evil spell. There is a 50% chance to summon a nabassu, a 35% chance to summon a glabrezu and a 15% chance to summon a pit fiend.~
+SAY NAME1 @131 /* Call Fiend */
+SAY UNIDENTIFIED_DESC @132 /* CALL FIEND
+This ability allows the warlock to call upon a powerful fiend from the Lower Planes. Unlike the wizard, the fiend summoned is under the warlock's control and does not need to be warded by a Protection from Evil spell. There is a 50% chance to summon a nabassu, a 35% chance to summon a glabrezu and a 15% chance to summon a pit fiend. */

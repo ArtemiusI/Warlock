@@ -1,0 +1,592 @@
+@0    = ~Warlock Kit~
+@1    = ~warlock~
+@2    = ~Warlock~
+@3    = ~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
+
+CLASS FEATURES:
+
+– May not wear armor heavier than chain mail.
+– May not equip shields larger than bucklers.
+– May only become Proficient (one slot) in any weapon class.
+– May only become Proficient (one slot) in any fighting style.
+– Thieving abilities: Pick Pockets.
+– Eldritch Lore: The warlock gains 10 base Lore per level.
+– May cast Invocations.
+– May use the Eldritch Blast ability at will.
+
+ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.
+
+– 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
+– 8th level: The warlock regenerates one hit point per three rounds.
+– 10th level: Gains 10% resistance to acid, cold, electrical, fire and magical damage. An additional 10% is gained at levels 20, 30 and 40.
+– 16th level: Regeneration rate increased to one hit point per two rounds.
+– 22nd level: Becomes immune to non-magical weapons.
+– 24th level: Regeneration rate increased to one hit point per round.
+
+– Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
+– Hit Die: d6~
+@4    = ~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
+
+CLASS FEATURES:
+
+– May not wear armor heavier than chain mail.
+– May not equip shields larger than bucklers.
+– May only become Proficient (one slot) in any weapon class.
+– May only become Proficient (one slot) in any fighting style.
+– Thieving abilities: Pick Pockets.
+– Eldritch Lore: The warlock gains 10 base Lore per level.
+– May cast Invocations.
+
+INVOCATIONS: A Warlock does not prepare or cast spells as other wielders of arcane magic do. Instead, he possesses a repertoire of attacks, defenses, and abilities known as invocations that require him to focus the wild energy that suffuses his soul. A Warlock can use any invocation he knows at will. The four grades of invocation, in order of their relative power, are least, lesser, greater and dark.
+
+– May use the Eldritch Blast ability at will.
+
+ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. 
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to enemies within a 10 ft. radius.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.
+
+– 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
+– 8th level: The warlock regenerates one hit point per three rounds.
+– 10th level: Gains 10% resistance to acid, cold, electrical, fire and magical damage. An additional 10% is gained at levels 20, 30 and 40.
+– 16th level: Regeneration rate increased to one hit point per two rounds.
+– 22nd level: Becomes immune to non-magical weapons.
+– 24th level: Regeneration rate increased to one hit point per round.
+
+– Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
+– Hit Die: d6~
+@5    = ~For as long as you recall, you have wielded infernal magic as easily as you draw breath. While your innate magical abilities earned you the fear and scorn of those around you, your mentors sought to raise you as well as they could regardless, urging you to control the dark powers within you and use them for good purposes. Despite this, you have always felt the call of something darker, sinister calling your name, urging you to take a power that is almost within reach.~
+@6    = ~Invocations~
+@7    = ~INVOCATIONS
+A Warlock does not prepare or cast spells as other wielders of arcane magic do. Instead, he possesses a repertoire of attacks, defenses, and abilities known as invocations that require him to focus the wild energy that suffuses his soul. A Warlock can use any invocation he knows at will. The four grades of invocation, in order of their relative power, are least, lesser, greater and dark.~
+@8    = ~Eldritch Blast~
+@9    = ~ELDRITCH BLAST
+A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.~
+@10   = ~Shape: Blast~
+@11   = ~Shape: Hideous Blow~
+@12   = ~Hideous Blow~
+@13   = ~Shape: Spear~
+@14   = ~Shape: Chain~
+@15   = ~Shape: Cone~
+@16   = ~Shape: Doom~
+@17   = ~Beguiling Influence~
+@18   = ~BEGUILING INFLUENCE
+(Enchantment/Charm) 
+
+Power: Least
+Effective Spell Level: 2
+Range: 0
+Duration: 8 hours
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 8th level and +6 at 16th level.~
+@19   = ~Dark One's Own Luck~
+@20   = ~DARK ONE'S OWN LUCK
+(Enchantment/Charm)
+
+Power: Least
+Effective Spell Level: 2
+Range: 0
+Duration: 8 hours
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16.~
+@21   = ~Draining Blast~
+@22   = ~DRAINING BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
+@23   = ~Slowed~
+@24   = ~Hideous Blow: Draining Blast~
+@25   = ~Frightful Blast~
+@26   = ~FRIGHTFUL BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
+@27   = ~Frightened~
+@28   = ~Hideous Blow: Frightful Blast~
+@29   = ~Darkness~
+@30   = ~DARKNESS
+(Invocation/Evocation) 
+
+Power: Least
+Effective Spell Level: 1
+Range: 0
+Duration: 3 rounds
+Casting Time: 4
+Area of Effect: 20 ft.
+Saving Throw: None
+
+The warlock creates an area of deepest shadow at range in a 20-foot radius. All creatures in the area suffer a -4 penalty to hit rolls and greatly reduced vision range until they leave the area of effect.~
+@31   = ~Entropic Warding~
+@32   = ~ENTROPIC WARDING
+(Abjuration) 
+
+Power: Least
+Effective Spell Level: 2
+Range: 0
+Duration: 1 turn/level
+Casting Time: 6
+Area of Effect: the caster
+Saving Throw: None
+
+A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 for the duration.~
+@33   = ~Dexterity Modification~
+@34   = ~Leaps and Bounds~
+@35   = ~LEAPS AND BOUNDS
+(Alteration) 
+
+Power: Least
+Effective Spell Level: 2
+Range: 0
+Duration: 8 hours
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+This invocation grants the warlock amazing agility. For the duration of the spell, the warlock gains a +2 bonus to Dexterity and Armor Class. An additional +1 bonus is granted for every two points of the warlock's Charisma above 16.~
+@36   = ~See the Unseen~
+@37   = ~SEE THE UNSEEN
+(Divination) 
+
+Power: Least
+Effective Spell Level: 2
+Range: 0
+Duration: 5 rounds
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps. <PRO_HESHE> also gains infravision for the duration.~
+@38   = ~Beshadowed Blast~
+@39   = ~BESHADOWED BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
+@40   = ~Blinded~
+@41   = ~Hideous Blow: Beshadowed Blast~
+@42   = ~Brimstone Blast~
+@43   = ~BRIMSTONE BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
+@44   = ~Burning~
+@45   = ~Hideous Blow: Brimstone Blast~
+@46   = ~Hellrime Blast~
+@47   = ~HELLRIME BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack.~
+@48   = ~Chilled~
+@49   = ~Hideous Blow: Hellrime Blast~
+@50   = ~Charmed~
+@51   = ~Charm~
+@52   = ~CHARM
+(Enchantment/Charm) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 5 rounds
+Casting Time: 5
+Area of Effect: One creature
+Saving Throw: None
+
+This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired.~
+@53   = ~Cursed~
+@54   = ~Curse of Despair~
+@55   = ~CURSE OF DESPAIR
+(Enchantment/Charm) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Touch
+Duration: Permanent
+Casting Time: 4
+Area of Effect: One creature
+Saving Throw: Special
+
+This invocation bestows a permanent curse upon a touched opponent, lowering all the target's ability scores by 3 if the target fails a Save vs. Spells permanently until cured via a Remove Curse spell. Even if the save against this invocation succeeds, the target takes a -1 penalty on attack rolls for one turn. This curse does not stack with itself.~
+@56   = ~Crippled~
+@57   = ~Dread Seizure~
+@58   = ~DREAD SEIZURE
+(Enchantment/Charm) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Visual range of the caster
+Duration: 3 rounds
+Casting Time: 2
+Area of Effect: One creature
+Saving Throw: Neg.
+
+The warlock speaks a word that sends wracking pain through the limbs of a single target creature. If the target fails a Save vs. Death, it suffers a -3 penalty to attack rolls and Armor Class as well as 50% penalty to movement speed for 3 rounds.~
+@59   = ~Flee the Scene~
+@60   = ~FLEE THE SCENE
+(Alteration) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Visual range of the caster
+Duration: 1 round
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+This invocation allows the warlock to make a quick escape when necessary. Upon casting this invocation, the warlock teleports to a location within <PRO_HISHER> vision range, becoming invisible and leaving an illusion of <PRO_HIMHER>self behind for one round.~
+@61   = ~The Dead Walk~
+@62   = ~THE DEAD WALK
+(Necromancy) 
+
+Power: Lesser
+Effective Spell Level: 5
+Range: Visual range of the caster
+Duration: 1 hour
+Casting Time: 9
+Area of Effect: the caster
+Saving Throw: None
+
+The warlock can summon undead creatures with <PRO_HISHER> infernal power to serve <PRO_HIMHER>. This invocation lasts for one hour. The strength and number of undead created is dependent on the warlock's level:
+
+  1st – 6th: a 3 HD skeleton warrior wielding a long sword.
+  7th – 10th: a 5 HD skeleton warrior wielding a long sword +1.
+  11th – 14th: a 7 HD skeleton warrior wielding a bastard sword +1.
+  15th and up: a 9 HD skeleton warrior wielding a two-handed sword +1.
+  
+The skeleton warrior can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, one hour passes, or it is turned. This spell cannot be dispelled.~
+@63   = ~Dispel Effects~
+@64   = ~Voracious Dispelling~
+@65   = ~VORACIOUS DISPELLING
+(Abjuration) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Touch
+Duration: Instant
+Casting Time: 3
+Area of Effect: One creature
+Saving Throw: None
+
+This invocation attempts to dispel magical effects upon a target creature. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Voracious Dispelling is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Voracious Dispelling is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the warlock is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
+
+Additionally, regardless of whether the dispel is successful, the target takes one point of magical damage per two levels of the warlock.~
+@66   = ~Invisible~
+@67   = ~Walk Unseen~
+@68   = ~WALK UNSEEN
+(Illusion/Phantasm) 
+
+Power: Lesser
+Effective Spell Level: 2
+Range: Self
+Duration: 24 hours
+Casting Time: 2
+Area of Effect: the caster
+Saving Throw: None
+
+The warlock may cast this invocation to become invisible. The effect ends immediately if <PRO_HESHE> attacks or casts a spell. Otherwise, the effect lasts 24 hours.~
+@69   = ~Bewitching Blast~
+@70   = ~BEWITCHING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
+@71   = ~Confused~
+@72   = ~Hideous Blow: Bewitching Blast~
+@73   = ~Electrifying Blast~
+@74   = ~ELECTRIFYING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected.~
+@75   = ~Paralyzed~
+@76   = ~Hideous Blow: Electrifying Blast~
+@77   = ~Noxious Blast~
+@78   = ~NOXIOUS BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
+@79   = ~Weakened~
+@80   = ~Hideous Blow: Noxious Blast~
+@81   = ~Vitriolic Blast~
+@82   = ~VITRIOLIC BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~
+@83   = ~Corrosion~
+@84   = ~Hideous Blow: Vitriolic Blast~
+@85   = ~Chilling Tentacles~
+@86   = ~CHILLING TENTACLES
+(Conjuration/Summoning)
+
+Power: Greater
+Effective Spell Level: 5
+Range: 40 ft.
+Duration: 4 rounds
+Casting Time: 6
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+This invocation allows you to conjure forth a field of soul-chilling tentacles that ooze from the ground, groping for victims. For every round that a creature is caught in the area of effect, it suffers an attack from tentacles, suffering 1d6+4 crushing damage and becoming paralyzed for one round on a failed Save vs. Breath. In addition, each creature within the area of the invocation takes 2d6 points of cold damage each round regardless of whether they are struck by any tentacles. The tentacles last for 4 rounds.~
+@87   = ~Devour Magic~
+@88   = ~DEVOUR MAGIC
+(Abjuration)
+
+Power: Greater
+Effective Spell Level: 6
+Range: 40 ft.
+Duration: Instant
+Casting Time: 3
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+This invocation dispels the magical effects upon any enemies within the area. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Devour Magic is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Devour Magic is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the caster is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
+
+Additionally, for each enemy affected by Devour Magic, the warlock temporarily gains two extra hit points to <PRO_HISHER> maximum for four rounds.~
+@89   = ~Tenacious Plague~
+@90   = ~TENACIOUS PLAGUE
+(Conjuration/Summoning)
+
+Power: Greater
+Effective Spell Level: 6
+Range: Visual range of the caster
+Duration: 3 rounds
+Casting Time: 6
+Area of Effect: 15 ft. radius
+Saving Throw: None
+
+The Summon Insects spell attracts a cloud or swarm of normal insects to that jump first to the target, then to the nearest allies of the target. This swarm gathers at a point chosen by the caster within the spell's range and attacks any single creature the caster points to. Each victim may make a Saving Throw vs. Breath Weapon with a -4 penalty to escape the swarm; otherwise, they receive 1 point of piercing damage and 1d4 points of magical damage every 2 seconds for the duration of the spell. Moreover, each victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The swarm will repeatedly bite the target, making it very difficult to cast spells (50% chance of spell failure).~
+@91   = ~Wall of Perilous Flame~
+@92   = ~WALL OF PERILOUS FLAME
+(Invocation/Evocation)
+
+Power: Greater
+Effective Spell Level: 6
+Range: Visual range of the caster
+Duration: 3 rounds
+Casting Time: 6
+Area of Effect: 15 ft. radius
+Saving Throw: None
+
+You conjure a curtain of fire that deals 2d6 points of damage to any creature that attempts to pass through it. Half the wall's fire damage results from supernatural power and deals magical damage, therefore not being subject to being reduced by resistance to fire. The curtain of flame lasts for 3 rounds before dissipating.~
+@93   = ~Binding Blast~
+@94   = ~BINDING BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 7
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round.~
+@95   = ~Stunned~
+@96   = ~Hideous Blow: Binding Blast~
+@97   = ~Utterdark Blast~
+@98   = ~UTTERDARK BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 8
+Range: Special
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
+@99   = ~Four Levels Drained~
+@100  = ~Hideous Blow: Utterdark Blast~
+@101  = ~Dark Foresight~
+@102  = ~DARK FORESIGHT
+(Divination) 
+
+Power: Dark
+Effective Spell Level: 9
+Range: Self
+Duration: 2 rounds
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+The warlock's dark powers allow <PRO_HIMHER> to glimpse the future, granting a +10 bonus to Armor Class, +5 bonus to all saving throws, 20% damage resistance and immunity to backstab. The effects of this invocation are non-cumulative.~
+@103  = ~Retributive Invisibility~
+@104  = ~RETRIBUTIVE INVISIBILITY
+(Illusion/Phantasm) 
+
+Power: Dark
+Effective Spell Level: 6
+Range: Self
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: Special
+
+This invocation grants the warlock the effects of Improved Invisibility for three rounds. The invisibility cannot be dispelled, and at the end of its duration, a shock wave releases from the warlock's body in a small burst, dealing 4d6 magical damage to all nearby creatures and stunning them for one round. (Save vs. Death to avoid stun and half damage)~
+@105  = ~Word of Changing~
+@106  = ~WORD OF CHANGING
+(Alteration) 
+
+Power: Dark
+Effective Spell Level: 5
+Range: Self
+Duration: 10 turns
+Casting Time: 9
+Area of Effect: the caster
+Saving Throw: None
+
+With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed.~
+@107  = ~Shapeshift: Natural Form~
+@108  = ~Shapeshift: Natural Form
+This ability causes the character to return to <PRO_HISHER> natural shape and ends the polymorph effect.~
+@109  = ~Eldritch Pact~
+@110  = ~ELDRITCH PACT
+The warlock gains a boon from an otherworldly power, whether fiendish or fey, granting a permanent +20% bonus Magic Resistance, +1 bonus to casting time, and +50% duration to all invocations.~
+@111  = ~Eldritch Focus~
+@112  = ~ELDRITCH FOCUS
+This ability allows the warlock to temporarily unlock a tremendous amount of eldritch power, gaining immunity to weapon damage and a +20 bonus to Luck for 3 rounds.~
+@113  = ~Eldritch Paragon~
+@114  = ~ELDRITCH PARAGON
+The warlock's mastery of <PRO_HISHER> powers grants <PRO_HIMHER> a permanent +50% resistance to magical damage, +5 to all saving throws and +20% to damage dealt by magical damage.~
+@115  = ~Hellfire Pact~
+@116  = ~HELLFIRE PACT
+The warlock gains a boon from Mephistopheles, Lord of Hellfire, granting a permanent +50% bonus Fire/Cold Resistance and +20% bonus to elemental damage dealt by the warlock.~
+@117  = ~Constitution Drained~
+@118  = ~Hellfire Shield~
+@119  = ~HELLFIRE SHIELD
+(Invocation/Evocation)
+
+Level: Epic
+Range: Self
+Duration: 1 turn
+Casting Time: 4
+Area of Effect: The caster
+Saving Throw: None
+
+This spell causes the warlock to be enveloped by an aura of intense flame that both injures opponents and protects the warlock from damage. This shield not only grants the user 125% Fire Resistance, +50% to damage dealt from fire damage and an AC bonus of 4, but also protects <PRO_HIMHER> from attacks made within a 5-ft. radius. An opponent that hits the warlock with any weapons or spells within this radius suffers 2d10+2 fire damage. In addition, the intense heat protects the warlock from all weapons of below +3 enchantment.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
+@120  = ~Hellfire Blast~
+@121  = ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
+@122  = ~Hideous Blow: Hellfire Blast~
+@123  = ~Extra Invocation I~
+@124  = ~EXTRA INVOCATION I
+Choosing this ability allows the wizard to cast one additional Least Invocation.~
+@125  = ~Extra Invocation II~
+@126  = ~EXTRA INVOCATION II
+Choosing this ability allows the wizard to cast one additional Lesser Invocation.~
+@127  = ~Extra Invocation III~
+@128  = ~EXTRA INVOCATION III
+Choosing this ability allows the wizard to cast one additional Greater Invocation.~
+@129  = ~Extra Invocation IV~
+@130  = ~EXTRA INVOCATION IV
+Choosing this ability allows the wizard to cast one additional Dark Invocation.~
+@131  = ~Call Fiend~
+@132  = ~CALL FIEND
+This ability allows the warlock to call upon a powerful fiend from the Lower Planes. Unlike the wizard, the fiend summoned is under the warlock's control and does not need to be warded by a Protection from Evil spell. There is a 50% chance to summon a nabassu, a 35% chance to summon a glabrezu and a 15% chance to summon a pit fiend.~
