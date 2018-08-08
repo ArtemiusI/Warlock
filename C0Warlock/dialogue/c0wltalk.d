@@ -43,6 +43,7 @@ OR(5)
 !HaveKnownSpellRES("c0wl403")
 !HaveKnownSpellRES("c0wl404")
 !HaveKnownSpellRES("c0wl405")~ + @4 /* Dark */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + dark
+IF ~~ EXIT
 END
 
 IF ~!Global("C0WarlockBegin","LOCALS",0)

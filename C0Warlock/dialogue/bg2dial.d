@@ -82,3 +82,43 @@ EraseJournalEntry(23551)
 SetGlobal("PlayerHasStronghold","GLOBAL",1)
 SetGlobal("PCSphere","GLOBAL",1)
 Kill(Myself)~ EXIT
+
+// Cromwell
+
+EXTEND_BOTTOM WSMITH01 13
+  IF ~PartyHasItem("C0WLI#02")~ THEN GOTO CROMWELL1
+END
+  
+APPEND WSMITH01
+  IF ~~ THEN BEGIN CROMWELL1 SAY @7	/* Eh? By Moradin, this blade's flames could that o' me forge. What be this infernal thing, eh? */
+    IF ~PartyHasItem("C0WLI#02")
+        !PartyHasItem("MISC6M")~ THEN GOTO CROMWELL2
+    IF ~PartyHasItem("C0WLI#02")
+        PartyHasItem("MISC6M")~ THEN GOTO CROMWELL3
+  END
+  
+  IF ~~ THEN BEGIN CROMWELL2 SAY @8	/* Ach, this weapon be a dangerous thing indeed, me friend. If ye be willin' ter wield it, though, the blood from the heart o' a tanar'ri be an effective catalyst to draw out a baatezu's rage, should ye ever find such a vile thing. */
+    COPY_TRANS WSMITH01 13
+  END
+  
+  IF ~~ THEN BEGIN CROMWELL3 SAY @9	/* Ach, this weapon be a dangerous thing indeed, me friend. If ye be willin' ter wield it, though, the blood from the heart o' a tanar'ri be an effective catalyst to draw out a baatezu's rage. Ye've a heart with ye, so I can make this sword's flames burn as hot as those o' Phlegethos itself. It'll cost ye 12,000 gold fer the task. */
+    IF ~PartyGoldLT(12000)~ THEN REPLY @10 /* I don't have enough gold. */ GOTO CROMWELLNO
+    IF ~PartyGoldGT(11999)~ THEN REPLY @11 /* That sounds good. Do it. */ DO ~SetGlobal("C0HellfireBladeUpgrade","ar0334",1)
+                                                 SetGlobal("ForgeStuff","GLOBAL",1)
+                                                 TakePartyGold(12000)
+                                                 TakePartyItemNum("C0WLI#02",1)
+                                                 DestroyItem("C0WLI#02")
+                                                 TakePartyItemNum("MISC6M",1)
+                                                 DestroyItem("MISC6M")
+                                                 DestroyGold(12000)~ GOTO 56
+    IF ~~ THEN REPLY @12 /* Not at this time. What else? */ GOTO CROMWELLNO
+  END
+
+  IF WEIGHT #-1 ~GlobalGT("C0HellfireBladeCraft","ar0334",0)~ THEN BEGIN CROMWELL4 SAY @13 /* Well, there ye go, me friend. Use it well. And if ye comes across anything else of interest, ye knows where to bring it, aye? */
+    IF ~~ THEN DO ~SetGlobal("C0HellfireBladeCraft","ar0334",0)~ EXIT
+  END
+
+  IF ~~ THEN BEGIN CROMWELLNO SAY @14 /* As ye wish. Perhaps it be fer the best not to meddle with the tools o' devils. */
+   COPY_TRANS WSMITH01 13
+  END
+END

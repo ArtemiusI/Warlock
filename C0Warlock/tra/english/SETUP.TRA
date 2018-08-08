@@ -446,7 +446,7 @@ Casting Time: 6
 Area of Effect: 15 ft. radius
 Saving Throw: None
 
-The Summon Insects spell attracts a cloud or swarm of normal insects to that jump first to the target, then to the nearest allies of the target. This swarm gathers at a point chosen by the caster within the spell's range and attacks any single creature the caster points to. Each victim may make a Saving Throw vs. Breath Weapon with a -4 penalty to escape the swarm; otherwise, they receive 1 point of piercing damage and 1d4 points of magical damage every 2 seconds for the duration of the spell. Moreover, each victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The swarm will repeatedly bite the target, making it very difficult to cast spells (50% chance of spell failure).~
+The Tenacious Plague spell attracts a cloud or swarm of magical insects to that jump first to the target, then to the nearest allies of the target. This swarm gathers at a point chosen by the caster within the spell's range and attacks any single creature the caster points to. Each victim may make a Saving Throw vs. Breath Weapon with a -4 penalty to escape the swarm; otherwise, they receive 1 point of piercing damage and 1d4 points of magical damage every 2 seconds for the duration of the spell. Moreover, each victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The swarm will repeatedly bite the target, making it very difficult to cast spells (50% chance of spell failure).~
 @91   = ~Wall of Perilous Flame~
 @92   = ~WALL OF PERILOUS FLAME
 (Invocation/Evocation)
@@ -537,10 +537,10 @@ This ability causes the character to return to <PRO_HISHER> natural shape and en
 The warlock gains a boon from an otherworldly power, whether fiendish or fey, granting a permanent +20% bonus Magic Resistance, +1 bonus to casting time, and +50% duration to all invocations.~
 @111  = ~Eldritch Focus~
 @112  = ~ELDRITCH FOCUS
-This ability allows the warlock to temporarily unlock a tremendous amount of eldritch power, gaining immunity to weapon damage and a +20 bonus to Luck for 3 rounds.~
+This ability allows the warlock to temporarily unlock a tremendous amount of eldritch power, gaining immunity to weapon damage and a +100% bonus to non-physical damage dealt for 3 rounds.~
 @113  = ~Eldritch Paragon~
 @114  = ~ELDRITCH PARAGON
-The warlock's mastery of <PRO_HISHER> powers grants <PRO_HIMHER> a permanent +50% resistance to magical damage, +5 to all saving throws and +20% to damage dealt by magical damage.~
+The warlock's mastery of <PRO_HISHER> powers grants <PRO_HIMHER> a permanent +50% resistance to magical damage, +5 to all saving throws and +20% to damage dealt from magical damage.~
 @115  = ~Hellfire Pact~
 @116  = ~HELLFIRE PACT
 The warlock gains a boon from Mephistopheles, Lord of Hellfire, granting a permanent +50% bonus Fire/Cold Resistance and +20% bonus to elemental damage dealt by the warlock.~
@@ -590,3 +590,104 @@ Choosing this ability allows the wizard to cast one additional Dark Invocation.~
 @131  = ~Call Fiend~
 @132  = ~CALL FIEND
 This ability allows the warlock to call upon a powerful fiend from the Lower Planes. Unlike the wizard, the fiend summoned is under the warlock's control and does not need to be warded by a Protection from Evil spell. There is a 50% chance to summon a nabassu, a 35% chance to summon a glabrezu and a 15% chance to summon a pit fiend.~
+@133  = ~Gauntlets~
+@134  = ~Darkfire Gauntlets~
+@135  = ~Gauntlets are armored gloves. They can be made of leather, metal plates, or chain mail. Every suit of armor is assumed to include gauntlets of an appropriate type. Magical gauntlets tend to be finer, lighter, and more easily worn than normal varieties.
+
+STATISTICS:
+
+Weight: 2~
+@136  = ~This pair of black iron gauntlets was enchanted by a powerful warlock, using infernal magics to combine the contradictory elements of fire and ice. Those same enchantment prevent its magic from being accessed by anyone other than a warlock.
+
+STATISTICS:
+
+Charge abilities:
+– Darkfire Shield (Fire Shield Blue and Red) once per day
+  Range: Self
+  Duration: 1 turn
+
+Equipped abilities:
+– Casting Time: +1
+– Fire Resistance: +20%
+– Cold Resistance: +20%
+
+Weight: 2~
+@137  = ~Flaming Sword~
+@138  = ~Hellfire Blade of Azythanoth +2~
+@139  = ~Also known as the hand-and-a-half sword, the bastard sword derives its name from the fact that it is halfway between the two-handed sword and the long sword. The bastard sword has a double-edged blade and a long grip, which can accommodate both hands if preferred. The overall length of the bastard sword ranges between four feet and four feet ten inches.
+
+STATISTICS:
+
+Damage: 2d4 (slashing)
+Speed Factor: 8
+Proficiency Type: Bastard Sword
+Type: One-handed
+Requires:
+ 11 Strength
+
+Weight: 10~
+@140  = ~The blade of this weapon appears dull and useless in the hands of a regular wielder. When drawn from its sheath by a warlock, however, it becomes engulfed in a blazing hot tongue of flame, impossible to extinguish by any normal means short of resheathing it. The markings on the weapon's hilt are words in the Abyssal language, suggesting its origin from the Nine Hells. The raging hellfire that empowers this blade burns through metal and flesh, and maims even those resistant to regular fire. Even being close to the flames makes one feel drained and weak.
+
+STATISTICS:
+
+Equipped abilities:
+– All fire damage inflicted by the wielder is increased by 20%
+– Constitution: -4
+
+Combat abilities:
+– Deals an additional 2 points of unmitigated fire damage per round for 3 rounds on a failed Save vs. Death at -2
+
+THAC0: +2
+Damage: 2d4, +2d6+2 unmitigated fire damage
+Damage type: slashing
+Speed Factor: 6
+Proficiency Type: Bastard Sword
+Type: One-handed
+Requires:
+ 11 Strength
+
+Weight: 7~
+@141  = ~Ring~
+@142  = ~Frozen Ring of Stygian Winds~
+@143  = ~A ring is a small band of precious metal that is used as jewelry. Some rare rings have had enchantments placed upon them that confer various magical abilities. These rings are highly sought after, especially by those of the adventuring profession.
+
+STATISTICS:
+
+Weight: 0~
+@144  = ~The frozen sea of Stygia is a deathly cold place. Once, eons ago, the archdevil Asmodeus imprisoned the Prince of Stygia, Levistus, within a tomb of impenetrable ice as punishment for a slight against him. The Lord of the Fifth's icy prison was reinforced by the cold winds of his plane, and although the devil's minions chip away at the ice without rest, for every inch they break, two more inches build from the sleet and snow constantly blowing across its surface. This ring is suggested to be chiseled from a piece of the Prince of Stygia's prison, and contains significant power of its own.
+
+STATISTICS:
+
+Equipped abilities:
+– Cold Resistance: +50%
+– Physical Resistance: -15%
+– All cold damage inflicted by the wearer is increased by 40%
+– May only be removed with a Remove Curse spell
+
+Weight: 0~
+@145  = ~Hellfire Blade of Azythanoth +3~
+@146  = ~The blade of this weapon appears dull and useless in the hands of a regular wielder. When drawn from its sheath by a warlock, however, it becomes engulfed in a blazing hot tongue of flame, impossible to extinguish by any normal means short of resheathing it. The markings on the weapon's hilt are words in the Abyssal language, suggesting its origin from the Nine Hells. The raging hellfire that empowers this blade burns through metal and flesh, and maims even those resistant to regular fire. Even being close to the flames makes one feel drained and weak.
+
+Staining the blade with the blood of a tanar'ri, the mortal enemies of the baatezu, has seemingly enraged whatever power sustains this weapon, making its flames burn even brighter and hotter.
+
+STATISTICS:
+
+Equipped abilities:
+– All fire damage inflicted by the wielder is increased by 30%
+– Strength: +1
+– 1 extra attack per round
+– Constitution: -4
+
+Combat abilities:
+– Deals an additional 2 points of unmitigated fire damage per round for 3 rounds on a failed Save vs. Death at -4
+
+THAC0: +3, strikes as a +4 weapon
+Damage: 2d4, +3d6+2 unmitigated fire damage
+Damage type: slashing
+Speed Factor: 6
+Proficiency Type: Bastard Sword
+Type: One-handed
+Requires:
+ 11 Strength
+
+Weight: 7~
