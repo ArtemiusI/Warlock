@@ -3088,6 +3088,11 @@ END
 END
 
 COPY ~%MOD_FOLDER%/spells/c0wl506b.spl~ ~override~
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_opcode = 139
+	  parameter1 = RESOLVE_STR_REF (@117 /* Constitution Drained */)
+END
 SAY NAME1 @11 /* Shape: Hideous Blow */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506#.spl~
