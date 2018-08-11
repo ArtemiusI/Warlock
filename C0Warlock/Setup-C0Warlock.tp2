@@ -1,6 +1,6 @@
 BACKUP ~C0Warlock/backup~
 AUTHOR ~Artemius_I~
-VERSION ~0.6~
+VERSION ~0.7~
 AUTO_TRA ~C0Warlock/tra/%s~
 
 LANGUAGE ~English~
@@ -8,6 +8,20 @@ LANGUAGE ~English~
          ~%MOD_FOLDER%/tra/english/setup.tra~
 
 BEGIN @0 /* Warlock Kit */
+
+//ENABLE BARD FOR ALL___________________________________________________________
+//
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 25 1 8 ~1~
+		SET_2DA_ENTRY 25 2 8 ~1~
+		SET_2DA_ENTRY 25 3 8 ~1~
+		SET_2DA_ENTRY 25 4 8 ~1~
+		SET_2DA_ENTRY 25 5 8 ~1~
+		SET_2DA_ENTRY 25 6 8 ~1~
+		SET_2DA_ENTRY 25 7 8 ~1~
+	BUT_ONLY
+END
 
 COPY ~%MOD_FOLDER%/2da~ ~override~
 COPY ~%MOD_FOLDER%/bam~ ~override~
