@@ -1,6 +1,6 @@
 BACKUP ~C0Warlock/backup~
 AUTHOR ~Artemius_I~
-VERSION ~0.7~
+VERSION ~0.7.1~
 AUTO_TRA ~C0Warlock/tra/%s~
 
 LANGUAGE ~English~

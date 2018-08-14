@@ -4,7 +4,7 @@ COPY_TRANS BRUS2 11
 
 INTERJECT GAELAN 70 C0GAELANWARLOCK
 == GAELAN IF ~Kit(Player1,C0WLOCK)~ THEN @1 /* There was some fellow named Madeen looking for adventurers. Don't know much about him, but he's at the Government District if you're interested. */
-COPY_TRANS BRUS2 11
+COPY_TRANS GAELAN 71
 
 INTERJECT LAVOK 59 C0LAVOKWARLOCK
 == LAVOK IF ~Kit(Player1,C0WLOCK)
