@@ -8,7 +8,7 @@ THEN
 	ActionOverride(Player1,SetGlobal("C0WLSP4","LOCALS",0))
 	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
 	ActionOverride(Player1,AddKit(C0WLOCK))
-	ApplySpellRES("c0erase2",Player1)
+	ApplySpellRES("c0wlrse",Player1)
 	Continue()
 END
 
@@ -22,7 +22,7 @@ THEN
 	ActionOverride(Player2,SetGlobal("C0WLSP4","LOCALS",0))
 	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
 	ActionOverride(Player2,AddKit(C0WLOCK))
-	ApplySpellRES("c0erase2",Player2)
+	ApplySpellRES("c0wlrse",Player2)
 	Continue()
 END
 
@@ -36,7 +36,7 @@ THEN
 	ActionOverride(Player3,SetGlobal("C0WLSP4","LOCALS",0))
 	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
 	ActionOverride(Player3,AddKit(C0WLOCK))
-	ApplySpellRES("c0erase2",Player3)
+	ApplySpellRES("c0wlrse",Player3)
 	Continue()
 END
 
@@ -50,7 +50,7 @@ THEN
 	ActionOverride(Player4,SetGlobal("C0WLSP4","LOCALS",0))
 	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
 	ActionOverride(Player4,AddKit(C0WLOCK))
-	ApplySpellRES("c0erase2",Player4)
+	ApplySpellRES("c0wlrse",Player4)
 	Continue()
 END
 
@@ -64,7 +64,7 @@ THEN
 	ActionOverride(Player5,SetGlobal("C0WLSP4","LOCALS",0))
 	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
 	ActionOverride(Player5,AddKit(C0WLOCK))
-	ApplySpellRES("c0erase2",Player5)
+	ApplySpellRES("c0wlrse",Player5)
 	Continue()
 END
 
@@ -78,6 +78,6 @@ THEN
 	ActionOverride(Player6,SetGlobal("C0WLSP4","LOCALS",0))
 	ActionOverride(Player1,SetGlobal("CHANGEINVOCATION","LOCALS",0))
 	ActionOverride(Player6,AddKit(C0WLOCK))
-	ApplySpellRES("c0erase2",Player6)
+	ApplySpellRES("c0wlrse",Player6)
 	Continue()
 END

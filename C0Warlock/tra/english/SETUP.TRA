@@ -19,7 +19,7 @@ ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using b
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies, dealing half damage to all targets.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.
 
@@ -77,7 +77,7 @@ A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical e
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies, dealing half damage to all targets.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.~
 @10   = ~Shape: Blast~
@@ -125,7 +125,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
 @23   = ~Slowed~
 @24   = ~Hideous Blow: Draining Blast~
 @25   = ~Frightful Blast~
@@ -140,7 +140,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
 @27   = ~Frightened~
 @28   = ~Hideous Blow: Frightful Blast~
 @29   = ~Darkness~
@@ -168,7 +168,7 @@ Casting Time: 6
 Area of Effect: the caster
 Saving Throw: None
 
-A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 for the duration.~
+A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 (additional +1 bonus for every point of Charisma above 16) for the duration.~
 @33   = ~Dexterity Modification~
 @34   = ~Leaps and Bounds~
 @35   = ~LEAPS AND BOUNDS
@@ -208,7 +208,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
 @40   = ~Blinded~
 @41   = ~Hideous Blow: Beshadowed Blast~
 @42   = ~Brimstone Blast~
@@ -223,7 +223,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
 @44   = ~Burning~
 @45   = ~Hideous Blow: Brimstone Blast~
 @46   = ~Hellrime Blast~
@@ -238,7 +238,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack.~
 @48   = ~Chilled~
 @49   = ~Hideous Blow: Hellrime Blast~
 @50   = ~Charmed~
@@ -254,7 +254,7 @@ Casting Time: 5
 Area of Effect: One creature
 Saving Throw: None
 
-This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired.~
+This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 16) or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired.~
 @53   = ~Cursed~
 @54   = ~Curse of Despair~
 @55   = ~CURSE OF DESPAIR
@@ -268,7 +268,7 @@ Casting Time: 4
 Area of Effect: One creature
 Saving Throw: Special
 
-This invocation bestows a permanent curse upon a touched opponent, lowering all the target's ability scores by 3 if the target fails a Save vs. Spells permanently until cured via a Remove Curse spell. Even if the save against this invocation succeeds, the target takes a -1 penalty on attack rolls for one turn. This curse does not stack with itself.~
+This invocation bestows a permanent curse upon a touched opponent, lowering all the target's ability scores by 3 if the target fails a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) permanently until cured via a Remove Curse spell. Even if the save against this invocation succeeds, the target takes a -1 penalty on attack rolls for one turn. This curse does not stack with itself.~
 @56   = ~Crippled~
 @57   = ~Dread Seizure~
 @58   = ~DREAD SEIZURE
@@ -282,7 +282,7 @@ Casting Time: 2
 Area of Effect: One creature
 Saving Throw: Neg.
 
-The warlock speaks a word that sends wracking pain through the limbs of a single target creature. If the target fails a Save vs. Death, it suffers a -3 penalty to attack rolls and Armor Class as well as 50% penalty to movement speed for 3 rounds.~
+The warlock speaks a word that sends wracking pain through the limbs of a single target creature. If the target fails a Save vs. Death (additional -1 penalty per two points of caster's Charisma above 16), it suffers a -3 penalty to attack rolls and Armor Class as well as 50% penalty to movement speed for 3 rounds.~
 @59   = ~Flee the Scene~
 @60   = ~FLEE THE SCENE
 (Alteration) 
@@ -358,7 +358,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
 @71   = ~Confused~
 @72   = ~Hideous Blow: Bewitching Blast~
 @73   = ~Electrifying Blast~
@@ -373,7 +373,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed for one round. Creatures immune to electrical damage are not affected.~
 @75   = ~Paralyzed~
 @76   = ~Hideous Blow: Electrifying Blast~
 @77   = ~Noxious Blast~
@@ -388,7 +388,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 (additional -1 penalty per two points of caster's Charisma above 17) or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
 @79   = ~Weakened~
 @80   = ~Hideous Blow: Noxious Blast~
 @81   = ~Vitriolic Blast~
@@ -472,7 +472,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: None
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 (additional -1 penalty per two points of caster's Charisma above 17) or be stunned for 1 round.~
 @95   = ~Stunned~
 @96   = ~Hideous Blow: Binding Blast~
 @97   = ~Utterdark Blast~
@@ -487,7 +487,7 @@ Casting Time: 1
 Area of Effect: Blast Shape
 Saving Throw: None
 
-This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
 @99   = ~Four Levels Drained~
 @100  = ~Hideous Blow: Utterdark Blast~
 @101  = ~Dark Foresight~
