@@ -1,6 +1,21 @@
 BACKUP ~C0Warlock/backup~
-AUTHOR ~Artemius_I~
+AUTHOR ~Artemius_I/AionZ~
 VERSION ~0.8~
+ALWAYS
+  INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
+  INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
+  INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
+  ACTION_IF (GAME_IS ~eet~) BEGIN
+    OUTER_SET bg2_chapter = 12
+  END ELSE BEGIN
+    OUTER_SET bg2_chapter = 0
+  END
+  OUTER_FOR (i=1; i<=10; i=i+1) BEGIN
+    OUTER_SET bg2_chapter = bg2_chapter + 1
+    OUTER_SPRINT name_source ~bg2_chapter_%i%~
+    OUTER_SET EVAL ~%name_source%~ = bg2_chapter
+  END
+END
 AUTO_TRA ~C0Warlock/tra/%s~
 
 LANGUAGE ~English~
@@ -8,6 +23,11 @@ LANGUAGE ~English~
          ~%MOD_FOLDER%/tra/english/setup.tra~
 
 BEGIN @0 /* Warlock Kit */
+
+// SPLSTATE
+LAF ADD_IDS_ENTRY INT_VAR preferredValue = 127 STR_VAR idsFile = "splstate.ids" identifier = "BEGUILING_INFLUENCE" RET value END
+LAF ADD_IDS_ENTRY INT_VAR preferredValue = 128 STR_VAR idsFile = "splstate.ids" identifier = "DARK_ONES_OWN_LUCK" RET value END
+LAF ADD_IDS_ENTRY INT_VAR preferredValue = 129 STR_VAR idsFile = "splstate.ids" identifier = "LEAPS_AND_BOUNDS" RET value END
 
 //ENABLE BARD FOR ALL___________________________________________________________
 //
@@ -316,6 +336,7 @@ COPY_EXISTING ~DEMPITSU.bcs~ ~override/C0WLPITS.bcs~
 ACTION_IF GAME_IS ~BG2EE EET~ THEN BEGIN
 EXTEND_TOP ~AR0334.bcs~ ~%MOD_FOLDER%/scripts/AR0334.baf~
 END
+EXTEND_TOP ~bddefai.bcs~ ~%MOD_FOLDER%/scripts/bddefai.baf~
 
 ////////////////////////////////////////
 ///////////ITEMS////////////////////////
@@ -1330,6 +1351,17 @@ END
 SAY NAME1 @16 /* Shape: Doom */
 
 COPY_EXISTING ~c0wl104.spl~ ~override~
+	LPF ADD_SPELL_EFFECT
+		INT_VAR
+			opcode = 328
+			target = 1
+			timing = 0
+			duration = 2400
+			power = 2
+			parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~BEGUILING_INFLUENCE~)
+			resist_dispel = 1
+			special = 1
+	END
 SAY NAME1 @17 /* Beguiling Influence */
 SAY UNIDENTIFIED_DESC @18 /* BEGUILING INFLUENCE
 (Enchantment/Charm) 
@@ -1345,6 +1377,17 @@ Saving Throw: None
 This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 8th level and +6 at 16th level. */
 
 COPY_EXISTING ~c0wl105.spl~ ~override~
+	LPF ADD_SPELL_EFFECT
+		INT_VAR
+			opcode = 328
+			target = 1
+			timing = 0
+			duration = 2400
+			power = 2
+			parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~DARK_ONES_OWN_LUCK~)
+			resist_dispel = 1
+			special = 1
+	END
 SAY NAME1 @19 /* Dark One's Own Luck */
 SAY UNIDENTIFIED_DESC @20 /* DARK ONE'S OWN LUCK
 (Enchantment/Charm)
@@ -1777,6 +1820,17 @@ COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109i.spl~
 END
 
 COPY_EXISTING ~c0wl110.spl~ ~override~
+	LPF ADD_SPELL_EFFECT
+		INT_VAR
+			opcode = 328
+			target = 1
+			timing = 0
+			duration = 2400
+			power = 2
+			parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~LEAPS_AND_BOUNDS~)
+			resist_dispel = 1
+			special = 1
+	END
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 139
@@ -4038,3 +4092,55 @@ Requires:
  11 Strength
 
 Weight: 7 */
+
+BEGIN ~Optional: Menu-Based Spell Learning System (BETA)~
+
+COPY ~%MOD_FOLDER%/2da/spellselect~ ~override~
+COMPILE ~%MOD_FOLDER%/dialogue/spellselect/c0wltalk.d~
+COMPILE ~%MOD_FOLDER%/dialogue/spellselect/c0wlhla.d~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/scripts/spellselect/baldur.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdbaldur.bcs~ THEN BEGIN
+EXTEND_TOP ~bdbaldur.bcs~ ~%MOD_FOLDER%/scripts/spellselect/bdbaldur.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur25.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur25.bcs~ ~%MOD_FOLDER%/scripts/spellselect/baldur.baf~
+END
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl507.spl~ ~override~
+SAY NAME1 @123 /* Extra Invocation I */
+SAY UNIDENTIFIED_DESC @124 /* EXTRA INVOCATION I
+Choosing this ability allows the wizard to cast one additional Least Invocation. */
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl508.spl~ ~override~
+SAY NAME1 @125 /* Extra Invocation II */
+SAY UNIDENTIFIED_DESC @126 /* EXTRA INVOCATION II
+Choosing this ability allows the wizard to cast one additional Lesser Invocation. */
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl509.spl~ ~override~
+SAY NAME1 @127 /* Extra Invocation III */
+SAY UNIDENTIFIED_DESC @128 /* EXTRA INVOCATION III
+Choosing this ability allows the wizard to cast one additional Greater Invocation. */
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl510.spl~ ~override~
+SAY NAME1 @129 /* Extra Invocation IV */
+SAY UNIDENTIFIED_DESC @130 /* EXTRA INVOCATION IV
+Choosing this ability allows the wizard to cast one additional Dark Invocation. */
+
+INCLUDE	~%MOD_FOLDER%/lib/WL_SEQUENCER_MENU.TPA~
+OUTER_SPRINT	title ~Invocation Selection~	OUTER_SPRINT	action ~Select an invocation to Learn~
+LAF	CREATE_SEQUENCER_MENU
+	INT_VAR	maxlevel = 4	exclude = 0x00004000	tip = RESOLVE_STR_REF	(~Select an invocation to learn from the provided lists. The total number of invocations allowed for the given level is shown below. An 'X' symbol means that the requirements have not been fulfilled.~)	name = RESOLVE_STR_REF	(~Invocation Selection~)	desc = RESOLVE_STR_REF	(~Invocation Selection~)	global = 2
+	STR_VAR	spelltable = ~C0WLLS~ resref = ~C0WLLS~	icon = ~~	title	action
+END
+
+COPY_EXISTING ~C0WLLS.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR	opcode = 206 target = 1 duration = 2 STR_VAR resource = ~C0WLLS~
+END
+COPY_EXISTING ~C0WLLSD.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR	opcode = 266 target = 2 STR_VAR resource = ~C0WLLS~
+END

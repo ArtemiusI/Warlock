@@ -1,0 +1,59 @@
+IF
+	Global("BDAI_DISABLE_DEFENSIVE","LOCALS",0)
+	ActionListEmpty()
+	InParty(Myself)
+	OR(2)
+		!GlobalTimerNotExpired("BD_Cast","LOCALS")
+		CheckStatGT(Myself,0,AURACLEANSING)
+	!CheckSpellState(Myself,BEGUILING_INFLUENCE)
+	Global("BDAI_NO_ARCANE","LOCALS",0)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	HaveKnownSpellRES("C0WL104")
+	Kit(Myself,C0WLOCK)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BD_Cast","LOCALS",ONE_ROUND)
+		ForceSpellRES("C0WL104",Myself)
+END
+
+IF
+	Global("BDAI_DISABLE_DEFENSIVE","LOCALS",0)
+	ActionListEmpty()
+	InParty(Myself)
+	OR(2)
+		!GlobalTimerNotExpired("BD_Cast","LOCALS")
+		CheckStatGT(Myself,0,AURACLEANSING)
+	!CheckSpellState(Myself,DARK_ONES_OWN_LUCK)
+	Global("BDAI_NO_ARCANE","LOCALS",0)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	HaveKnownSpellRES("C0WL105")
+	Kit(Myself,C0WLOCK)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BD_Cast","LOCALS",ONE_ROUND)
+		ForceSpellRES("C0WL105",Myself)
+END
+
+IF
+	Global("BDAI_DISABLE_DEFENSIVE","LOCALS",0)
+	ActionListEmpty()
+	InParty(Myself)
+	OR(2)
+		!GlobalTimerNotExpired("BD_Cast","LOCALS")
+		CheckStatGT(Myself,0,AURACLEANSING)
+	!CheckSpellState(Myself,LEAPS_AND_BOUNDS)
+	Global("BDAI_NO_ARCANE","LOCALS",0)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	HaveKnownSpellRES("C0WL110")
+	Kit(Myself,C0WLOCK)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("BD_Cast","LOCALS",ONE_ROUND)
+		ForceSpellRES("C0WL110",Myself)
+END
