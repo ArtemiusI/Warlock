@@ -1,0 +1,49 @@
+COPY ~%MOD_FOLDER%/2da/spellselect~ ~override~
+COMPILE ~%MOD_FOLDER%/dialogue/spellselect/c0wltalk.d~
+COMPILE ~%MOD_FOLDER%/dialogue/spellselect/c0wlhla.d~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/scripts/spellselect/baldur.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~bdbaldur.bcs~ THEN BEGIN
+EXTEND_TOP ~bdbaldur.bcs~ ~%MOD_FOLDER%/scripts/spellselect/baldur.baf~
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~baldur25.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur25.bcs~ ~%MOD_FOLDER%/scripts/spellselect/baldur.baf~
+END
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl507.spl~ ~override~
+SAY NAME1 @123 /* Extra Invocation I */
+SAY UNIDENTIFIED_DESC @124 /* EXTRA INVOCATION I
+Choosing this ability allows the wizard to cast one additional Least Invocation. */
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl508.spl~ ~override~
+SAY NAME1 @125 /* Extra Invocation II */
+SAY UNIDENTIFIED_DESC @126 /* EXTRA INVOCATION II
+Choosing this ability allows the wizard to cast one additional Lesser Invocation. */
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl509.spl~ ~override~
+SAY NAME1 @127 /* Extra Invocation III */
+SAY UNIDENTIFIED_DESC @128 /* EXTRA INVOCATION III
+Choosing this ability allows the wizard to cast one additional Greater Invocation. */
+
+COPY ~%MOD_FOLDER%/SPELLS/SPELLSELECT/c0wl510.spl~ ~override~
+SAY NAME1 @129 /* Extra Invocation IV */
+SAY UNIDENTIFIED_DESC @130 /* EXTRA INVOCATION IV
+Choosing this ability allows the wizard to cast one additional Dark Invocation. */
+
+INCLUDE	~%MOD_FOLDER%/lib/WL_SEQUENCER_MENU.TPA~
+OUTER_SPRINT	title ~Invocation Selection~	OUTER_SPRINT	action ~Select an invocation to Learn~
+LAF	CREATE_SEQUENCER_MENU
+	INT_VAR	maxlevel = 4	exclude = 0x00004000	tip = RESOLVE_STR_REF	(~Select an invocation to learn from the provided lists. The total number of invocations allowed for the given level is shown below. An 'X' symbol means that the requirements have not been fulfilled.~)	name = RESOLVE_STR_REF	(~Invocation Selection~)	desc = RESOLVE_STR_REF	(~Invocation Selection~)	global = 2
+	STR_VAR	spelltable = ~C0WLLS~ resref = ~C0WLLS~	icon = ~~	title	action
+END
+
+COPY_EXISTING ~C0WLLS.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR	opcode = 206 target = 1 duration = 2 STR_VAR resource = ~C0WLLS~
+END
+COPY_EXISTING ~C0WLLSD.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR	opcode = 266 target = 2 STR_VAR resource = ~C0WLLS~
+END
