@@ -216,7 +216,7 @@ LAF ADD_IDS_ENTRY INT_VAR minValue = 200 maxValue = 255 preferredValue = 200 STR
 COPY_EXISTING_REGEXP GLOB ~SPWI.*.SPL$~ ~override~
   READ_SHORT	0x1c spell_type
   PATCH_IF (spell_type = 1) BEGIN
-    WRITE_BYTE    0x20 (THIS BOR 0b00100000)
+    WRITE_BYTE    0x20 (THIS BOR 0b01000000)
       END
 BUT_ONLY_IF_IT_CHANGES
 
@@ -225,7 +225,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
 	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
 	  READ_2DA_ENTRY_FORMER rows row 1 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~BLADE~ BEGIN
+	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~JESTER~ BEGIN
 	    SET patch_row = %row%
 		SET_2DA_ENTRY (%patch_row%) 7 cols 0b00004000
 	  END
@@ -283,7 +283,7 @@ ADD_KIT ~C0WLOCK~
  ~K_B_H K_B_E K_B_HE K_B_HL K_B_G K_B_D K_B_HO~
 
  // usability flags, added to the end of the KITLIST.2da entry
- ~0x00200000     5~
+ ~0x00400000     5~
 
  // HLA table to use; see LUABBR.2da
  ~C0WL~
