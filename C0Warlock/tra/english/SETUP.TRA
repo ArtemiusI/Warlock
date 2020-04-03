@@ -19,7 +19,7 @@ ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using b
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies, dealing half damage to all targets.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.
 
@@ -54,7 +54,7 @@ ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using b
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. 
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to enemies within a 10 ft. radius.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.
 
@@ -79,7 +79,7 @@ A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical e
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: Next melee attack channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to nearby enemies, dealing half damage to all targets.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.~
 @10   = ~Shape: Blast~

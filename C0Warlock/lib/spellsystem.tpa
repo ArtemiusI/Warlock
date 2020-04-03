@@ -38,7 +38,27 @@ INCLUDE	~%MOD_FOLDER%/lib/WL_SEQUENCER_MENU.TPA~
 OUTER_SPRINT	title ~Invocation Selection~	OUTER_SPRINT	action ~Select an invocation to Learn~
 LAF	CREATE_SEQUENCER_MENU
 	INT_VAR	maxlevel = 4	exclude = 0x00004000	tip = RESOLVE_STR_REF	(~Select an invocation to learn from the provided lists. The total number of invocations allowed for the given level is shown below. An 'X' symbol means that the requirements have not been fulfilled.~)	name = RESOLVE_STR_REF	(~Invocation Selection~)	desc = RESOLVE_STR_REF	(~Invocation Selection~)	global = 2
-	STR_VAR	spelltable = ~C0WLLS~ resref = ~C0WLLS~	icon = ~~	title	action
+	STR_VAR	spelltable = ~C0WLLS~ spelllist = ~C0WLSP~ resref = ~C0WLLS~	icon = ~~	title	action
+END
+
+ACTION_FOR_EACH lv1 IN C0WL104L C0WL105L C0WL106L C0WL107L C0WL108L C0WL109L C0WL110L C0WL111L BEGIN
+COPY_EXISTING ~%lv1%.spl~ ~override~
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP1~	END
+END
+
+ACTION_FOR_EACH lv2 IN C0WL201L C0WL202L C0WL203L C0WL204L C0WL205L C0WL206L C0WL207L C0WL208L C0WL209L C0WL210L BEGIN
+COPY_EXISTING ~%lv2%.spl~ ~override~
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP2~	END
+END
+
+ACTION_FOR_EACH lv3 IN C0WL301L C0WL302L C0WL303L C0WL304L C0WL305L C0WL306L C0WL307L C0WL308L BEGIN
+COPY_EXISTING ~%lv3%.spl~ ~override~
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP3~	END
+END
+
+ACTION_FOR_EACH lv4 IN C0WL401L C0WL402L C0WL403L C0WL404L C0WL405L BEGIN
+COPY_EXISTING ~%lv4%.spl~ ~override~
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP4~	END
 END
 
 COPY_EXISTING ~C0WLLS.SPL~ ~OVERRIDE~

@@ -3,6 +3,7 @@
 LAF ADD_IDS_ENTRY INT_VAR preferredValue = 127 STR_VAR idsFile = "splstate.ids" identifier = "BEGUILING_INFLUENCE" RET value END
 LAF ADD_IDS_ENTRY INT_VAR preferredValue = 128 STR_VAR idsFile = "splstate.ids" identifier = "DARK_ONES_OWN_LUCK" RET value END
 LAF ADD_IDS_ENTRY INT_VAR preferredValue = 129 STR_VAR idsFile = "splstate.ids" identifier = "LEAPS_AND_BOUNDS" RET value END
+LAF ADD_IDS_ENTRY INT_VAR preferredValue = 130 STR_VAR idsFile = "splstate.ids" identifier = "ELDRITCH_CHAIN" RET value END
 
 //ENABLE BARD FOR ALL___________________________________________________________
 //
@@ -298,14 +299,14 @@ ADD_KIT ~C0WLOCK~
 
 CLASS FEATURES:
 
-– May not wear armor heavier than chain mail.
-– May not equip shields larger than bucklers.
-– May only become Proficient (one slot) in any weapon class.
-– May only become Proficient (one slot) in any fighting style.
-– Thieving abilities: Pick Pockets.
-– Eldritch Lore: The warlock gains 10 base Lore per level.
-– May cast Invocations.
-– May use the Eldritch Blast ability at will.
+â€“ May not wear armor heavier than chain mail.
+â€“ May not equip shields larger than bucklers.
+â€“ May only become Proficient (one slot) in any weapon class.
+â€“ May only become Proficient (one slot) in any fighting style.
+â€“ Thieving abilities: Pick Pockets.
+â€“ Eldritch Lore: The warlock gains 10 base Lore per level.
+â€“ May cast Invocations.
+â€“ May use the Eldritch Blast ability at will.
 
 ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
@@ -316,15 +317,15 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a cone. Save vs. Spell for half damage.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage.
 
-– 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
-– 8th level: The warlock regenerates one hit point per three rounds.
-– 10th level: Gains 10% resistance to acid, cold, electrical, fire and magical damage. An additional 10% is gained at levels 20, 30 and 40.
-– 16th level: Regeneration rate increased to one hit point per two rounds.
-– 22nd level: Becomes immune to non-magical weapons.
-– 24th level: Regeneration rate increased to one hit point per round.
+â€“ 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
+â€“ 8th level: The warlock regenerates one hit point per three rounds.
+â€“ 10th level: Gains 10% resistance to acid, cold, electrical, fire and magical damage. An additional 10% is gained at levels 20, 30 and 40.
+â€“ 16th level: Regeneration rate increased to one hit point per two rounds.
+â€“ 22nd level: Becomes immune to non-magical weapons.
+â€“ 24th level: Regeneration rate increased to one hit point per round.
 
-– Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
-– Hit Die: d6 */
+â€“ Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
+â€“ Hit Die: d6 */
 
 LAF fl#add_kit_ee
   INT_VAR
@@ -675,7 +676,7 @@ COPY_EXISTING ~c0wl000.spl~ ~override~
 	  parameter1 = IDS_OF_SYMBOL (~SPECIFIC~ ~WARLOCK_L12~)
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl104x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl104z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -685,7 +686,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl104x.spl~
 	  resource = %c0wl104%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl105x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl105z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -695,7 +696,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl105x.spl~
 	  resource = %c0wl105%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl106x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl106z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -705,7 +706,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl106x.spl~
 	  resource = %c0wl106%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl107x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl107z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -715,7 +716,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl107x.spl~
 	  resource = %c0wl107%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl108x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl108z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -725,7 +726,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl108x.spl~
 	  resource = %c0wl108%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl109x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl109z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -735,7 +736,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl109x.spl~
 	  resource = %c0wl109%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl110x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl110z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -745,7 +746,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl110x.spl~
 	  resource = %c0wl110%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl111x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl111z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -755,7 +756,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl111x.spl~
 	  resource = %c0wl111%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl201x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl201z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -765,7 +766,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl201x.spl~
 	  resource = %c0wl201%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl202x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl202z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -775,7 +776,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl202x.spl~
 	  resource = %c0wl202%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl203x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl203z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -785,7 +786,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl203x.spl~
 	  resource = %c0wl203%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl204x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl204z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -795,7 +796,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl204x.spl~
 	  resource = %c0wl204%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl205x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl205z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -805,7 +806,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl205x.spl~
 	  resource = %c0wl205%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl206x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl206z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -815,7 +816,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl206x.spl~
 	  resource = %c0wl206%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl207x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl207z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -825,7 +826,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl207x.spl~
 	  resource = %c0wl207%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl208x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl208z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -835,7 +836,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl208x.spl~
 	  resource = %c0wl208%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl209x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl209z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -845,7 +846,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl209x.spl~
 	  resource = %c0wl209%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl210x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl210z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -855,7 +856,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl210x.spl~
 	  resource = %c0wl210%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl301x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl301z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -865,7 +866,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl301x.spl~
 	  resource = %c0wl301%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl302x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl302z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -875,7 +876,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl302x.spl~
 	  resource = %c0wl302%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl303x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl303z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -885,7 +886,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl303x.spl~
 	  resource = %c0wl303%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl304x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl304z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -895,7 +896,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl304x.spl~
 	  resource = %c0wl304%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl305x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl305z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -905,7 +906,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl305x.spl~
 	  resource = %c0wl305%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl306x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl306z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -915,7 +916,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl306x.spl~
 	  resource = %c0wl306%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl307x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl307z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -925,7 +926,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl307x.spl~
 	  resource = %c0wl307%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl308x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl308z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -935,7 +936,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl308x.spl~
 	  resource = %c0wl308%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl401x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl401z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -945,7 +946,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl401x.spl~
 	  resource = %c0wl401%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl402x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl402z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -955,7 +956,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl402x.spl~
 	  resource = %c0wl402%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl403x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl403z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -965,7 +966,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl403x.spl~
 	  resource = %c0wl403%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl404x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl404z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -975,7 +976,7 @@ COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl404x.spl~
 	  resource = %c0wl404%
 END
 
-COPY_EXISTING ~c0wl000x.spl~ ~override/c0wl405x.spl~
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl405z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -1375,25 +1376,34 @@ END
 END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl101.spl~ ~override/c0wl200.spl~
+COPY_EXISTING ~c0wl200.spl~ ~override~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp001%~
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 328
+	  parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  speed = 5
+	STR_VAR
+	  icon = %c0wl200b%
+END
+SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl200.spl~ ~override/c0wl200x.spl~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp003%~
 END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 3
-  END
-  LPF ALTER_SPELL_HEADER
-    INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
-END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl300.spl~
 READ_LONG 0x64 "abil_off"
@@ -1578,12 +1588,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106d.spl~
+COPY_EXISTING ~c0wl106d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp008%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp006%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -1597,6 +1607,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl106d.spl~ ~override/c0wl106x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp008%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106e.spl~
 READ_LONG 0x64 "abil_off"
@@ -1753,12 +1772,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107d.spl~
+COPY_EXISTING ~override/c0wl107d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp013%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp011%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -1772,6 +1791,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl107d.spl~ ~override/c0wl107x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp013%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2056,12 +2084,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201d.spl~
+COPY_EXISTING ~c0wl201d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp018%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp016%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -2075,6 +2103,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl201d.spl~ ~override/c0wl201x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp018%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2233,12 +2270,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202d.spl~
+COPY_EXISTING ~c0wl202d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp023%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp021%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -2252,6 +2289,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl202d.spl~ ~override/c0wl202x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp023%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2410,12 +2456,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203d.spl~
+COPY_EXISTING ~c0wl203d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp028%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp026%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -2429,6 +2475,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl203d.spl~ ~override/c0wl203x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp028%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2649,9 +2704,9 @@ Saving Throw: None
 
 The warlock can summon undead creatures with <PRO_HISHER> infernal power to serve <PRO_HIMHER>. This invocation lasts for one hour. The strength and number of undead created is dependent on the warlock's level:
 
-  1st – 6th: a 3 HD skeleton warrior wielding a long sword.
-  7th – 10th: a 5 HD skeleton warrior wielding a long sword +1.
-  11th – 14th: a 7 HD skeleton warrior wielding a bastard sword +1.
+  1st â€“ 6th: a 3 HD skeleton warrior wielding a long sword.
+  7th â€“ 10th: a 5 HD skeleton warrior wielding a long sword +1.
+  11th â€“ 14th: a 7 HD skeleton warrior wielding a bastard sword +1.
   15th and up: a 9 HD skeleton warrior wielding a two-handed sword +1.
   
 The skeleton warrior can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, one hour passes, or it is turned. This spell cannot be dispelled. */
@@ -2801,12 +2856,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301d.spl~
+COPY_EXISTING ~c0wl301d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp033%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp031%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -2820,6 +2875,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl301d.spl~ ~override/c0wl301x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp033%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301e.spl~
 READ_LONG 0x64 "abil_off"
@@ -2978,12 +3042,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302d.spl~
+COPY_EXISTING ~c0wl302d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp038%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp036%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -2997,6 +3061,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl302d.spl~ ~override/c0wl302x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp038%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302e.spl~
 READ_LONG 0x64 "abil_off"
@@ -3155,12 +3228,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303d.spl~
+COPY_EXISTING ~c0wl303d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp043%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp041%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -3174,6 +3247,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl303d.spl~ ~override/c0wl303x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp043%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303e.spl~
 READ_LONG 0x64 "abil_off"
@@ -3293,12 +3375,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304d.spl~
+COPY_EXISTING ~c0wl304d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp048%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp046%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -3312,6 +3394,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl304d.spl~ ~override/c0wl304x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp048%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304e.spl~
 READ_LONG 0x64 "abil_off"
@@ -3560,12 +3651,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401d.spl~
+COPY_EXISTING ~c0wl401d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp053%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp051%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -3579,6 +3670,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl401d.spl~ ~override/c0wl401x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp053%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401e.spl~
 READ_LONG 0x64 "abil_off"
@@ -3743,12 +3843,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402d.spl~
+COPY_EXISTING ~c0wl402d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp058%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp056%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -3762,6 +3862,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl402d.spl~ ~override/c0wl402x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp058%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402e.spl~
 READ_LONG 0x64 "abil_off"
@@ -3969,12 +4078,12 @@ END
   END
 SAY NAME1 @13 /* Shape: Spear */
 
-COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506d.spl~
+COPY_EXISTING ~c0wl506d.spl~ ~override~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"
 SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp063%~
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp061%~
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -3988,6 +4097,15 @@ END
 	  icon = %c0wl200b%
   END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl506d.spl~ ~override/c0wl506x.spl~
+READ_LONG 0x64 "abil_off"
+READ_SHORT 0x68 "abil_num"
+SET "delta" = 0
+FOR (index = 0; index < abil_num; index = index + 1) BEGIN
+WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp063%~
+END
+SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506e.spl~
 READ_LONG 0x64 "abil_off"
@@ -4049,7 +4167,7 @@ SAY UNIDENTIFIED_DESC @132 /* CALL FIEND
 This ability allows the warlock to call upon a powerful fiend from the Lower Planes. Unlike the wizard, the fiend summoned is under the warlock's control and does not need to be warded by a Protection from Evil spell. There is a 50% chance to summon a nabassu, a 35% chance to summon a glabrezu and a 15% chance to summon a pit fiend. */
 
 /////////////ITEMS
-
+ACTION_IF GAME_IS ~BGEE BG2EE~ THEN BEGIN
 COPY ~%MOD_FOLDER%/items/c0wli#01.itm~ ~override~
   LPF ADD_ITEM_EQEFFECT
     INT_VAR
@@ -4073,14 +4191,14 @@ SAY DESC @136 /* This pair of black iron gauntlets was enchanted by a powerful w
 STATISTICS:
 
 Charge abilities:
-– Darkfire Shield (Fire Shield Blue and Red) once per day
+â€“ Darkfire Shield (Fire Shield Blue and Red) once per day
   Range: Self
   Duration: 1 turn
 
 Equipped abilities:
-– Casting Time: +1
-– Fire Resistance: +20%
-– Cold Resistance: +20%
+â€“ Casting Time: +1
+â€“ Fire Resistance: +20%
+â€“ Cold Resistance: +20%
 
 Weight: 2 */
 
@@ -4124,11 +4242,11 @@ SAY DESC @140 /* The blade of this weapon appears dull and useless in the hands 
 STATISTICS:
 
 Equipped abilities:
-– All fire damage inflicted by the wielder is increased by 20%
-– Constitution: -2
+â€“ All fire damage inflicted by the wielder is increased by 20%
+â€“ Constitution: -2
 
 Combat abilities:
-– Deals an additional 2 points of unmitigated fire damage per round for 3 rounds on a failed Save vs. Death at -2
+â€“ Deals an additional 2 points of unmitigated fire damage per round for 3 rounds on a failed Save vs. Death at -2
 
 THAC0: +2
 Damage: 2d4, +2d6+2 unmitigated fire damage
@@ -4174,10 +4292,10 @@ SAY DESC @144 /* The frozen sea of Stygia is a deathly cold place. Once, eons ag
 STATISTICS:
 
 Equipped abilities:
-– Cold Resistance: +50%
-– Physical Resistance: -15%
-– All cold damage inflicted by the wearer is increased by 40%
-– May only be removed with a Remove Curse spell
+â€“ Cold Resistance: +50%
+â€“ Physical Resistance: -15%
+â€“ All cold damage inflicted by the wearer is increased by 40%
+â€“ May only be removed with a Remove Curse spell
 
 Weight: 0 */
 
@@ -4223,13 +4341,13 @@ Staining the blade with the blood of a tanar'ri, the mortal enemies of the baate
 STATISTICS:
 
 Equipped abilities:
-– All fire damage inflicted by the wielder is increased by 30%
-– Strength: +1
-– 1 extra attack per round
-– Constitution: -4
+â€“ All fire damage inflicted by the wielder is increased by 30%
+â€“ Strength: +1
+â€“ 1 extra attack per round
+â€“ Constitution: -4
 
 Combat abilities:
-– Deals an additional 2 points of unmitigated fire damage per round for 3 rounds on a failed Save vs. Death at -4
+â€“ Deals an additional 2 points of unmitigated fire damage per round for 3 rounds on a failed Save vs. Death at -4
 
 THAC0: +3, strikes as a +4 weapon
 Damage: 2d4, +3d6+2 unmitigated fire damage
@@ -4241,3 +4359,60 @@ Requires:
  11 Strength
 
 Weight: 7 */
+END
+
+ACTION_IF GAME_IS ~IWDEE~ THEN BEGIN
+COPY ~%MOD_FOLDER%/items/c0wlch01.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~kit~ ~C0WLOCK~))
+	  parameter2 = 9
+	  power = 1
+	  special = RESOLVE_STR_REF (~Warlock~)
+END
+SAY NAME1 ~Black Chain Mail~
+SAY NAME2 ~Chain Mail of Abaddon~
+SAY DESC ~This suit of pitch-black chainmail is unusually light, silent and carries the acrid scent of ash. Despite its ancient and ragged appearance, the magic that enhances it is undeniably powerful â€“ yet there is something strange, something otherworldly, about it... the armor almost seems alive, its obsidian links falling away when one attempts to wear it, save for those whose souls are bound to supernatural pacts.
+
+STATISTICS:
+
+Equipped Abilities:
+â€“ Magic Resistance: +20%
+â€“ Luck: +2
+â€“ Save vs. Death: +5
+
+Armor Class: 0 (-2 vs. slashing, 2 vs. crushing)
+Requires:
+ 8 Strength
+
+Weight: 12~
+COPY_EXISTING ~Kieran2.sto~ ~override~
+ADD_STORE_ITEM ~C0WLCH01~ LAST #0 #0 #0 ~IDENTIFIED~ #1
+
+COPY ~%MOD_FOLDER%/items/c0wlri01.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~kit~ ~C0WLOCK~))
+	  parameter2 = 9
+	  power = 1
+	  special = RESOLVE_STR_REF (~Warlock~)
+END
+SAY NAME1 ~Ring~
+SAY NAME2 ~Demonic Ring of Reconstruction~
+SAY DESC ~This ring was once the possession of Zz'thaen, a powerful dark elven warlock. It is believed that Zz'thaen once performed an act which angered his demonic patron, the tanar'ri Bo'atha. Yet in an audacious turn of events, Zz'thaen was able to strike back against his patron's retribution and cleaved a finger from his ex-patron's hand. This ring was supposedly carved from the tanar'ri's knucklebone, and carries with it some amount of demonic power... though it will only submit to one who is similarly empowered.
+
+STATISTICS:
+
+Equipped abilities: 
+â€“ Maximum Hit Points: +10
+â€“ Regenerate 2 Hit Points per round
+
+Weight: 0~
+EXTEND_TOP ~AR4005.BCS~ ~%MOD_FOLDER%/SCRIPTS/IWD-AR4005.BAF~
+END

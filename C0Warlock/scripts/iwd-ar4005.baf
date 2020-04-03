@@ -1,0 +1,7 @@
+IF
+  Global("C0WarlockRingSpawn","ar4005",0)
+THEN
+  RESPONSE #100
+    SetGlobal("C0WarlockRingSpawn","ar4005",1)
+    ActionOverride("War Chest 5",CreateItem("C0WLRI01",0,0,0))
+END
