@@ -1,6 +1,6 @@
 BACKUP ~C0Warlock/backup~
 AUTHOR ~Artemius_I/AionZ~
-VERSION ~1.0~
+VERSION ~1.3~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
@@ -29,17 +29,37 @@ INCLUDE ~%MOD_FOLDER%/LIB/WARLOCK.TPA~
 ///////////////////////////
 /////BETA SPELL SYSTEM/////
 ///////////////////////////
+ACTION_IF NOT GAME_IS ~IWDEE~ THEN BEGIN
 PRINT ~Install BETA Spell Learning System?
 [1] Yes
 [2] No~
 
 OUTER_SPRINT ~spellsystem~ ~placeholder_value~
 OUTER_WHILE (!(IS_AN_INT ~spellsystem~) OR (~spellsystem~ > 0x5) OR (~spellsystem~ < 0x1)) BEGIN
-  PRINT ~Please select 1, 2 or 3 and press Enter.~
+  PRINT ~Please select 1 or 2 and press Enter.~
   ACTION_READLN ~spellsystem~
 END
       ACTION_IF ("spellsystem" = 1) THEN BEGIN
 	  INCLUDE ~%MOD_FOLDER%/LIB/SPELLSYSTEM.TPA~
 END
       ACTION_IF ("spellsystem" = 2) THEN BEGIN
+END
+END
+
+PRINT ~IWDEE: Gain HLAs on Level Up past 3M Experience?
+[1] Yes
+[2] No~
+
+ACTION_IF GAME_IS ~IWDEE~ THEN BEGIN
+OUTER_SPRINT ~iwd~ ~placeholder_value~
+OUTER_WHILE (!(IS_AN_INT ~iwd~) OR (~iwd~ > 0x5) OR (~iwd~ < 0x1)) BEGIN
+  PRINT ~Please select 1 or 2 and press Enter.~
+  ACTION_READLN ~iwd~
+END
+      ACTION_IF ("iwd" = 1) THEN BEGIN
+	  COPY ~%MOD_FOLDER%/2DA/IWD~ OVERRIDE
+	  COPY ~%MOD_FOLDER%/SPELLS/IWD~ OVERRIDE
+END
+      ACTION_IF ("iwd" = 2) THEN BEGIN
+END
 END

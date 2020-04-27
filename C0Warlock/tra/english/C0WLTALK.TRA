@@ -235,19 +235,18 @@ This invocation allows the warlock to make a quick escape when necessary. Upon c
 Power: Lesser
 Effective Spell Level: 5
 Range: Visual range of the caster
-Duration: 1 hour
+Duration: 8 hours
 Casting Time: 9
 Area of Effect: the caster
 Saving Throw: None
 
-The warlock can summon undead creatures with <PRO_HISHER> infernal power to serve <PRO_HIMHER>. This invocation lasts for one hour. The strength and number of undead created is dependent on the warlock's level:
+The warlock can summon undead creatures with <PRO_HISHER> infernal power to serve <PRO_HIMHER>. This invocation summons a powerful revenant for eight hours. The strength and abilities of the revenant summoned is dependent on the warlock's level (known spells are cumulative):
 
-  1st – 6th: a 3 HD skeleton warrior wielding a long sword.
-  7th – 10th: a 5 HD skeleton warrior wielding a long sword +1.
-  11th – 14th: a 7 HD skeleton warrior wielding a bastard sword +1.
-  15th and up: a 9 HD skeleton warrior wielding a two-handed sword +1.
+  1st – 9th: 4 HD, Larloch's Minor Drain, Spook
+  10th - 19th: 7 HD, Ghoul Touch, Horror
+  20th+: 10 HD, Hold Person, Vampiric Touch
   
-The skeleton warrior can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, one hour passes, or it is turned. This spell cannot be dispelled.~
+The revenant can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, eight hour passes, or it is turned. This spell cannot be dispelled. Only one revenant can be summoned at any given time.~
 @65   = ~VORACIOUS DISPELLING
 (Abjuration) 
 
