@@ -4,6 +4,7 @@ IF
   OnCreation()
 THEN
   RESPONSE #100
+	Wait(1)
     ActionOverride(LastSummonerOf(Myself),StartDialogOverride("c0wltalk",Myself))
 	DestroySelf()
 END

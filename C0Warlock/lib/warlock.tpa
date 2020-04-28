@@ -1708,15 +1708,6 @@ END
   END
 SAY NAME1 @14 /* Shape: Chain */
 
-COPY_EXISTING ~c0wl106d.spl~ ~override/c0wl106x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp008%~
-END
-SAY NAME1 #-1
-
 COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106e.spl~
 READ_LONG 0x64 "abil_off"
 READ_SHORT 0x68 "abil_num"

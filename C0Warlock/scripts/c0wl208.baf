@@ -25,11 +25,3 @@ THEN
 	RESPONSE #100
 		AttackReevaluate(NearestEnemyOf(Myself),30)
 END
-
-IF
-	AttackedBy([ANYONE],DEFAULT)
-THEN
-	RESPONSE #100
-		Attack(LastAttackerOf(Myself))
-END
-
