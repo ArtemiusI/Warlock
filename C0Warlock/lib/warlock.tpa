@@ -35,8 +35,7 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	    SET C0WLCHA = %row%
 	  END
 	END
-	
-// Resistances
+	// Resistances
 DEFINE_ACTION_FUNCTION	ADD_SPLPROT	INT_VAR	stat = 0	value = 0	relation = 0	RET	new_row		BEGIN
 	ACTION_IF	(stat > 278)	BEGIN	WARN	~SPLPROT.2DA - Stat out of Bounds.~	END
 	ACTION_IF	((stat != 259) AND (stat != 260) AND (relation > 11))	BEGIN	WARN	~SPLPROT.2DA - Relation out of Bounds.~	END
@@ -82,7 +81,22 @@ ACTION_PHP_EACH	DMG_ARRAY AS one => two	BEGIN
 	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 128	relation = 	4	RET	max = new_row	END
 	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
 END
- 
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY	DMG_ARRAY2	BEGIN
+	~ACID2~		=>	17
+	~COLD2~		=>	15
+	~ELEC2~		=>	16
+	~FIRE2~		=>	14
+	~MAGIC2~		=>	73
+	~MFIRE2~		=>	19
+	~MCOLD2~		=>	20
+END
+ACTION_PHP_EACH	DMG_ARRAY2 AS one => two	BEGIN
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 0	relation = 	2	RET	min = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = two	value = 128	relation = 	4	RET	max = new_row	END
+	LAF	ADD_SPLPROT	INT_VAR	stat = 260	value = min	relation = 	max	RET	EVAL ~%one%~ = new_row	END
+END
+
 // SCROLLS
 // subtledoctor's EE new stuff here:___________________________________________
 //
@@ -250,6 +264,7 @@ COPY_EXISTING ~C0WLIC01.BAM~ ~OVERRIDE/C0WLIC09.BAM~
 COPY_EXISTING ~C0WLIC01.BAM~ ~OVERRIDE/C0WLIC10.BAM~
 COPY_EXISTING ~C0WLIC01.BAM~ ~OVERRIDE/C0WLIC11.BAM~
 COPY_EXISTING ~C0WLIC01.BAM~ ~OVERRIDE/C0WLIC12.BAM~
+COPY_EXISTING ~C0WLIC01.BAM~ ~OVERRIDE/C0WLIC13.BAM~
 
 DEFINE_ACTION_FUNCTION cd_new_portrait_icon
   INT_VAR string = 0
@@ -279,6 +294,9 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Hideous Blow: Vitriol
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Hideous Blow: Binding~) STR_VAR bam_file = c0wlic11 RET c0wlic11 = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Hideous Blow: Utterdark~) STR_VAR bam_file = c0wlic12 RET c0wlic12 = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Hideous Blow: Hellfire~) STR_VAR bam_file = c0wlic13 RET c0wlic13 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Beguiling Influence~) STR_VAR bam_file = c0wlic14 RET c0wlic14 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Dark One's Own Luck~) STR_VAR bam_file = c0wlic15 RET c0wlic15 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Leaps and Bounds~) STR_VAR bam_file = c0wlic16 RET c0wlic16 = icon END
 
 INCLUDE ~C0Warlock/lib/fl#add_kit_ee.tpa~
 ADD_KIT ~C0WLOCK~
@@ -423,6 +441,7 @@ END
 COPY_EXISTING_REGEXP GLOB ~.*\.dlg~ ~override~
   DECOMPILE_AND_PATCH BEGIN
     REPLACE_TEXTUALLY ~Class(Player1,BARD_ALL)~ ~Class(Player1,BARD_ALL) !Kit(Player1,C0WLOCK)~
+    REPLACE_TEXTUALLY ~Class(LastTalkedToBy,BARD_ALL)~ ~Class(LastTalkedToBy,BARD_ALL) !Kit(LastTalkedToBy,C0WLOCK)~
   END
   BUT_ONLY
 
@@ -715,6 +734,35 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp101.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp102.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp103.PRO~
 
+ACTION_FOR_EACH blasts IN 106 107 201 202 203 301 302 303 304 401 402  BEGIN
+COPY_EXISTING ~C0WL%blasts%.spl~ OVERRIDE // BLAST
+	LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL ~C0WL%blasts%B~ END
+COPY_EXISTING ~C0WL106a.spl~ ~override/c0wl%blasts%A.spl~
+	LPF	ALTER_EFFECT	INT_VAR	match_opcode = 171	STR_VAR match_resource = EVAL ~C0WL106B~ resource = EVAL ~C0WL%blasts%B~ END
+	LPF	ALTER_EFFECT	INT_VAR	match_opcode = 171	STR_VAR match_resource = EVAL ~C0WL106C~ resource = EVAL ~C0WL%blasts%C~ END
+	LPF	ALTER_EFFECT	INT_VAR	match_opcode = 171	STR_VAR match_resource = EVAL ~C0WL106D~ resource = EVAL ~C0WL%blasts%D~ END
+	LPF	ALTER_EFFECT	INT_VAR	match_opcode = 171	STR_VAR match_resource = EVAL ~C0WL106E~ resource = EVAL ~C0WL%blasts%E~ END
+	LPF	ALTER_EFFECT	INT_VAR	match_opcode = 171	STR_VAR match_resource = EVAL ~C0WL106F~ resource = EVAL ~C0WL%blasts%F~ END
+COPY_EXISTING ~C0WL%blasts%B.spl~ ~override~ // HIDEOUS BLOW
+WRITE_ASCIIE 0x3a ~C0W!%blasts%C~
+  LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL ~C0W!%blasts%B~ END
+COPY_EXISTING  ~C0WL%blasts%.spl~ ~override/C0WL%blasts%C.spl~ // SPEAR
+WRITE_ASCIIE 0x3a ~C0W@%blasts%C~
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 3 STR_VAR icon = EVAL ~C0W@%blasts%B~ END
+COPY_EXISTING ~C0WL%blasts%D.spl~ ~override~ // CHAIN
+WRITE_ASCIIE 0x3a ~C0W#%blasts%C~
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 3 STR_VAR icon = EVAL ~C0W#%blasts%B~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 328 target = 3 parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~) END
+COPY_EXISTING ~C0WL%blasts%.spl~ ~override/C0WL%blasts%E.spl~ // CONE
+WRITE_ASCIIE 0x3a ~C0W$%blasts%C~
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 5 target = 4 STR_VAR icon = EVAL ~C0W$%blasts%B~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 savingthrow = 1 savebonus = 0 - 2 special = 0x100 END
+COPY_EXISTING ~C0WL%blasts%.spl~ ~override/C0WL%blasts%F.spl~
+WRITE_ASCIIE 0x3a ~C0W%%blasts%C~
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 7 target = 4 STR_VAR icon = EVAL ~C0W%%blasts%B~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 savingthrow = 1 savebonus = 0 - 4 special = 0x100 END
+END
+
 // SPELLS
 
 COPY_EXISTING ~c0wl000.spl~ ~override~
@@ -756,6 +804,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl106z.spl~
 	STR_VAR
 	  resource = %c0wl106%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl106b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl106c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl106d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl106e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl106f%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl107z.spl~
   LPF ALTER_EFFECT
@@ -765,6 +843,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl107z.spl~
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl107%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl107b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl107c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl107d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl107e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl107f%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl108z.spl~
@@ -816,6 +924,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl201z.spl~
 	STR_VAR
 	  resource = %c0wl201%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl201b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl201c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl201d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl201e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl201f%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl202z.spl~
   LPF ALTER_EFFECT
@@ -826,6 +964,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl202z.spl~
 	STR_VAR
 	  resource = %c0wl202%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl202b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl202c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl202d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl202e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl202f%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl203z.spl~
   LPF ALTER_EFFECT
@@ -835,6 +1003,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl203z.spl~
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl203%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl203b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl203c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl203d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl203e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl203f%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl204z.spl~
@@ -916,6 +1114,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl301z.spl~
 	STR_VAR
 	  resource = %c0wl301%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl301b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl301c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl301d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl301e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl301f%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl302z.spl~
   LPF ALTER_EFFECT
@@ -925,6 +1153,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl302z.spl~
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl302%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl302b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl302c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl302d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl302e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl302f%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl303z.spl~
@@ -936,6 +1194,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl303z.spl~
 	STR_VAR
 	  resource = %c0wl303%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl303b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl303c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl303d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl303e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl303f%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl304z.spl~
   LPF ALTER_EFFECT
@@ -945,6 +1233,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl304z.spl~
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl304%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl304b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl304c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl304d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl304e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl304f%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl305z.spl~
@@ -996,6 +1314,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl401z.spl~
 	STR_VAR
 	  resource = %c0wl401%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl401b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl401c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl401d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl401e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl401f%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl402z.spl~
   LPF ALTER_EFFECT
@@ -1005,6 +1353,36 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl402z.spl~
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl402%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl402b%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl402c%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl402d%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl402e%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl402f%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl403z.spl~
@@ -1391,12 +1769,10 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 20 ft. radius. Save vs. Spell for half damage. */
 
 COPY_EXISTING ~c0wl101.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp001%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp001
+  END
 SAY NAME1 @10 /* Shape: Blast */
 
 COPY_EXISTING ~c0wl102.spl~ ~override~
@@ -1435,27 +1811,23 @@ END
 SAY NAME1 @12 /* Hideous Blow */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl103.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp002%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp002
+  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  speed = 3
 	STR_VAR
-	  icon = %c0wl103b%
+	  icon = ~c0wl103b~
 END
 SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl200.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp001%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp001
+  END
   LPF ALTER_EFFECT
     INT_VAR
 	  match_opcode = 328
@@ -1465,64 +1837,65 @@ END
     INT_VAR
 	  speed = 5
 	STR_VAR
-	  icon = %c0wl200b%
+	  icon = ~c0wl200b~
 END
 SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl200.spl~ ~override/c0wl200x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp003%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp003
+  END
 SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl300.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp004%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp004
+  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  speed = 5
 	  target = 4
 	STR_VAR
-	  icon = %c0wl300b%
+	  icon = ~c0wl300b~
 END
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 12
 	  savingthrow = 1
+	  savebonus = 0 - 2
 	  special = 0x100
 END
 SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl400.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp005%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp005
+  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  speed = 7
 	  target = 4
 	STR_VAR
-	  icon = %c0wl400b%
+	  icon = ~c0wl400b~
 END
   LPF ALTER_EFFECT
 	INT_VAR
 	  match_opcode = 12
 	  savingthrow = 1
+	  savebonus = 0 - 4
 	  special = 0x100
 END
 SAY NAME1 @16 /* Shape: Doom */
 
 COPY_EXISTING ~c0wl104.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 142
+	  parameter2 = c0wlic14
+	END
 	LPF ADD_SPELL_EFFECT
 		INT_VAR
 			opcode = 328
@@ -1549,6 +1922,11 @@ Saving Throw: None
 This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 8th level and +6 at 16th level. */
 
 COPY_EXISTING ~c0wl105.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 142
+	  parameter2 = c0wlic15
+	END
 	LPF ADD_SPELL_EFFECT
 		INT_VAR
 			opcode = 328
@@ -1575,6 +1953,15 @@ Saving Throw: None
 The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16. */
 
 COPY_EXISTING ~c0wl106.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 12
+	  dicesize = 3
+  END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp006
+  END
 SAY NAME1 @21 /* Draining Blast */
 SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
 (Eldritch Essence) 
@@ -1588,15 +1975,6 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
-
-COPY_EXISTING ~c0wl106a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp006%~
-END
-SAY NAME1 @10 /* Shape: Blast */
 
 COPY_EXISTING ~c0wl106_.spl~ ~override~
 	LPF ALTER_EFFECT
@@ -1618,7 +1996,19 @@ COPY_EXISTING ~c0wl106b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic02
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Draining Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
 
 COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl106@.spl~
   LPF ALTER_EFFECT
@@ -1641,7 +2031,7 @@ COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl106&.spl~
 	  savebonus = (0 - 4)
 END
 
-COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106#.spl~
+COPY_EXISTING ~c0wl106.spl~ ~override/c0wl106#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -1668,91 +2058,99 @@ END
 END
 SAY NAME1 @24 /* Hideous Blow: Draining Blast */
 
-COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp007%~
-END
+COPY_EXISTING ~c0wl106c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp007
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Draining Blast: Spear~
+SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
 
 COPY_EXISTING ~c0wl106d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp006%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 2
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp006
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Draining Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp009%~
-END
-  LPF ALTER_SPELL_HEADER
-    INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
-  END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
 
-COPY_EXISTING ~c0wl106a.spl~ ~override/c0wl106f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp010%~
-END
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
+
+COPY_EXISTING ~c0wl106d.spl~ ~override/c0wl106x.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp008
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 #-1
+
+COPY_EXISTING ~c0wl106e.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp009
+  END
+SAY NAME1 ~Draining Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
+
+COPY_EXISTING ~c0wl106f.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp010
+  END
+SAY NAME1 ~Draining Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
 
 COPY_EXISTING ~c0wl107.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 12
+	  dicesize = 3
+  END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp011
+  END
 SAY NAME1 @25 /* Frightful Blast */
 SAY UNIDENTIFIED_DESC @26 /* FRIGHTFUL BLAST
 (Eldritch Essence) 
@@ -1766,15 +2164,6 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
-
-COPY_EXISTING ~c0wl107a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp011%~
-END
-SAY NAME1 @10 /* Shape: Blast */
 
 COPY_EXISTING ~c0wl107_.spl~ ~override~
 	LPF ALTER_EFFECT
@@ -1796,7 +2185,19 @@ COPY_EXISTING ~c0wl107b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic03
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Frightful Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @26 /* FRIGHTFUL BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
 
 COPY_EXISTING ~c0wl107!.spl~ ~override/c0wl107@.spl~
   LPF ALTER_EFFECT
@@ -1843,7 +2244,7 @@ END
 	  savebonus = 0
 END
 
-COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107#.spl~
+COPY_EXISTING ~c0wl107.spl~ ~override/c0wl107#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -1870,106 +2271,94 @@ END
 END
 SAY NAME1 @28 /* Hideous Blow: Frightful Blast */
 
-COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp012%~
-END
+COPY_EXISTING ~c0wl107c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp012
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Frightful Blast: Spear~
+SAY UNIDENTIFIED_DESC @26 /* FRIGHTFUL BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
 
 COPY_EXISTING ~override/c0wl107d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp011%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 2
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp011
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Frightful Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @26 /* FRIGHTFUL BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
 
 COPY_EXISTING ~c0wl107d.spl~ ~override/c0wl107x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp013%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp013
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp014%~
-END
+COPY_EXISTING ~c0wl107e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp014
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Frightful Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @26 /* FRIGHTFUL BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl107a.spl~ ~override/c0wl107f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp015%~
-END
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
+
+COPY_EXISTING ~c0wl107f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp015
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Frightful Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @26 /* FRIGHTFUL BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
 
 COPY_EXISTING ~c0wl108.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp101%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp101
+  END
 SAY NAME1 @29 /* Darkness */
 SAY UNIDENTIFIED_DESC @30 /* DARKNESS
 (Invocation/Evocation) 
@@ -2005,49 +2394,49 @@ Area of Effect: the caster
 Saving Throw: None
 
 A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 for the duration. */
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109b.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109b.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 4
 END
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109c.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109c.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 3
 END
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109d.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109d.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 2
 END
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109e.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109e.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 1
 END
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109f.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109f.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 0
 END
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109g.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109g.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = (0 - 1)
 END
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109h.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109h.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = (0 - 2)
 END
-COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109i.spl~
+COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109i.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
@@ -2055,6 +2444,11 @@ COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109i.spl~
 END
 
 COPY_EXISTING ~c0wl110.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 142
+	  parameter2 = c0wlic16
+	END
 	LPF ADD_SPELL_EFFECT
 		INT_VAR
 			opcode = 328
@@ -2101,6 +2495,15 @@ Saving Throw: None
 With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps. <PRO_HESHE> also gains infravision for the duration. */
 
 COPY_EXISTING ~c0wl201.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 12
+	  dicesize = 4
+  END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp016
+  END
 SAY NAME1 @38 /* Beshadowed Blast */
 SAY UNIDENTIFIED_DESC @39 /* BESHADOWED BLAST
 (Eldritch Essence) 
@@ -2114,14 +2517,6 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
-
-COPY_EXISTING ~c0wl201a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp016%~
-END
 
 COPY_EXISTING ~c0wl201_.spl~ ~override~
 	LPF ALTER_EFFECT
@@ -2179,9 +2574,21 @@ COPY_EXISTING ~c0wl201b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic04
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Beshadowed Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @39 /* BESHADOWED BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201#.spl~
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
+
+COPY_EXISTING ~c0wl201.spl~ ~override/c0wl201#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -2209,100 +2616,94 @@ END
 
 SAY NAME1 @41 /* Hideous Blow: Beshadowed Blast */
 
-COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp017%~
-END
+COPY_EXISTING ~c0wl201c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp017
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Beshadowed Blast: Spear~
+SAY UNIDENTIFIED_DESC @39 /* BESHADOWED BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
 
 COPY_EXISTING ~c0wl201d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp016%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 2
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp016
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Beshadowed Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @39 /* BESHADOWED BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
 
 COPY_EXISTING ~c0wl201d.spl~ ~override/c0wl201x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp018%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp018
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp019%~
-END
+COPY_EXISTING ~c0wl201e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp019
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Beshadowed Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @39 /* BESHADOWED BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl201a.spl~ ~override/c0wl201f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp020%~
-END
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
+
+COPY_EXISTING ~c0wl201f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp020
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Beshadowed Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @39 /* BESHADOWED BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
 
 COPY_EXISTING ~c0wl202.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp021
+  END
 SAY NAME1 @42 /* Brimstone Blast */
 SAY UNIDENTIFIED_DESC @43 /* BRIMSTONE BLAST
 (Eldritch Essence) 
@@ -2316,15 +2717,6 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
-
-COPY_EXISTING ~c0wl202a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp021%~
-END
-SAY NAME1 @10 /* Shape: Blast */
 
 COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl202!.spl~
   LPF ALTER_EFFECT
@@ -2392,9 +2784,21 @@ COPY_EXISTING ~c0wl202b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic05
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Brimstone Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @43 /* BRIMSTONE BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202#.spl~
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
+
+COPY_EXISTING ~c0wl202.spl~ ~override/c0wl202#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -2422,100 +2826,94 @@ END
 
 SAY NAME1 @45 /* Hideous Blow: Brimstone Blast */
 
-COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp022%~
-END
+COPY_EXISTING ~c0wl202c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp022
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Brimstone Blast: Spear~
+SAY UNIDENTIFIED_DESC @43 /* BRIMSTONE BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
 
 COPY_EXISTING ~c0wl202d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp021%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 3
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp021
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Brimstone Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @43 /* BRIMSTONE BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
 
 COPY_EXISTING ~c0wl202d.spl~ ~override/c0wl202x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp023%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp023
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp024%~
-END
+COPY_EXISTING ~c0wl202e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp024
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Brimstone Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @43 /* BRIMSTONE BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl202a.spl~ ~override/c0wl202f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp025%~
-END
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
+
+COPY_EXISTING ~c0wl202f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp025
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Brimstone Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @43 /* BRIMSTONE BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
 
 COPY_EXISTING ~c0wl203.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp026
+  END
 SAY NAME1 @46 /* Hellrime Blast */
 SAY UNIDENTIFIED_DESC @47 /* HELLRIME BLAST
 (Eldritch Essence) 
@@ -2566,15 +2964,6 @@ COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl203&.spl~
 	  resource = c0wl203y
 END
 
-COPY_EXISTING ~c0wl203a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp026%~
-END
-SAY NAME1 @10 /* Shape: Blast */
-
 COPY_EXISTING ~c0wl203_.spl~ ~override~
 	LPF ALTER_EFFECT
 	  INT_VAR
@@ -2605,9 +2994,21 @@ COPY_EXISTING ~c0wl203b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic06
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Hellrime Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @47 /* HELLRIME BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203#.spl~
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
+
+COPY_EXISTING ~c0wl203.spl~ ~override/c0wl203#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -2635,98 +3036,88 @@ END
 
 SAY NAME1 @49 /* Hideous Blow: Hellrime Blast */
 
-COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp027%~
-END
+COPY_EXISTING ~c0wl203c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp027
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Hellrime Blast: Spear~
+SAY UNIDENTIFIED_DESC @47 /* HELLRIME BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
 
 COPY_EXISTING ~c0wl203d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp026%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 3
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp026
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Hellrime Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @47 /* HELLRIME BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
 
 COPY_EXISTING ~c0wl203d.spl~ ~override/c0wl203x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp028%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp028
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp029%~
-END
+COPY_EXISTING ~c0wl203e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp029
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Hellrime Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @47 /* HELLRIME BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl203a.spl~ ~override/c0wl203f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp030%~
-END
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
+
+COPY_EXISTING ~c0wl203f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp030
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Hellrime Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @47 /* HELLRIME BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
 
 COPY_EXISTING ~c0wl204.spl~ ~override~
   LPF ALTER_EFFECT
@@ -2971,6 +3362,15 @@ Saving Throw: None
 The warlock may cast this invocation to become invisible. The effect ends immediately if <PRO_HESHE> attacks or casts a spell. Otherwise, the effect lasts 24 hours. */
 
 COPY_EXISTING ~c0wl301.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 12
+	  dicesize = 4
+  END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp031
+  END
 SAY NAME1 @69 /* Bewitching Blast */
 SAY UNIDENTIFIED_DESC @70 /* BEWITCHING BLAST
 (Eldritch Essence) 
@@ -3021,15 +3421,6 @@ COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl301&.spl~
 	  resource = c0wl301y
 END
 
-COPY_EXISTING ~c0wl301a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp031%~
-END
-SAY NAME1 @10 /* Shape: Blast */
-
 COPY_EXISTING ~c0wl301_.spl~ ~override~
 	LPF ALTER_EFFECT
 	  INT_VAR
@@ -3050,9 +3441,21 @@ COPY_EXISTING ~c0wl301b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic07
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Bewitching Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @70 /* BEWITCHING BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301#.spl~
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
+
+COPY_EXISTING ~c0wl301.spl~ ~override/c0wl301#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3080,110 +3483,94 @@ END
 
 SAY NAME1 @72 /* Hideous Blow: Bewitching Blast */
 
-COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp032%~
-END
+COPY_EXISTING ~c0wl301c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp032
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Bewitching Blast: Spear~
+SAY UNIDENTIFIED_DESC @70 /* BEWITCHING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
 
 COPY_EXISTING ~c0wl301d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp031%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 2
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp031
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Bewitching Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @70 /* BEWITCHING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
 
 COPY_EXISTING ~c0wl301d.spl~ ~override/c0wl301x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp033%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp033
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp034%~
-END
+COPY_EXISTING ~c0wl301e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp034
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Bewitching Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @70 /* BEWITCHING BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl301a.spl~ ~override/c0wl301f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp035%~
-END
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
+
+COPY_EXISTING ~c0wl301f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp035
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Bewitching Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @70 /* BEWITCHING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
 
 COPY_EXISTING ~c0wl302.spl~ ~override~
-		LPF	ADD_SPELL_EFFECT
-			INT_VAR
-				insert_point = 0
-				opcode = 324
-				target = 2
-				parameter2 = ELEC
-				duration = 1
-			STR_VAR
-				resource = EVAL ~%SOURCE_RES%~
-		END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp036
+  END
 SAY NAME1 @73 /* Electrifying Blast */
 SAY UNIDENTIFIED_DESC @74 /* ELECTRIFYING BLAST
 (Eldritch Essence) 
@@ -3234,16 +3621,17 @@ COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl302&.spl~
 	  resource = c0wl302y
 END
 
-COPY_EXISTING ~c0wl302a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp036%~
-END
-SAY NAME1 @10 /* Shape: Blast */
-
 COPY_EXISTING ~c0wl302_.spl~ ~override~
+		LPF	ADD_SPELL_EFFECT
+			INT_VAR
+				insert_point = 0
+				opcode = 324
+				target = 2
+				parameter2 = ELEC
+				duration = 1
+			STR_VAR
+				resource = EVAL ~%SOURCE_RES%~
+		END
 	LPF ALTER_EFFECT
 	  INT_VAR
 		match_opcode = 326
@@ -3263,9 +3651,21 @@ COPY_EXISTING ~c0wl302b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic08
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Electrifying Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @74 /* ELECTRIFYING BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302#.spl~
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
+
+COPY_EXISTING ~c0wl302.spl~ ~override/c0wl302#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3293,100 +3693,94 @@ END
 
 SAY NAME1 @76 /* Hideous Blow: Electrifying Blast */
 
-COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp037%~
-END
+COPY_EXISTING ~c0wl302c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp037
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Electrifying Blast: Spear~
+SAY UNIDENTIFIED_DESC @74 /* ELECTRIFYING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
 
 COPY_EXISTING ~c0wl302d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp036%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 3
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp036
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Electrifying Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @74 /* ELECTRIFYING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
 
 COPY_EXISTING ~c0wl302d.spl~ ~override/c0wl302x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp038%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp038
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp039%~
-END
+COPY_EXISTING ~c0wl302e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp039
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Electrifying Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @74 /* ELECTRIFYING BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl302a.spl~ ~override/c0wl302f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp040%~
-END
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
+
+COPY_EXISTING ~c0wl302f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp040
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Electrifying Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @74 /* ELECTRIFYING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
 
 COPY_EXISTING ~c0wl303.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp041
+  END
 SAY NAME1 @77 /* Noxious Blast */
 SAY UNIDENTIFIED_DESC @78 /* NOXIOUS BLAST
 (Eldritch Essence) 
@@ -3437,15 +3831,6 @@ COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl303&.spl~
 	  resource = c0wl303y
 END
 
-COPY_EXISTING ~c0wl303a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp041%~
-END
-SAY NAME1 @10 /* Shape: Blast */
-
 COPY_EXISTING ~c0wl303_.spl~ ~override~
 	LPF ALTER_EFFECT
 	  INT_VAR
@@ -3476,9 +3861,21 @@ COPY_EXISTING ~c0wl303b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic09
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Noxious Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @78 /* NOXIOUS BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303#.spl~
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
+
+COPY_EXISTING ~c0wl303.spl~ ~override/c0wl303#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3503,103 +3900,96 @@ END
 	STR_VAR
 	  resource = c0wl303b
 END
-
 SAY NAME1 @80 /* Hideous Blow: Noxious Blast */
 
-COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp042%~
-END
+COPY_EXISTING ~c0wl303c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp042
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Noxious Blast: Spear~
+SAY UNIDENTIFIED_DESC @78 /* NOXIOUS BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
 
 COPY_EXISTING ~c0wl303d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp041%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 3
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp041
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Noxious Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @78 /* NOXIOUS BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
 
 COPY_EXISTING ~c0wl303d.spl~ ~override/c0wl303x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp043%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp043
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp044%~
-END
+COPY_EXISTING ~c0wl303e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp044
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Noxious Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @78 /* NOXIOUS BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl303a.spl~ ~override/c0wl303f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp045%~
-END
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
+
+COPY_EXISTING ~c0wl303f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp045
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Noxious Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @78 /* NOXIOUS BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
 
 COPY_EXISTING ~c0wl304.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp046
+  END
 SAY NAME1 @81 /* Vitriolic Blast */
 SAY UNIDENTIFIED_DESC @82 /* VITRIOLIC BLAST
 (Eldritch Essence) 
@@ -3613,19 +4003,6 @@ Area of Effect: Blast Shape
 Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
-
-COPY_EXISTING ~c0wl304a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp046%~
-END
-SAY NAME1 @10 /* Shape: Blast */
-  LPF ALTER_EFFECT
-    INT_VAR
-	  resist_dispel = 0
-END
 
 COPY_EXISTING ~c0wl304_.spl~ ~override~
 		LPF	ADD_SPELL_EFFECT
@@ -3650,9 +4027,21 @@ COPY_EXISTING ~c0wl304b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic10
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Vitriolic Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @82 /* VITRIOLIC BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304#.spl~
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
+
+COPY_EXISTING ~c0wl304.spl~ ~override/c0wl304#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3680,98 +4069,88 @@ END
 
 SAY NAME1 @84 /* Hideous Blow: Vitriolic Blast */
 
-COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp047%~
-END
+COPY_EXISTING ~c0wl304c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp047
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Vitriolic Blast: Spear~
+SAY UNIDENTIFIED_DESC @82 /* VITRIOLIC BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
 
 COPY_EXISTING ~c0wl304d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp046%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 3
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp046
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Vitriolic Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @82 /* VITRIOLIC BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
 
 COPY_EXISTING ~c0wl304d.spl~ ~override/c0wl304x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp048%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp048
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp049%~
-END
+COPY_EXISTING ~c0wl304e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp049
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Vitriolic Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @82 /* VITRIOLIC BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl304a.spl~ ~override/c0wl304f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp050%~
-END
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
+
+COPY_EXISTING ~c0wl304f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp050
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Vitriolic Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @82 /* VITRIOLIC BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
 
 COPY_EXISTING ~c0wl305.spl~ ~override~
   LPF ALTER_EFFECT
@@ -3860,6 +4239,15 @@ Saving Throw: None
 You conjure a curtain of fire that deals 2d6 points of damage to any creature that attempts to pass through it. Half the wall's fire damage results from supernatural power and deals magical damage, therefore not being subject to being reduced by resistance to fire. The curtain of flame lasts for 3 rounds before dissipating. */
 
 COPY_EXISTING ~c0wl401.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 12
+	  dicesize = 4
+  END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp051
+  END
 SAY NAME1 @93 /* Binding Blast */
 SAY UNIDENTIFIED_DESC @94 /* BINDING BLAST
 (Eldritch Essence) 
@@ -3910,29 +4298,6 @@ COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl401&.spl~
 	  resource = c0wl401y
 END
 
-COPY_EXISTING ~c0wl401a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp051%~
-END
-SAY NAME1 @10 /* Shape: Blast */
-  LPF ADD_SPELL_EFFECT
-    INT_VAR
-	  opcode = 146
-	  target = 2
-	  timing = 1
-	  parameter2 = 1
-	STR_VAR
-	  resource = c0wl401_
-END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  dicesize = 4
-END
-
 COPY_EXISTING ~c0wl401_.spl~ ~override~
 	LPF ALTER_EFFECT
 	  INT_VAR
@@ -3953,9 +4318,21 @@ COPY_EXISTING ~c0wl401b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic11
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Binding Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @94 /* BINDING BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401#.spl~
+Power: Dark
+Effective Spell Level: 7
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
+
+COPY_EXISTING ~c0wl401.spl~ ~override/c0wl401#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3983,100 +4360,99 @@ END
 
 SAY NAME1 @96 /* Hideous Blow: Binding Blast */
 
-COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp052%~
-END
+COPY_EXISTING ~c0wl401c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp052
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Binding Blast: Spear~
+SAY UNIDENTIFIED_DESC @94 /* BINDING BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 7
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
 
 COPY_EXISTING ~c0wl401d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp051%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 2
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp051
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Binding Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @94 /* BINDING BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 7
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
 
 COPY_EXISTING ~c0wl401d.spl~ ~override/c0wl401x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp053%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp053
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp054%~
-END
+COPY_EXISTING ~c0wl401e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp054
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Binding Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @94 /* BINDING BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl401a.spl~ ~override/c0wl401f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp055%~
-END
+Power: Dark
+Effective Spell Level: 7
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
+
+COPY_EXISTING ~c0wl401f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp055
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  special = 0x100
-END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Binding Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @94 /* BINDING BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 7
+Range: Special
+Duration: 1 round
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
 
 COPY_EXISTING ~c0wl402.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 12
+	  dicesize = 4
+  END
+  LPF ALTER_SPELL_HEADER
+	INT_VAR
+	  projectile = c0wlp056
+  END
 SAY NAME1 @97 /* Utterdark Blast */
 SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
 (Eldritch Essence) 
@@ -4127,21 +4503,6 @@ COPY_EXISTING ~c0wl106!.spl~ ~override/c0wl402&.spl~
 	  resource = c0wl402y
 END
 
-COPY_EXISTING ~c0wl402a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp056%~
-END
-SAY NAME1 @10 /* Shape: Blast */
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  dicesize = 4
-	  special = 1
-END
-
 COPY_EXISTING ~c0wl402_.spl~ ~override~
 	LPF ALTER_EFFECT
 	  INT_VAR
@@ -4172,9 +4533,21 @@ COPY_EXISTING ~c0wl402b.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic12
 	END
-SAY NAME1 @11 /* Shape: Hideous Blow */
+SAY NAME1 ~Utterdark Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402#.spl~
+Power: Dark
+Effective Spell Level: 8
+Range: Special
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
+
+COPY_EXISTING ~c0wl402.spl~ ~override/c0wl402#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -4202,86 +4575,88 @@ END
 
 SAY NAME1 @100 /* Hideous Blow: Utterdark Blast */
 
-COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp057%~
-END
+COPY_EXISTING ~c0wl402c.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl103b%
+	  projectile = c0wlp057
   END
-SAY NAME1 @13 /* Shape: Spear */
+SAY NAME1 ~Utterdark Blast: Spear~
+SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 8
+Range: Special
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
 
 COPY_EXISTING ~c0wl402d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp056%~
-END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 2
-  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 3
-	STR_VAR
-	  icon = %c0wl200b%
+	  projectile = c0wlp056
   END
-SAY NAME1 @14 /* Shape: Chain */
+SAY NAME1 ~Utterdark Blast:^0xFFC76777 ^-Chain~
+SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 8
+Range: Special
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
 
 COPY_EXISTING ~c0wl402d.spl~ ~override/c0wl402x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp058%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp058
+  END
 SAY NAME1 #-1
 
-COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp059%~
-END
+COPY_EXISTING ~c0wl402e.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
-	  target = 4
-	STR_VAR
-	  icon = %c0wl300b%
+	  projectile = c0wlp059
   END
-SAY NAME1 @15 /* Shape: Cone */
+SAY NAME1 ~Utterdark Blast:^0xFFC76777 ^-Cone~
+SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
+(Eldritch Essence) 
 
-COPY_EXISTING ~c0wl402a.spl~ ~override/c0wl402f.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp060%~
-END
+Power: Dark
+Effective Spell Level: 8
+Range: Special
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
+
+COPY_EXISTING ~c0wl402f.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
-	  target = 4
-	STR_VAR
-	  icon = %c0wl400b%
+	  projectile = c0wlp060
   END
-SAY NAME1 @16 /* Shape: Doom */
+SAY NAME1 ~Utterdark Blast:^0xFFC76777 ^-Doom~
+SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 8
+Range: Special
+Duration: 1 hour
+Casting Time: 1
+Area of Effect: Blast Shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
 
 COPY_EXISTING ~c0wl403.spl~ ~override~
 SAY NAME1 @101 /* Dark Foresight */
@@ -4399,12 +4774,10 @@ This eldritch essence invocation allows you to change your eldritch blast into a
 However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 24 hours. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly. */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp061%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp061
+  END
 SAY NAME1 @10 /* Shape: Blast */
   LPF ADD_SPELL_EFFECT
     INT_VAR
@@ -4436,7 +4809,7 @@ COPY_EXISTING ~c0wl506b.spl~ ~override~
 END
 SAY NAME1 @11 /* Shape: Hideous Blow */
 
-COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506#.spl~
+COPY_EXISTING ~c0wl506.spl~ ~override/c0wl506#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -4465,27 +4838,23 @@ END
 SAY NAME1 @122 /* Hideous Blow: Hellfire Blast */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506c.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp062%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp062
+  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  speed = 3
 	STR_VAR
-	  icon = %c0wl103b%
+	  icon = ~c0wl103b~
   END
 SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl506d.spl~ ~override~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp061%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp061
+  END
   LPF CLONE_EFFECT
 	INT_VAR
 	  match_opcode = 328
@@ -4500,34 +4869,37 @@ END
     INT_VAR
 	  speed = 3
 	STR_VAR
-	  icon = %c0wl200b%
+	  icon = ~c0wl200b~
   END
 SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl506d.spl~ ~override/c0wl506x.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp063%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp063
+  END
 SAY NAME1 #-1
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506e.spl~
-READ_LONG 0x64 "abil_off"
-READ_SHORT 0x68 "abil_num"
-SET "delta" = 0
-FOR (index = 0; index < abil_num; index = index + 1) BEGIN
-WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp064%~
-END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp064
+  END
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  speed = 5
 	  target = 4
 	STR_VAR
-	  icon = %c0wl300b%
+	  icon = ~c0wl300b~
 	  special = 256
   END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_opcode = 12
+	  savingthrow = 1
+	  savebonus = 0 - 2
+	  special = 0x100
+END
 SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506f.spl~
@@ -4542,9 +4914,16 @@ END
 	  speed = 7
 	  target = 4
 	STR_VAR
-	  icon = %c0wl400b%
+	  icon = ~c0wl400b~
 	  special = 256
   END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_opcode = 12
+	  savingthrow = 1
+	  savebonus = 0 - 4
+	  special = 0x100
+END
 SAY NAME1 @16 /* Shape: Doom */
 
 COPY_EXISTING ~c0wl507.spl~ ~override~

@@ -46,11 +46,11 @@ END
 END
 END
 
+ACTION_IF GAME_IS ~IWDEE~ THEN BEGIN
 PRINT ~IWDEE: Gain HLAs on Level Up past 3M Experience?
 [1] Yes
 [2] No~
 
-ACTION_IF GAME_IS ~IWDEE~ THEN BEGIN
 OUTER_SPRINT ~iwd~ ~placeholder_value~
 OUTER_WHILE (!(IS_AN_INT ~iwd~) OR (~iwd~ > 0x5) OR (~iwd~ < 0x1)) BEGIN
   PRINT ~Please select 1 or 2 and press Enter.~

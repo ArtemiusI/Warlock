@@ -61,6 +61,11 @@ COPY_EXISTING ~%lv4%.spl~ ~override~
 	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP4~	END
 END
 
+ACTION_FOR_EACH blast IN C0WL106 C0WL107 C0WL201 C0WL202 C0WL203 C0WL301 C0WL302 C0WL303 C0WL304 C0WL401 C0WL402 BEGIN
+COPY_EXISTING ~%blast%L.spl~ ~override~
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 146	target = 1 timing = 1 parameter1 = 0 parameter2 = 1	STR_VAR	resource = EVAL ~%blast%A~	END
+END
+
 COPY_EXISTING ~C0WLLS.SPL~ ~OVERRIDE~
 LPF ADD_SPELL_EFFECT INT_VAR	opcode = 206 target = 1 duration = 2 STR_VAR resource = ~C0WLLS~
 END

@@ -1,10 +1,98 @@
 // Dialog
 
 IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl106"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl106a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl107"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl107a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl201"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl201a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl202"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl202a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl203"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl203a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl301"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl301a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl302"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl302a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl303"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl303a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl304"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl304a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl401"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl401a",Myself))
+	Continue()
+END
+
+IF
+  TriggerOverride(LastSummonerOf(),HaveKnownSpellRES("c0wl402"))
+THEN
+  RESPONSE #100
+	ActionOverride(LastSummonerOf(),ReallyForceSpellRES("c0wl402a",Myself))
+	Continue()
+END
+
+IF
   OnCreation()
 THEN
   RESPONSE #100
 	Wait(1)
-    ActionOverride(LastSummonerOf(Myself),StartDialogOverride("c0wltalk",Myself))
+    ActionOverride(LastSummonerOf(),StartDialogOverride("c0wltalk",Myself))
 	DestroySelf()
 END

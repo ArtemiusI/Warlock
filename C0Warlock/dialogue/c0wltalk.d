@@ -340,7 +340,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl106")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl106") ReallyForceSpellRES("c0wl106A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -357,7 +357,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl107")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl107") ReallyForceSpellRES("c0wl107A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -442,7 +442,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl201")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl201") ReallyForceSpellRES("c0wl201A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -459,7 +459,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl202")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl202") ReallyForceSpellRES("c0wl202A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -476,7 +476,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl203")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl203") ReallyForceSpellRES("c0wl203A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -621,7 +621,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl301")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl301") ReallyForceSpellRES("c0wl301A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -638,7 +638,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl302")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl302") ReallyForceSpellRES("c0wl302A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -655,7 +655,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl303")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl303") ReallyForceSpellRES("c0wl303A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -672,7 +672,7 @@ Area of Effect: Blast Shape
 Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl304")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl304") ReallyForceSpellRES("c0wl304A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -759,7 +759,7 @@ Area of Effect: Blast Shape
 Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl401")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl401") ReallyForceSpellRES("c0wl401A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -776,7 +776,7 @@ Area of Effect: Blast Shape
 Saving Throw: None
 
 This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl402")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl402") ReallyForceSpellRES("c0wl402A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
