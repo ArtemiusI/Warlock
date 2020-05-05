@@ -697,6 +697,7 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp047.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp048.PRO~
 COPY ~%MOD_FOLDER%/pro/c0wlp048.pro~ ~override~
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp046~)) + 1
+WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp049.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp050.PRO~
 
@@ -707,6 +708,7 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp052.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp053.PRO~
 COPY ~%MOD_FOLDER%/pro/c0wlp053.pro~ ~override~
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp051~)) + 1
+WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp054.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp055.PRO~
 
@@ -717,6 +719,7 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp057.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp058.PRO~
 COPY ~%MOD_FOLDER%/pro/c0wlp058.pro~ ~override~
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp056~)) + 1
+WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp059.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp060.PRO~
 
@@ -726,6 +729,7 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp062.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp063.PRO~
 COPY ~%MOD_FOLDER%/pro/c0wlp063.pro~ ~override~
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp061~)) + 1
+WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp064.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp065.PRO~
 
@@ -756,11 +760,9 @@ WRITE_ASCIIE 0x3a ~C0W#%blasts%C~
 COPY_EXISTING ~C0WL%blasts%.spl~ ~override/C0WL%blasts%E.spl~ // CONE
 WRITE_ASCIIE 0x3a ~C0W$%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 5 target = 4 STR_VAR icon = EVAL ~C0W$%blasts%B~ END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 12 savingthrow = 1 savebonus = 0 - 2 special = 0x100 END
 COPY_EXISTING ~C0WL%blasts%.spl~ ~override/C0WL%blasts%F.spl~
 WRITE_ASCIIE 0x3a ~C0W%%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 7 target = 4 STR_VAR icon = EVAL ~C0W%%blasts%B~ END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 12 savingthrow = 1 savebonus = 0 - 4 special = 0x100 END
 END
 
 // SPELLS
@@ -1415,24 +1417,6 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl405z.spl~
 	  resource = %c0wl405%
 END
 
-COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1a.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  resource = %c0wlsp1%
-END
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 146
-	STR_VAR
-	  resource = %c0wlsp11%
-END
-
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1b.spl~
   LPF ALTER_EFFECT
     INT_VAR
@@ -1440,6 +1424,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1b.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp1%
 END
   LPF ALTER_EFFECT
@@ -1458,6 +1443,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1c.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp1%
 END
   LPF ALTER_EFFECT
@@ -1476,6 +1462,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp2a.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp2%
 END
   LPF ALTER_EFFECT
@@ -1494,6 +1481,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp2b.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp2%
 END
   LPF ALTER_EFFECT
@@ -1512,6 +1500,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp2c.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp2%
 END
   LPF ALTER_EFFECT
@@ -1530,6 +1519,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp3a.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp3%
 END
   LPF ALTER_EFFECT
@@ -1548,6 +1538,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp3b.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp3%
 END
   LPF ALTER_EFFECT
@@ -1566,6 +1557,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp3c.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp3%
 END
   LPF ALTER_EFFECT
@@ -1584,6 +1576,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp4a.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp4%
 END
   LPF ALTER_EFFECT
@@ -1602,6 +1595,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp4b.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp4%
 END
   LPF ALTER_EFFECT
@@ -1620,6 +1614,7 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp4c.spl~
       check_headers = 1
       match_opcode = 309
 	STR_VAR
+	  match_resource = C0WLSP1
 	  resource = %c0wlsp4%
 END
   LPF ALTER_EFFECT
@@ -1835,10 +1830,11 @@ COPY_EXISTING ~c0wl200.spl~ ~override~
   END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
+	  speed = 3
 	STR_VAR
 	  icon = ~c0wl200b~
 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 328 target = 3 parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~) END
 SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl200.spl~ ~override/c0wl200x.spl~
@@ -1860,13 +1856,6 @@ COPY_EXISTING ~c0wl101.spl~ ~override/c0wl300.spl~
 	STR_VAR
 	  icon = ~c0wl300b~
 END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  savebonus = 0 - 2
-	  special = 0x100
-END
 SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl400.spl~
@@ -1880,13 +1869,6 @@ COPY_EXISTING ~c0wl101.spl~ ~override/c0wl400.spl~
 	  target = 4
 	STR_VAR
 	  icon = ~c0wl400b~
-END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  savebonus = 0 - 4
-	  special = 0x100
 END
 SAY NAME1 @16 /* Shape: Doom */
 
@@ -4599,6 +4581,11 @@ COPY_EXISTING ~c0wl402d.spl~ ~override~
     INT_VAR
 	  projectile = c0wlp056
   END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 12
+	  dicesize = 4
+  END
 SAY NAME1 ~Utterdark Blast:^0xFFC76777 ^-Chain~
 SAY UNIDENTIFIED_DESC @98 /* UTTERDARK BLAST
 (Eldritch Essence) 
@@ -4893,13 +4880,6 @@ COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506e.spl~
 	  icon = ~c0wl300b~
 	  special = 256
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  savebonus = 0 - 2
-	  special = 0x100
-END
 SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506f.spl~
@@ -4917,13 +4897,6 @@ END
 	  icon = ~c0wl400b~
 	  special = 256
   END
-  LPF ALTER_EFFECT
-	INT_VAR
-	  match_opcode = 12
-	  savingthrow = 1
-	  savebonus = 0 - 4
-	  special = 0x100
-END
 SAY NAME1 @16 /* Shape: Doom */
 
 COPY_EXISTING ~c0wl507.spl~ ~override~

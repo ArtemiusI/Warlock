@@ -2,7 +2,8 @@ IF
 	Die()
 THEN
 	RESPONSE #100
-		ReallyForceSpellDead(Myself,RED_HOLY_MIGHT)  // SPWI985.SPL (No such index)
+		CreateVisualEffectObject("SPDEATH3",Myself)
+		DestroySelf()
 END
 
 IF

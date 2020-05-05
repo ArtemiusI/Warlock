@@ -52,7 +52,7 @@ OR(5)
 !Global("C0WLSP2","LOCALS",0)
 !Global("C0WLSP3","LOCALS",0)
 !Global("C0WLSP4","LOCALS",0)
-Global("ChangeInvocation","LOCALS",0)~ start
+Global("C0WLCNG","LOCALS",1)~ start
 SAY @5 /* What do you want to do? */
 + ~OR(4)
 !Global("C0WLSP1","LOCALS",0)
@@ -91,11 +91,11 @@ HaveKnownSpellRES("c0wl402")
 HaveKnownSpellRES("c0wl403")
 HaveKnownSpellRES("c0wl404")
 HaveKnownSpellRES("c0wl405")
-Global("ChangeInvocation","LOCALS",0)~ + @7 /* Change invocations. */ + change
+Global("C0WLCNG","LOCALS",1)~ + @7 /* Change invocations. */ + change
 + ~Global("C0WLSP1","LOCALS",0)
 Global("C0WLSP2","LOCALS",0)
 Global("C0WLSP3","LOCALS",0)
-Global("C0WLSP4","LOCALS",0)~ + @8 /* Exit. */ DO ~ClearAllActions()~ EXIT
+Global("C0WLSP4","LOCALS",0)~ + @8 /* Exit. */ DO ~SetGlobal("C0WLCNG","LOCALS",0) ClearAllActions()~ EXIT
 END
 
 IF ~~ change
@@ -142,49 +142,49 @@ END
 
 IF ~~ change.least
 SAY @11 /* Choose one Least Invocation: */
-+ ~HaveKnownSpellRES("c0wl104")~ + @12 /* Beguiling Influence */ DO ~ApplySpellRES("c0wl104z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl105")~ + @13 /* Dark One's Own Luck */ DO ~ApplySpellRES("c0wl105z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl106")~ + @14 /* Draining Blast */ DO ~ApplySpellRES("c0wl106z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl107")~ + @15 /* Frightful Blast */ DO ~ApplySpellRES("c0wl107z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl108")~ + @16 /* Darkness */ DO ~ApplySpellRES("c0wl108z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl109")~ + @17 /* Entropic Warding */ DO ~ApplySpellRES("c0wl109z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl110")~ + @18 /* Leaps and Bounds */ DO ~ApplySpellRES("c0wl110z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl111")~ + @19 /* See the Unseen */ DO ~ApplySpellRES("c0wl111z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl104")~ + @12 /* Beguiling Influence */ DO ~ApplySpellRES("c0wl104z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl105")~ + @13 /* Dark One's Own Luck */ DO ~ApplySpellRES("c0wl105z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl106")~ + @14 /* Draining Blast */ DO ~ApplySpellRES("c0wl106z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl107")~ + @15 /* Frightful Blast */ DO ~ApplySpellRES("c0wl107z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl108")~ + @16 /* Darkness */ DO ~ApplySpellRES("c0wl108z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl109")~ + @17 /* Entropic Warding */ DO ~ApplySpellRES("c0wl109z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl110")~ + @18 /* Leaps and Bounds */ DO ~ApplySpellRES("c0wl110z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl111")~ + @19 /* See the Unseen */ DO ~ApplySpellRES("c0wl111z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
 END
 
 IF ~~ change.lesser
 SAY @20 /* Choose one Lesser Invocation: */
-+ ~HaveKnownSpellRES("c0wl201")~ + @21 /* Beshadowed Blast */ DO ~ApplySpellRES("c0wl201z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl202")~ + @22 /* Brimstone Blast */ DO ~ApplySpellRES("c0wl202z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl203")~ + @23 /* Hellrime Blast */ DO ~ApplySpellRES("c0wl203z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl204")~ + @24 /* Charm */ DO ~ApplySpellRES("c0wl204z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl205")~ + @25 /* Curse of Despair */ DO ~ApplySpellRES("c0wl205z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl206")~ + @26 /* Dread Seizure */ DO ~ApplySpellRES("c0wl206z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl207")~ + @27 /* Flee the Scene */ DO ~ApplySpellRES("c0wl207z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl208")~ + @28 /* The Dead Walk */ DO ~ApplySpellRES("c0wl208z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl209")~ + @29 /* Voracious Dispelling */ DO ~ApplySpellRES("c0wl209z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl210")~ + @30 /* Walk Unseen */ DO ~ApplySpellRES("c0wl210z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl201")~ + @21 /* Beshadowed Blast */ DO ~ApplySpellRES("c0wl201z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl202")~ + @22 /* Brimstone Blast */ DO ~ApplySpellRES("c0wl202z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl203")~ + @23 /* Hellrime Blast */ DO ~ApplySpellRES("c0wl203z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl204")~ + @24 /* Charm */ DO ~ApplySpellRES("c0wl204z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl205")~ + @25 /* Curse of Despair */ DO ~ApplySpellRES("c0wl205z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl206")~ + @26 /* Dread Seizure */ DO ~ApplySpellRES("c0wl206z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl207")~ + @27 /* Flee the Scene */ DO ~ApplySpellRES("c0wl207z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl208")~ + @28 /* The Dead Walk */ DO ~ApplySpellRES("c0wl208z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl209")~ + @29 /* Voracious Dispelling */ DO ~ApplySpellRES("c0wl209z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl210")~ + @30 /* Walk Unseen */ DO ~ApplySpellRES("c0wl210z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
 END
 
 IF ~~ change.greater
 SAY @31 /* Choose one Greater Invocation: */
-+ ~HaveKnownSpellRES("c0wl301")~ + @32 /* Bewitching Blast */ DO ~ApplySpellRES("c0wl301z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl302")~ + @33 /* Electrifying Blast */ DO ~ApplySpellRES("c0wl302z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl303")~ + @34 /* Noxious Blast */ DO ~ApplySpellRES("c0wl303z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl304")~ + @35 /* Vitriolic Blast */ DO ~ApplySpellRES("c0wl304z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl305")~ + @36 /* Chilling Tentacles */ DO ~ApplySpellRES("c0wl305z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl306")~ + @37 /* Devour Magic */ DO ~ApplySpellRES("c0wl306z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl307")~ + @38 /* Tenacious Plague */ DO ~ApplySpellRES("c0wl307z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl308")~ + @39 /* Wall of Perilous Flame */ DO ~ApplySpellRES("c0wl308z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl301")~ + @32 /* Bewitching Blast */ DO ~ApplySpellRES("c0wl301z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl302")~ + @33 /* Electrifying Blast */ DO ~ApplySpellRES("c0wl302z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl303")~ + @34 /* Noxious Blast */ DO ~ApplySpellRES("c0wl303z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl304")~ + @35 /* Vitriolic Blast */ DO ~ApplySpellRES("c0wl304z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl305")~ + @36 /* Chilling Tentacles */ DO ~ApplySpellRES("c0wl305z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl306")~ + @37 /* Devour Magic */ DO ~ApplySpellRES("c0wl306z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl307")~ + @38 /* Tenacious Plague */ DO ~ApplySpellRES("c0wl307z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl308")~ + @39 /* Wall of Perilous Flame */ DO ~ApplySpellRES("c0wl308z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
 END
 
 IF ~~ change.dark
 SAY @40 /* Choose one Dark Invocation: */
-+ ~HaveKnownSpellRES("c0wl401")~ + @41 /* Binding Blast */ DO ~ApplySpellRES("c0wl401z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl402")~ + @42 /* Utterdark Blast */ DO ~ApplySpellRES("c0wl402z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl403")~ + @43 /* Dark Foresight */ DO ~ApplySpellRES("c0wl403z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl404")~ + @44 /* Retributive Invisibility */ DO ~ApplySpellRES("c0wl404z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
-+ ~HaveKnownSpellRES("c0wl405")~ + @45 /* Word of Changing */ DO ~ApplySpellRES("c0wl405z",Myself) SetGlobal("ChangeInvocation","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl401")~ + @41 /* Binding Blast */ DO ~ApplySpellRES("c0wl401z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl402")~ + @42 /* Utterdark Blast */ DO ~ApplySpellRES("c0wl402z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl403")~ + @43 /* Dark Foresight */ DO ~ApplySpellRES("c0wl403z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl404")~ + @44 /* Retributive Invisibility */ DO ~ApplySpellRES("c0wl404z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl405")~ + @45 /* Word of Changing */ DO ~ApplySpellRES("c0wl405z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
 END
 
 IF ~~ change2
@@ -194,13 +194,13 @@ IF ~OR(5)
 !Global("C0WLSP2","LOCALS",0)
 !Global("C0WLSP3","LOCALS",0)
 !Global("C0WLSP4","LOCALS",0)
-Global("ChangeInvocation","LOCALS",0)~ DO ~StartDialogOverride("c0wltalk",Myself)~ EXIT
-IF ~!Global("ChangeInvocation","LOCALS",0)
+Global("C0WLCNG","LOCALS",1)~ DO ~StartDialogOverride("c0wltalk",Myself)~ EXIT
+IF ~!Global("C0WLCNG","LOCALS",1)
 Global("C0WLSP1","LOCALS",0)
 Global("C0WLSP2","LOCALS",0)
 Global("C0WLSP3","LOCALS",0)
 Global("C0WLSP4","LOCALS",0)
-Global("C0WLSP5","LOCALS",0)~ DO ~SetGlobal("ChangeInvocation","LOCALS",0) ClearAllActions()~ EXIT
+Global("C0WLSP5","LOCALS",0)~ DO ~SetGlobal("C0WLCNG","LOCALS",1) ClearAllActions()~ EXIT
 END
 
 IF ~~ learn
@@ -839,11 +839,11 @@ IF ~OR(5)
 !Global("C0WLSP2","LOCALS",0)
 !Global("C0WLSP3","LOCALS",0)
 !Global("C0WLSP4","LOCALS",0)
-Global("ChangeInvocation","LOCALS",0)~ DO ~StartDialogOverride("c0wltalk",Myself)~ EXIT
+Global("C0WLCNG","LOCALS",1)~ DO ~StartDialogOverride("c0wltalk",Myself)~ EXIT
 IF ~Global("C0WLSP1","LOCALS",0)
 Global("C0WLSP2","LOCALS",0)
 Global("C0WLSP3","LOCALS",0)
 Global("C0WLSP4","LOCALS",0)
 Global("C0WLSP5","LOCALS",0)
-!Global("ChangeInvocation","LOCALS",0)~ DO ~SetGlobal("ChangeInvocation","LOCALS",0) ClearAllActions()~ EXIT
+!Global("C0WLCNG","LOCALS",1)~ DO ~SetGlobal("C0WLCNG","LOCALS",1) ClearAllActions()~ EXIT
 END

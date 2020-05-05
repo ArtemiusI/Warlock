@@ -14,7 +14,7 @@ IF
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("BD_Cast","LOCALS",ONE_ROUND)
+		SetGlobalTimer("BD_Cast","LOCALS",6)
 		ForceSpellRES("C0WL104",Myself)
 END
 
@@ -34,7 +34,7 @@ IF
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("BD_Cast","LOCALS",ONE_ROUND)
+		SetGlobalTimer("BD_Cast","LOCALS",6)
 		ForceSpellRES("C0WL105",Myself)
 END
 
@@ -54,6 +54,6 @@ IF
 	!StateCheck(Myself,STATE_SILENCED)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("BD_Cast","LOCALS",ONE_ROUND)
+		SetGlobalTimer("BD_Cast","LOCALS",6)
 		ForceSpellRES("C0WL110",Myself)
 END
