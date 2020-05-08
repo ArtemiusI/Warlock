@@ -297,6 +297,10 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Hideous Blow: Hellfir
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Beguiling Influence~) STR_VAR bam_file = c0wlic14 RET c0wlic14 = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Dark One's Own Luck~) STR_VAR bam_file = c0wlic15 RET c0wlic15 = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Leaps and Bounds~) STR_VAR bam_file = c0wlic16 RET c0wlic16 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Eldritch Pact~) STR_VAR bam_file = c0wlic17 RET c0wlic17 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Hellfire Pact~) STR_VAR bam_file = c0wlic18 RET c0wlic18 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Burning~) STR_VAR bam_file = c0wlic19 RET c0wlic19 = icon END
+LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Chilled~) STR_VAR bam_file = c0wlic20 RET c0wlic20 = icon END
 
 INCLUDE ~C0Warlock/lib/fl#add_kit_ee.tpa~
 ADD_KIT ~C0WLOCK~
@@ -441,7 +445,9 @@ END
 COPY_EXISTING_REGEXP GLOB ~.*\.dlg~ ~override~
   DECOMPILE_AND_PATCH BEGIN
     REPLACE_TEXTUALLY ~Class(Player1,BARD_ALL)~ ~Class(Player1,BARD_ALL) !Kit(Player1,C0WLOCK)~
+    REPLACE_TEXTUALLY ~!Class(Player1,BARD_ALL) !Kit(Player1,C0WLOCK)~ ~!Class(Player1,BARD_ALL)~
     REPLACE_TEXTUALLY ~Class(LastTalkedToBy,BARD_ALL)~ ~Class(LastTalkedToBy,BARD_ALL) !Kit(LastTalkedToBy,C0WLOCK)~
+    REPLACE_TEXTUALLY ~!Class(LastTalkedToBy,BARD_ALL) !Kit(LastTalkedToBy,C0WLOCK)~ ~!Class(LastTalkedToBy,BARD_ALL)~
   END
   BUT_ONLY
 
@@ -753,16 +759,126 @@ WRITE_ASCIIE 0x3a ~C0W!%blasts%C~
 COPY_EXISTING  ~C0WL%blasts%.spl~ ~override/C0WL%blasts%C.spl~ // SPEAR
 WRITE_ASCIIE 0x3a ~C0W@%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 3 STR_VAR icon = EVAL ~C0W@%blasts%B~ END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 2 END
 COPY_EXISTING ~C0WL%blasts%D.spl~ ~override~ // CHAIN
 WRITE_ASCIIE 0x3a ~C0W#%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 3 STR_VAR icon = EVAL ~C0W#%blasts%B~ END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 2 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 328 target = 3 parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~) END
 COPY_EXISTING ~C0WL%blasts%.spl~ ~override/C0WL%blasts%E.spl~ // CONE
 WRITE_ASCIIE 0x3a ~C0W$%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 5 target = 4 STR_VAR icon = EVAL ~C0W$%blasts%B~ END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 23 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 24 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 25 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 26 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 27 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 28 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 29 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 30 speed = 2 END
+  LPF ALTER_EFFECT INT_VAR savingthrow = 16777216 END
 COPY_EXISTING ~C0WL%blasts%.spl~ ~override/C0WL%blasts%F.spl~
 WRITE_ASCIIE 0x3a ~C0W%%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 7 target = 4 STR_VAR icon = EVAL ~C0W%%blasts%B~ END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 23 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 24 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 25 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 26 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 27 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 28 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 29 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 30 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 31 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 32 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 33 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 34 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 35 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 36 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 37 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 38 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 39 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 40 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 41 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 42 speed = 2 END
+  LPF ALTER_EFFECT INT_VAR savingthrow = 16777216 END
 END
 
 // SPELLS
@@ -1811,11 +1927,23 @@ COPY_EXISTING ~c0wl101.spl~ ~override/c0wl103.spl~
 	  projectile = c0wlp002
   END
   LPF ALTER_SPELL_HEADER
-    INT_VAR
-	  speed = 3
 	STR_VAR
 	  icon = ~c0wl103b~
 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 2 END
 SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl200.spl~ ~override~
@@ -1829,11 +1957,31 @@ COPY_EXISTING ~c0wl200.spl~ ~override~
 	  parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
   END
   LPF ALTER_SPELL_HEADER
-    INT_VAR
-	  speed = 3
 	STR_VAR
 	  icon = ~c0wl200b~
 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 2 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 328 target = 3 parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~) END
 SAY NAME1 @14 /* Shape: Chain */
 
@@ -1851,11 +1999,40 @@ COPY_EXISTING ~c0wl101.spl~ ~override/c0wl300.spl~
   END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 5
 	  target = 4
 	STR_VAR
 	  icon = ~c0wl300b~
 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 23 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 24 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 25 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 26 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 27 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 28 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 29 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 30 speed = 2 END
 SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl400.spl~
@@ -1865,11 +2042,52 @@ COPY_EXISTING ~c0wl101.spl~ ~override/c0wl400.spl~
   END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  speed = 7
 	  target = 4
 	STR_VAR
 	  icon = ~c0wl400b~
 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 23 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 24 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 25 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 26 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 27 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 28 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 29 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 30 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 31 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 32 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 33 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 34 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 35 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 36 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 37 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 38 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 39 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 40 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 41 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 42 speed = 2 END
 SAY NAME1 @16 /* Shape: Doom */
 
 COPY_EXISTING ~c0wl104.spl~ ~override~
@@ -1935,15 +2153,6 @@ Saving Throw: None
 The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16. */
 
 COPY_EXISTING ~c0wl106.spl~ ~override~
-  LPF ALTER_EFFECT
-    INT_VAR
-	  match_opcode = 12
-	  dicesize = 3
-  END
-  LPF ALTER_SPELL_HEADER
-	INT_VAR
-	  projectile = c0wlp006
-  END
 SAY NAME1 @21 /* Draining Blast */
 SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
 (Eldritch Essence) 
@@ -2756,6 +2965,11 @@ COPY_EXISTING ~c0wl202y.spl~ ~override~
 		END
   LPF ALTER_EFFECT
 	INT_VAR
+	  match_opcode = 142
+	  parameter2 = c0wlic19
+END
+  LPF ALTER_EFFECT
+	INT_VAR
 	  match_opcode = 139
 	  parameter1 = RESOLVE_STR_REF (@44 /* Burning */)
 END
@@ -2954,6 +3168,11 @@ COPY_EXISTING ~c0wl203_.spl~ ~override~
 		parameter2 = EVAL %C0WLCHA%
 	END
 COPY_EXISTING ~c0wl203y.spl~ ~override~
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_opcode = 142
+	  parameter2 = c0wlic20
+END
 		LPF	ADD_SPELL_EFFECT
 			INT_VAR
 				insert_point = 0
@@ -3132,22 +3351,46 @@ END
 COPY_EXISTING ~c0wl204B.spl~ ~override/c0wl204c.spl~
   LPF ALTER_EFFECT
 	INT_VAR
+	  match_parameter2 = 51
 	  savebonus = (0 - 1)
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_parameter2 = 52
+	  savebonus = (0 - 6)
 END
 COPY_EXISTING ~c0wl204B.spl~ ~override/c0wl204d.spl~
   LPF ALTER_EFFECT
 	INT_VAR
+	  match_parameter2 = 51
 	  savebonus = (0 - 2)
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_parameter2 = 52
+	  savebonus = (0 - 7)
 END
 COPY_EXISTING ~c0wl204B.spl~ ~override/c0wl204e.spl~
   LPF ALTER_EFFECT
 	INT_VAR
+	  match_parameter2 = 51
 	  savebonus = (0 - 3)
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_parameter2 = 52
+	  savebonus = (0 - 8)
 END
 COPY_EXISTING ~c0wl204B.spl~ ~override/c0wl204f.spl~
   LPF ALTER_EFFECT
 	INT_VAR
+	  match_parameter2 = 51
 	  savebonus = (0 - 4)
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  match_parameter2 = 52
+	  savebonus = (0 - 9)
 END
 
 COPY_EXISTING ~c0wl205.spl~ ~override~
@@ -4646,6 +4889,26 @@ Saving Throw: None
 This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
 
 COPY_EXISTING ~c0wl403.spl~ ~override~
+  LPF ALTER_EFFECT
+	INT_VAR
+	  header = 1
+	  duration = 18
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  header = 2
+	  duration = 24
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  header = 3
+	  duration = 30
+END
+  LPF ALTER_EFFECT
+	INT_VAR
+	  header = 4
+	  duration = 36
+END
 SAY NAME1 @101 /* Dark Foresight */
 SAY UNIDENTIFIED_DESC @102 /* DARK FORESIGHT
 (Divination) 
@@ -4703,6 +4966,11 @@ SAY UNIDENTIFIED_DESC @108 /* Shapeshift: Natural Form
 This ability causes the character to return to <PRO_HISHER> natural shape and ends the polymorph effect. */
 
 COPY_EXISTING ~c0wl501.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 142
+	  parameter2 = c0wlic17
+	END
 SAY NAME1 @109 /* Eldritch Pact */
 SAY UNIDENTIFIED_DESC @110 /* ELDRITCH PACT
 The warlock gains a boon from an otherworldly power, whether fiendish or fey, granting a permanent +20% bonus Magic Resistance, +1 bonus to casting time, and +50% duration to all invocations. */
@@ -4718,6 +4986,11 @@ SAY UNIDENTIFIED_DESC @114 /* ELDRITCH PARAGON
 The warlock's mastery of <PRO_HISHER> powers grants <PRO_HIMHER> a permanent +50% resistance to magical damage, +5 to all saving throws and +20% to damage dealt by magical damage. */
 
 COPY_EXISTING ~c0wl504.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 142
+	  parameter2 = c0wlic18
+	END
 SAY NAME1 @115 /* Hellfire Pact */
 SAY UNIDENTIFIED_DESC @116 /* HELLFIRE PACT
 The warlock gains a boon from Mephistopheles, Lord of Hellfire, granting a permanent +50% bonus Fire/Cold Resistance and +20% bonus to elemental damage dealt by the warlock. */
@@ -4835,6 +5108,20 @@ COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506c.spl~
 	STR_VAR
 	  icon = ~c0wl103b~
   END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 2 END
 SAY NAME1 @13 /* Shape: Spear */
 
 COPY_EXISTING ~c0wl506d.spl~ ~override~
@@ -4858,6 +5145,28 @@ COPY_EXISTING ~c0wl506d.spl~ ~override~
 	STR_VAR
 	  icon = ~c0wl200b~
   END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 2 END
 SAY NAME1 @14 /* Shape: Chain */
 
 COPY_EXISTING ~c0wl506d.spl~ ~override/c0wl506x.spl~
@@ -4880,6 +5189,36 @@ COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506e.spl~
 	  icon = ~c0wl300b~
 	  special = 256
   END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 23 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 24 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 25 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 26 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 27 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 28 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 29 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 30 speed = 2 END
 SAY NAME1 @15 /* Shape: Cone */
 
 COPY_EXISTING ~c0wl506a.spl~ ~override/c0wl506f.spl~
@@ -4897,6 +5236,48 @@ END
 	  icon = ~c0wl400b~
 	  special = 256
   END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 1 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 2 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 3 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 4 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 5 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 6 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 7 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 8 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 9 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 10 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 11 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 12 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 13 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 14 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 15 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 16 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 17 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 18 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 19 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 20 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 21 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 22 speed = 7 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 23 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 24 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 25 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 26 speed = 6 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 27 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 28 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 29 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 30 speed = 5 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 31 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 32 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 33 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 34 speed = 4 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 35 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 36 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 37 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 38 speed = 3 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 39 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 40 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 41 speed = 2 END
+  LPF ALTER_SPELL_HEADER INT_VAR header = 42 speed = 2 END
 SAY NAME1 @16 /* Shape: Doom */
 
 COPY_EXISTING ~c0wl507.spl~ ~override~

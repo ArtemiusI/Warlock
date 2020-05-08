@@ -12,16 +12,19 @@ CLASS FEATURES:
 – Thieving abilities: Pick Pockets.
 – Eldritch Lore: The warlock gains 10 base Lore per level.
 – May cast Invocations.
+
+INVOCATIONS: A Warlock does not prepare or cast spells as other wielders of arcane magic do. Instead, he possesses a repertoire of attacks, defenses, and abilities known as invocations that require him to focus the wild energy that suffuses his soul. A Warlock can use any invocation he knows at will. The four grades of invocation, in order of their relative power, are least, lesser, greater and dark.
+
 – May use the Eldritch Blast ability at will.
 
-ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
+ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times but decrease by 1 per 4 caster levels post-acquisition. There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
-	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target.
-	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone.
-	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Increases casting time by 1.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Increases casting time by 2.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.
 
 – 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
 – 8th level: The warlock regenerates one hit point per three rounds.
@@ -49,14 +52,14 @@ INVOCATIONS: A Warlock does not prepare or cast spells as other wielders of arca
 
 – May use the Eldritch Blast ability at will.
 
-ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
+ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times but decrease by 1 per 4 caster levels post-acquisition. There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
-	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. 
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target.
-	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone.
-	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Increases casting time by 1.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Increases casting time by 2.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.
 
 – 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
 – 8th level: The warlock regenerates one hit point per three rounds.
@@ -74,14 +77,14 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 A Warlock does not prepare or cast spells as other wielders of arcane magic do. Instead, he possesses a repertoire of attacks, defenses, and abilities known as invocations that require him to focus the wild energy that suffuses his soul. A Warlock can use any invocation he knows at will. The four grades of invocation, in order of their relative power, are least, lesser, greater and dark.~
 @8    = ~Eldritch Blast~
 @9    = ~ELDRITCH BLAST
-A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). There is no Saving Throw against this attack, but Magic Resistance can negate it.
+A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times but decrease by 1 per 4 caster levels post-acquisition. There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
-	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path.
-	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target.
-	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone.
-	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius.~
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Increases casting time by 1.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Increases casting time by 2.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.~
 @10   = ~Shape: Blast~
 @11   = ~Shape: Hideous Blow~
 @12   = ~Hideous Blow~
@@ -101,7 +104,7 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 8th level and +6 at 16th level.~
+This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 12th level and +6 at 24th level.~
 @19   = ~Dark One's Own Luck~
 @20   = ~DARK ONE'S OWN LUCK
 (Enchantment/Charm)
@@ -114,7 +117,7 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16.~
+The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every three points of the warlock's Charisma above 16.~
 @21   = ~Draining Blast~
 @22   = ~DRAINING BLAST
 (Eldritch Essence) 
@@ -122,9 +125,9 @@ The warlock who possesses this invocation is favored by the dark powers. For the
 Power: Least
 Effective Spell Level: 2
 Range: Special
-Duration: 3 rounds
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 3 rounds + 1 round/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
@@ -138,8 +141,8 @@ Power: Least
 Effective Spell Level: 2
 Range: Special
 Duration: 1 turn
-Casting Time: 1
-Area of Effect: Blast Shape
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
@@ -152,7 +155,7 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Least
 Effective Spell Level: 1
 Range: 0
-Duration: 3 rounds
+Duration: 6 rounds
 Casting Time: 4
 Area of Effect: 20 ft.
 Saving Throw: None
@@ -184,7 +187,7 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-This invocation grants the warlock amazing agility. For the duration of the spell, the warlock gains a +2 bonus to Dexterity and Armor Class. An additional +1 bonus is granted for every two points of the warlock's Charisma above 16.~
+This invocation grants the warlock amazing agility. For the duration of the spell, the warlock gains a +2 bonus to Dexterity and base Movement Rate. An additional +1 is granted for every three points of the warlock's Charisma above 16.~
 @36   = ~See the Unseen~
 @37   = ~SEE THE UNSEEN
 (Divination) 
@@ -205,12 +208,12 @@ With the invocation, the warlock may activate great powers of vision, allowing <
 Power: Lesser
 Effective Spell Level: 4
 Range: Special
-Duration: 1 round
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 1 round/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or become blinded, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
 @40   = ~Blinded~
 @41   = ~Hideous Blow: Beshadowed Blast~
 @42   = ~Brimstone Blast~
@@ -220,9 +223,9 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Lesser
 Effective Spell Level: 4
 Range: Special
-Duration: 3 rounds
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 3 rounds + 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
@@ -235,12 +238,12 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Lesser
 Effective Spell Level: 4
 Range: Special
-Duration: 1 turn
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 1 turn + 2 rounds/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity and Armor Class for one turn. The penalties from multiple hellrime blasts do not stack.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity and Armor Class. The penalties from multiple hellrime blasts do not stack.~
 @48   = ~Chilled~
 @49   = ~Hideous Blow: Hellrime Blast~
 @50   = ~Charmed~
@@ -251,12 +254,12 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Lesser
 Effective Spell Level: 4
 Range: Special
-Duration: 5 rounds
+Duration: 5 rounds + 1 round/5 levels
 Casting Time: 5
 Area of Effect: One creature
 Saving Throw: None
 
-This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 16) or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired.~
+This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells at -5 (additional -1 penalty per two points of caster's Charisma above 16) or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. Hostile creatures make a save at no penalty. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired.~
 @53   = ~Cursed~
 @54   = ~Curse of Despair~
 @55   = ~CURSE OF DESPAIR
@@ -279,7 +282,7 @@ This invocation bestows a permanent curse upon a touched opponent, lowering all 
 Power: Lesser
 Effective Spell Level: 4
 Range: Visual range of the caster
-Duration: 3 rounds
+Duration: 2 rounds + 1 round/5 levels
 Casting Time: 2
 Area of Effect: One creature
 Saving Throw: Neg.
@@ -354,12 +357,12 @@ The warlock may cast this invocation to become invisible. The effect ends immedi
 Power: Greater
 Effective Spell Level: 4
 Range: Special
-Duration: 3 rounds
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 3 rounds + 1 round/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
 @71   = ~Confused~
 @72   = ~Hideous Blow: Bewitching Blast~
 @73   = ~Electrifying Blast~
@@ -369,12 +372,12 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Greater
 Effective Spell Level: 4
 Range: Special
-Duration: 1 round
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed for one round. Creatures immune to electrical damage are not affected.~
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed. Creatures immune to electrical damage are not affected.~
 @75   = ~Paralyzed~
 @76   = ~Hideous Blow: Electrifying Blast~
 @77   = ~Noxious Blast~
@@ -384,9 +387,9 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Greater
 Effective Spell Level: 6
 Range: Special
-Duration: 1 turn
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 1 turn/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 (additional -1 penalty per two points of caster's Charisma above 17) or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
@@ -399,9 +402,9 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Greater
 Effective Spell Level: 6
 Range: Special
-Duration: 3 rounds
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 2 rounds + 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~
@@ -468,9 +471,9 @@ You conjure a curtain of fire that deals 2d6 points of damage to any creature th
 Power: Dark
 Effective Spell Level: 7
 Range: Special
-Duration: 1 round
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 3 rounds + 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 (additional -1 penalty per two points of caster's Charisma above 17) or be stunned for 1 round.~
@@ -483,12 +486,12 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 Power: Dark
 Effective Spell Level: 8
 Range: Special
-Duration: 1 hour
-Casting Time: 1
-Area of Effect: Blast Shape
+Duration: 8 hours
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: None
 
-This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for eight hours. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
 @99   = ~Four Levels Drained~
 @100  = ~Hideous Blow: Utterdark Blast~
 @101  = ~Dark Foresight~
@@ -498,7 +501,7 @@ This eldritch essence invocation allows you to change your eldritch blast into a
 Power: Dark
 Effective Spell Level: 9
 Range: Self
-Duration: 2 rounds
+Duration: 2 rounds + 1 round/10 levels
 Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
@@ -568,8 +571,8 @@ Power: Epic
 Effective Spell Level: 9
 Range: Special
 Duration: Instant
-Casting Time: 1
-Area of Effect: Blast Shape
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
 Saving Throw: None
 
 This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
