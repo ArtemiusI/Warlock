@@ -399,8 +399,12 @@ LAF fl#add_kit_ee
 	clsrcreq = ~1 1 1 1 1 1 1~
 END
 
-ACTION_IF FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
+ACTION_IF NOT GAME_IS ~IWDEE~ AND FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
 EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/scripts/baldur.baf~
+END
+
+ACTION_IF GAME_IS ~IWDEE~ AND FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
+EXTEND_TOP ~baldur.bcs~ ~%MOD_FOLDER%/scripts/baldur-iwd.baf~
 END
 
 ACTION_IF FILE_EXISTS_IN_GAME ~bdbaldur.bcs~ THEN BEGIN
@@ -1533,6 +1537,25 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl405z.spl~
 	  resource = %c0wl405%
 END
 
+COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1a.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp1%
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 146
+	STR_VAR
+	  resource = %c0wlsp11%
+END
+
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1b.spl~
   LPF ALTER_EFFECT
     INT_VAR
@@ -2155,7 +2178,7 @@ The warlock who possesses this invocation is favored by the dark powers. For the
 COPY_EXISTING ~c0wl106.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  projectile = c0wlp007
+	  projectile = c0wlp006
   END
 SAY NAME1 @21 /* Draining Blast */
 SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
