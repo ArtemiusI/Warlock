@@ -2153,6 +2153,10 @@ Saving Throw: None
 The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16. */
 
 COPY_EXISTING ~c0wl106.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp007
+  END
 SAY NAME1 @21 /* Draining Blast */
 SAY UNIDENTIFIED_DESC @22 /* DRAINING BLAST
 (Eldritch Essence) 
