@@ -392,6 +392,7 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 
 LAF fl#add_kit_ee
   INT_VAR
+	briefdesc = RESOLVE_STR_REF (~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will.~)
 	biography = RESOLVE_STR_REF (@5 /* For as long as you recall, you have wielded infernal magic as easily as you draw breath. While your innate magical abilities earned you the fear and scorn of those around you, your mentors sought to raise you as well as they could regardless, urging you to control the dark powers within you and use them for good purposes. Despite this, you have always felt the call of something darker, sinister calling your name, urging you to take a power that is almost within reach. */)
   STR_VAR
     kit_name = C0WLOCK
@@ -2612,49 +2613,49 @@ Area of Effect: the caster
 Saving Throw: None
 
 A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 for the duration. */
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109b.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109b.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 4
 END
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109c.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109c.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 3
 END
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109d.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109d.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 2
 END
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109e.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109e.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 1
 END
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109f.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109f.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 0
 END
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109g.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109g.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = (0 - 1)
 END
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109h.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109h.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = (0 - 2)
 END
-COPY_EXISTING ~c0wl109.spl~ ~override/c0wl109i.spl~
+COPY_EXISTING ~c0wl109a.spl~ ~override/c0wl109i.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0

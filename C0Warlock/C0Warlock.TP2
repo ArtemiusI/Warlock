@@ -1,7 +1,8 @@
 BACKUP ~C0Warlock/backup~
 AUTHOR ~Artemius_I/AionZ~
-VERSION ~1.61~
+VERSION ~1.62~
 ALWAYS
+  INCLUDE ~%MOD_FOLDER%/lib/alter_effect.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
   INCLUDE ~%MOD_FOLDER%/lib/fl#add_kit_ee.tpa~
