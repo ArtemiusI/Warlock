@@ -1,0 +1,2 @@
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPWI127~ scroll=~L#WI176~ class_include=~{'MAGE_ALL','FIGHTER_ALL','THIEF_ALL','SORCERER', 'BARD_ALL'}~ kit_exclude=~{'C0WLOCK',}~ END
+LAF ADD_CLASS_SPELL STR_VAR resref=~SPWI524~ scroll=~L#WI577~ class_include=~{'MAGE_ALL','FIGHTER_ALL','THIEF_ALL','SORCERER', 'BARD_ALL'}~ kit_exclude=~{'C0WLOCK',}~ END

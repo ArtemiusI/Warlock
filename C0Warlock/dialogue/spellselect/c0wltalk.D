@@ -12,7 +12,7 @@ IF ~~ change
 SAY @9 /* Once per level up, a warlock may exchange one of their invocations for another of the same grade.
 
 Choose a grade of invocation: */
-+ ~OR(8)
++ ~OR(11)
 HaveKnownSpellRES("c0wl104")
 HaveKnownSpellRES("c0wl105")
 HaveKnownSpellRES("c0wl106")
@@ -20,8 +20,11 @@ HaveKnownSpellRES("c0wl107")
 HaveKnownSpellRES("c0wl108")
 HaveKnownSpellRES("c0wl109")
 HaveKnownSpellRES("c0wl110")
-HaveKnownSpellRES("c0wl111")~ + @1 /* Least */ + change.least
-+ ~OR(10)
+HaveKnownSpellRES("c0wl111")
+HaveKnownSpellRES("c0wl112")
+HaveKnownSpellRES("c0wl113")
+HaveKnownSpellRES("c0wl114")~ + @1 /* Least */ + change.least
++ ~OR(11)
 HaveKnownSpellRES("c0wl201")
 HaveKnownSpellRES("c0wl202")
 HaveKnownSpellRES("c0wl203")
@@ -31,8 +34,9 @@ HaveKnownSpellRES("c0wl206")
 HaveKnownSpellRES("c0wl207")
 HaveKnownSpellRES("c0wl208")
 HaveKnownSpellRES("c0wl209")
-HaveKnownSpellRES("c0wl210")~ + @2 /* Lesser */ + change.lesser
-+ ~OR(8)
+HaveKnownSpellRES("c0wl210")
+HaveKnownSpellRES("c0wl211")~ + @2 /* Lesser */ + change.lesser
++ ~OR(10)
 HaveKnownSpellRES("c0wl301")
 HaveKnownSpellRES("c0wl302")
 HaveKnownSpellRES("c0wl303")
@@ -40,13 +44,18 @@ HaveKnownSpellRES("c0wl304")
 HaveKnownSpellRES("c0wl305")
 HaveKnownSpellRES("c0wl306")
 HaveKnownSpellRES("c0wl307")
-HaveKnownSpellRES("c0wl308")~ + @3 /* Greater */ + change.greater
-+ ~OR(5)
+HaveKnownSpellRES("c0wl308")
+HaveKnownSpellRES("c0wl309")
+HaveKnownSpellRES("c0wl310")~ + @3 /* Greater */ + change.greater
++ ~OR(8)
 HaveKnownSpellRES("c0wl401")
 HaveKnownSpellRES("c0wl402")
 HaveKnownSpellRES("c0wl403")
 HaveKnownSpellRES("c0wl404")
-HaveKnownSpellRES("c0wl405")~ + @4 /* Dark */ + change.dark
+HaveKnownSpellRES("c0wl405")
+HaveKnownSpellRES("c0wl406")
+HaveKnownSpellRES("c0wl407")
+HaveKnownSpellRES("c0wl408")~ + @4 /* Dark */ + change.dark
 ++ @10 /* Go back */ + start
 END
 
@@ -60,6 +69,9 @@ SAY @11 /* Choose one Least Invocation: */
 + ~HaveKnownSpellRES("c0wl109")~ + @17 /* Entropic Warding */ DO ~ApplySpellRES("c0wl109z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl110")~ + @18 /* Leaps and Bounds */ DO ~ApplySpellRES("c0wl110z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl111")~ + @19 /* See the Unseen */ DO ~ApplySpellRES("c0wl111z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl112")~ + @82 /* Devil's Sight */ DO ~ApplySpellRES("c0wl112z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl113")~ + @84 /* Call of the Beast */ DO ~ApplySpellRES("c0wl113z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl114")~ + @86 /* Soulreaving Aura */ DO ~ApplySpellRES("c0wl114z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
 END
 
 IF ~~ change.lesser
@@ -74,6 +86,7 @@ SAY @20 /* Choose one Lesser Invocation: */
 + ~HaveKnownSpellRES("c0wl208")~ + @28 /* The Dead Walk */ DO ~ApplySpellRES("c0wl208z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl209")~ + @29 /* Voracious Dispelling */ DO ~ApplySpellRES("c0wl209z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl210")~ + @30 /* Walk Unseen */ DO ~ApplySpellRES("c0wl210z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl211")~ + @88 /* Crawling Eye */ DO ~ApplySpellRES("c0wl211z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
 END
 
 IF ~~ change.greater
@@ -86,6 +99,8 @@ SAY @31 /* Choose one Greater Invocation: */
 + ~HaveKnownSpellRES("c0wl306")~ + @37 /* Devour Magic */ DO ~ApplySpellRES("c0wl306z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl307")~ + @38 /* Tenacious Plague */ DO ~ApplySpellRES("c0wl307z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl308")~ + @39 /* Wall of Perilous Flame */ DO ~ApplySpellRES("c0wl308z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl309")~ + @90 /* Nightmares Made Real */ DO ~ApplySpellRES("c0wl309z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl310")~ + @92 /* Painful Slumber of Ages */ DO ~ApplySpellRES("c0wl310z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
 END
 
 IF ~~ change.dark
@@ -95,6 +110,9 @@ SAY @40 /* Choose one Dark Invocation: */
 + ~HaveKnownSpellRES("c0wl403")~ + @43 /* Dark Foresight */ DO ~ApplySpellRES("c0wl403z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl404")~ + @44 /* Retributive Invisibility */ DO ~ApplySpellRES("c0wl404z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl405")~ + @45 /* Word of Changing */ DO ~ApplySpellRES("c0wl405z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl406")~ + @94 /* Path of Shadows */ DO ~ApplySpellRES("c0wl406z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl407")~ + @96 /* Steal Summoning */ DO ~ApplySpellRES("c0wl407z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl408")~ + @98 /* Infernal Crest */ DO ~ApplySpellRES("c0wl408z",Myself) SetGlobal("C0WLCNG","LOCALS",1) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
 END
 
 IF ~~ change2

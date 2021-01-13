@@ -1,7 +1,8 @@
 BACKUP ~C0Warlock/backup~
 AUTHOR ~Artemius_I/AionZ~
-VERSION ~1.62~
+VERSION ~1.7~
 ALWAYS
+  INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/alter_effect.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
@@ -26,6 +27,7 @@ LANGUAGE ~English~
 BEGIN @0 /* Warlock Kit */
 
 INCLUDE ~%MOD_FOLDER%/LIB/WARLOCK.TPA~
+INCLUDE ~%MOD_FOLDER%/LIB/ITEMS.TPA~
 
 ///////////////////////////
 /////BETA SPELL SYSTEM/////

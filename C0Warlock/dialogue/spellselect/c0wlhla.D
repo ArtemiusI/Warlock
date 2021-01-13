@@ -10,6 +10,9 @@ SAY ~Choose one Least Invocation:~
 + ~!HaveKnownSpellRES("c0wl109")~ + ~Entropic Warding~ DO ~SetGlobal("C0WLHLA1","LOCALS",2) SetGlobal("C0WL109","LOCALS",2) AddSpecialAbility("C0WL109")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl110")~ + ~Leaps and Bounds~ DO ~SetGlobal("C0WLHLA1","LOCALS",2) SetGlobal("C0WL110","LOCALS",2) AddSpecialAbility("C0WL110")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl111")~ + ~See the Unseen~ DO ~SetGlobal("C0WLHLA1","LOCALS",2) SetGlobal("C0WL111","LOCALS",2) AddSpecialAbility("C0WL111")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl112")~ + ~Devil's Sight~ DO ~SetGlobal("C0WLHLA1","LOCALS",2) SetGlobal("C0WL112","LOCALS",2) AddSpecialAbility("C0WL112")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl113")~ + ~Call of the Beast~ DO ~SetGlobal("C0WLHLA1","LOCALS",2) SetGlobal("C0WL113","LOCALS",2) AddSpecialAbility("C0WL113")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl114")~ + ~Soulrending Aura~ DO ~SetGlobal("C0WLHLA1","LOCALS",2) SetGlobal("C0WL114","LOCALS",2) AddSpecialAbility("C0WL114")~ EXIT 
 END
 
 IF ~Global("C0WLHLA2","LOCALS",1)~ lesser
@@ -24,6 +27,7 @@ SAY ~Choose one Lesser Invocation:~
 + ~!HaveKnownSpellRES("c0wl208")~ + ~The Dead Walk~ DO ~SetGlobal("C0WLHLA2","LOCALS",2) SetGlobal("C0WL208","LOCALS",2) AddSpecialAbility("C0WL208")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl209")~ + ~Voracious Dispelling~ DO ~SetGlobal("C0WLHLA2","LOCALS",2) SetGlobal("C0WL209","LOCALS",2) AddSpecialAbility("C0WL209")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl210")~ + ~Walk Unseen~ DO ~SetGlobal("C0WLHLA2","LOCALS",2) SetGlobal("C0WL210","LOCALS",2) AddSpecialAbility("C0WL210")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl211")~ + ~Crawling Eye~ DO ~SetGlobal("C0WLHLA2","LOCALS",2) SetGlobal("C0WL211","LOCALS",2) AddSpecialAbility("C0WL211")~ EXIT 
 END
 
 IF ~Global("C0WLHLA3","LOCALS",1)~ greater
@@ -36,6 +40,8 @@ SAY ~Choose one Greater Invocation:~
 + ~!HaveKnownSpellRES("c0wl306")~ + ~Devour Magic~ DO ~SetGlobal("C0WLHLA3","LOCALS",2) SetGlobal("C0WL306","LOCALS",2) AddSpecialAbility("C0WL306")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl307")~ + ~Tenacious Plague~ DO ~SetGlobal("C0WLHLA3","LOCALS",2) SetGlobal("C0WL307","LOCALS",2) AddSpecialAbility("C0WL307")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl308")~ + ~Wall of Perilous Flame~ DO ~SetGlobal("C0WLHLA3","LOCALS",2) SetGlobal("C0WL308","LOCALS",2) AddSpecialAbility("C0WL308")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl309")~ + ~Nightmares Made Real~ DO ~SetGlobal("C0WLHLA3","LOCALS",2) SetGlobal("C0WL309","LOCALS",2) AddSpecialAbility("C0WL309")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl310")~ + ~Painful Slumber of Ages~ DO ~SetGlobal("C0WLHLA3","LOCALS",2) SetGlobal("C0WL310","LOCALS",2) AddSpecialAbility("C0WL310")~ EXIT 
 END
 
 IF ~Global("C0WLHLA4","LOCALS",1)~ dark
@@ -45,4 +51,7 @@ SAY ~Choose one Dark Invocation:~
 + ~!HaveKnownSpellRES("c0wl403")~ + ~Dark Foresight~ DO ~SetGlobal("C0WLHLA4","LOCALS",2) SetGlobal("C0WL403","LOCALS",2) AddSpecialAbility("C0WL403")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl404")~ + ~Retributive Invisibility~ DO ~SetGlobal("C0WLHLA4","LOCALS",2) SetGlobal("C0WL404","LOCALS",2) AddSpecialAbility("C0WL404")~ EXIT 
 + ~!HaveKnownSpellRES("c0wl405")~ + ~Word of Changing~ DO ~SetGlobal("C0WLHLA4","LOCALS",2) SetGlobal("C0WL405","LOCALS",2) AddSpecialAbility("C0WL405")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl406")~ + ~Path of Shadow~ DO ~SetGlobal("C0WLHLA4","LOCALS",2) SetGlobal("C0WL406","LOCALS",2) AddSpecialAbility("C0WL406")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl407")~ + ~Steal Summoning~ DO ~SetGlobal("C0WLHLA4","LOCALS",2) SetGlobal("C0WL407","LOCALS",2) AddSpecialAbility("C0WL407")~ EXIT 
++ ~!HaveKnownSpellRES("c0wl408")~ + ~Infernal Crest~ DO ~SetGlobal("C0WLHLA4","LOCALS",2) SetGlobal("C0WL408","LOCALS",2) AddSpecialAbility("C0WL408")~ EXIT 
 END

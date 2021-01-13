@@ -5,7 +5,7 @@ BEGIN C0WLTALK
 IF ~Global("C0WarlockBegin","LOCALS",0)~ first
 SAY @0 /* Choose a grade of invocation: */
 + ~GlobalGT("C0WLSP1","LOCALS",0)
-OR(8)
+OR(11)
 !HaveKnownSpellRES("c0wl104")
 !HaveKnownSpellRES("c0wl105")
 !HaveKnownSpellRES("c0wl106")
@@ -13,9 +13,12 @@ OR(8)
 !HaveKnownSpellRES("c0wl108")
 !HaveKnownSpellRES("c0wl109")
 !HaveKnownSpellRES("c0wl110")
-!HaveKnownSpellRES("c0wl111")~ + @1 /* Least */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + least
+!HaveKnownSpellRES("c0wl111")
+!HaveKnownSpellRES("c0wl112")
+!HaveKnownSpellRES("c0wl113")
+!HaveKnownSpellRES("c0wl114")~ + @1 /* Least */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + least
 + ~GlobalGT("C0WLSP2","LOCALS",0)
-OR(10)
+OR(11)
 !HaveKnownSpellRES("c0wl201")
 !HaveKnownSpellRES("c0wl202")
 !HaveKnownSpellRES("c0wl203")
@@ -25,9 +28,10 @@ OR(10)
 !HaveKnownSpellRES("c0wl207")
 !HaveKnownSpellRES("c0wl208")
 !HaveKnownSpellRES("c0wl209")
-!HaveKnownSpellRES("c0wl210")~ + @2 /* Lesser */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + lesser
+!HaveKnownSpellRES("c0wl210")
+!HaveKnownSpellRES("c0wl211")~ + @2 /* Lesser */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + lesser
 + ~GlobalGT("C0WLSP3","LOCALS",0)
-OR(8)
+OR(10)
 !HaveKnownSpellRES("c0wl301")
 !HaveKnownSpellRES("c0wl302")
 !HaveKnownSpellRES("c0wl303")
@@ -35,14 +39,19 @@ OR(8)
 !HaveKnownSpellRES("c0wl305")
 !HaveKnownSpellRES("c0wl306")
 !HaveKnownSpellRES("c0wl307")
-!HaveKnownSpellRES("c0wl308")~ + @3 /* Greater */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + greater
+!HaveKnownSpellRES("c0wl308")
+!HaveKnownSpellRES("c0wl309")
+!HaveKnownSpellRES("c0wl310")~ + @3 /* Greater */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + greater
 + ~GlobalGT("C0WLSP4","LOCALS",0)
-OR(5)
+OR(8)
 !HaveKnownSpellRES("c0wl401")
 !HaveKnownSpellRES("c0wl402")
 !HaveKnownSpellRES("c0wl403")
 !HaveKnownSpellRES("c0wl404")
-!HaveKnownSpellRES("c0wl405")~ + @4 /* Dark */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + dark
+!HaveKnownSpellRES("c0wl405")
+!HaveKnownSpellRES("c0wl406")
+!HaveKnownSpellRES("c0wl407")
+!HaveKnownSpellRES("c0wl408")~ + @4 /* Dark */ DO ~SetGlobal("C0WarlockBegin","LOCALS",1)~ + dark
 IF ~~ EXIT
 END
 
@@ -59,7 +68,7 @@ SAY @5 /* What do you want to do? */
 !Global("C0WLSP2","LOCALS",0)
 !Global("C0WLSP3","LOCALS",0)
 !Global("C0WLSP4","LOCALS",0)~ + @6 /* Learn invocation. */ + learn
-+ ~OR(31)
++ ~OR(40)
 HaveKnownSpellRES("c0wl104")
 HaveKnownSpellRES("c0wl105")
 HaveKnownSpellRES("c0wl106")
@@ -68,6 +77,9 @@ HaveKnownSpellRES("c0wl108")
 HaveKnownSpellRES("c0wl109")
 HaveKnownSpellRES("c0wl110")
 HaveKnownSpellRES("c0wl111")
+HaveKnownSpellRES("c0wl112")
+HaveKnownSpellRES("c0wl113")
+HaveKnownSpellRES("c0wl114")
 HaveKnownSpellRES("c0wl201")
 HaveKnownSpellRES("c0wl202")
 HaveKnownSpellRES("c0wl203")
@@ -78,6 +90,7 @@ HaveKnownSpellRES("c0wl207")
 HaveKnownSpellRES("c0wl208")
 HaveKnownSpellRES("c0wl209")
 HaveKnownSpellRES("c0wl210")
+HaveKnownSpellRES("c0wl211")
 HaveKnownSpellRES("c0wl301")
 HaveKnownSpellRES("c0wl302")
 HaveKnownSpellRES("c0wl303")
@@ -86,11 +99,16 @@ HaveKnownSpellRES("c0wl305")
 HaveKnownSpellRES("c0wl306")
 HaveKnownSpellRES("c0wl307")
 HaveKnownSpellRES("c0wl308")
+HaveKnownSpellRES("c0wl309")
+HaveKnownSpellRES("c0wl310")
 HaveKnownSpellRES("c0wl401")
 HaveKnownSpellRES("c0wl402")
 HaveKnownSpellRES("c0wl403")
 HaveKnownSpellRES("c0wl404")
 HaveKnownSpellRES("c0wl405")
+HaveKnownSpellRES("c0wl406")
+HaveKnownSpellRES("c0wl407")
+HaveKnownSpellRES("c0wl408")
 Global("C0WLCNG","LOCALS",1)~ + @7 /* Change invocations. */ + change
 + ~Global("C0WLSP1","LOCALS",0)
 Global("C0WLSP2","LOCALS",0)
@@ -102,7 +120,7 @@ IF ~~ change
 SAY @9 /* Once per level up, a warlock may exchange one of their invocations for another of the same grade.
 
 Choose a grade of invocation: */
-+ ~OR(8)
++ ~OR(11)
 HaveKnownSpellRES("c0wl104")
 HaveKnownSpellRES("c0wl105")
 HaveKnownSpellRES("c0wl106")
@@ -110,8 +128,11 @@ HaveKnownSpellRES("c0wl107")
 HaveKnownSpellRES("c0wl108")
 HaveKnownSpellRES("c0wl109")
 HaveKnownSpellRES("c0wl110")
-HaveKnownSpellRES("c0wl111")~ + @1 /* Least */ + change.least
-+ ~OR(10)
+HaveKnownSpellRES("c0wl111")
+HaveKnownSpellRES("c0wl112")
+HaveKnownSpellRES("c0wl113")
+HaveKnownSpellRES("c0wl114")~ + @1 /* Least */ + change.least
++ ~OR(11)
 HaveKnownSpellRES("c0wl201")
 HaveKnownSpellRES("c0wl202")
 HaveKnownSpellRES("c0wl203")
@@ -121,8 +142,9 @@ HaveKnownSpellRES("c0wl206")
 HaveKnownSpellRES("c0wl207")
 HaveKnownSpellRES("c0wl208")
 HaveKnownSpellRES("c0wl209")
-HaveKnownSpellRES("c0wl210")~ + @2 /* Lesser */ + change.lesser
-+ ~OR(8)
+HaveKnownSpellRES("c0wl210")
+HaveKnownSpellRES("c0wl211")~ + @2 /* Lesser */ + change.lesser
++ ~OR(10)
 HaveKnownSpellRES("c0wl301")
 HaveKnownSpellRES("c0wl302")
 HaveKnownSpellRES("c0wl303")
@@ -130,13 +152,18 @@ HaveKnownSpellRES("c0wl304")
 HaveKnownSpellRES("c0wl305")
 HaveKnownSpellRES("c0wl306")
 HaveKnownSpellRES("c0wl307")
-HaveKnownSpellRES("c0wl308")~ + @3 /* Greater */ + change.greater
-+ ~OR(5)
+HaveKnownSpellRES("c0wl308")
+HaveKnownSpellRES("c0wl309")
+HaveKnownSpellRES("c0wl310")~ + @3 /* Greater */ + change.greater
++ ~OR(8)
 HaveKnownSpellRES("c0wl401")
 HaveKnownSpellRES("c0wl402")
 HaveKnownSpellRES("c0wl403")
 HaveKnownSpellRES("c0wl404")
-HaveKnownSpellRES("c0wl405")~ + @4 /* Dark */ + change.dark
+HaveKnownSpellRES("c0wl405")
+HaveKnownSpellRES("c0wl406")
+HaveKnownSpellRES("c0wl407")
+HaveKnownSpellRES("c0wl408")~ + @4 /* Dark */ + change.dark
 ++ @10 /* Go back */ + start
 END
 
@@ -150,6 +177,9 @@ SAY @11 /* Choose one Least Invocation: */
 + ~HaveKnownSpellRES("c0wl109")~ + @17 /* Entropic Warding */ DO ~ApplySpellRES("c0wl109z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl110")~ + @18 /* Leaps and Bounds */ DO ~ApplySpellRES("c0wl110z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl111")~ + @19 /* See the Unseen */ DO ~ApplySpellRES("c0wl111z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl112")~ + @82 /* Devil's Sight */ DO ~ApplySpellRES("c0wl112z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl113")~ + @84 /* Call of the Beast */ DO ~ApplySpellRES("c0wl113z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl114")~ + @86 /* Soulreaving Aura */ DO ~ApplySpellRES("c0wl114z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP1","LOCALS",1)~ + change2
 END
 
 IF ~~ change.lesser
@@ -164,6 +194,7 @@ SAY @20 /* Choose one Lesser Invocation: */
 + ~HaveKnownSpellRES("c0wl208")~ + @28 /* The Dead Walk */ DO ~ApplySpellRES("c0wl208z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl209")~ + @29 /* Voracious Dispelling */ DO ~ApplySpellRES("c0wl209z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl210")~ + @30 /* Walk Unseen */ DO ~ApplySpellRES("c0wl210z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl211")~ + @88 /* Crawling Eye */ DO ~ApplySpellRES("c0wl211z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP2","LOCALS",1)~ + change2
 END
 
 IF ~~ change.greater
@@ -176,6 +207,8 @@ SAY @31 /* Choose one Greater Invocation: */
 + ~HaveKnownSpellRES("c0wl306")~ + @37 /* Devour Magic */ DO ~ApplySpellRES("c0wl306z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl307")~ + @38 /* Tenacious Plague */ DO ~ApplySpellRES("c0wl307z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl308")~ + @39 /* Wall of Perilous Flame */ DO ~ApplySpellRES("c0wl308z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl309")~ + @90 /* Nightmares Made Real */ DO ~ApplySpellRES("c0wl309z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl310")~ + @92 /* Painful Slumber of Ages */ DO ~ApplySpellRES("c0wl310z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP3","LOCALS",1)~ + change2
 END
 
 IF ~~ change.dark
@@ -185,6 +218,9 @@ SAY @40 /* Choose one Dark Invocation: */
 + ~HaveKnownSpellRES("c0wl403")~ + @43 /* Dark Foresight */ DO ~ApplySpellRES("c0wl403z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl404")~ + @44 /* Retributive Invisibility */ DO ~ApplySpellRES("c0wl404z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
 + ~HaveKnownSpellRES("c0wl405")~ + @45 /* Word of Changing */ DO ~ApplySpellRES("c0wl405z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl406")~ + @94 /* Path of Shadows */ DO ~ApplySpellRES("c0wl406z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl407")~ + @96 /* Steal Summoning */ DO ~ApplySpellRES("c0wl407z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
++ ~HaveKnownSpellRES("c0wl408")~ + @98 /* Infernal Crest */ DO ~ApplySpellRES("c0wl408z",Myself) SetGlobal("C0WLCNG","LOCALS",0) IncrementGlobal("C0WLSP4","LOCALS",1)~ + change2
 END
 
 IF ~~ change2
@@ -206,7 +242,7 @@ END
 IF ~~ learn
 SAY @0 /* Choose a grade of invocation: */
 + ~GlobalGT("C0WLSP1","LOCALS",0)
-OR(8)
+OR(11)
 !HaveKnownSpellRES("c0wl104")
 !HaveKnownSpellRES("c0wl105")
 !HaveKnownSpellRES("c0wl106")
@@ -214,9 +250,12 @@ OR(8)
 !HaveKnownSpellRES("c0wl108")
 !HaveKnownSpellRES("c0wl109")
 !HaveKnownSpellRES("c0wl110")
-!HaveKnownSpellRES("c0wl111")~ + @1 /* Least */ + least
+!HaveKnownSpellRES("c0wl111")
+!HaveKnownSpellRES("c0wl112")
+!HaveKnownSpellRES("c0wl113")
+!HaveKnownSpellRES("c0wl114")~ + @1 /* Least */ + least
 + ~GlobalGT("C0WLSP2","LOCALS",0)
-OR(10)
+OR(11)
 !HaveKnownSpellRES("c0wl201")
 !HaveKnownSpellRES("c0wl202")
 !HaveKnownSpellRES("c0wl203")
@@ -226,9 +265,10 @@ OR(10)
 !HaveKnownSpellRES("c0wl207")
 !HaveKnownSpellRES("c0wl208")
 !HaveKnownSpellRES("c0wl209")
-!HaveKnownSpellRES("c0wl210")~ + @2 /* Lesser */ + lesser
+!HaveKnownSpellRES("c0wl210")
+!HaveKnownSpellRES("c0wl211")~ + @2 /* Lesser */ + lesser
 + ~GlobalGT("C0WLSP3","LOCALS",0)
-OR(8)
+OR(10)
 !HaveKnownSpellRES("c0wl301")
 !HaveKnownSpellRES("c0wl302")
 !HaveKnownSpellRES("c0wl303")
@@ -236,14 +276,19 @@ OR(8)
 !HaveKnownSpellRES("c0wl305")
 !HaveKnownSpellRES("c0wl306")
 !HaveKnownSpellRES("c0wl307")
-!HaveKnownSpellRES("c0wl308")~ + @3 /* Greater */ + greater
+!HaveKnownSpellRES("c0wl308")
+!HaveKnownSpellRES("c0wl309")
+!HaveKnownSpellRES("c0wl310")~ + @3 /* Greater */ + greater
 + ~GlobalGT("C0WLSP4","LOCALS",0)
-OR(5)
+OR(8)
 !HaveKnownSpellRES("c0wl401")
 !HaveKnownSpellRES("c0wl402")
 !HaveKnownSpellRES("c0wl403")
 !HaveKnownSpellRES("c0wl404")
-!HaveKnownSpellRES("c0wl405")~ + @4 /* Dark */ + dark
+!HaveKnownSpellRES("c0wl405")
+!HaveKnownSpellRES("c0wl406")
+!HaveKnownSpellRES("c0wl407")
+!HaveKnownSpellRES("c0wl408")~ + @4 /* Dark */ + dark
 END
 
 IF ~~ least
@@ -256,6 +301,9 @@ SAY @11 /* Choose one Least Invocation: */
 + ~!HaveKnownSpellRES("c0wl109")~ + @17 /* Entropic Warding */ + 1.9
 + ~!HaveKnownSpellRES("c0wl110")~ + @18 /* Leaps and Bounds */ + 1.10
 + ~!HaveKnownSpellRES("c0wl111")~ + @19 /* See the Unseen */ + 1.11
++ ~!HaveKnownSpellRES("c0wl112")~ + @82 /* Devil's Sight */ + 1.12
++ ~!HaveKnownSpellRES("c0wl113")~ + @84 /* Call of the Beast */ + 1.13
++ ~!HaveKnownSpellRES("c0wl114")~ + @86 /* Soulreaving Aura */ + 1.14
 END
 
 IF ~~ lesser
@@ -270,6 +318,7 @@ SAY @20 /* Choose one Lesser Invocation: */
 + ~!HaveKnownSpellRES("c0wl208")~ + @28 /* The Dead Walk */ + 2.8
 + ~!HaveKnownSpellRES("c0wl209")~ + @29 /* Voracious Dispelling */ + 2.9
 + ~!HaveKnownSpellRES("c0wl210")~ + @30 /* Walk Unseen */ + 2.10
++ ~!HaveKnownSpellRES("c0wl211")~ + @88 /* Crawling Eye */ + 2.11
 END
 
 IF ~~ greater
@@ -282,6 +331,8 @@ SAY @31 /* Choose one Greater Invocation: */
 + ~!HaveKnownSpellRES("c0wl306")~ + @37 /* Devour Magic */ + 3.6
 + ~!HaveKnownSpellRES("c0wl307")~ + @38 /* Tenacious Plague */ + 3.7
 + ~!HaveKnownSpellRES("c0wl308")~ + @39 /* Wall of Perilous Flame */ + 3.8
++ ~!HaveKnownSpellRES("c0wl309")~ + @90 /* Nightmares Made Real */ + 3.9
++ ~!HaveKnownSpellRES("c0wl310")~ + @92 /* Painful Slumber of Ages */ + 3.10
 END
 
 IF ~~ dark
@@ -291,6 +342,9 @@ SAY @40 /* Choose one Dark Invocation: */
 + ~!HaveKnownSpellRES("c0wl403")~ + @43 /* Dark Foresight */ + 4.3
 + ~!HaveKnownSpellRES("c0wl404")~ + @44 /* Retributive Invisibility */ + 4.4
 + ~!HaveKnownSpellRES("c0wl405")~ + @45 /* Word of Changing */ + 4.5
++ ~!HaveKnownSpellRES("c0wl406")~ + @45 /* Path of Shadow */ + 4.6
++ ~!HaveKnownSpellRES("c0wl407")~ + @45 /* Steal Summoning */ + 4.7
++ ~!HaveKnownSpellRES("c0wl408")~ + @45 /* Infernal Crest */ + 4.8
 END
 
 IF ~~ 1.4
@@ -426,6 +480,57 @@ Saving Throw: None
 
 With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps. <PRO_HESHE> also gains infravision for the duration. */
 ++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl111")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
+IF ~~ 1.12
+SAY @83 /* DEVIL'S SIGHT 
+(Divination)
+
+Power: Least
+Effective Spell Level: 2
+Range: 0
+Duration: 24 hours
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+With this invocation, the warlock gains the visual acuity of a devil for 24 hours, gaining Infravision as well as the ability to target partially concealed creatures with spells. Additionally, while not within sunlight, <PRO_HISHER> visual range is increased. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl112")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
+IF ~~ 1.13
+SAY @85 /* CALL OF THE BEAST 
+(Enchantment/Charm)
+
+Power: Least
+Effective Spell Level: 2
+Range: 50
+Duration: 10 turns
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This invocation allows the warlock to communicate with creatures of the wild and influence their actions. The targeted animal or plant must succeed on a Save vs. Spells at -5 or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. From 10th level onwards, monsters such as wyverns may be affected, and from 20th level onwards, the targeted creature's Strength and Dexterity are increased to 25 while charmed. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl113")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
+IF ~~ 1.14
+SAY @87 /* SOULREAVING AURA 
+(Necromancy)
+
+Power: Least
+Effective Spell Level: 2
+Range: Self
+Duration: Instant
+Casting Time: 2
+Area of Effect: 20-ft. from caster
+Saving Throw: None
+
+With this invocation, the warlock floods the surrounding area of negative energy that preys upon the weakened. Any creature with current hit points lower than the warlock's level within a 20-ft. radius of the warlock is slain instantly. For each slain enemy, the warlock gains 1 temporary hit point per 10 caster levels for 8 hours. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl114")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -608,6 +713,23 @@ The warlock may cast this invocation to become invisible. The effect ends immedi
 ++ @49 /* Return to spell selection. */ + learn
 END
 
+IF ~~ 2.11
+SAY @89 /* CRAWLING EYE 
+(Alteration)
+
+Power: Lesser
+Effective Spell Level: 3
+Range: Self
+Duration: 5 turns
+Casting Time: 4
+Area of Effect: The caster
+Saving Throw: None
+
+The warlock creates a magical eye that can see with normal vision up to 60 ft. away in brightly lit areas. The eye can travel in any direction as long as the spell lasts. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl211")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
 IF ~~ 3.1
 SAY @67 /* BEWITCHING BLAST
 (Eldritch Essence) 
@@ -746,6 +868,40 @@ You conjure a curtain of fire that deals 2d6 points of damage to any creature th
 ++ @49 /* Return to spell selection. */ + learn
 END
 
+IF ~~ 3.9
+SAY @91 /* NIGHTMARES MADE REAL 
+(Illusion/Phantasm)
+
+Power: Greater
+Effective Spell Level: 6
+Range: 30
+Duration: 3 rounds
+Casting Time: 7
+Area of Effect: 30-ft. radius
+Saving Throw: Neg.
+
+The warlock cloaks the surrounding area with phantasmagoric figures, transforming it into the image of a nightmarish hellscape. Creatures within the area of effect must make a Save vs. Spells at -2 or become entangled in illusory vines for 3 rounds, suffering 4d6 magic damage. Sleeping creatures are entangled and take 8d6 magic damage without save. Additionally, if the caster is within the area of effect, they become invisible for 3 rounds. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl309")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
+IF ~~ 3.10
+SAY @93 /* PAINFUL SLUMBER OF AGES
+(Enchantment/Charm)
+
+Power: Greater
+Effective Spell Level: 6
+Range: 30
+Duration: 5 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This invocation puts the target into a magically-induced slumber. If the target fails a Save vs. Spells at -4, they are put to sleep for a minimum of 5 rounds, after which they must make another identical saving throw or remain asleep for another 5 rounds. Therefore, the effect may last indefinitely so long as the target does not make a successful saving throw. If the target is awakened prematurely, they take unmitigated damage equal to the warlock's level. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl310")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
 IF ~~ 4.1
 SAY @75 /* BINDING BLAST
 (Eldritch Essence) 
@@ -828,6 +984,57 @@ Saving Throw: None
 
 With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed. */
 ++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl405")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
+IF ~~ 4.6
+SAY @95 /* PATH OF SHADOW 
+(Alteration)
+
+Power: Dark
+Effective Spell Level: 6
+Range: Self
+Duration: 10 seconds
+Casting Time: 7
+Area of Effect: The caster
+Saving Throw: None
+
+With this invocation, the warlock steps into the realm of shadows for ten seconds, though the equivalent time spent within the realm is much longer compared to the Prime Material Plane. For the duration, the warlock regenerates 1d10 hit points per second. The warlock cannot attack or cast spells for the duration. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl406")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
+IF ~~ 4.7
+SAY @97 /* STEAL SUMMONING 
+(Enchantment/Charm)
+
+Power: Dark
+Effective Spell Level: 6
+Range: 30
+Duration: Permanent
+Casting Time: 8
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This invocation allows the warlock to wrest control of a summoned or bound creature from its original master. If the targeted summoned creature fails a Save vs. Spells at -6, their allegiance permanently shifts to the caster's until their original summoned duration expires. This invocation can affect all summoned creatures, including those gated from other planes such as fiends and angelic beings. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl407")~ + NEXT
+++ @49 /* Return to spell selection. */ + learn
+END
+
+IF ~~ 4.8
+SAY @99 /* INFERNAL CREST 
+(Abjuration)
+
+Power: Dark
+Effective Spell Level: 8
+Range: Self
+Duration: 24 hours
+Casting Time: 9
+Area of Effect: The caster
+Saving Throw: None
+
+This powerful invocation imbues the warlock with a powerful boon. Upon completing the invocation, the warlock suffers 80% of their maximum hit points in damage, but for the next 24 hours gains +2 to Strength. Additionally, for every 10% of their maximum hit points they are missing, they deal 5% increased non-physical damage from all sources as well as increased duration of invocations, up to a maximum of 40% when missing 80% of their hit points. */
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl408")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 

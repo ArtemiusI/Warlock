@@ -200,7 +200,7 @@ Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
 
-With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps. <PRO_HESHE> also gains infravision for the duration.~
+With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps.~
 @38   = ~Beshadowed Blast~
 @39   = ~BESHADOWED BLAST
 (Eldritch Essence) 
@@ -313,13 +313,14 @@ Casting Time: 9
 Area of Effect: the caster
 Saving Throw: None
 
-The warlock can summon undead creatures with <PRO_HISHER> infernal power to serve <PRO_HIMHER>. This invocation summons a powerful revenant for eight hours. The strength and abilities of the revenant summoned is dependent on the warlock's level (known spells are cumulative):
+The warlock can raise the bones and flesh of the dead into reanimated corpses with <PRO_HISHER> infernal power to serve <PRO_HIMHER> for eight hours. The type and number of the creatures summoned is dependent on the warlock's level:
 
-  1st – 9th: 4 HD, Larloch's Minor Drain, Spook
-  10th - 19th: 7 HD, Ghoul Touch, Horror
-  20th+: 10 HD, Hold Person, Vampiric Touch
+  1st – 11th: 1d4 skeletons and zombies
+  12th - 16th: 2d4 skeletons, zombies and ghouls
+  17th - 21st: 1d4 skeleton warriors, juju zombies and ghoul lords
+  22nd+: 2d4 skeleton warriors, juju zombies and ghoul lords
   
-The revenant can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, eight hour passes, or it is turned. This spell cannot be dispelled. Only one revenant can be summoned at any given time.~
+All summoned undead remains animated until they are destroyed in combat, eight hour passes, or turned. This spell cannot be dispelled. The summons created by this spell do not count towards the summoning limit.~
 @63   = ~Dispel Effects~
 @64   = ~Voracious Dispelling~
 @65   = ~VORACIOUS DISPELLING
@@ -335,7 +336,7 @@ Saving Throw: None
 
 This invocation attempts to dispel magical effects upon a target creature. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Voracious Dispelling is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Voracious Dispelling is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the warlock is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
 
-Additionally, regardless of whether the dispel is successful, the target takes one point of magical damage per two levels of the warlock.~
+Additionally, for each enemy affected that is of a primarily spellcasting class (mage, cleric, druid, bard, shaman), they suffer 1 point of magic damage per 2 caster levels without save. Arcane spellcasters lose one memorized spell on a failed Save vs. Spells at -2.~
 @66   = ~Invisible~
 @67   = ~Walk Unseen~
 @68   = ~WALK UNSEEN
@@ -430,14 +431,14 @@ This invocation allows you to conjure forth a field of soul-chilling tentacles t
 Power: Greater
 Effective Spell Level: 6
 Range: 40 ft.
-Duration: Instant
+Duration: 1 turn
 Casting Time: 3
 Area of Effect: 15-ft. radius
 Saving Throw: None
 
 This invocation dispels the magical effects upon any enemies within the area. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Devour Magic is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Devour Magic is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the caster is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
 
-Additionally, for each enemy affected by Devour Magic, the warlock temporarily gains two extra hit points to <PRO_HISHER> maximum for four rounds.~
+Additionally, for each enemy affected that is of a primarily spellcasting class (mage, cleric, druid, bard, shaman), they take 2d6 magic damage, which are transferred to the warlock as temporary hit points for 1 turn. Arcane spellcasters lose one memorized spell on a failed Save vs. Spells.~
 @89   = ~Tenacious Plague~
 @90   = ~TENACIOUS PLAGUE
 (Conjuration/Summoning)
@@ -540,8 +541,10 @@ This ability causes the character to return to <PRO_HISHER> natural shape and en
 @110  = ~ELDRITCH PACT
 The warlock gains a boon from an otherworldly power, whether fiendish or fey, granting a permanent +20% bonus Magic Resistance, +1 bonus to casting time, and +50% duration to all invocations.~
 @111  = ~Eldritch Focus~
+@1110 = ~Deactivate Eldritch Focus~
 @112  = ~ELDRITCH FOCUS
-This ability allows the warlock to temporarily unlock a tremendous amount of eldritch power, gaining immunity to weapon damage and a +100% bonus to non-physical damage dealt for 3 rounds.~
+The warlock channels a tremendous amount of eldritch power, becoming an immovable fountain of arcane energy. While this ability is activated, the warlock becomes unable to move, attack or cast special abilities, but gains 50% resistance to all damage and Aura Cleansing. The warlock's spells also cast instantly. However, while in this mode, casting an invocation causes the warlock to lose 25% of their current hit points. Additionally, the warlock is unaffected by most healing effects while channelling. This ability may be toggled as a free action, but the warlock's becomes unable to use any invocations or warlock abilities for three rounds after deactivating the ability.~
+@1120 = ~This ability deactivates Eldritch Focus mode.~
 @113  = ~Eldritch Paragon~
 @114  = ~ELDRITCH PARAGON
 The warlock's mastery of <PRO_HISHER> powers grants <PRO_HIMHER> a permanent +50% resistance to magical damage, +5 to all saving throws and +20% to damage dealt from magical damage.~
@@ -695,3 +698,123 @@ Requires:
  11 Strength
 
 Weight: 7~
+@147   = ~Devil's Sight~
+@148   = ~DEVIL'S SIGHT 
+(Divination)
+
+Power: Least
+Effective Spell Level: 2
+Range: 0
+Duration: 24 hours
+Casting Time: 1
+Area of Effect: the caster
+Saving Throw: None
+
+With this invocation, the warlock gains the visual acuity of a devil for 24 hours, gaining Infravision as well as the ability to target partially concealed creatures with spells. Additionally, while not within sunlight, <PRO_HISHER> visual range is increased.~
+@149   = ~Call of the Beast~
+@1490   = ~Strength and Dexterity set to 25~
+@150   = ~CALL OF THE BEAST 
+(Enchantment/Charm)
+
+Power: Least
+Effective Spell Level: 2
+Range: 50
+Duration: 10 turns
+Casting Time: 5
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This invocation allows the warlock to communicate with creatures of the wild and influence their actions. The targeted animal or plant must succeed on a Save vs. Spells at -5 or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. From 10th level onwards, monsters such as wyverns may be affected, and from 20th level onwards, the targeted creature's Strength and Dexterity are increased to 25 while charmed.~
+@151   = ~Soulreaving Aura~
+@152   = ~SOULREAVING AURA 
+(Necromancy)
+
+Power: Least
+Effective Spell Level: 2
+Range: Self
+Duration: Instant
+Casting Time: 2
+Area of Effect: 20-ft. from caster
+Saving Throw: None
+
+With this invocation, the warlock floods the surrounding area of negative energy that preys upon the weakened. Any creature with current hit points lower than the warlock's level within a 20-ft. radius of the warlock is slain instantly. For each slain enemy, the warlock gains 1 temporary hit point per 10 caster levels for 8 hours.~
+@153   = ~Crawling Eye~
+@154   = ~Crawling Eye~
+@155   = ~Crawling Eye~
+@156   = ~CRAWLING EYE 
+(Alteration)
+
+Power: Lesser
+Effective Spell Level: 3
+Range: Self
+Duration: 5 turns
+Casting Time: 4
+Area of Effect: The caster
+Saving Throw: None
+
+The warlock creates a magical eye that can see with normal vision up to 60 ft. away in brightly lit areas. The eye can travel in any direction as long as the spell lasts.~
+@157   = ~Nightmares Made Real~
+@158   = ~NIGHTMARES MADE REAL 
+(Illusion/Phantasm)
+
+Power: Greater
+Effective Spell Level: 6
+Range: 30
+Duration: 3 rounds
+Casting Time: 7
+Area of Effect: 30-ft. radius
+Saving Throw: Neg.
+
+The warlock cloaks the surrounding area with phantasmagoric figures, transforming it into the image of a nightmarish hellscape. Creatures within the area of effect must make a Save vs. Spells at -2 or become entangled in illusory vines for 3 rounds, suffering 4d6 magic damage. Sleeping creatures are entangled and take 8d6 magic damage without save. Additionally, if the caster is within the area of effect, they become invisible for 3 rounds.~
+@159   = ~Painful Slumber of Ages~
+@160   = ~PAINFUL SLUMBER OF AGES
+(Enchantment/Charm)
+
+Power: Greater
+Effective Spell Level: 6
+Range: 30
+Duration: 5 rounds
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This invocation puts the target into a magically-induced slumber. If the target fails a Save vs. Spells at -4, they are put to sleep for a minimum of 5 rounds, after which they must make another identical saving throw or remain asleep for another 5 rounds. Therefore, the effect may last indefinitely so long as the target does not make a successful saving throw. If the target is awakened prematurely, they take nonlethal damage equal to the warlock's level.~
+@161   = ~Path of Shadow~
+@162   = ~PATH OF SHADOW 
+(Alteration)
+
+Power: Dark
+Effective Spell Level: 6
+Range: Self
+Duration: 10 seconds
+Casting Time: 7
+Area of Effect: The caster
+Saving Throw: None
+
+With this invocation, the warlock steps into the realm of shadows for ten seconds, though the equivalent time spent within the realm is much longer compared to the Prime Material Plane. For the duration, the warlock regenerates 1d10 hit points per second. The warlock cannot attack or cast spells for the duration.~
+@163   = ~Steal Summoning~
+@164   = ~STEAL SUMMONING 
+(Enchantment/Charm)
+
+Power: Dark
+Effective Spell Level: 6
+Range: 30
+Duration: Permanent
+Casting Time: 8
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This invocation allows the warlock to wrest control of a summoned or bound creature from its original master. If the targeted summoned creature fails a Save vs. Spells at -6, their allegiance permanently shifts to the caster's until their original summoned duration expires. This invocation can affect all summoned creatures, including those gated from other planes such as fiends and angelic beings.~
+@165   = ~Infernal Crest~
+@166   = ~INFERNAL CREST 
+(Abjuration)
+
+Power: Dark
+Effective Spell Level: 8
+Range: Self
+Duration: 24 hours
+Casting Time: 9
+Area of Effect: The caster
+Saving Throw: None
+
+This powerful invocation imbues the warlock with a powerful boon. Upon completing the invocation, the warlock suffers 80% of their maximum hit points in damage, but for the next 24 hours gains +2 to Strength. Additionally, for every 10% of their maximum hit points they are missing, they deal 5% increased non-physical damage from all sources as well as increased duration of invocations, up to a maximum of 40% when missing 80% of their hit points.~
