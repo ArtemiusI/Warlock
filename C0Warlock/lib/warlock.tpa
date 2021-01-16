@@ -868,7 +868,7 @@ WRITE_ASCIIE 0x3a ~C0W#%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR header = 38 speed = 1 END
   LPF ALTER_SPELL_HEADER INT_VAR header = 39 speed = 1 END
   LPF ALTER_SPELL_HEADER INT_VAR header = 40 speed = 1 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 328 target = 3 parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~) END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 4 timing = 1 parameter2 = 52 savetype = 16777216 STR_VAR resource = C0WL200C END
 COPY_EXISTING ~C0WL%blasts%.spl~ ~override/C0WL%blasts%E.spl~ // CONE
 WRITE_ASCIIE 0x3a ~C0W$%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 5 target = 4 STR_VAR icon = EVAL ~C0W$%blasts%B~ END
@@ -2173,8 +2173,15 @@ COPY_EXISTING ~c0wl200.spl~ ~override~
 	STR_VAR
 	  icon = ~c0wl200b~
 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 328 target = 3 parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~) END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 4 timing = 1 parameter2 = 52 savetype = 16777216 STR_VAR resource = C0WL200C END
 SAY NAME1 @14 /* Shape: Chain */
+
+COPY_EXISTING ~c0wl200c.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 328
+	  parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
+  END
 
 COPY_EXISTING ~c0wl200.spl~ ~override/c0wl200x.spl~
   LPF ALTER_SPELL_HEADER
@@ -5526,11 +5533,7 @@ COPY_EXISTING ~c0wl506d.spl~ ~override~
     INT_VAR
 	  projectile = c0wlp061
   END
-  LPF CLONE_EFFECT
-	INT_VAR
-	  match_opcode = 328
-	  target = 3
-  END
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 4 timing = 1 parameter2 = 52 savetype = 16777216 STR_VAR resource = C0WL200C END
   LPF ALTER_EFFECT
     INT_VAR
 	  match_opcode = 12
