@@ -283,3 +283,31 @@ ACTION_IF FILE_EXISTS_IN_GAME ~stoblack.sto~ THEN BEGIN
 COPY_EXISTING ~stoblack.sto~ ~override~
 ADD_STORE_ITEM ~c0wlbr01~ #0 #0 #0 ~IDENTIFIED~ #1
 END
+
+COPY ~%MOD_FOLDER%/items/c0wlpl01.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~kit~ ~C0WLOCK~))
+	  parameter2 = 9
+	  power = 1
+	  special = RESOLVE_STR_REF (~Warlock~)
+END
+SAY NAME1 ~Plate Mail~
+SAY NAME2 ~Infernal Soulplate +2~
+SAY DESC ~Forged by cultists in the service of Asmodeus, this suit of armor tempered by hellfire stops all but the strongest of weapons.
+
+STATISTICS:
+
+Equipped abiliites:
+– Fire Resistance: +50%
+– Physical Resistance: +10%
+– Enemies who attack the wearer in melee range suffer 1d4 magic fire damage, which are transferred to the wearer
+
+Armor Class: -1 (-4 vs. slashing, -3 vs. piercing and missile)
+Requires:
+ 15 Strength
+
+Weight: 20~
