@@ -3,6 +3,7 @@ AUTHOR ~Artemius_I/AionZ~
 VERSION ~1.72~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/ScaleSpell.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/alter_effect.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~

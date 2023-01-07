@@ -342,9 +342,9 @@ SAY @40 /* Choose one Dark Invocation: */
 + ~!HaveKnownSpellRES("c0wl403")~ + @43 /* Dark Foresight */ + 4.3
 + ~!HaveKnownSpellRES("c0wl404")~ + @44 /* Retributive Invisibility */ + 4.4
 + ~!HaveKnownSpellRES("c0wl405")~ + @45 /* Word of Changing */ + 4.5
-+ ~!HaveKnownSpellRES("c0wl406")~ + @45 /* Path of Shadow */ + 4.6
-+ ~!HaveKnownSpellRES("c0wl407")~ + @45 /* Steal Summoning */ + 4.7
-+ ~!HaveKnownSpellRES("c0wl408")~ + @45 /* Infernal Crest */ + 4.8
++ ~!HaveKnownSpellRES("c0wl406")~ + @94 /* Path of Shadow */ + 4.6
++ ~!HaveKnownSpellRES("c0wl407")~ + @96 /* Steal Summoning */ + 4.7
++ ~!HaveKnownSpellRES("c0wl408")~ + @98 /* Infernal Crest */ + 4.8
 END
 
 IF ~~ 1.4

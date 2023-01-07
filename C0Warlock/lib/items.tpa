@@ -284,6 +284,11 @@ COPY_EXISTING ~stoblack.sto~ ~override~
 ADD_STORE_ITEM ~c0wlbr01~ #0 #0 #0 ~IDENTIFIED~ #1
 END
 
+ACTION_IF FILE_EXISTS_IN_GAME ~maevar.cre~ THEN BEGIN
+COPY_EXISTING ~maevar.cre~ ~override~
+ADD_CRE_ITEM ~c0wlbr01~ #0 #0 #0 ~NONE~ ~inv~
+END
+
 COPY ~%MOD_FOLDER%/items/c0wlpl01.itm~ ~override~
   LPF ADD_ITEM_EQEFFECT
     INT_VAR
@@ -311,3 +316,8 @@ Requires:
  15 Strength
 
 Weight: 20~
+
+ACTION_IF FILE_EXISTS_IN_GAME ~uddeath2.cre~ THEN BEGIN
+COPY_EXISTING ~uddeath2.cre~ ~override~
+ADD_CRE_ITEM ~c0wlpl01~ #0 #0 #0 ~NONE~ ~inv~
+END

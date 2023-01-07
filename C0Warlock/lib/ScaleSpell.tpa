@@ -1,0 +1,1152 @@
+DEFINE_ACTION_FUNCTION ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION INT_VAR OPERATION = 1 STR_VAR VALUE = ~~ OPERATION_STRING = ~=~  RET index  BEGIN
+    OUTER_SET index = ~-1~
+    COPY_EXISTING ~STATS.IDS~ override
+        COUNT_2DA_ROWS 2 rows
+        FOR (i = 0; i < rows; ++i) BEGIN
+            READ_2DA_ENTRY i 1 2 state_label
+            PATCH_IF ~%state_label%~ STRING_EQUAL_CASE ~%VALUE%~ BEGIN
+            READ_2DA_ENTRY i 0 2 state_id
+            SET stat_rank = state_id
+            END
+        END
+    BUT_ONLY
+
+    ACTION_IF FILE_CONTAINS_EVALUATED (~SPLPROT.2DA~ ~^.+[0-9]+_STAT(%VALUE%)%OPERATION_STRING%n\b~) BEGIN
+        COPY_EXISTING ~SPLPROT.2DA~ override
+        COUNT_2DA_ROWS 2 rows
+        FOR (i = 0; i < rows; ++i) BEGIN
+            READ_2DA_ENTRY i 0 2 state_label
+            //PATCH_PRINT ~%state_label%~
+            //PATCH_PRINT ~^.+[0-9]+_STAT(%VALUE%)=n\b~
+            PATCH_IF !(~%state_label%~ STRING_MATCHES_REGEXP ~^[0-9]+_STAT(%VALUE%)%OPERATION_STRING%n\b~) BEGIN
+                READ_2DA_ENTRY i 0 2 state_id
+                LPF SUBSTRING INT_VAR start = 0 length = 3 STR_VAR string = EVAL ~%state_id%~ RET substring = substring END
+                PATCH_IF !(~%substring%~ STRING_MATCHES_REGEXP ~^[0-9]+$~) BEGIN
+                    //PATCH_PRINT ~%substring%~
+                    SET index = substring
+                END ELSE BEGIN 
+                    LPF SUBSTRING INT_VAR start = 0 length = 2 STR_VAR string = EVAL ~%state_id%~ RET substring = substring END
+                    PATCH_IF !(~%substring%~ STRING_MATCHES_REGEXP ~^[0-9]+$~) BEGIN
+                        SET index = substring
+                    END ELSE BEGIN 
+                    LPF SUBSTRING INT_VAR start = 0 length = 1 STR_VAR string = EVAL ~%state_id%~ RET substring = substring END
+                    PATCH_IF !(~%substring%~ STRING_MATCHES_REGEXP ~^[0-9]+$~) BEGIN
+                        SET index = substring
+                    END
+                END
+                END
+                
+            END
+        END
+        BUT_ONLY
+    END ELSE BEGIN
+        ACTION_IF (~%VALUE%~ STRING_EQUAL ~~) BEGIN FAIL ~Missing VALUE's label~ END ELSE BEGIN
+        ACTION_IF ((~%VALUE%~ STRING_CONTAINS_REGEXP ~ ~) = 0) BEGIN FAIL ~VALUE's label cannot have spaces~ END ELSE BEGIN
+        COPY_EXISTING ~SPLPROT.2DA~ override
+        COUNT_2DA_ROWS 2 rows
+        FOR (i = 0; i < rows+1; ++i) BEGIN
+            READ_2DA_ENTRY i 0 1 state_id
+            SET correct_length = INDEX(CASE_INSENSITIVE EXACT_MATCH ~_~ ~%state_id%~ )
+            PATCH_IF(~correct_length~ != ~-1~) BEGIN
+            LPF SUBSTRING INT_VAR start = 0 length = correct_length STR_VAR string = EVAL ~%state_id%~ RET substring = substring END
+            SET $occupied_slot(~%substring%~) = 1
+            END
+
+        END
+            FOR (i = 0; i < 256; ++i) BEGIN
+            PATCH_IF (!VARIABLE_IS_SET $occupied_slot(~%i%~)) BEGIN
+            SET index = i
+            SET i = 256
+            PATCH_IF index <= rows BEGIN
+            INSERT_2DA_ROW index+3 1 ~%index%_STAT(%VALUE%)%OPERATION_STRING%n %stat_rank% -1 %OPERATION%~
+            END ELSE BEGIN
+            INSERT_2DA_ROW rows+3 1 ~%index%_STAT(%VALUE%)%OPERATION_STRING%n %stat_rank% -1 %OPERATION%~
+            END
+            END
+            END
+        PATCH_IF (index = ~-1~) BEGIN PATCH_FAIL ~No available slots in SPLPROT.2DA~ END
+        BUT_ONLY
+        END
+        END
+    END
+END
+
+DEFINE_PATCH_FUNCTION ADD_SPELL_HEADER
+    INT_VAR
+        type = 0
+        location = 4
+        target = 1
+        target_number = 1
+        range = 0
+        minimum_level = 0
+        casting_speed = 0
+        projectile = 0
+
+    STR_VAR 
+        icon = 0
+
+    BEGIN
+        READ_LONG 0x6a effect_offset
+        INSERT_BYTES effect_offset 0x28
+        SET newOffset = effect_offset+0x28
+        WRITE_LONG 0x6a newOffset
+        SET header_length = effect_offset - 0x72
+        SET header_count = header_length/0x28
+        SET effect_sum = 0
+        FOR(i=0; i<header_count;++i) BEGIN
+            SET effect_rank_offset = 0x72+i*0x28 +0x1E
+            READ_SHORT effect_rank_offset effect_number
+            SET effect_sum = effect_sum + effect_number
+        END
+        READ_LONG 0x68 ability_number
+        SET ability_number = ability_number+1
+        WRITE_LONG 0x68 ability_number
+        WRITE_BYTE effect_offset type
+        WRITE_SHORT effect_offset + 2 location
+        WRITE_ASCIIE effect_offset + 4 ~%icon%~
+        WRITE_BYTE effect_offset + 12  target
+        WRITE_BYTE effect_offset + 13  target_number
+        WRITE_SHORT effect_offset + 14 range
+        WRITE_SHORT effect_offset + 16 minimum_level
+        WRITE_SHORT effect_offset + 18 casting_speed
+        WRITE_SHORT effect_offset + 0x26 projectile
+        WRITE_SHORT effect_offset + 0x20 effect_sum
+
+
+    END
+
+DEFINE_ACTION_FUNCTION SCALE_SPELL INT_VAR STEP_SIZE = 1 PIVOT_VALUE = 10 TARGET = 1  CHANGE_PER_STEP = 0 STAT_LOWER_LIMIT = 1 STAT_UPPER_LIMIT = 25 STR_VAR STAT = ~~ ORIGINAL_RESOURCE = ~~ NEW_RESOURCE_BASE = ~~ PARAMETER_TO_SCALE = ~~ DESCRIPTION = ~+~BEGIN
+    /*
+    * Purpose of the function:
+    * This function modify one spell and create alternate versions of that spell where one of the parameters scale with a stat of the target. Example applications: 
+    *   Make a saving throw on a spell harder if the caster has high intelligence
+    *   Reduce the damage dealt to a target if their dexterity is high enough
+    *   Increase the damage of a spell if the caster has high proficiency with a particular weapon or fighting style.
+    *   Lower the duration of a spell if the caster is too drunk
+    * This function cannot scale a spell for more than one statistic. If you need to do that, see MULTI_SCALE_SPELL.
+    * PARAMETERS: 
+        * STEP_SIZE: The range in which a spell will have the same effect.
+        * PIVOT_VALUE: The stat value for which the spell will get the same effect as the old spell
+        * TARGET: The target whose stat is taken into account. The values are the same as the target value for all opcodes, in particular opcode 326. 1 means that it will depend on the caster's stats.
+        * CHANGE_PER_STEP and PARAMETER_TO_SCALE determine what parameter to scale, and by how much it scales for each step.
+        * STAT is the stat used for scaling the spell
+        *   Any stat present in STATS.IDS can be used. This includes all base stats, as well as, for instance, proficiencies or intoxication. If using a non-base stat, change STAT_LOWER_LIMIT and STAT_UPPER_LIMIT accordingly.
+        * STAT_LOWER_LIMIT and STAT_UPPER_LIMIT are the minimum and maximum values allowed for a stat. 
+        *   By default, for base stats, it ranges from 1 to 25. 
+        *   If the scaling was based on the intoxication of the target, for example, then values should be set to 0 and 100 respectively, as intoxication ranges from 0 to 100.
+        * ORIGINAL_RESOURCE is the spell to patch
+        * NEW_RESOURCE_BASE is the base name of the resources created by this function. This function will create one spell per step. The naming convention is "NEW_RESOURCE_BASE" + the spell rank. The spell rank is A through Z for ranks 1 to 26, then 0 through 9 for ranks 27 to 36, then #,_,!,- for ranks 37 to 40. As such, the length limit for this parameter is 7.
+        * DESCRIPTION is the new description of the spell. If starting with +, then the content after the + is added to the existing description. Otherwise, the description is overriden. By default, the description is unchanged.
+    * Example Function Call:
+        * LAF SCALE_SPELL INT_VAR STEP_SIZE = 4 PIVOT_VALUE = 10 TARGET = 1  CHANGE_PER_STEP = 1 STAT_LOWER_LIMIT = 1 STAT_UPPER_LIMIT = 25 STR_VAR STAT = ~INT~ ORIGINAL_RESOURCE = ~SPWI112~ NEW_RESOURCE_BASE = ~ZKWI112~ PARAMETER_TO_SCALE = ~DIE_SIZE~ DESCRIPTION = ~+ The Dice Size is increased (decreased) by 1 for every 4th point of intelligence above (below) 10.~END
+        * This will increase (decrease) the dice size of Magic Missile by 1 for every 4th point of intelligence of the caster above (below) 10. The newly created spells will be named ZKWI112A through ZKWI112G.
+    */
+    //Sanity check on PARAMETER_TO_SCALE
+    ACTION_IF !(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DURATION~ OR ~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DICE_SIZE~ OR ~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DICE_NUMBER~ OR ~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~SAVING_THROW~ OR ~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~AMOUNT~)
+    BEGIN
+        FAIL ~Accepted values for PARAMETER_TO_SCALE are limited to DURATION, DICE_SIZE, DICE_NUMBER, SAVING_THROW and AMOUNT~ 
+    END
+    //Verifying emptiness on required string values
+    ACTION_IF ((~%STAT%~ STRING_EQUAL ~~) OR (~%ORIGINAL_RESOURCE%~ STRING_EQUAL ~~) OR (~%NEW_RESOURCE_BASE%~ STRING_EQUAL ~~)) BEGIN FAIL ~STAT, ORGINAL_RESOURCE and NEW_RESOURCE_BASE cannot be empty~ END
+    //Calculation of the exact number of steps
+    OUTER_SET UPPER_STEPS =  (STAT_UPPER_LIMIT - PIVOT_VALUE - STEP_SIZE+1) MODULO STEP_SIZE = 0?(STAT_UPPER_LIMIT - PIVOT_VALUE - STEP_SIZE+1)/STEP_SIZE:1+(STAT_UPPER_LIMIT - PIVOT_VALUE - STEP_SIZE+1)/STEP_SIZE
+    OUTER_SET LOWER_STEPS =  (PIVOT_VALUE - STAT_LOWER_LIMIT - STEP_SIZE+1) MODULO STEP_SIZE = 0?(PIVOT_VALUE - STAT_LOWER_LIMIT - STEP_SIZE+1)/STEP_SIZE:1+(PIVOT_VALUE - STAT_LOWER_LIMIT - STEP_SIZE+1)/STEP_SIZE
+    OUTER_SET NUMBER_OF_STEPS = UPPER_STEPS + LOWER_STEPS +1
+    ACTION_IF (NUMBER_OF_STEPS>40) BEGIN FAIL ~Due to Resource naming limitations, only up to 40 steps are accepted. Please increase the step size so (STAT_UPPER_LIMIT-STAT_LOWER_LIMIT)/STEP_SIZE)=<40~ END
+    ACTION_IF (STAT_UPPER_LIMIT<STAT_LOWER_LIMIT) BEGIN FAIL ~STAT_UPPER_LIMIT should be greater than STAT_LOWER_LIMIT~ END
+    ACTION_IF (STRING_LENGTH ~%NEW_RESOURCE_BASE%~ > 7) BEGIN FAIL ~NEW_RESOURCE_BASE cannot exceed 7 characters. Value given: %NEW_RESOURCE_BASE%~ END
+    ACTION_IF (!FILE_EXISTS_IN_GAME ~%ORIGINAL_RESOURCE%.SPL~) BEGIN FAIL ~%ORIGINAL_RESOURCE% not found in game~ END
+
+    LAF ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION STR_VAR VALUE = EVAL ~%STAT%~ RET stat_index = index END
+    //Defining Extra Characters. To move to 2DA
+    COPY ~%MOD_FOLDER%/ScaleSpell/2da/chars.2da~  ~%MOD_FOLDER%/ScaleSpell/2da/chars.2da~
+    FOR(k = 1;k<41;++k) BEGIN
+        READ_2DA_ENTRY k - 1 0 1 extra_char
+        SPRINT $extra_char("%k%")  "%extra_char%"
+    END
+    BUT_ONLY
+
+    COPY_EXISTING ~%ORIGINAL_RESOURCE%.SPL~ ~override/%NEW_RESOURCE_BASE%&.spl~
+        FOR (j = 1; j < NUMBER_OF_STEPS+1; ++j) BEGIN
+            INNER_ACTION BEGIN
+            OUTER_SPRINT current_char $extra_char("%j%")
+            OUTER_SPRINT spell_name "%NEW_RESOURCE_BASE%"^"%current_char%"
+            //PRINT "%spell_name%"
+            COPY_EXISTING ~%ORIGINAL_RESOURCE%.SPL~  ~override/%spell_name%.SPL~
+                SAY 0x8 #-1
+                SAY 0xc #-1
+                SAY 0x54 #-1
+                SAY 0x50 #-1
+            LPF ALTER_SPELL_HEADER INT_VAR projectile = 1 END
+                SET change_value = 0 - (LOWER_STEPS - j +1) * CHANGE_PER_STEP
+                /*
+                Ability Length: 0x28
+                Effect Number Offset:0x1E
+                */
+                SET number_effects = 0
+                READ_LONG 0x64 abilities_offset
+                READ_SHORT 0x68 number_abilities
+                FOR(i = 0; i < number_abilities; ++i) BEGIN
+                READ_SHORT abilities_offset+i*0x28+0x1E local_number_effect
+                SET number_effects = number_effects + local_number_effect
+                END
+                /*Effect length: 0x30
+                DURATION: start +0x0E (14): Only if base duration is 6+, to a minimum of 6, if timing mode is 0
+                DICE_SIZE: start + 0x20 (32): Only for damage, to a minimum of 1.
+                DICE_NUMBER: start +0x1C (28): Only for damage, to a minimum of 1
+                SAVING_THROW: start + 0x28 (40): Only if Save is not empty, to a minimum of -10
+                AMOUNT: start +0x04 (4): Only for Damage, to a minimum of 0
+                */
+                READ_LONG 0x6a effect_offset
+                READ_SHORT 0x70 number_global_effect
+
+                PATCH_IF(i<LOWER_STEPS+1) BEGIN
+                
+                FOR(i = 0; i < number_effects; ++i) BEGIN
+                    SET local_effect_offset = effect_offset + (i+number_global_effect)*0x30
+                    READ_BYTE (local_effect_offset + 0x0C) local_timing_mode
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DURATION~ AND local_timing_mode = 0) BEGIN
+                        READ_LONG (local_effect_offset +0x0E) local_duration
+                        PATCH_IF(local_duration>6) BEGIN
+                        PATCH_IF(local_duration + change_value>6) BEGIN
+                            WRITE_LONG (local_effect_offset +0x0E) (local_duration + change_value)
+                        END ELSE BEGIN
+                            WRITE_LONG (local_effect_offset +0x0E) 6
+                        END
+                        END
+                    END
+                    READ_SHORT local_effect_offset local_opcode
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DICE_SIZE~ AND local_opcode = 12) BEGIN
+                        READ_LONG (local_effect_offset +0x20) local_dice_size                 
+                        PATCH_IF(local_dice_size + change_value>0) BEGIN
+                        WRITE_LONG (local_effect_offset +0x20) (local_dice_size + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x20) 1
+                        END                  
+                    END
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DICE_NUMBER~ AND local_opcode = 12) BEGIN
+                        READ_LONG (local_effect_offset +0x1C) local_dice_number                 
+                        PATCH_IF(local_dice_number + change_value>0) BEGIN
+                        WRITE_LONG (local_effect_offset +0x1C) (local_dice_number + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x1C) 1
+                        END                  
+                    END
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~AMOUNT~ AND local_opcode = 12) BEGIN
+                        READ_LONG (local_effect_offset +0x04) local_dice_number                 
+                        PATCH_IF(local_dice_number + change_value>0 - 1) BEGIN
+                        WRITE_LONG (local_effect_offset +0x04) (local_dice_number + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x04) 0
+                        END                  
+                    END
+                    READ_BYTE (local_effect_offset + 0x24) local_save_type
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~SAVING_THROW~ AND local_save_type != 0) BEGIN
+                        READ_SLONG (local_effect_offset +0x28) local_save_bonus                 
+                        PATCH_IF(local_save_bonus + change_value>0 - 10) BEGIN
+                        WRITE_LONG (local_effect_offset +0x28) (local_save_bonus + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x28) (0 - 10)
+                        END                  
+                    END
+
+                END
+                END
+                PATCH_IF(i>LOWER_STEPS+1) BEGIN 
+                    FOR(i = 0; i < number_effects; ++i) BEGIN
+                    SET local_effect_offset = effect_offset + i*0x30
+                    READ_BYTE (local_effect_offset + 0x0C) local_timing_mode
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DURATION~ AND local_timing_mode = 0) BEGIN
+                        READ_LONG (local_effect_offset +0x0E) local_duration
+                        PATCH_IF(local_duration>6) BEGIN
+                        PATCH_IF(local_duration + change_value>6) BEGIN
+                            WRITE_LONG (local_effect_offset +0x0E) (local_duration + change_value)
+                        END ELSE BEGIN
+                            WRITE_LONG (local_effect_offset +0x0E) 6
+                        END
+                        END
+                    END
+                    READ_SHORT local_effect_offset local_opcode
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DICE_SIZE~ AND local_opcode = 12) BEGIN
+                        READ_LONG (local_effect_offset +0x20) local_dice_size                 
+                        PATCH_IF(local_dice_size + change_value>0) BEGIN
+                        WRITE_LONG (local_effect_offset +0x20) (local_dice_size + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x20) 1
+                        END                  
+                    END
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~DICE_NUMBER~ AND local_opcode = 12) BEGIN
+                        READ_LONG (local_effect_offset +0x1C) local_dice_number                 
+                        PATCH_IF(local_dice_number + change_value>0) BEGIN
+                        WRITE_LONG (local_effect_offset +0x1C) (local_dice_number + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x1C) 1
+                        END                  
+                    END
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~AMOUNT~ AND local_opcode = 12) BEGIN
+                        READ_LONG (local_effect_offset +0x04) local_dice_number                 
+                        PATCH_IF(local_dice_number + change_value>0 - 1) BEGIN
+                        WRITE_LONG (local_effect_offset +0x04) (local_dice_number + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x04) 0
+                        END                  
+                    END
+                    READ_BYTE (local_effect_offset + 0x24) local_save_type
+                    PATCH_IF(~%PARAMETER_TO_SCALE%~ STRING_EQUAL ~SAVING_THROW~ AND local_save_type != 0) BEGIN
+                        READ_SLONG (local_effect_offset +0x28) local_save_bonus                 
+                        PATCH_IF(local_save_bonus + change_value>0 - 10) BEGIN
+                        WRITE_LONG (local_effect_offset +0x28) (local_save_bonus + change_value)
+                        END ELSE BEGIN
+                        WRITE_LONG (local_effect_offset +0x28) (0 - 10)
+                        END                  
+                    END
+                END
+                END 
+            END
+        END
+
+        READ_BYTE 0x72 type
+        READ_BYTE 0x74 location
+        READ_BYTE 0x7e target
+        READ_BYTE 0x7f target_number
+        READ_SHORT 0x80 range 
+        READ_SHORT 0x84 casting_speed
+        READ_SHORT 0x98 projectile
+
+        READ_ASCII 0x76 icon
+        READ_LONG 0x50 string_reference
+        PATCH_IF (DESCRIPTION STRING_MATCHES_REGEXP "^\+.*") BEGIN 
+            GET_STRREF string_reference current_description
+            SET string_length = STRING_LENGTH "%DESCRIPTION%"
+            LPF SUBSTRING INT_VAR start = 1 length = string_length - 1 STR_VAR string = EVAL "%DESCRIPTION%" RET DESCRIPTION = substring END
+            SPRINT current_description "%current_description%" ^ "%DESCRIPTION%"
+            SAY 0x50 "%current_description%"
+        END ELSE BEGIN 
+            SAY 0x50 "%DESCRIPTION%"
+        END
+        LPF DELETE_SPELL_HEADER INT_VAR header_type = (0 - 1) END
+        LPF ADD_SPELL_HEADER
+            INT_VAR
+            type = type
+            location = location
+            target = target
+            target_number = target_number
+            range = range
+            minimum_level = 1
+            casting_speed = casting_speed
+            projectile = 1      
+            STR_VAR 
+            icon = EVAL ~%icon%~
+            END
+        FOR (j = STAT_LOWER_LIMIT; j < STAT_UPPER_LIMIT + 1; ++j) BEGIN
+            SPRINT correct_spell ""
+            PATCH_IF(j<PIVOT_VALUE) BEGIN
+            SET number_of_steps_below_pivot = (PIVOT_VALUE - j)/STEP_SIZE
+            SET correct_spell_rank = LOWER_STEPS + 1 - number_of_steps_below_pivot
+            SPRINT correct_char $extra_char("%correct_spell_rank%")
+            SPRINT correct_spell "%NEW_RESOURCE_BASE%"^"%correct_char%"
+            END
+            PATCH_IF(j=PIVOT_VALUE) BEGIN
+            SET correct_spell_rank = LOWER_STEPS + 1
+            SPRINT correct_char $extra_char("%correct_spell_rank%")
+            SPRINT correct_spell "%NEW_RESOURCE_BASE%"^"%correct_char%"
+            END
+            PATCH_IF(j>PIVOT_VALUE) BEGIN
+            SET number_of_steps_above_pivot = (j - PIVOT_VALUE)/STEP_SIZE
+            SET correct_spell_rank = LOWER_STEPS + 1 + number_of_steps_above_pivot
+            SPRINT correct_char $extra_char("%correct_spell_rank%")
+            SPRINT correct_spell "%NEW_RESOURCE_BASE%"^"%correct_char%"
+            END
+            
+            LPF ADD_SPELL_EFFECT
+            INT_VAR
+            opcode = 326
+            target = TARGET 
+            parameter2 = stat_index 
+            parameter1 = j 
+            header = 0
+            STR_VAR
+            resource = EVAL ~%correct_spell%~ END
+        END
+        COPY_EXISTING ~%ORIGINAL_RESOURCE%.SPL~ override 
+            LPF DELETE_SPELL_HEADER INT_VAR header_type = (0 - 1) END
+            LPF ADD_SPELL_HEADER
+                INT_VAR
+                type = type
+                location = location
+                target = target
+                target_number = target_number
+                range = range
+                minimum_level = 1
+                casting_speed = casting_speed
+                projectile = projectile      
+                STR_VAR 
+                icon = EVAL ~%icon%~
+                END
+            LPF ADD_SPELL_EFFECT
+                INT_VAR
+                opcode = 146
+                target = 2 
+                parameter2 = 1
+                header = 0
+                STR_VAR
+                resource = EVAL ~%NEW_RESOURCE_BASE%&~ END  
+
+    
+    END
+
+DEFINE_ACTION_FUNCTION MULTI_SCALE_SPELL INT_VAR i = 1 STR_VAR TABLE_PATH = ~~   ORIGINAL_RESOURCE = ~~ NEW_RESOURCE_BASE = ~~ DESCRIPTION = ~+~ BEGIN
+    /*
+    This function fulfills the same role as SCALE_SPELL, except it allows scaling a spell with multiple stats at once.
+    TABLE_PATH expects a path to a 2DA file that contains the instructions for the scaling.
+    Please refer to SCALE_SPELL for the other parameters
+    Note that the length of NEW_RESOURCE_BASE is further limited here: each scaling dimension uses another character in the name of the spell. The max length for NEW_RESOURCE_BASE is 8 - scaling dimension. 
+    The expected format for the 2DA is as follows. Please refer to SCALE_SPELL for details on each parameter in this table
+    STEP_SIZE PIVOT_VALUE TARGET CHANGE_PER_STEP STAT_LOWER_LIMIT STAT_UPPER_LIMIT STAT PARAMETER_TO_SCALE 
+    4         10          1      1               1                25               INT  DICE_SIZE
+    6         10          1      1               1                25               WIS  DICE_NUMBER
+    */
+    ACTION_IF (~%TABLE_PATH%~ STRING_MATCHES_REGEXP ~.*\.2da~) BEGIN FAIL ~TABLE_PATH must be a path to a 2da file~ END
+    COPY "%TABLE_PATH%" "%TABLE_PATH%"
+        COUNT_2DA_ROWS 7 row_count
+        PATCH_IF (STRING_LENGTH ~%NEW_RESOURCE_BASE%~ + row_count - i> 8) BEGIN
+            SET scaling_dimension = row_count - 1
+            SET new_resource_length = STRING_LENGTH ~%NEW_RESOURCE_BASE%~
+            SET max_dimension = 8 - new_resource_length
+            PATCH_FAIL ~Maximum scaling dimension exceeded. For a NEW_RESOURCE_BASE '%NEW_RESOURCE_BASE%' with length %new_resource_length%, the maximum scaling dimension is %max_dimension%. Please reduce the length of NEW_RESOURCE_BASE length or the scaling dimension (number of scaling rows in %TABLE_PATH%. Current: %scaling_dimension%).~
+        END    
+        READ_2DA_ENTRY i 0 7 step_size
+        READ_2DA_ENTRY i 1 7 pivot_value
+        READ_2DA_ENTRY i 2 7 target 
+        READ_2DA_ENTRY i 3 7 change_per_step
+        READ_2DA_ENTRY i 4 7 stat_lower_limit
+        READ_2DA_ENTRY i 5 7 stat_upper_limit
+        READ_2DA_ENTRY i 6 7 stat
+        READ_2DA_ENTRY i 7 7 parameter_to_scale
+        INNER_ACTION BEGIN
+            OUTER_SET UPPER_STEPS =  (stat_upper_limit - pivot_value - step_size + 1) MODULO step_size = 0?(stat_upper_limit - pivot_value - step_size + 1)/step_size:1 + (stat_upper_limit - pivot_value - step_size + 1)/step_size
+            OUTER_SET LOWER_STEPS =  (pivot_value - stat_lower_limit - step_size + 1) MODULO step_size = 0?(pivot_value - stat_lower_limit - step_size + 1)/step_size:1 + (pivot_value - stat_lower_limit - step_size + 1)/step_size
+            OUTER_SET NUMBER_OF_STEPS = UPPER_STEPS + LOWER_STEPS +1
+            LAF SCALE_SPELL INT_VAR STEP_SIZE = step_size PIVOT_VALUE = pivot_value TARGET = target  CHANGE_PER_STEP = change_per_step STAT_LOWER_LIMIT = stat_lower_limit STAT_UPPER_LIMIT = stat_upper_limit STR_VAR STAT = EVAL ~%stat%~ ORIGINAL_RESOURCE = EVAL ~%ORIGINAL_RESOURCE%~ NEW_RESOURCE_BASE = EVAL ~%NEW_RESOURCE_BASE%~ PARAMETER_TO_SCALE = EVAL "%parameter_to_scale%" DESCRIPTION = EVAL ~%DESCRIPTION%~ END
+            ACTION_IF(i < row_count - 1) BEGIN
+            COPY ~%MOD_FOLDER%/ScaleSpell/2da/chars.2da~  ~%MOD_FOLDER%/ScaleSpell/2da/chars.2da~
+                FOR(k = 1;k<41;++k) BEGIN
+                READ_2DA_ENTRY k - 1 0 1 extra_char
+                SPRINT $extra_char("%k%")  "%extra_char%"
+                END
+            OUTER_FOR (j = 1; j < NUMBER_OF_STEPS + 1; ++j) BEGIN
+                OUTER_SPRINT current_char $extra_char("%j%")
+                OUTER_SPRINT spell_name "%NEW_RESOURCE_BASE%"^"%current_char%"
+            LAF MULTI_SCALE_SPELL INT_VAR i = i + 1 STR_VAR TABLE_PATH = EVAL "%TABLE_PATH%"   ORIGINAL_RESOURCE = EVAL ~%spell_name%~ NEW_RESOURCE_BASE = EVAL ~%spell_name%~ DESCRIPTION = ~%DESCRIPTION%~ END
+            END
+            END
+        END
+        BUT_ONLY
+END
+
+DEFINE_ACTION_FUNCTION SCALE_SPELL_WITH_LEVEL INT_VAR SCALING_START_LEVEL = 2 MAX_LEVEL = 20 STR_VAR TABLE_PATH = ~~ SPELL_TO_PATCH = ~~ DESCRIPTION = ~+~ BEGIN
+    /*
+    * Purpose of the function:
+    * This function modify one spell and create alternate versions of that spell where one of the parameters scale with a stat of the target. Example applications: 
+    *   Make a saving throw on a spell harder if the caster has high intelligence
+    *   Reduce the damage dealt to a target if their dexterity is high enough
+    *   Increase the damage of a spell if the caster has high proficiency with a particular weapon or fighting style.
+    *   Lower the duration of a spell if the caster is too drunk
+    * This function cannot scale a spell for more than one statistic. If you need to do that, see MULTI_SCALE_SPELL.
+    * PARAMETERS: 
+        * STEP_SIZE: The range in which a spell will have the same effect.
+        * CHANGE_PER_STEP and PARAMETER_TO_SCALE determine what parameter to scale, and by how much it scales for each step.
+        * SCALING_START_LEVEL is the first level at which the spell's effects should be increased.
+        * MAX_LEVEL is the level at which the spell stops scaling.
+        * SPELL_TO_PATCH is the spell to patch
+        * DESCRIPTION is the new description of the spell. If starting with +, then the content after the + is added to the existing description. Otherwise, the description is overriden. By default, the description is unchanged.
+    */
+
+    //Sanity check on PARAMETER_TO_SCALE
+    ACTION_IF (~%TABLE_PATH%~ STRING_MATCHES_REGEXP ~.*\.2da~) BEGIN FAIL ~TABLE_PATH must be a path to a 2da file~ END
+    //Calculation of the exact number of steps
+    ACTION_IF (!FILE_EXISTS_IN_GAME ~%SPELL_TO_PATCH%.SPL~) BEGIN FAIL ~%SPELL_TO_PATCH% not found in game~ END
+
+    COPY_EXISTING ~%SPELL_TO_PATCH%.SPL~ override
+        READ_BYTE 0x72 type
+        READ_BYTE 0x74 location
+        READ_BYTE 0x7e target
+        READ_BYTE 0x7f target_number
+        READ_SHORT 0x80 range 
+        READ_SHORT 0x84 casting_speed
+        READ_ASCII 0x76 icon
+        READ_LONG 0x50 string_reference
+        READ_LONG 0x6a effect_offset
+        READ_SHORT 0x90 ability_number_of_effects
+        READ_SHORT 0x92 effect_number_offset
+        READ_SHORT 0x98 projectile
+        SET ability_effect_offset = effect_offset + effect_number_offset*0x30
+
+        PATCH_IF (DESCRIPTION STRING_MATCHES_REGEXP "^\+.*") BEGIN 
+            GET_STRREF string_reference current_description
+            SET string_length = STRING_LENGTH "%DESCRIPTION%"
+            LPF SUBSTRING INT_VAR start = 1 length = string_length - 1 STR_VAR string = EVAL "%DESCRIPTION%" RET DESCRIPTION = substring END
+            SPRINT current_description "%current_description%" ^ "%DESCRIPTION%"
+            SAY 0x50 "%current_description%"
+        END ELSE BEGIN 
+            SAY 0x50 "%DESCRIPTION%"
+        END
+        FOR(i = 0; i<ability_number_of_effects; ++i) BEGIN
+            READ_SHORT ability_effect_offset + i*0x30 opcode
+            READ_BYTE ability_effect_offset + i*0x30 +0x2 effect_target
+            READ_BYTE ability_effect_offset + i*0x30 +0x3 power
+            READ_LONG ability_effect_offset + i*0x30 +0x4 parameter1
+            READ_LONG ability_effect_offset + i*0x30 +0x8 parameter2
+            READ_BYTE ability_effect_offset + i*0x30 +0xc timing
+            READ_BYTE ability_effect_offset + i*0x30 +0xd dispel
+            READ_LONG ability_effect_offset + i*0x30 +0xe duration
+            READ_BYTE ability_effect_offset + i*0x30 +0x13 probability_low
+            READ_BYTE ability_effect_offset + i*0x30 +0x12 probability_high
+            READ_ASCII ability_effect_offset + i*0x30 +0x14 resource
+            PATCH_IF("%resource%" STRING_EQUAL ~~) BEGIN
+                SPRINT resource "0"
+            END
+            READ_LONG ability_effect_offset + i*0x30 +0x1c dice_number
+            READ_LONG ability_effect_offset + i*0x30 +0x20 dice_size
+            READ_LONG ability_effect_offset + i*0x30 +0x24 save_type
+            READ_LONG ability_effect_offset + i*0x30 +0x28 save_bonus
+            READ_LONG ability_effect_offset + i*0x30 +0x2c special
+            INNER_ACTION BEGIN
+                ACTION_IF(!FILE_EXISTS ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.1.2da~) BEGIN
+                    
+                    COPY ~%MOD_FOLDER%/ScaleSpell/2da/empty_effect_table.2da~  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.1.2da~
+                        INSERT_2DA_ROW i+1 1 ~0 %opcode% %effect_target% %power% %parameter1% %parameter2% %timing% %dispel% %duration% %probability_low% %probability_high% %resource% %dice_number% %dice_size% %save_type% %save_bonus% %special%~
+                
+                END ELSE BEGIN 
+                    COPY  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.1.2da~  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.1.2da~
+                        INSERT_2DA_ROW i+1 1 ~0 %opcode% %effect_target% %power% %parameter1% %parameter2% %timing% %dispel% %duration% %probability_low% %probability_high% %resource% %dice_number% %dice_size% %save_type% %save_bonus% %special%~
+                
+                END
+                
+            END
+        END
+        INNER_ACTION BEGIN
+            COPY "%TABLE_PATH%" "%TABLE_PATH%"
+                COUNT_2DA_ROWS 5 effect_scaling_number
+                effect_scaling_number -=1
+                FOR(i = 1; i < effect_scaling_number+1; ++i) BEGIN
+                    
+                    READ_2DA_ENTRY i 0 5 $effect_scale("%i%_min_level")
+                    READ_2DA_ENTRY i 1 5 $effect_scale("%i%_max_level")
+                    READ_2DA_ENTRY i 2 5 $effect_scale("%i%_step_size")
+                    READ_2DA_ENTRY i 3 5 $effect_scale("%i%_change_per_step")
+                    READ_2DA_ENTRY i 4 5 $effect_scale("%i%_parameter_to_scale")
+                    READ_2DA_ENTRY i 5 5 $effect_scale("%i%_effect_number")
+                END
+            BUT_ONLY
+
+            
+                
+            OUTER_FOR(j = SCALING_START_LEVEL; j<= MAX_LEVEL; ++j) BEGIN                     
+                OUTER_SET previous_file = j = SCALING_START_LEVEL?1:j - 1
+
+                COPY  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.%previous_file%.2da~  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.%j%.2da~
+                    //PATCH_PRINT ~Number of effects in ability: %ability_number_of_effects%~
+                    FOR(k = 1; k<=ability_number_of_effects; ++k) BEGIN
+                        SET header = j + 1 - SCALING_START_LEVEL
+                        //PATCH_PRINT ~Setting effect %k% to header %header%~
+                        SET_2DA_ENTRY k 0 0 header
+                        FOR(l = 1; l<effect_scaling_number+1; ++l) BEGIN
+                            PATCH_IF(k = $effect_scale("%l%_effect_number") AND j>=$effect_scale("%l%_min_level") AND j<=$effect_scale("%l%_max_level")) BEGIN
+                                READ_2DA_ENTRY k 5 5 local_timing_mode
+                                SET change_value = (j - $effect_scale("%l%_min_level")) MODULO $effect_scale("%l%_step_size") = 0? $effect_scale("%l%_change_per_step"):0
+                                //PATCH_PRINT "change_value: %change_value%"
+                                PATCH_IF($effect_scale("%l%_parameter_to_scale") STRING_EQUAL ~DURATION~ AND local_timing_mode = 0) BEGIN
+                                    READ_2DA_ENTRY k 8 8 local_duration
+                                    PATCH_IF(local_duration>6) BEGIN
+                                        PATCH_IF(local_duration + change_value>6) BEGIN
+                                            SET_2DA_ENTRY k 8 8 local_duration + change_value
+                                        END ELSE BEGIN
+                                            SET_2DA_ENTRY k 8 8 6
+                                        END
+                                    END ELSE BEGIN
+                                        PATCH_IF(local_duration + change_value>0) BEGIN
+                                            SET_2DA_ENTRY k 8 8 local_duration + change_value
+                                        END ELSE BEGIN
+                                            SET_2DA_ENTRY k 8 8 0
+                                        END
+                                    END
+                                END
+                                PATCH_IF($effect_scale("%l%_parameter_to_scale") STRING_EQUAL ~DICE_SIZE~) BEGIN
+                                    READ_2DA_ENTRY k 13 13 local_dice_size
+                                    PATCH_IF(local_dice_size + change_value>0) BEGIN
+                                        SET_2DA_ENTRY k 13 13 (local_dice_size + change_value)
+                                    END ELSE BEGIN
+                                        SET_2DA_ENTRY k 13 13 1
+                                    END                  
+                                END
+                                PATCH_IF($effect_scale("%l%_parameter_to_scale") STRING_EQUAL ~DICE_NUMBER~) BEGIN
+                                    READ_2DA_ENTRY k 12 12 local_dice_number
+                                    PATCH_IF(local_dice_number + change_value>0) BEGIN
+                                        SET_2DA_ENTRY k 12 12 (local_dice_number + change_value)
+                                    END ELSE BEGIN
+                                        SET_2DA_ENTRY k 12 12 1
+                                    END                  
+                                END
+                                PATCH_IF($effect_scale("%l%_parameter_to_scale") STRING_EQUAL ~PARAMETER1~) BEGIN
+                                    READ_2DA_ENTRY k 4 4 local_parameter_1                 
+                                    PATCH_IF(local_parameter_1 + change_value>0 - 1) BEGIN
+                                        SET_2DA_ENTRY k 4 4 (local_dice_number + change_value)
+                                    END ELSE BEGIN
+                                        SET_2DA_ENTRY k 4 4 (local_dice_number + change_value)
+                                    END                  
+                                END
+                                PATCH_IF($effect_scale("%l%_parameter_to_scale") STRING_EQUAL ~PARAMETER2~) BEGIN
+                                    READ_2DA_ENTRY k 5 5 local_parameter_1                 
+                                    PATCH_IF(local_parameter_1 + change_value>0 - 1) BEGIN
+                                        SET_2DA_ENTRY k 5 5 (local_dice_number + change_value)
+                                    END ELSE BEGIN
+                                        SET_2DA_ENTRY k 5 5 (local_dice_number + change_value)
+                                    END                  
+                                END
+                                READ_2DA_ENTRY k 14 14 local_save_type
+                                PATCH_IF($effect_scale("%l%_parameter_to_scale") STRING_EQUAL ~SAVING_THROW~ AND local_save_type != 0) BEGIN
+                                    READ_2DA_ENTRY k 15 15 local_save_bonus                 
+                                    PATCH_IF(local_save_bonus + change_value>0 - 10) BEGIN
+                                        SET_2DA_ENTRY k 15 15 (local_save_bonus + change_value)
+                                    END ELSE BEGIN
+                                        SET_2DA_ENTRY k 15 15 (0 - 10)
+                                    END                  
+                                END
+                                PATCH_IF($effect_scale("%l%_parameter_to_scale") STRING_EQUAL ~PROBABILITY_HIGH~) BEGIN
+                                    READ_2DA_ENTRY k 10 10 local_probability_high
+                                    PATCH_IF(local_probability_high + change_value<100) BEGIN
+                                        SET_2DA_ENTRY k 10 10 (local_probability_high + change_value)
+                                    END ELSE BEGIN
+                                        SET_2DA_ENTRY k 10 10 100
+                                    END                  
+                                END
+                            END
+                        END
+                    END
+                   
+            END
+            OUTER_FOR(j = SCALING_START_LEVEL; j<=MAX_LEVEL; ++j) BEGIN                     
+                COPY  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.%j%.2da~  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.%j%.2da~                    
+                    REMOVE_2DA_ROW 0 0
+                    
+            END
+            COPY  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.1.2da~  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.effects.2da~
+                FOR(j = SCALING_START_LEVEL; j<= MAX_LEVEL; ++j) BEGIN                    
+                    APPEND_FILE_EVALUATE TEXT ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.%j%.2da~
+                END
+            DELETE  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.1.2da~
+
+            OUTER_FOR (j = SCALING_START_LEVEL; j<= MAX_LEVEL; ++j) BEGIN
+                DELETE  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.%j%.2da~
+            END
+        END
+
+
+        
+        FOR(i = 2; i<=50; ++i) BEGIN
+            LPF DELETE_SPELL_HEADER INT_VAR header_type = (0 - 1) min_level = i END
+        END
+        FOR(i = SCALING_START_LEVEL; i<=MAX_LEVEL; ++i) BEGIN
+            LPF ADD_SPELL_HEADER
+            INT_VAR
+            type = type
+            location = location
+            target = target
+            target_number = target_number
+            range = range
+            minimum_level = i
+            casting_speed = casting_speed
+            projectile = projectile      
+            STR_VAR 
+            icon = EVAL ~%icon%~
+            END
+        END
+    COPY  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.effects.2da~  ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.effects.2da~
+        COUNT_2DA_ROWS 0 number_of_effects_to_create
+        FOR(i=1; i<number_of_effects_to_create;++i) BEGIN
+            READ_2DA_ENTRY i 0 0 $effects_to_create("%i%_header")
+            PATCH_IF($effects_to_create("%i%_header") != 0) BEGIN
+                READ_2DA_ENTRY i 1 0 $effects_to_create("%i%_opcode")
+                READ_2DA_ENTRY i 2 0 $effects_to_create("%i%_target")
+                READ_2DA_ENTRY i 3 0 $effects_to_create("%i%_power")
+                READ_2DA_ENTRY i 4 0 $effects_to_create("%i%_parameter1")
+                READ_2DA_ENTRY i 5 0 $effects_to_create("%i%_parameter2")
+                READ_2DA_ENTRY i 6 0 $effects_to_create("%i%_timing")
+                READ_2DA_ENTRY i 7 0 $effects_to_create("%i%_dispel")
+                READ_2DA_ENTRY i 8 0 $effects_to_create("%i%_duration")
+                READ_2DA_ENTRY i 9 0 $effects_to_create("%i%_probability_low")
+                READ_2DA_ENTRY i 10 0 $effects_to_create("%i%_probability_high")
+                READ_2DA_ENTRY i 11 0 $effects_to_create("%i%_resource")
+                READ_2DA_ENTRY i 12 0 $effects_to_create("%i%_dice_number")
+                READ_2DA_ENTRY i 13 0 $effects_to_create("%i%_dice_size")
+                READ_2DA_ENTRY i 14 0 $effects_to_create("%i%_save_type")
+                READ_2DA_ENTRY i 15 0 $effects_to_create("%i%_save_bonus")
+                READ_2DA_ENTRY i 16 0 $effects_to_create("%i%_special")
+            END
+        END
+    BUT_ONLY
+    DELETE ~%MOD_FOLDER%/ScaleSpell/temp/2da/%SPELL_TO_PATCH%.effects.2da~
+    
+
+   
+        COPY_EXISTING ~%SPELL_TO_PATCH%.SPL~ ~override/%SPELL_TO_PATCH%.SPL~
+            FOR(i=1; i<number_of_effects_to_create;++i) BEGIN
+            PATCH_IF($effects_to_create("%i%_header") != 0) BEGIN
+                LPF ADD_SPELL_EFFECT
+                    INT_VAR
+                    opcode = $effects_to_create("%i%_opcode")
+                    target = $effects_to_create("%i%_target")
+                    power = $effects_to_create("%i%_power")
+                    parameter1 = $effects_to_create("%i%_parameter1") 
+                    parameter2 = $effects_to_create("%i%_parameter2")
+                    timing = $effects_to_create("%i%_timing")
+                    resist_dispel = $effects_to_create("%i%_dispel") 
+                    duration = $effects_to_create("%i%_duration")
+                    probability2 = $effects_to_create("%i%_probability_low")
+                    probability1 = $effects_to_create("%i%_probability_high")
+                    dicenumber = $effects_to_create("%i%_dice_number")
+                    dicesize = $effects_to_create("%i%_dice_size")
+                    savingthrow = $effects_to_create("%i%_save_type")
+                    savebonus = $effects_to_create("%i%_save_bonus")
+                    special = $effects_to_create("%i%_special")
+                    header = $effects_to_create("%i%_header")+1
+                    STR_VAR 
+                    resource = $effects_to_create("%i%_resource")
+                END
+            END
+    END
+  
+
+END
+
+
+DEFINE_ACTION_FUNCTION SPELL_HIT_CHECK INT_VAR BONUS_TO_APPLY = 0 WITH_FEEDBACK = 0 STR_VAR SPELL_TO_PATCH = ~~ NEW_SPELL_RES = ~~ DESCRIPTION = ~+~ BEGIN
+    /*
+        The goal of this function is to make it so the spell SPELL_TO_PATCH only succeeds if the caster succeeds in hitting the target with a main-hand touch attack
+        The probability of hitting the spell is simulated based on the caster's base THAC0, main-hand effective to-hit bonus and the target's AC using the following logic:
+        Base THAC0 - Effective to-hit bonus = effective THAC0
+        A target is hit only if the attack roll is greater than THAC0 - AC so:
+        Score-To-Beat = THAC0-AC
+        Since spells use a percentage probability and attack role is a d20, the probability of hitting is:
+        Probability of hitting (in %) = (20-Score-To-Beat+1)*5 (e.g. if Score to Beat is 8, an attack roll would succeed if it's 8 or more, so the probability of hitting is 65%, which is (20-8+1)*5)
+        To mimic critical misses and critical hits, the probability of hitting will always be at least 5% and max 95%.
+        
+        Arguments:
+            -The BONUS_TO_APPLY argument allows you to add a "to-hit" bonus for the spell. The number can be positive or negative. A "+1" bonus results in an additional 5% to hit
+            -SPELL_TO_PATCH is the resref of the spell to which this should be applied
+            -NEW_SPELL_RES should contain the name of the original spell, that is eventually applied. Can be up to 7 letters.
+                -The original Spell is copied NEW_SPELL_RES. It is cast by the final "layer" of scaling
+                -The spell that should be cast to mimic the original spell with a touch hit is NEW_SPELL_RES
+            -DESCRIPTION contains the updated description of the spell. If it starts with a +, then whatever is after the + is added to the existing description.
+            - This function will work for any AC ranging from -30 to +30, for any base THAC0 from -20 to +20, for any to-hit bonus from -49 to +50;
+                - AC without modifiers is capped at -28 (-20 base, -6 dex, -2 for Single Weapon Style **) and +25 (base 20, +5 for 1 dex) 
+                - Natural THAC0 goes from +20 to -20
+                - To hit bonus has no cap per se, but a level 40 Kensai with 25 strength and a +6 weapon would have +26 which leaves a fair margin for misc buffs.
+        Limitations:
+            - This function does not currently take critical hits and misses bonuses (such as that provided by the Critical Strike HLA) into account
+                - This would be technically possible but would take a while. Feel free to raise a PR if you feel like coding it
+            - This function cannot be used for individual checks for every target in an AoE Spell, as only "Score-To-Beat" can be calculated at a given time
+                - Notably, it cannot be used to make it so Sun Soulbeam work as described
+                - It can however be used on AoE spells that have a central target, but then hit the entire AoE if that target is hit
+            - This function uses the caster's current weapon, along with the bonuses that come with it. Most notably:
+                - If the caster uses an enchanted weapon, the enchantment is added to their effective to-hit bonus
+                - If the caster uses a melee weapon, the simulated attack roll is made with the melee bonuses of the caster, even if the spell is ranged
+            - This function does not take specific AC modifiers (vs crushing etc...) into account
+            - The "Score-To-Beat" is very briefly (for 1 game tick) stored in the Magic Cold Resistance of the caster, which can result in unintended behavior if other mods use this stat as well.
+                - This stat is generally useless as no spell use it and spells that would use it crash the game if they kill anyone. 
+            - Due to engine limitations in how delegated effects are applied, this spell uses a lot of intermediate spells:
+                - The first call to the function will create a bunch of spells (~640). These spells are reused for subsequent spells to which this function is applied. If another mod make use of the function, the spells are not duplicated either.
+                - Each call to the function will create 7 spells. The resources used for these are %NEW_SPELL_RES% and %NEW_SPELL_RES%A through %NEW_SPELL_RES%F. These resources are necessary for the spell to work and should not be overwritten
+    
+        
+    */
+
+    /*
+        The spells created here are used to temporarily store the saving throw difficulty into the MAGICAL COLD RESIST stat of the caster
+        Due to engine limitations, the "SET" operator must be used instead of the "INCREMENT", hence the expanding ranges and overall increased number of spells
+            This is because the INCREMENT operation takes effect at the next game tick whereas the entire spell is executed in one tick. The SET operator however is set instantly
+    */
+    ACTION_IF(!(FILE_EXISTS_IN_GAME ~ZKTHA.spl~)) BEGIN
+        LAF ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION STR_VAR VALUE = ~THAC0~ RET thac0index = index END
+        LAF ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION STR_VAR VALUE = ~ARMORCLASS~ RET acindex = index END
+        LAF ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION STR_VAR VALUE = ~THAC0BONUSRIGHT~ RET thac0bonusindex = index END
+        //Base THAC0 ranges from -20 to 20
+        OUTER_FOR (i=0 - 20; i<=20; ++i) BEGIN
+            OUTER_SET j = i+20
+            COPY ~%MOD_FOLDER%/ScaleSpell/spl/ZKTAC00.spl~ ~override/ZKTHA%j%.spl~
+                SAY 0x8 #-1
+                
+                WRITE_LONG 0x9e i
+                FOR (k=0 - 30; k<=30; ++k) BEGIN
+                    SET l = k+i+50
+                    LPF ADD_SPELL_EFFECT 
+                    INT_VAR
+                        opcode=326
+                        target = 2
+                        timing = 0
+                        parameter1 = 0 - k
+                        parameter2 = acindex
+                        duration = 1
+                        STR_VAR
+                        resource = EVAL ~ZKTAC%l%~ 
+                    END
+                END
+        END
+        //AC ranges from -30 to +30, so AC + Base THAC0 ranges from -50 to +50
+        OUTER_FOR (i=0 - 50; i<=50; ++i) BEGIN
+            OUTER_SET j = i+50
+            COPY ~%MOD_FOLDER%/ScaleSpell/spl/ZKTAC00.spl~ ~override/ZKTAC%j%.spl~
+                SAY 0x8 #-1
+                WRITE_LONG 0x9e i
+                FOR (k=0 - 50; k<=50; ++k) BEGIN
+                    SET l = i - k + 100
+                    LPF ADD_SPELL_EFFECT 
+                    INT_VAR
+                        opcode=326
+                        target = 9
+                        timing = 0
+                        parameter1 = k
+                        parameter2 = thac0bonusindex
+                        duration = 1
+                        STR_VAR
+                        resource = EVAL ~ZKTHB%l%~ 
+                    END
+                END
+        END
+        // THAC0 bonus for the purpose of this function is capped to -50/+50, which extends the ranges to -100;100
+        OUTER_FOR (i=0 - 100; i<=100; ++i) BEGIN
+            OUTER_SET j = i+100
+            COPY ~%MOD_FOLDER%/ScaleSpell/spl/ZKTAC00.spl~ ~override/ZKTHB%j%.spl~
+                SAY 0x8 #-1
+                WRITE_LONG 0x9e i
+        END
+        // The stat limit is -127;127. Practical applications for those are virtually non existent. Anything that would exceed 127 one way or the other is set to 127 instead
+        OUTER_FOR (i=0 - 127; i<=127; ++i) BEGIN
+            OUTER_SET j = i+127
+            COPY ~%MOD_FOLDER%/ScaleSpell/spl/ZKTAC00.spl~ ~override/ZKBTA%j%.spl~
+                WRITE_LONG 0x9e 0 - i
+                SAY 0x8 #-1
+
+        END
+        COPY ~%MOD_FOLDER%/ScaleSpell/spl/ZKTAC.spl~ ~override/ZKTHA.spl~
+            SAY 0x8 #-1
+            FOR (i=0 - 20; i<=20; ++i) BEGIN
+                SET j = i+20
+                LPF ADD_SPELL_EFFECT 
+                INT_VAR
+                    opcode=326
+                    target = 9
+                    timing = 0
+                    parameter1 = i
+                    parameter2 = thac0index
+                    duration = 1
+                    STR_VAR
+                    resource = EVAL ~ZKTHA%j%~ 
+                END
+            END
+        //These two spells are feedback spells that tell you the roll you made and the necessary roll to hit
+        OUTER_FOR(i = 1; i<=20;++i) BEGIN
+            COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkfeed.spl~ ~override/zkfeed%i%.spl~
+                SAY 0x8 #-1
+                SAY 0x9e ~Roll: %i%~
+        END
+
+        OUTER_FOR(i = 2 ; i <=20;++i) BEGIN
+            COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkfeed.spl~ ~override/zkmc%i%.spl~
+                SAY 0x8 #-1
+                SAY 0x9e ~Minimum Roll To Beat: %i%~
+        END
+
+        
+    END
+    LAF ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION STR_VAR VALUE = ~RESISTMAGICCOLD~ RET rmcindex = index END
+    LAF ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION INT_VAR OPERATION = 4 STR_VAR OPERATION_STRING = ">=" VALUE = ~RESISTMAGICCOLD~ RET rmcgindex = index END
+    LAF ADD_OR_RETRIEVE_STAT_EQ_VALUE_CONDITION INT_VAR OPERATION = 0 STR_VAR OPERATION_STRING = "<="VALUE = ~RESISTMAGICCOLD~ RET rmclindex = index END
+    
+    //Remove projectile on the final spell as it will be thrown by the first spell, like arrows that miss for instance. The final spell is the one with the actual effects
+    COPY_EXISTING ~%SPELL_TO_PATCH%.spl~ ~override/%NEW_SPELL_RES%.spl~
+            READ_SHORT 0x98 projectile
+            LPF ALTER_SPELL_HEADER
+                INT_VAR
+                projectile = 1
+            END
+    //Replace the original spell with a standard one that keeps everything the same regarding the spell header, but changes the effects to cast the intermediate spells
+    COPY_EXISTING ~%SPELL_TO_PATCH%.spl~ override 
+        READ_BYTE 0x72 type
+        READ_BYTE 0x74 location
+        READ_BYTE 0x7e target
+        READ_BYTE 0x7f target_number
+        READ_SHORT 0x80 range 
+        READ_SHORT 0x84 casting_speed
+        READ_ASCII 0x76 icon
+        READ_LONG 0x50 string_reference
+        PATCH_IF (DESCRIPTION STRING_MATCHES_REGEXP "^\+.*") BEGIN 
+            GET_STRREF string_reference current_description
+            SET string_length = STRING_LENGTH "%DESCRIPTION%"
+            LPF SUBSTRING INT_VAR start = 1 length = string_length - 1 STR_VAR string = EVAL "%DESCRIPTION%" RET DESCRIPTION = substring END
+            SPRINT current_description "%current_description%" ^ "%DESCRIPTION%"
+            SAY 0x50 "%current_description%"
+        END ELSE BEGIN 
+            SAY 0x50 "%DESCRIPTION%"
+        END
+
+        LPF DELETE_SPELL_HEADER INT_VAR header_type = (0 - 1) END
+        LPF ADD_SPELL_HEADER
+            INT_VAR
+            type = type
+            location = location
+            target = target
+            target_number = target_number
+            range = range
+            minimum_level = 1
+            casting_speed = casting_speed
+            projectile = projectile      
+            STR_VAR 
+            icon = EVAL ~%icon%~
+            END
+        
+        
+        LPF ADD_SPELL_EFFECT 
+        INT_VAR opcode=326
+            target = 9
+            timing = 0
+            parameter1 = 0
+            parameter2 = 0
+            duration = 1
+            STR_VAR
+            resource = EVAL ~ZKTHA~ 
+            END
+        LPF ADD_SPELL_EFFECT 
+            INT_VAR opcode=326
+                target = 9
+                timing = 0
+                parameter1 = 0
+                parameter2 = 0
+                duration = 1
+                STR_VAR
+                resource = EVAL ~%NEW_SPELL_RES%A~ 
+            END
+    /*Create intermediate spells.
+      This is necessary because intermediate spells are applied in "layers".
+      The spell that calculates the difficulty of the attack roll has 4 layers, so here we need at least as many before the actual spell is applied, to make sure everything is accounted for. An extra 2 are added for BONUS_TO_APPLY
+    */
+    COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkinter.spl~ ~override/%NEW_SPELL_RES%A.spl~
+        SAY 0x8 #-1
+        WRITE_ASCIIE 0xae  ~%NEW_SPELL_RES%B~
+    COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkinter.spl~ ~override/%NEW_SPELL_RES%B.spl~
+        SAY 0x8 #-1
+        WRITE_ASCIIE 0xae  ~%NEW_SPELL_RES%C~
+    COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkinter.spl~ ~override/%NEW_SPELL_RES%C.spl~
+        SAY 0x8 #-1
+        WRITE_ASCIIE 0xae  ~%NEW_SPELL_RES%D~
+    COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkinter.spl~ ~override/%NEW_SPELL_RES%D.spl~
+        SAY 0x8 #-1
+        PATCH_IF(BONUS_TO_APPLY != 0) BEGIN
+            FOR (k=0 - 127; k<=127; ++k) BEGIN
+                SET m = k - BONUS_TO_APPLY
+                SET l = 254 - (k + 127 - BONUS_TO_APPLY)
+                PATCH_IF (m < 0 - 127) BEGIN
+                    SET l = 254
+                END
+                PATCH_IF(m > 127) BEGIN 
+                    SET l = 0
+                END
+                LPF ADD_SPELL_EFFECT 
+                INT_VAR
+                    opcode=326
+                    target = 9
+                    timing = 0
+                    parameter1 = k
+                    parameter2 = rmcindex
+                    duration = 1
+                    STR_VAR
+                    resource = EVAL ~ZKBTA%l%~ 
+                END
+            END
+        END
+        WRITE_ASCIIE 0xae  ~%NEW_SPELL_RES%E~
+        
+    COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkinter.spl~ ~override/%NEW_SPELL_RES%E.spl~
+        SAY 0x8 #-1
+        WRITE_ASCIIE 0xae  ~%NEW_SPELL_RES%F~
+    /*
+        This is the penultimate spell, where the magic happens:
+            At this point the necessary attack roll is stored in the caster's magical cold resistance
+            If feedback is activated, this will cast the appropriate ZKFEED and ZKMC spells
+                The former contains the simulated attack roll for this spell
+                The latter contains the attack roll's difficulty
+                Both are purely cosmetic and will display a message giving the value of the simulated roll, as well as the minimum value to beat for the spell to hit.
+            The spell is cast based on the attack roll of the caster, compared to the necessary attack roll:
+                To get the value of the simulated d20 out of the rolled d100, one must subtract 1 to the d100, divide by 5 and add 1
+                    e.g. if the d100 is 43, then 42/5 = 8, 8+1 = 9, the simulated roll. If the d100 is 61, then 60/5 = 12, 12+1 = 13, the simulated roll.
+    */
+    COPY ~%MOD_FOLDER%/ScaleSpell/spl/zkinterf.spl~ ~override/%NEW_SPELL_RES%F.spl~
+        SAY 0x8 #-1
+        PATCH_IF(WITH_FEEDBACK = 1) BEGIN
+            FOR (i = 1; i<=20;++i) BEGIN            
+                LPF ADD_SPELL_EFFECT 
+                INT_VAR opcode=326
+                target = 9
+                timing = 0
+                parameter1 = 0
+                parameter2 = 0
+                duration = 1
+                probability1 = 5 * i
+                probability2 = 5 * (i - 1) + 1
+                STR_VAR
+                resource = EVAL ~zkfeed%i%~ 
+                END 
+            END
+            LPF ADD_SPELL_EFFECT 
+                INT_VAR opcode=326
+                    target = 9
+                    timing = 0
+                    parameter1 = 128
+                    parameter2 = rmcgindex
+                    duration = 1
+                STR_VAR
+                    resource = EVAL ~zkmc2~ 
+            END
+            LPF ADD_SPELL_EFFECT 
+                INT_VAR opcode=326
+                    target = 9
+                    timing = 0
+                    parameter1 = 2
+                    parameter2 = rmclindex
+                    duration = 1
+                STR_VAR
+                    resource = EVAL ~zkmc2~ 
+            END 
+        END
+        LPF ADD_SPELL_EFFECT 
+            INT_VAR
+                opcode=326
+                target = 9
+                timing = 0
+                parameter1 = 128
+                parameter2 = rmcgindex
+                duration = 1
+                probability2 = 6
+            STR_VAR
+                resource = EVAL ~%NEW_SPELL_RES%~ 
+        END 
+        LPF ADD_SPELL_EFFECT 
+            INT_VAR
+                opcode=326
+                target = 9
+                timing = 0
+                parameter1 = 2
+                parameter2 = rmclindex
+                duration = 1
+                probability2 = 6
+            STR_VAR
+                resource = EVAL ~%NEW_SPELL_RES%~ 
+        END 
+        FOR (i = 3; i<=19;++i) BEGIN
+            PATCH_IF(WITH_FEEDBACK = 1) BEGIN
+                LPF ADD_SPELL_EFFECT 
+                    INT_VAR opcode=326
+                        target = 9
+                        timing = 0
+                        parameter1 = i
+                        parameter2 = rmcindex
+                        duration = 1
+                        probability1 = 100
+                    STR_VAR
+                        resource = EVAL ~zkmc%i%~ 
+                END 
+            END
+            LPF ADD_SPELL_EFFECT 
+                INT_VAR opcode=326
+                    target = 9
+                    timing = 0
+                    parameter1 = i
+                    parameter2 = rmcindex
+                    duration = 1
+                    probability2 = 5*i - 4
+                STR_VAR
+                    resource = EVAL ~%NEW_SPELL_RES%~ 
+            END 
+            
+        END
+        FOR(i=20;i<=127;++i) BEGIN
+            PATCH_IF(WITH_FEEDBACK = 1) BEGIN
+                LPF ADD_SPELL_EFFECT 
+                    INT_VAR opcode=326
+                        target = 9
+                        timing = 0
+                        parameter1 = i
+                        parameter2 = rmcindex
+                        duration = 1
+                        probability1 = 100
+                    STR_VAR
+                        resource = EVAL ~zkmc20~ 
+                END 
+            END
+            LPF ADD_SPELL_EFFECT 
+                INT_VAR opcode=326
+                    target = 9
+                    timing = 0
+                    parameter1 = i
+                    parameter2 = rmcindex
+                    duration = 1
+                    probability2 = 96
+                STR_VAR
+                    resource = EVAL ~%NEW_SPELL_RES%~ 
+            END 
+        END        
+        
+        FOR(i=0;i<=40;++i) BEGIN
+            LPF ADD_SPELL_EFFECT 
+            INT_VAR opcode=321
+                target = 9
+                timing = 0
+                parameter1 = 0
+                parameter2 = 0
+                duration = 0
+            STR_VAR
+                resource = EVAL ~ZKTHA%i%~ 
+        END 
+        END
+        FOR(i=0;i<=100;++i) BEGIN
+            LPF ADD_SPELL_EFFECT 
+            INT_VAR opcode=321
+                target = 9
+                timing = 0
+                parameter1 = 0
+                parameter2 = 0
+                duration = 0
+            STR_VAR
+                resource = EVAL ~ZKTAC%i%~ 
+            END 
+        END
+        FOR(i=0;i<=200;++i) BEGIN
+            LPF ADD_SPELL_EFFECT 
+            INT_VAR opcode=321
+                target = 9
+                timing = 0
+                parameter1 = 0
+                parameter2 = 0
+                duration = 0
+            STR_VAR
+                resource = EVAL ~ZKTHB%i%~ 
+            END
+        END
+        PATCH_IF(BONUS_TO_APPLY != 0) BEGIN
+            FOR(i=0;i<=254;++i) BEGIN
+                LPF ADD_SPELL_EFFECT 
+                INT_VAR opcode=321
+                    target = 9
+                    timing = 0
+                    parameter1 = 0
+                    parameter2 = 0
+                    duration = 0
+                STR_VAR
+                    resource = EVAL ~ZKBTA%i%~ 
+                END  
+            END
+        END
+        
+    
+END

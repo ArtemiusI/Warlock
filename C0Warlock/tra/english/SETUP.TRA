@@ -17,9 +17,9 @@ INVOCATIONS: A Warlock does not prepare or cast spells as other wielders of arca
 
 – May use the Eldritch Blast ability at will.
 
-ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times but decrease by 1 per 4 caster levels post-acquisition. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
-As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms. These forms cannot critically strike.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Increases casting time by 1.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Increases casting time by 2.
@@ -52,9 +52,9 @@ INVOCATIONS: A Warlock does not prepare or cast spells as other wielders of arca
 
 – May use the Eldritch Blast ability at will.
 
-ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times but decrease by 1 per 4 caster levels post-acquisition. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
-As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms. These forms cannot critically strike.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Increases casting time by 1.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Increases casting time by 2.
