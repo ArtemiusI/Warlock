@@ -410,6 +410,7 @@ ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using b
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Increases casting time by 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock. Increases casting time by 2.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Increases casting time by 2.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.
@@ -653,134 +654,289 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp005.PRO~
 
 
 // DRAINING BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp006.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp007.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp008.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp008.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP006.PRO~
+WRITE_SHORT 0x28 8
+WRITE_ASCII 0x104 ~C0WLP006~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP007.PRO~
+WRITE_SHORT 0x28 8
+WRITE_ASCII 0x104 ~C0WLP006~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP008.PRO~
+WRITE_SHORT 0x28 8
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp006~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp009.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp010.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP009.PRO~
+WRITE_ASCII 0x21c ~C0WLP009~
+WRITE_ASCII 0x230 ~C0WLP009~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP010.PRO~
+WRITE_ASCII 0x21c ~C0WLP010~
+WRITE_ASCII 0x230 ~C0WLP009~
+
+ADD_PROJECTILE ~override/c0wlp006.PRO~
+ADD_PROJECTILE ~override/c0wlp007.PRO~
+ADD_PROJECTILE ~override/c0wlp008.PRO~
+ADD_PROJECTILE ~override/c0wlp009.PRO~
+ADD_PROJECTILE ~override/c0wlp010.PRO~
 
 
 // FRIGHTFUL BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp011.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp012.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp013.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp013.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP011.PRO~
+WRITE_SHORT 0x28 4
+WRITE_ASCII 0x104 ~C0WLP011~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP012.PRO~
+WRITE_SHORT 0x28 4
+WRITE_ASCII 0x104 ~C0WLP011~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP013.PRO~
+WRITE_SHORT 0x28 4
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp011~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp014.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp015.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP014.PRO~
+WRITE_ASCII 0x21c ~C0WLP014~
+WRITE_ASCII 0x230 ~C0WLP014~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP015.PRO~
+WRITE_ASCII 0x21c ~C0WLP015~
+WRITE_ASCII 0x230 ~C0WLP014~
+
+ADD_PROJECTILE ~override/c0wlp011.PRO~
+ADD_PROJECTILE ~override/c0wlp012.PRO~
+ADD_PROJECTILE ~override/c0wlp013.PRO~
+ADD_PROJECTILE ~override/c0wlp014.PRO~
+ADD_PROJECTILE ~override/c0wlp015.PRO~
 
 
 // BESHADOWED BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp016.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp017.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp018.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp018.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP016.PRO~
+WRITE_SHORT 0x28 7
+WRITE_ASCII 0x104 ~C0WLP016~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP017.PRO~
+WRITE_SHORT 0x28 7
+WRITE_ASCII 0x104 ~C0WLP016~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP018.PRO~
+WRITE_SHORT 0x28 7
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp016~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp019.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp020.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP019.PRO~
+WRITE_ASCII 0x21c ~C0WLP019~
+WRITE_ASCII 0x230 ~C0WLP019~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP020.PRO~
+WRITE_ASCII 0x21c ~C0WLP020~
+WRITE_ASCII 0x230 ~C0WLP019~
+
+ADD_PROJECTILE ~override/c0wlp016.PRO~
+ADD_PROJECTILE ~override/c0wlp017.PRO~
+ADD_PROJECTILE ~override/c0wlp018.PRO~
+ADD_PROJECTILE ~override/c0wlp019.PRO~
+ADD_PROJECTILE ~override/c0wlp020.PRO~
 
 
 // BRIMSTONE BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp021.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp022.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp023.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp023.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP021.PRO~
+WRITE_SHORT 0x28 12
+WRITE_ASCII 0x104 ~C0WLP021~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP022.PRO~
+WRITE_SHORT 0x28 12
+WRITE_ASCII 0x104 ~C0WLP021~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP023.PRO~
+WRITE_SHORT 0x28 12
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp021~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp024.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp025.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP024.PRO~
+WRITE_ASCII 0x21c ~C0WLP024~
+WRITE_ASCII 0x230 ~C0WLP024~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP025.PRO~
+WRITE_ASCII 0x21c ~C0WLP025~
+WRITE_ASCII 0x230 ~C0WLP024~
+
+ADD_PROJECTILE ~override/c0wlp021.PRO~
+ADD_PROJECTILE ~override/c0wlp022.PRO~
+ADD_PROJECTILE ~override/c0wlp023.PRO~
+ADD_PROJECTILE ~override/c0wlp024.PRO~
+ADD_PROJECTILE ~override/c0wlp025.PRO~
 
 
 // HELLRIME BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp026.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp027.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp028.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp028.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP026.PRO~
+WRITE_SHORT 0x28 9
+WRITE_ASCII 0x104 ~C0WLP026~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP027.PRO~
+WRITE_SHORT 0x28 9
+WRITE_ASCII 0x104 ~C0WLP026~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP028.PRO~
+WRITE_SHORT 0x28 9
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp026~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp029.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp030.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP029.PRO~
+WRITE_ASCII 0x21c ~C0WLP029~
+WRITE_ASCII 0x230 ~C0WLP029~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP030.PRO~
+WRITE_ASCII 0x21c ~C0WLP030~
+WRITE_ASCII 0x230 ~C0WLP029~
+
+ADD_PROJECTILE ~override/c0wlp026.PRO~
+ADD_PROJECTILE ~override/c0wlp027.PRO~
+ADD_PROJECTILE ~override/c0wlp028.PRO~
+ADD_PROJECTILE ~override/c0wlp029.PRO~
+ADD_PROJECTILE ~override/c0wlp030.PRO~
 
 
 // BEWITCHING BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp031.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp032.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp033.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp033.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP031.PRO~
+WRITE_SHORT 0x28 6
+WRITE_ASCII 0x104 ~C0WLP031~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP032.PRO~
+WRITE_SHORT 0x28 6
+WRITE_ASCII 0x104 ~C0WLP031~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP033.PRO~
+WRITE_SHORT 0x28 6
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp031~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp034.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp035.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP034.PRO~
+WRITE_ASCII 0x21c ~C0WLP034~
+WRITE_ASCII 0x230 ~C0WLP034~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP035.PRO~
+WRITE_ASCII 0x21c ~C0WLP035~
+WRITE_ASCII 0x230 ~C0WLP034~
+
+ADD_PROJECTILE ~override/c0wlp031.PRO~
+ADD_PROJECTILE ~override/c0wlp032.PRO~
+ADD_PROJECTILE ~override/c0wlp033.PRO~
+ADD_PROJECTILE ~override/c0wlp034.PRO~
+ADD_PROJECTILE ~override/c0wlp035.PRO~
 
 
 // ELECTRIFYING BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp036.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp037.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp038.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp038.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP036.PRO~
+WRITE_SHORT 0x28 2
+WRITE_ASCII 0x104 ~C0WLP036~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP037.PRO~
+WRITE_SHORT 0x28 2
+WRITE_ASCII 0x104 ~C0WLP036~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP038.PRO~
+WRITE_SHORT 0x28 2
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp036~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp039.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp040.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP039.PRO~
+WRITE_ASCII 0x21c ~C0WLP039~
+WRITE_ASCII 0x230 ~C0WLP039~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP040.PRO~
+WRITE_ASCII 0x21c ~C0WLP040~
+WRITE_ASCII 0x230 ~C0WLP039~
+
+ADD_PROJECTILE ~override/c0wlp036.PRO~
+ADD_PROJECTILE ~override/c0wlp037.PRO~
+ADD_PROJECTILE ~override/c0wlp038.PRO~
+ADD_PROJECTILE ~override/c0wlp039.PRO~
+ADD_PROJECTILE ~override/c0wlp040.PRO~
 
 
 // NOXIOUS BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp041.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp042.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp043.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp043.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP041.PRO~
+WRITE_SHORT 0x28 5
+WRITE_ASCII 0x104 ~C0WLP041~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP042.PRO~
+WRITE_SHORT 0x28 5
+WRITE_ASCII 0x104 ~C0WLP041~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP043.PRO~
+WRITE_SHORT 0x28 5
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp041~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp044.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp045.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP044.PRO~
+WRITE_ASCII 0x21c ~C0WLP044~
+WRITE_ASCII 0x230 ~C0WLP044~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP045.PRO~
+WRITE_ASCII 0x21c ~C0WLP045~
+WRITE_ASCII 0x230 ~C0WLP044~
+
+ADD_PROJECTILE ~override/c0wlp041.PRO~
+ADD_PROJECTILE ~override/c0wlp042.PRO~
+ADD_PROJECTILE ~override/c0wlp043.PRO~
+ADD_PROJECTILE ~override/c0wlp044.PRO~
+ADD_PROJECTILE ~override/c0wlp045.PRO~
 
 
 // VITRIOLIC BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp046.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp047.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp048.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp048.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP046.PRO~
+WRITE_SHORT 0x28 5
+WRITE_ASCII 0x104 ~C0WLP046~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP047.PRO~
+WRITE_SHORT 0x28 5
+WRITE_ASCII 0x104 ~C0WLP046~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP048.PRO~
+WRITE_SHORT 0x28 5
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp046~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp049.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp050.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP049.PRO~
+WRITE_ASCII 0x21c ~C0WLP049~
+WRITE_ASCII 0x230 ~C0WLP049~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP050.PRO~
+WRITE_ASCII 0x21c ~C0WLP050~
+WRITE_ASCII 0x230 ~C0WLP049~
+
+ADD_PROJECTILE ~override/c0wlp046.PRO~
+ADD_PROJECTILE ~override/c0wlp047.PRO~
+ADD_PROJECTILE ~override/c0wlp048.PRO~
+ADD_PROJECTILE ~override/c0wlp049.PRO~
+ADD_PROJECTILE ~override/c0wlp050.PRO~
 
 
 // BINDING BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp051.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp052.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp053.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp053.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP051.PRO~
+WRITE_SHORT 0x28 10
+WRITE_ASCII 0x104 ~C0WLP051~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP052.PRO~
+WRITE_SHORT 0x28 10
+WRITE_ASCII 0x104 ~C0WLP051~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP053.PRO~
+WRITE_SHORT 0x28 10
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp051~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp054.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp055.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP054.PRO~
+WRITE_ASCII 0x21c ~C0WLP054~
+WRITE_ASCII 0x230 ~C0WLP054~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP055.PRO~
+WRITE_ASCII 0x21c ~C0WLP055~
+WRITE_ASCII 0x230 ~C0WLP054~
 
+ADD_PROJECTILE ~override/c0wlp051.PRO~
+ADD_PROJECTILE ~override/c0wlp052.PRO~
+ADD_PROJECTILE ~override/c0wlp053.PRO~
+ADD_PROJECTILE ~override/c0wlp054.PRO~
+ADD_PROJECTILE ~override/c0wlp055.PRO~
 
 // UTTERDARK BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp056.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp057.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp058.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp058.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP056.PRO~
+WRITE_SHORT 0x28 1
+WRITE_ASCII 0x104 ~C0WLP056~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP057.PRO~
+WRITE_SHORT 0x28 1
+WRITE_ASCII 0x104 ~C0WLP056~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP058.PRO~
+WRITE_SHORT 0x28 1
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp056~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp059.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp060.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP059.PRO~
+WRITE_ASCII 0x21c ~C0WLP059~
+WRITE_ASCII 0x230 ~C0WLP059~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP060.PRO~
+WRITE_ASCII 0x21c ~C0WLP060~
+WRITE_ASCII 0x230 ~C0WLP059~
+
+ADD_PROJECTILE ~override/c0wlp056.PRO~
+ADD_PROJECTILE ~override/c0wlp057.PRO~
+ADD_PROJECTILE ~override/c0wlp058.PRO~
+ADD_PROJECTILE ~override/c0wlp059.PRO~
+ADD_PROJECTILE ~override/c0wlp060.PRO~
 
 // HELLFIRE BLAST
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp061.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp062.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp063.PRO~
-COPY ~%MOD_FOLDER%/pro/c0wlp063.pro~ ~override~
+COPY_EXISTING ~C0WLP001.PRO~ ~OVERRIDE/C0WLP061.PRO~
+WRITE_SHORT 0x28 7
+WRITE_ASCII 0x104 ~C0WLP061~
+COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP062.PRO~
+WRITE_SHORT 0x28 7
+WRITE_ASCII 0x104 ~C0WLP061~
+COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP063.PRO~
+WRITE_SHORT 0x28 7
 WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp061~)) + 1
-WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp064.PRO~
-ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp065.PRO~
+COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP064.PRO~
+WRITE_ASCII 0x21c ~C0WLP064~
+WRITE_ASCII 0x230 ~C0WLP064~
+COPY_EXISTING ~C0WLP005.PRO~ ~OVERRIDE/C0WLP065.PRO~
+WRITE_ASCII 0x21c ~C0WLP065~
+WRITE_ASCII 0x230 ~C0WLP064~
+
+ADD_PROJECTILE ~override/c0wlp061.PRO~
+ADD_PROJECTILE ~override/c0wlp062.PRO~
+ADD_PROJECTILE ~override/c0wlp063.PRO~
+ADD_PROJECTILE ~override/c0wlp064.PRO~
+ADD_PROJECTILE ~override/c0wlp065.PRO~
 
 // OTHERS
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp101.PRO~
@@ -1990,6 +2146,7 @@ A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical e
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
 	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Increases casting time by 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock. Increases casting time by 2.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Increases casting time by 2.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.~
@@ -2001,6 +2158,10 @@ COPY_EXISTING ~c0wl101A.ITM~ ~override~
   END
 SAY NAME1 ~Eldritch Blast~
 SAY NAME2 ~Eldritch Blast~
+
+COPY_EXISTING ~c0wl101C.ITM~ ~override~
+SAY NAME1 ~Eldritch Glaive~
+SAY NAME2 ~Eldritch Glaive~
 
 COPY_EXISTING ~c0wl102.spl~ ~override~
   LPF ALTER_EFFECT
@@ -3252,7 +3413,7 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
 
-COPY_EXISTING ~c0wl202.spl~ ~override/c0wl202#.spl~
+COPY_EXISTING ~c0wl202r.spl~ ~override/c0wl202#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3300,7 +3461,7 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity and Armor Class. The penalties from multiple hellrime blasts do not stack.~
 
-COPY_EXISTING ~c0wl203.spl~ ~override/c0wl203#.spl~
+COPY_EXISTING ~c0wl203r.spl~ ~override/c0wl203#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3348,7 +3509,7 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
 
-COPY_EXISTING ~c0wl301.spl~ ~override/c0wl301#.spl~
+COPY_EXISTING ~c0wl301r.spl~ ~override/c0wl301#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3396,7 +3557,7 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed. Creatures immune to electrical damage are not affected.~ 
 
-COPY_EXISTING ~c0wl302.spl~ ~override/c0wl302#.spl~
+COPY_EXISTING ~c0wl302r.spl~ ~override/c0wl302#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3444,7 +3605,7 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 (additional -1 penalty per two points of caster's Charisma above 17) or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~ 
 
-COPY_EXISTING ~c0wl303.spl~ ~override/c0wl303#.spl~
+COPY_EXISTING ~c0wl303r.spl~ ~override/c0wl303#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3491,7 +3652,7 @@ Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~ 
 
-COPY_EXISTING ~c0wl304.spl~ ~override/c0wl304#.spl~
+COPY_EXISTING ~c0wl304r.spl~ ~override/c0wl304#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3539,7 +3700,7 @@ Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 (additional -1 penalty per two points of caster's Charisma above 17) or be stunned for 1 round.~
 
-COPY_EXISTING ~c0wl401.spl~ ~override/c0wl401#.spl~
+COPY_EXISTING ~c0wl401r.spl~ ~override/c0wl401#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
@@ -3587,7 +3748,7 @@ Saving Throw: None
 
 This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for eight hours. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~ 
 
-COPY_EXISTING ~c0wl402.spl~ ~override/c0wl402#.spl~
+COPY_EXISTING ~c0wl402r.spl~ ~override/c0wl402#.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
 	  opcode = 321
