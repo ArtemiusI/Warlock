@@ -1,8 +1,8 @@
 2DA V1.0
 ****
            ResRef     Type       
-BLAST1     c0wl101    3          
-BLAST2     c0wl102    3          
-BLAST3     c0wl103    3          
-BLAST4     c0wl200    3          
+BLAST      c0wl101    3          
+BLOW       c0wl102    3          
+SPEAR      c0wl103    3          
+GLAIVE     c0wl500    3          
 REMOVE     c0wl00X    3          

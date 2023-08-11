@@ -1,10 +1,11 @@
 2DA V1.0
 ****
            ResRef     Type       
-BLAST1     c0wl506a    3          
-BLAST2     c0wl506b    3          
-BLAST3     c0wl506c    3          
-BLAST4     c0wl506d    3          
-BLAST5     c0wl506e    3          
-BLAST6     c0wl506f   3          
+BLAST      c0wl506a    3          
+BLOW       c0wl506b    3          
+SPEAR      c0wl506c    3          
+GLAIVE     c0wl506i    3          
+CHAIN      c0wl506d    3          
+CONE       c0wl506e    3          
+DOOM       c0wl506f   3          
 REMOVE     c0wl00X    3          
