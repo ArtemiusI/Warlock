@@ -2169,8 +2169,7 @@ A Warlock does not prepare or cast spells as other wielders of arcane magic do. 
 
 COPY_EXISTING ~c0wl100.spl~ ~override~
 SAY NAME1 ~Eldritch Blast~
-SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST
-A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times but decrease by 1 per 4 caster levels post-acquisition. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
 
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
