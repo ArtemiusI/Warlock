@@ -409,7 +409,7 @@ ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using b
 
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
-	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Sets attacks per round to 1.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
 	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
@@ -647,7 +647,7 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp001.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp002.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp003.PRO~
 COPY ~%MOD_FOLDER%/pro/c0wlp003.pro~ ~override~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp001~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp002~)) + 1
 WRITE_SHORT 0x3c IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp004.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp005.PRO~
@@ -660,7 +660,9 @@ WRITE_SHORT 0x28 8
 WRITE_ASCII 0x104 ~C0WLP006~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP007.PRO~
 WRITE_SHORT 0x28 8
-WRITE_ASCII 0x104 ~C0WLP006~
+WRITE_ASCII 0x136 ~C0WLP006~
+WRITE_ASCII 0x13E ~C0WLP006~
+WRITE_ASCII 0x146 ~C0WLP006~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP008.PRO~
 WRITE_SHORT 0x28 8
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP009.PRO~
@@ -674,7 +676,7 @@ ADD_PROJECTILE ~override/c0wlp006.PRO~
 ADD_PROJECTILE ~override/c0wlp007.PRO~
 ADD_PROJECTILE ~override/c0wlp008.PRO~
 COPY_EXISTING ~C0WLP008.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp006~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp007~)) + 1
 ADD_PROJECTILE ~override/c0wlp009.PRO~
 ADD_PROJECTILE ~override/c0wlp010.PRO~
 
@@ -685,7 +687,9 @@ WRITE_SHORT 0x28 4
 WRITE_ASCII 0x104 ~C0WLP011~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP012.PRO~
 WRITE_SHORT 0x28 4
-WRITE_ASCII 0x104 ~C0WLP011~
+WRITE_ASCII 0x136 ~C0WLP011~
+WRITE_ASCII 0x13E ~C0WLP011~
+WRITE_ASCII 0x146 ~C0WLP011~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP013.PRO~
 WRITE_SHORT 0x28 4
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP014.PRO~
@@ -699,7 +703,7 @@ ADD_PROJECTILE ~override/c0wlp011.PRO~
 ADD_PROJECTILE ~override/c0wlp012.PRO~
 ADD_PROJECTILE ~override/c0wlp013.PRO~
 COPY_EXISTING ~c0wlp013.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp011~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp012~)) + 1
 ADD_PROJECTILE ~override/c0wlp014.PRO~
 ADD_PROJECTILE ~override/c0wlp015.PRO~
 
@@ -710,7 +714,9 @@ WRITE_SHORT 0x28 7
 WRITE_ASCII 0x104 ~C0WLP016~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP017.PRO~
 WRITE_SHORT 0x28 7
-WRITE_ASCII 0x104 ~C0WLP016~
+WRITE_ASCII 0x136 ~C0WLP016~
+WRITE_ASCII 0x13E ~C0WLP016~
+WRITE_ASCII 0x146 ~C0WLP016~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP018.PRO~
 WRITE_SHORT 0x28 7
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP019.PRO~
@@ -724,7 +730,7 @@ ADD_PROJECTILE ~override/c0wlp016.PRO~
 ADD_PROJECTILE ~override/c0wlp017.PRO~
 ADD_PROJECTILE ~override/c0wlp018.PRO~
 COPY_EXISTING ~C0WLP018.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp016~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp017~)) + 1
 ADD_PROJECTILE ~override/c0wlp019.PRO~
 ADD_PROJECTILE ~override/c0wlp020.PRO~
 
@@ -735,7 +741,9 @@ WRITE_SHORT 0x28 12
 WRITE_ASCII 0x104 ~C0WLP021~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP022.PRO~
 WRITE_SHORT 0x28 12
-WRITE_ASCII 0x104 ~C0WLP021~
+WRITE_ASCII 0x136 ~C0WLP021~
+WRITE_ASCII 0x13E ~C0WLP021~
+WRITE_ASCII 0x146 ~C0WLP021~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP023.PRO~
 WRITE_SHORT 0x28 12
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP024.PRO~
@@ -749,7 +757,7 @@ ADD_PROJECTILE ~override/c0wlp021.PRO~
 ADD_PROJECTILE ~override/c0wlp022.PRO~
 ADD_PROJECTILE ~override/c0wlp023.PRO~
 COPY_EXISTING ~c0wlp023.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp021~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp022~)) + 1
 ADD_PROJECTILE ~override/c0wlp024.PRO~
 ADD_PROJECTILE ~override/c0wlp025.PRO~
 
@@ -760,7 +768,9 @@ WRITE_SHORT 0x28 9
 WRITE_ASCII 0x104 ~C0WLP026~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP027.PRO~
 WRITE_SHORT 0x28 9
-WRITE_ASCII 0x104 ~C0WLP026~
+WRITE_ASCII 0x136 ~C0WLP026~
+WRITE_ASCII 0x13E ~C0WLP026~
+WRITE_ASCII 0x146 ~C0WLP026~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP028.PRO~
 WRITE_SHORT 0x28 9
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP029.PRO~
@@ -774,7 +784,7 @@ ADD_PROJECTILE ~override/c0wlp026.PRO~
 ADD_PROJECTILE ~override/c0wlp027.PRO~
 ADD_PROJECTILE ~override/c0wlp028.PRO~
 COPY_EXISTING ~c0wlp028.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp026~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp027~)) + 1
 ADD_PROJECTILE ~override/c0wlp029.PRO~
 ADD_PROJECTILE ~override/c0wlp030.PRO~
 
@@ -785,7 +795,9 @@ WRITE_SHORT 0x28 6
 WRITE_ASCII 0x104 ~C0WLP031~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP032.PRO~
 WRITE_SHORT 0x28 6
-WRITE_ASCII 0x104 ~C0WLP031~
+WRITE_ASCII 0x136 ~C0WLP031~
+WRITE_ASCII 0x13E ~C0WLP031~
+WRITE_ASCII 0x146 ~C0WLP031~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP033.PRO~
 WRITE_SHORT 0x28 6
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP034.PRO~
@@ -799,7 +811,7 @@ ADD_PROJECTILE ~override/c0wlp031.PRO~
 ADD_PROJECTILE ~override/c0wlp032.PRO~
 ADD_PROJECTILE ~override/c0wlp033.PRO~
 COPY_EXISTING ~c0wlp033.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp031~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp032~)) + 1
 ADD_PROJECTILE ~override/c0wlp034.PRO~
 ADD_PROJECTILE ~override/c0wlp035.PRO~
 
@@ -810,7 +822,9 @@ WRITE_SHORT 0x28 2
 WRITE_ASCII 0x104 ~C0WLP036~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP037.PRO~
 WRITE_SHORT 0x28 2
-WRITE_ASCII 0x104 ~C0WLP036~
+WRITE_ASCII 0x136 ~C0WLP036~
+WRITE_ASCII 0x13E ~C0WLP036~
+WRITE_ASCII 0x146 ~C0WLP036~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP038.PRO~
 WRITE_SHORT 0x28 2
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP039.PRO~
@@ -824,7 +838,7 @@ ADD_PROJECTILE ~override/c0wlp036.PRO~
 ADD_PROJECTILE ~override/c0wlp037.PRO~
 ADD_PROJECTILE ~override/c0wlp038.PRO~
 COPY_EXISTING ~c0wlp038.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp036~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp037~)) + 1
 ADD_PROJECTILE ~override/c0wlp039.PRO~
 ADD_PROJECTILE ~override/c0wlp040.PRO~
 
@@ -835,7 +849,9 @@ WRITE_SHORT 0x28 5
 WRITE_ASCII 0x104 ~C0WLP041~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP042.PRO~
 WRITE_SHORT 0x28 5
-WRITE_ASCII 0x104 ~C0WLP041~
+WRITE_ASCII 0x136 ~C0WLP041~
+WRITE_ASCII 0x13E ~C0WLP041~
+WRITE_ASCII 0x146 ~C0WLP041~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP043.PRO~
 WRITE_SHORT 0x28 5
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP044.PRO~
@@ -849,7 +865,7 @@ ADD_PROJECTILE ~override/c0wlp041.PRO~
 ADD_PROJECTILE ~override/c0wlp042.PRO~
 ADD_PROJECTILE ~override/c0wlp043.PRO~
 COPY_EXISTING ~c0wlp043.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp041~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp042~)) + 1
 ADD_PROJECTILE ~override/c0wlp044.PRO~
 ADD_PROJECTILE ~override/c0wlp045.PRO~
 
@@ -860,7 +876,9 @@ WRITE_SHORT 0x28 5
 WRITE_ASCII 0x104 ~C0WLP046~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP047.PRO~
 WRITE_SHORT 0x28 5
-WRITE_ASCII 0x104 ~C0WLP046~
+WRITE_ASCII 0x136 ~C0WLP046~
+WRITE_ASCII 0x13E ~C0WLP046~
+WRITE_ASCII 0x146 ~C0WLP046~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP048.PRO~
 WRITE_SHORT 0x28 5
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP049.PRO~
@@ -874,7 +892,7 @@ ADD_PROJECTILE ~override/c0wlp046.PRO~
 ADD_PROJECTILE ~override/c0wlp047.PRO~
 ADD_PROJECTILE ~override/c0wlp048.PRO~
 COPY_EXISTING ~c0wlp048.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp046~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp047~)) + 1
 ADD_PROJECTILE ~override/c0wlp049.PRO~
 ADD_PROJECTILE ~override/c0wlp050.PRO~
 
@@ -885,7 +903,9 @@ WRITE_SHORT 0x28 10
 WRITE_ASCII 0x104 ~C0WLP051~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP052.PRO~
 WRITE_SHORT 0x28 10
-WRITE_ASCII 0x104 ~C0WLP051~
+WRITE_ASCII 0x136 ~C0WLP051~
+WRITE_ASCII 0x13E ~C0WLP051~
+WRITE_ASCII 0x146 ~C0WLP051~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP053.PRO~
 WRITE_SHORT 0x28 10
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP054.PRO~
@@ -899,7 +919,7 @@ ADD_PROJECTILE ~override/c0wlp051.PRO~
 ADD_PROJECTILE ~override/c0wlp052.PRO~
 ADD_PROJECTILE ~override/c0wlp053.PRO~
 COPY_EXISTING ~c0wlp053.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp051~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp052~)) + 1
 ADD_PROJECTILE ~override/c0wlp054.PRO~
 ADD_PROJECTILE ~override/c0wlp055.PRO~
 
@@ -909,7 +929,9 @@ WRITE_SHORT 0x28 1
 WRITE_ASCII 0x104 ~C0WLP056~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP057.PRO~
 WRITE_SHORT 0x28 1
-WRITE_ASCII 0x104 ~C0WLP056~
+WRITE_ASCII 0x136 ~C0WLP056~
+WRITE_ASCII 0x13E ~C0WLP056~
+WRITE_ASCII 0x146 ~C0WLP056~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP058.PRO~
 WRITE_SHORT 0x28 1
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP059.PRO~
@@ -923,7 +945,7 @@ ADD_PROJECTILE ~override/c0wlp056.PRO~
 ADD_PROJECTILE ~override/c0wlp057.PRO~
 ADD_PROJECTILE ~override/c0wlp058.PRO~
 COPY_EXISTING ~c0wlp058.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp056~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp057~)) + 1
 ADD_PROJECTILE ~override/c0wlp059.PRO~
 ADD_PROJECTILE ~override/c0wlp060.PRO~
 
@@ -933,7 +955,9 @@ WRITE_SHORT 0x28 7
 WRITE_ASCII 0x104 ~C0WLP061~
 COPY_EXISTING ~C0WLP002.PRO~ ~OVERRIDE/C0WLP062.PRO~
 WRITE_SHORT 0x28 7
-WRITE_ASCII 0x104 ~C0WLP061~
+WRITE_ASCII 0x136 ~C0WLP061~
+WRITE_ASCII 0x13E ~C0WLP061~
+WRITE_ASCII 0x146 ~C0WLP061~
 COPY_EXISTING ~C0WLP003.PRO~ ~OVERRIDE/C0WLP063.PRO~
 WRITE_SHORT 0x28 7
 COPY_EXISTING ~C0WLP004.PRO~ ~OVERRIDE/C0WLP064.PRO~
@@ -945,29 +969,29 @@ WRITE_ASCII 0x230 ~C0WLP064~
 
 // Eldritch Glaive
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE02.PRO~
-WRITE_ASCII 0x230 ~C0WLP006~
+WRITE_ASCII 0x230 ~C0WLPE06~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE03.PRO~
-WRITE_ASCII 0x230 ~C0WLP011~
+WRITE_ASCII 0x230 ~C0WLPE11~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE04.PRO~
-WRITE_ASCII 0x230 ~C0WLP016~
+WRITE_ASCII 0x230 ~C0WLPE16~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE05.PRO~
-WRITE_ASCII 0x230 ~C0WLP021~
+WRITE_ASCII 0x230 ~C0WLPE21~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE06.PRO~
-WRITE_ASCII 0x230 ~C0WLP026~
+WRITE_ASCII 0x230 ~C0WLPE26~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE07.PRO~
-WRITE_ASCII 0x230 ~C0WLP031~
+WRITE_ASCII 0x230 ~C0WLPE31~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE08.PRO~
-WRITE_ASCII 0x230 ~C0WLP036~
+WRITE_ASCII 0x230 ~C0WLPE36~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE09.PRO~
-WRITE_ASCII 0x230 ~C0WLP041~
+WRITE_ASCII 0x230 ~C0WLPE41~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE10.PRO~
-WRITE_ASCII 0x230 ~C0WLP046~
+WRITE_ASCII 0x230 ~C0WLPE46~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE11.PRO~
-WRITE_ASCII 0x230 ~C0WLP051~
+WRITE_ASCII 0x230 ~C0WLPE51~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE12.PRO~
-WRITE_ASCII 0x230 ~C0WLP056~
+WRITE_ASCII 0x230 ~C0WLPE56~
 COPY_EXISTING ~C0WLPE01.PRO~ ~OVERRIDE/C0WLPE13.PRO~
-WRITE_ASCII 0x230 ~C0WLP061~
+WRITE_ASCII 0x230 ~C0WLPE61~
 
 ADD_PROJECTILE ~override/c0wlpe02.PRO~
 ADD_PROJECTILE ~override/c0wlpe03.PRO~
@@ -986,7 +1010,7 @@ ADD_PROJECTILE ~override/c0wlp061.PRO~
 ADD_PROJECTILE ~override/c0wlp062.PRO~
 ADD_PROJECTILE ~override/c0wlp063.PRO~
 COPY_EXISTING ~c0wlp063.PRO~ ~OVERRIDE~
-WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp061~)) + 1
+WRITE_SHORT 0x21A (IDS_OF_SYMBOL (~projectl~ ~c0wlp062~)) + 1
 ADD_PROJECTILE ~override/c0wlp064.PRO~
 ADD_PROJECTILE ~override/c0wlp065.PRO~
 
@@ -1035,6 +1059,78 @@ WRITE_ASCIIE 0x3a ~C0W%%blasts%C~
   LPF ALTER_EFFECT INT_VAR savingthrow = 16777216 END
 END
 END
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP006.VVC~
+WRITE_ASCII 0x8 ~C0WLP006~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP011.VVC~
+WRITE_ASCII 0x8 ~C0WLP011~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP016.VVC~
+WRITE_ASCII 0x8 ~C0WLP016~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP021.VVC~
+WRITE_ASCII 0x8 ~C0WLP021~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP026.VVC~
+WRITE_ASCII 0x8 ~C0WLP026~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP031.VVC~
+WRITE_ASCII 0x8 ~C0WLP031~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP036.VVC~
+WRITE_ASCII 0x8 ~C0WLP036~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP041.VVC~
+WRITE_ASCII 0x8 ~C0WLP041~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP046.VVC~
+WRITE_ASCII 0x8 ~C0WLP046~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP051.VVC~
+WRITE_ASCII 0x8 ~C0WLP051~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP056.VVC~
+WRITE_ASCII 0x8 ~C0WLP056~
+
+COPY_EXISTING ~C0WLP001.VVC~ ~OVERRIDE/C0WLP061.VVC~
+WRITE_ASCII 0x8 ~C0WLP061~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL106X.VVC~
+WRITE_ASCII 0x8 ~C0WL106X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL107X.VVC~
+WRITE_ASCII 0x8 ~C0WL107X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL201X.VVC~
+WRITE_ASCII 0x8 ~C0WL201X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL202X.VVC~
+WRITE_ASCII 0x8 ~C0WL202X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL203X.VVC~
+WRITE_ASCII 0x8 ~C0WL203X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL301X.VVC~
+WRITE_ASCII 0x8 ~C0WL301X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL302X.VVC~
+WRITE_ASCII 0x8 ~C0WL302X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL303X.VVC~
+WRITE_ASCII 0x8 ~C0WL303X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL304X.VVC~
+WRITE_ASCII 0x8 ~C0WL304X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL401X.VVC~
+WRITE_ASCII 0x8 ~C0WL401X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL402X.VVC~
+WRITE_ASCII 0x8 ~C0WL402X~
+
+COPY_EXISTING ~C0WL101X.VVC~ ~OVERRIDE/C0WL506X.VVC~
+WRITE_ASCII 0x8 ~C0WL506X~
 
 COPY_EXISTING ~C0WL101Y.VVC~ ~OVERRIDE/C0WL106Y.VVC~
 WRITE_ASCII 0x8 ~C0WL106Y~
@@ -1143,6 +1239,12 @@ END
 	STR_VAR
 	  resource = %c0wl106f%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl106i%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl107z.spl~
   LPF ALTER_EFFECT
@@ -1182,6 +1284,12 @@ END
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl107f%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl107i%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl108z.spl~
@@ -1293,6 +1401,13 @@ END
 	STR_VAR
 	  resource = %c0wl201f%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl201i%
+END
+
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl202z.spl~
   LPF ALTER_EFFECT
@@ -1333,6 +1448,12 @@ END
 	STR_VAR
 	  resource = %c0wl202f%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl202i%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl203z.spl~
   LPF ALTER_EFFECT
@@ -1372,6 +1493,12 @@ END
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl203f%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl203i%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl204z.spl~
@@ -1493,6 +1620,12 @@ END
 	STR_VAR
 	  resource = %c0wl301f%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl301i%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl302z.spl~
   LPF ALTER_EFFECT
@@ -1532,6 +1665,12 @@ END
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl302f%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl302i%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl303z.spl~
@@ -1573,6 +1712,12 @@ END
 	STR_VAR
 	  resource = %c0wl303f%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl303i%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl304z.spl~
   LPF ALTER_EFFECT
@@ -1612,6 +1757,12 @@ END
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl304f%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl304i%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl305z.spl~
@@ -1713,6 +1864,12 @@ END
 	STR_VAR
 	  resource = %c0wl401f%
 END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl401i%
+END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl402z.spl~
   LPF ALTER_EFFECT
@@ -1752,6 +1909,12 @@ END
       match_opcode = 172
 	STR_VAR
 	  resource = %c0wl402f%
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = %c0wl402i%
 END
 
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl403z.spl~
@@ -1813,17 +1976,8 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl408z.spl~
 	STR_VAR
 	  resource = %c0wl408%
 END
-
+  
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1a.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp1%
-END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -1838,30 +1992,12 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1b.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp1%
-END
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
       match_opcode = 146
 	STR_VAR
 	  resource = %c0wlsp12%
 END
 
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1c.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp1%
-END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -1876,30 +2012,12 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp2a.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp2%
-END
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
       match_opcode = 146
 	STR_VAR
 	  resource = %c0wlsp21%
 END
 
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp2b.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp2%
-END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -1914,30 +2032,12 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp2c.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp2%
-END
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
       match_opcode = 146
 	STR_VAR
 	  resource = %c0wlsp23%
 END
 
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp3a.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp3%
-END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -1952,30 +2052,12 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp3b.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp3%
-END
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
       match_opcode = 146
 	STR_VAR
 	  resource = %c0wlsp32%
 END
 
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp3c.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp3%
-END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -1990,15 +2072,6 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp4a.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp4%
-END
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
       match_opcode = 146
 	STR_VAR
 	  resource = %c0wlsp41%
@@ -2009,30 +2082,12 @@ COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp4b.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp4%
-END
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
       match_opcode = 146
 	STR_VAR
 	  resource = %c0wlsp42%
 END
 
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp4c.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 309
-	STR_VAR
-	  match_resource = C0WLSP1
-	  resource = %c0wlsp4%
-END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -2077,12 +2132,30 @@ COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp21.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp2%
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
       match_opcode = 206
 	STR_VAR
 	  resource = %c0wlsp2a%
 END
 
 COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp22.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp2%
+END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -2097,12 +2170,30 @@ COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp23.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp2%
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
       match_opcode = 206
 	STR_VAR
 	  resource = %c0wlsp2c%
 END
 
 COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp31.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp3%
+END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -2117,12 +2208,30 @@ COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp32.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp3%
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
       match_opcode = 206
 	STR_VAR
 	  resource = %c0wlsp3b%
 END
 
 COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp33.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp3%
+END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -2137,6 +2246,15 @@ COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp41.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp4%
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
       match_opcode = 206
 	STR_VAR
 	  resource = %c0wlsp4a%
@@ -2147,12 +2265,30 @@ COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp42.spl~
     INT_VAR
       check_globals = 1
       check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp4%
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
       match_opcode = 206
 	STR_VAR
 	  resource = %c0wlsp4b%
 END
 
 COPY_EXISTING ~c0wlsp11.spl~ ~override/c0wlsp43.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 309
+	STR_VAR
+	  match_resource = C0WLSP1
+	  resource = %c0wlsp4%
+END
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -2173,17 +2309,13 @@ SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with 
 
 As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
 	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
-	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies in its path. Sets attacks per round to 1.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
 	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
 	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.~
 
 COPY_EXISTING ~c0wl101A.ITM~ ~override~
-  LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp001
-  END
 SAY NAME1 ~Eldritch Blast~
 SAY NAME2 ~Eldritch Blast~
 
@@ -2203,16 +2335,6 @@ END
   LPF ALTER_SPELL_HEADER INT_VAR speed = 3 END
 SAY NAME1 ~Shape: Spear~
 
-COPY_EXISTING ~c0wl101F.spl~ ~override/c0wl101G.spl~
-  LPF ALTER_SPELL_HEADER
-	STR_VAR
-	  icon = ~c0wl103b~
-END
-  LPF ALTER_SPELL_HEADER
-    INT_VAR
-	  projectile = c0wlp000
-  END
-  
 COPY_EXISTING ~c0wl101F.spl~ ~override/c0wl102a.spl~
   LPF ADD_SPELL_EFFECT
     INT_VAR
@@ -2247,8 +2369,6 @@ SAY NAME1 ~Shape: Spear~
 
 COPY_EXISTING ~c0wl103A.ITM~ ~override~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp002
 	STR_VAR
 	  icon = c0wl103b
   END
@@ -2262,8 +2382,6 @@ SAY NAME1 ~Shape: Chain~
 
 COPY_EXISTING ~c0wl103A.ITM~ ~override/C0WL200A.ITM~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp001
 	STR_VAR
 	  icon = c0wl200B
   END
@@ -2272,16 +2390,25 @@ SAY NAME1 ~Eldritch Chain~
 SAY NAME2 ~Eldritch Chain~
 
 COPY_EXISTING ~c0wl200F.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp001
+  END
   LPF ALTER_EFFECT
     INT_VAR
 	  match_opcode = 328
 	  parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
   END
   LPF ALTER_SPELL_HEADER
 	STR_VAR
 	  icon = ~c0wl200b~
 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 1 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END
+SAY NAME1 ~Eldritch Chain~
 
 COPY_EXISTING ~c0wl200c.spl~ ~override~
 WRITE_LONG 0x20 IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
@@ -2330,6 +2457,34 @@ COPY_EXISTING ~c0wl500.ITM~ ~override~
 SAY NAME1 ~Eldritch Glaive~
 SAY NAME2 ~Eldritch Glaive~
 
+COPY_EXISTING ~c0wl101F.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp001
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+END
+SAY NAME1 ~Eldritch Blast~
+
+COPY_EXISTING ~c0wl101F.spl~ ~override/c0wl101G.spl~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp000
+END
+SAY NAME1 #-1
+  
+COPY_EXISTING ~c0wl101F.spl~ ~override/c0wl101K.spl~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp001
+END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+END
+
 COPY_EXISTING ~c0wl101F.spl~ ~override/c0wl101h.spl~
   LPF ALTER_SPELL_HEADER
 	STR_VAR
@@ -2364,10 +2519,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl106.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl106R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp006
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Draining Blast~
+
+COPY_EXISTING ~c0wl106R.spl~ ~override/c0wl106v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl106.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl106b
   END
@@ -2411,10 +2581,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl107.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl107R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp011
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Frightful Blast~
+
+COPY_EXISTING ~c0wl107R.spl~ ~override/c0wl107v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl107.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl107b
   END
@@ -2458,10 +2643,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or become blinded, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl201.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl201R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp016
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Beshadowed Blast~
+
+COPY_EXISTING ~c0wl201R.spl~ ~override/c0wl201v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl201.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl201b
   END
@@ -2541,10 +2741,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl202.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl202R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp021
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Brimstone Blast~
+
+COPY_EXISTING ~c0wl202R.spl~ ~override/c0wl202v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl202.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl202b
   END
@@ -2639,10 +2854,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity and Armor Class. The penalties from multiple hellrime blasts do not stack.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl203.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl203R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp026
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Hellrime Blast~
+
+COPY_EXISTING ~c0wl203R.spl~ ~override/c0wl203v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl203.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl203b
   END
@@ -2737,10 +2967,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl301.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl301R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp031
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Bewitching Blast~
+
+COPY_EXISTING ~c0wl301R.spl~ ~override/c0wl301v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl301.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl301b
   END
@@ -2820,10 +3065,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed. Creatures immune to electrical damage are not affected.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl302.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl302R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp036
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Electrifying Blast~
+
+COPY_EXISTING ~c0wl302R.spl~ ~override/c0wl302v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl302.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl302b
   END
@@ -2913,10 +3173,25 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 (additional -1 penalty per two points of caster's Charisma above 17) or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl303.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl303R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp041
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Noxious Blast~
+
+COPY_EXISTING ~c0wl303R.spl~ ~override/c0wl303v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl303.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl303b
   END
@@ -3006,10 +3281,25 @@ Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl304.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl304R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp046
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Vitriolic Blast~
+
+COPY_EXISTING ~c0wl304R.spl~ ~override/c0wl304v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl304.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl304b
   END
@@ -3056,10 +3346,25 @@ Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 (additional -1 penalty per two points of caster's Charisma above 17) or be stunned for 1 round.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl401.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl401R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp051
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Binding Blast~
+
+COPY_EXISTING ~c0wl401R.spl~ ~override/c0wl401v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl401.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl401b
   END
@@ -3139,10 +3444,25 @@ Saving Throw: None
 
 This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for eight hours. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
 
-COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl402.itm~
-  LPF ALTER_ITEM_HEADER
+COPY_EXISTING ~c0wl402R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp056
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Utterdark Blast~
+
+COPY_EXISTING ~c0wl402R.spl~ ~override/c0wl402v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
+
+COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl402.itm~
+  LPF ALTER_ITEM_HEADER
 	STR_VAR
 	  icon = c0wl402b
   END
@@ -3831,14 +4151,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl106s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl106s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp007
 	STR_VAR
 	  icon = "C0W@106B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL106R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL106V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL106Y END
 SAY NAME1 ~Draining Blast: Spear~
 SAY NAME2 ~Draining Blast: Spear~
@@ -3863,14 +4181,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl107s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl107s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp012
 	STR_VAR
 	  icon = "C0W@107B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL107R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL107V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL107Y END
 SAY NAME1 ~Frightful Blast: Spear~
 SAY NAME2 ~Frightful Blast: Spear~
@@ -3895,14 +4211,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or become blinded, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl201s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl201s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp017
 	STR_VAR
 	  icon = "C0W@201B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL201R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL201V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL201Y END
 SAY NAME1 ~Beshadowed Blast: Spear~
 SAY NAME2 ~Beshadowed Blast: Spear~
@@ -3927,14 +4241,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl202s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl202s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp022
 	STR_VAR
 	  icon = "C0W@202B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL202R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL202V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL202Y END
 SAY NAME1 ~Brimstone Blast: Spear~
 SAY NAME2 ~Brimstone Blast: Spear~
@@ -3959,14 +4271,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity and Armor Class. The penalties from multiple hellrime blasts do not stack.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl203s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl203s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp027
 	STR_VAR
 	  icon = "C0W@203B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL203R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL203V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL203Y END
 SAY NAME1 ~Hellrime Blast: Spear~
 SAY NAME2 ~Hellrime Blast: Spear~
@@ -3991,14 +4301,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl301s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl301s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp032
 	STR_VAR
 	  icon = "C0W@301B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL301R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL301V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL301Y END
 SAY NAME1 ~Bewitching Blast: Spear~
 SAY NAME2 ~Bewitching Blast: Spear~
@@ -4023,14 +4331,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed. Creatures immune to electrical damage are not affected.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl302s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl302s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp037
 	STR_VAR
 	  icon = "C0W@302B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL302R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL302V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL302Y END
 SAY NAME1 ~Electrifying Blast: Spear~
 SAY NAME2 ~Electrifying Blast: Spear~
@@ -4055,14 +4361,12 @@ Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 (additional -1 penalty per two points of caster's Charisma above 17) or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl303s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl303s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp042
 	STR_VAR
 	  icon = "C0W@303B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL303R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL303V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL303Y END
 SAY NAME1 ~Noxious Blast: Spear~
 SAY NAME2 ~Noxious Blast: Spear~
@@ -4087,14 +4391,12 @@ Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl304s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl304s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp047
 	STR_VAR
 	  icon = "C0W@304B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL304R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL304V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL304Y END
 SAY NAME1 ~Vitriolic Blast: Spear~
 SAY NAME2 ~Vitriolic Blast: Spear~
@@ -4119,14 +4421,12 @@ Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 (additional -1 penalty per two points of caster's Charisma above 17) or be stunned for 1 round.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl401s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl401s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp052
 	STR_VAR
 	  icon = "C0W@401B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL401R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL401V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL401Y END
 SAY NAME1 ~Binding Blast: Spear~
 SAY NAME2 ~Binding Blast: Spear~
@@ -4151,14 +4451,12 @@ Saving Throw: None
 
 This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for eight hours. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
 
-COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl402s.itm~
+COPY_EXISTING ~C0WL103A.ITM~ ~override/c0wl402s.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp057
 	STR_VAR
 	  icon = "C0W@402B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL402R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL402V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL402Y END
 SAY NAME1 ~Utterdark Blast: Spear~
 SAY NAME2 ~Utterdark Blast: Spear~
@@ -4199,7 +4497,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL106I.itm~
 SAY NAME1 ~Draining Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Draining Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl106H.spl~ ~override/C0WL106J.spl~
+COPY_EXISTING ~c0wl106R.spl~ ~override/C0WL106J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe02
@@ -4240,7 +4538,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL107I.itm~
 SAY NAME1 ~Frigbtful Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Frigbtful Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl107H.spl~ ~override/C0WL107J.spl~
+COPY_EXISTING ~c0wl107R.spl~ ~override/C0WL107J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe03
@@ -4281,7 +4579,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL201I.itm~
 SAY NAME1 ~Beshadowed Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Beshadowed Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl201H.spl~ ~override/C0WL201J.spl~
+COPY_EXISTING ~c0wl201R.spl~ ~override/C0WL201J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe04
@@ -4322,7 +4620,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL202I.itm~
 SAY NAME1 ~Brimstone Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Brimstone Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl202H.spl~ ~override/C0WL202J.spl~
+COPY_EXISTING ~c0wl202R.spl~ ~override/C0WL202J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe05
@@ -4363,7 +4661,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL203I.itm~
 SAY NAME1 ~Hellrime Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Hellrime Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl203H.spl~ ~override/C0WL203J.spl~
+COPY_EXISTING ~c0wl203R.spl~ ~override/C0WL203J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe06
@@ -4404,7 +4702,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL301I.itm~
 SAY NAME1 ~Bewitching Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Bewitching Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl301H.spl~ ~override/C0WL301J.spl~
+COPY_EXISTING ~c0wl301R.spl~ ~override/C0WL301J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe07
@@ -4445,7 +4743,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL302I.itm~
 SAY NAME1 ~Electrifying Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Electrifying Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl302H.spl~ ~override/C0WL302J.spl~
+COPY_EXISTING ~c0wl302R.spl~ ~override/C0WL302J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe08
@@ -4486,7 +4784,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL303I.itm~
 SAY NAME1 ~Noxious Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Noxious Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl303H.spl~ ~override/C0WL303J.spl~
+COPY_EXISTING ~c0wl303R.spl~ ~override/C0WL303J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe09
@@ -4527,7 +4825,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL304I.itm~
 SAY NAME1 ~Vitriolic Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Vitriolic Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl304H.spl~ ~override/C0WL304J.spl~
+COPY_EXISTING ~c0wl304R.spl~ ~override/C0WL304J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe10
@@ -4568,7 +4866,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL401I.itm~
 SAY NAME1 ~Binding Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Binding Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl401H.spl~ ~override/C0WL401J.spl~
+COPY_EXISTING ~c0wl401R.spl~ ~override/C0WL401J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe11
@@ -4609,7 +4907,7 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL402I.itm~
 SAY NAME1 ~Utterdark Blast:^0xFFC76776 ^-Glaive~
 SAY NAME2 ~Utterdark Blast:^0xFFC76776 ^-Glaive~
 
-COPY_EXISTING ~c0wl402H.spl~ ~override/C0WL402J.spl~
+COPY_EXISTING ~c0wl402R.spl~ ~override/C0WL402J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe12
@@ -4642,8 +4940,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl106H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp006
 	STR_VAR
 	  icon = "c0w#106b"
   END
@@ -4651,6 +4947,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl106H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL106Y END
 SAY NAME1 ~Draining Blast: Chain~
 SAY NAME2 ~Draining Blast: Chain~
+
+COPY_EXISTING ~c0wl106H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp006
+	STR_VAR
+	  icon = ~c0w#106b~
+END
+SAY NAME1 ~Draining Blast~
 
 COPY_EXISTING ~c0wl106H.spl~ ~override/c0wl106x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4681,8 +4990,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl107H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp011
 	STR_VAR
 	  icon = "c0w#107b"
   END
@@ -4690,6 +4997,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl107H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL107Y END
 SAY NAME1 ~Frightful Blast: Chain~
 SAY NAME2 ~Frightful Blast: Chain~
+
+COPY_EXISTING ~c0wl107H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp011
+	STR_VAR
+	  icon = ~c0w#107b~
+END
+SAY NAME1 ~Frightful Blast~
 
 COPY_EXISTING ~c0wl107h.spl~ ~override/c0wl107x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4720,8 +5040,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl201H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp016
 	STR_VAR
 	  icon = "c0w#201b"
   END
@@ -4729,6 +5047,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl201H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL201Y END
 SAY NAME1 ~Beshadowed Blast: Chain~
 SAY NAME2 ~Beshadowed Blast: Chain~
+
+COPY_EXISTING ~c0wl201H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp016
+	STR_VAR
+	  icon = ~c0w#201b~
+END
+SAY NAME1 ~Beshadowed Blast~
 
 COPY_EXISTING ~c0wl201h.spl~ ~override/c0wl201x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4759,8 +5090,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl202H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp021
 	STR_VAR
 	  icon = "c0w#202b"
   END
@@ -4768,6 +5097,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl202H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL202Y END
 SAY NAME1 ~Brimstone Blast: Chain~
 SAY NAME2 ~Brimstone Blast: Chain~
+
+COPY_EXISTING ~c0wl202H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp021
+	STR_VAR
+	  icon = ~c0w#202b~
+END
+SAY NAME1 ~Brimstone Blast~
 
 COPY_EXISTING ~c0wl202h.spl~ ~override/c0wl202x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4798,8 +5140,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl203H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp026
 	STR_VAR
 	  icon = "c0w#203b"
   END
@@ -4807,6 +5147,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl203H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL203Y END
 SAY NAME1 ~Hellrime Blast: Chain~
 SAY NAME2 ~Hellrime Blast: Chain~
+
+COPY_EXISTING ~c0wl203H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp026
+	STR_VAR
+	  icon = ~c0w#203b~
+END
+SAY NAME1 ~Hellrime Blast~
 
 COPY_EXISTING ~c0wl203h.spl~ ~override/c0wl203x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4837,8 +5190,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl301H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp031
 	STR_VAR
 	  icon = "c0w#301b"
   END
@@ -4846,6 +5197,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl301H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL301Y END
 SAY NAME1 ~Bewitching Blast: Chain~
 SAY NAME2 ~Bewitching Blast: Chain~
+
+COPY_EXISTING ~c0wl301H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp031
+	STR_VAR
+	  icon = ~c0w#301b~
+END
+SAY NAME1 ~Bewitching Blast~
 
 COPY_EXISTING ~c0wl301h.spl~ ~override/c0wl301x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4876,8 +5240,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl302H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp036
 	STR_VAR
 	  icon = "c0w#302b"
   END
@@ -4885,6 +5247,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl302H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL302Y END
 SAY NAME1 ~Electrifying Blast: Chain~
 SAY NAME2 ~Electrifying Blast: Chain~
+
+COPY_EXISTING ~c0wl302H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp036
+	STR_VAR
+	  icon = ~c0w#302b~
+END
+SAY NAME1 ~Electrifying Blast~
 
 COPY_EXISTING ~c0wl302h.spl~ ~override/c0wl302x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4915,8 +5290,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl303H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp041
 	STR_VAR
 	  icon = "c0w#303b"
   END
@@ -4924,6 +5297,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl303H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL303Y END
 SAY NAME1 ~Noxious Blast: Chain~
 SAY NAME2 ~Noxious Blast: Chain~
+
+COPY_EXISTING ~c0wl303H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp041
+	STR_VAR
+	  icon = ~c0w#303b~
+END
+SAY NAME1 ~Noxious Blast~
 
 COPY_EXISTING ~c0wl303h.spl~ ~override/c0wl303x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4954,8 +5340,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl304H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp046
 	STR_VAR
 	  icon = "c0w#304b"
   END
@@ -4963,6 +5347,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl304H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL304Y END
 SAY NAME1 ~Vitriolic Blast: Chain~
 SAY NAME2 ~Vitriolic Blast: Chain~
+
+COPY_EXISTING ~c0wl304H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp046
+	STR_VAR
+	  icon = ~c0w#304b~
+END
+SAY NAME1 ~Vitriolic Blast~
 
 COPY_EXISTING ~c0wl304h.spl~ ~override/c0wl304x.spl~
   LPF ALTER_SPELL_HEADER
@@ -4993,8 +5390,6 @@ This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldri
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl401H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp051
 	STR_VAR
 	  icon = "c0w#401b"
   END
@@ -5002,6 +5397,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl401H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL401Y END
 SAY NAME1 ~Binding Blast: Chain~
 SAY NAME2 ~Binding Blast: Chain~
+
+COPY_EXISTING ~c0wl401H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp051
+	STR_VAR
+	  icon = ~c0w#401b~
+END
+SAY NAME1 ~Binding Blast~
 
 COPY_EXISTING ~c0wl401h.spl~ ~override/c0wl401x.spl~
   LPF ALTER_SPELL_HEADER
@@ -5032,8 +5440,6 @@ This eldritch essence invocation allows you to change your eldritch blast into a
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl402H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp056
 	STR_VAR
 	  icon = "c0w#402b"
   END
@@ -5041,6 +5447,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl402H.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL402Y END
 SAY NAME1 ~Utterdark Blast: Chain~
 SAY NAME2 ~Utterdark Blast: Chain~
+
+COPY_EXISTING ~c0wl402H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp056
+	STR_VAR
+	  icon = ~c0w#402b~
+END
+SAY NAME1 ~Utterdark Blast~
 
 COPY_EXISTING ~c0wl402h.spl~ ~override/c0wl402x.spl~
   LPF ALTER_SPELL_HEADER
@@ -6390,8 +6809,6 @@ SAY NAME1 ~Hellfire Blast~
 
 COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl506.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp061
 	STR_VAR
 	  icon = c0wl506b
   END
@@ -6401,6 +6818,23 @@ COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl506.itm~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
 SAY NAME1 ~Hellfire Blast~
 SAY NAME2 ~Hellfire Blast~
+
+COPY_EXISTING ~c0wl506R.spl~ ~override~
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp061
+  END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+SAY NAME1 ~Hellfire Blast~
+
+COPY_EXISTING ~c0wl506R.spl~ ~override/c0wl506v.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 0
+  END
 
 COPY_EXISTING ~c0wl103.spl~ ~override/c0wl506c.spl~
 WRITE_ASCII 0x3a ~C0W@506C~
@@ -6415,7 +6849,7 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl506s.itm~
 	STR_VAR
 	  icon = "C0W@506B"
   END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL506R END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = C0WL506V END
   LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR match_resource = C0WL101Y resource = C0WL506Y END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
 SAY NAME1 ~Hellfire Blast: Spear~
@@ -6442,12 +6876,13 @@ COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL506I.itm~
 SAY NAME1 ~Hellfire Blast: Glaive~
 SAY NAME2 ~Hellfire Blast: Glaive~
 
-COPY_EXISTING ~c0wl506H.spl~ ~override/C0WL506J.spl~
+COPY_EXISTING ~c0wl506R.spl~ ~override/C0WL506J.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlpe13
   END
 SAY NAME1 #-1
+LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
 
 COPY_EXISTING ~c0wl200.spl~ ~override/c0wl506d.spl~
 WRITE_ASCII 0x3a ~C0W#506C~
@@ -6457,8 +6892,6 @@ SAY NAME1 ~Hellfire Blast: Chain~
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl506H.itm~
   LPF ALTER_ITEM_HEADER
-    INT_VAR
-	  projectile = c0wlp061
 	STR_VAR
 	  icon = "c0w#506b"
   END
@@ -6467,6 +6900,19 @@ COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl506H.itm~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
 SAY NAME1 ~Hellfire Blast: Chain~
 SAY NAME2 ~Hellfire Blast: Chain~
+
+COPY_EXISTING ~c0wl506H.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+	  savingthrow = 2048
+  END
+  LPF ALTER_SPELL_HEADER
+    INT_VAR
+	  projectile = c0wlp061
+	STR_VAR
+	  icon = ~c0w#506b~
+END
+SAY NAME1 ~Hellfire Blast~
 
 COPY_EXISTING ~c0wl506H.spl~ ~override~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 1 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END

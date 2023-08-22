@@ -15,6 +15,7 @@ THEN
 END
 
 IF
+	ActionListEmpty()
 	TriggerOverride(Player2,ActionListEmpty())
 	Global("C0WLDisableOldSpellLearning","GLOBAL",0)
 	Kit(Player2,C0WLOCK)
@@ -30,6 +31,7 @@ THEN
 END
 
 IF
+	ActionListEmpty()
 	TriggerOverride(Player3,ActionListEmpty())
 	Global("C0WLDisableOldSpellLearning","GLOBAL",0)
 	Kit(Player3,C0WLOCK)
@@ -45,6 +47,7 @@ THEN
 END
 
 IF
+	ActionListEmpty()
 	TriggerOverride(Player4,ActionListEmpty())
 	Global("C0WLDisableOldSpellLearning","GLOBAL",0)
 	Kit(Player4,C0WLOCK)
@@ -60,6 +63,7 @@ THEN
 END
 
 IF
+	ActionListEmpty()
 	TriggerOverride(Player5,ActionListEmpty())
 	Global("C0WLDisableOldSpellLearning","GLOBAL",0)
 	Kit(Player5,C0WLOCK)
@@ -75,6 +79,7 @@ THEN
 END
 
 IF
+	ActionListEmpty()
 	TriggerOverride(Player6,ActionListEmpty())
 	Global("C0WLDisableOldSpellLearning","GLOBAL",0)
 	Kit(Player6,C0WLOCK)

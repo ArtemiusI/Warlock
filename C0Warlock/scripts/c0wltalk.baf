@@ -89,10 +89,8 @@ THEN
 END
 
 IF
-  OnCreation()
+  ActionListEmpty()
 THEN
   RESPONSE #100
-	Wait(1)
-    ActionOverride(LastSummonerOf(),StartDialogOverride("c0wltalk",Myself))
 	DestroySelf()
 END
