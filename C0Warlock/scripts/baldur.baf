@@ -1,5 +1,4 @@
 IF
-	ActionListEmpty()
 	TriggerOverride(Player1,ActionListEmpty())
 	Global("C0WLDisableOldSpellLearning","GLOBAL",0)
 	Kit(Player1,C0WLOCK)

@@ -252,25 +252,6 @@ LAF ADD_IDS_ENTRY INT_VAR minValue = 200 maxValue = 255 preferredValue = 200 STR
   END
  END
  
-COPY_EXISTING_REGEXP GLOB ~SPWI.*.SPL$~ ~override~
-  READ_SHORT	0x1c spell_type
-  PATCH_IF (spell_type = 1) BEGIN
-    WRITE_BYTE    0x20 (THIS BOR 0b01000000)
-      END
-BUT_ONLY_IF_IT_CHANGES
-
-COPY_EXISTING ~kitlist.2da~ ~override~
-	COUNT_2DA_COLS cols // amount of columns
-	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
-	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
-	  READ_2DA_ENTRY_FORMER rows row 1 ~text~ // read column value
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~JESTER~ BEGIN
-	    SET patch_row = %row%
-		SET_2DA_ENTRY (%patch_row%) 7 cols 0b00004000
-	  END
-	END
-BUT_ONLY_IF_IT_CHANGES
-
 // ICONS
 
 COPY ~%MOD_FOLDER%/2da~ ~override~
@@ -333,63 +314,36 @@ LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Soulreaving Aura~) ST
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Eldritch Focus~) STR_VAR bam_file = c0wlic24 RET c0wlic24 = icon END
 LAF cd_new_portrait_icon INT_VAR string = RESOLVE_STR_REF(~Infernal Crest~) STR_VAR bam_file = c0wlic25 RET c0wlic25 = icon END
 
-INCLUDE ~C0Warlock/lib/fl#add_kit_ee.tpa~
-ADD_KIT ~C0WLOCK~
-
- // appended to CLASWEAP.2da
- ~C0WLOCK		1           1           1           1           1           1           1           1~
-
- // appended column-wise to WEAPPROF.2da
-//11                                T   S           F   Q             S S
-//10                                W   C           L   U             W I
-//9                         B L S   O   I   W       A   A             O N
-//8                         A O H   H   M   A       I   R C   S       R G
-//7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2         R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1         D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
- ~C0WLOCK	1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-    
- // appended to ABCLASRQ.2da
- ~C0WLOCK				0      12	0	12	0	16~
-
- // appended to ABCLSMOD.2da
- ~C0WLOCK				0	0	0	0	0	0~
-
- // appended to ABDCDSRQ.2da
- ~C0WLOCK                		0       0       0       0       0       0~
-
- // appended to ABDCSCRQ.2da
- ~C0WLOCK                 	0       0       0       0       0		0~
-
- // appended to ALIGNMNT.2da
- ~C0WLOCK                  	0       0       1       0      0	1       1       1       1~
-
- // appended to DUALCLAS.2da
- ~C0WLOCK                  	0       0       0       0       0       0~
-
- // path to your CLAB-style 2da file 
- ~%MOD_FOLDER%/2da/C0CLABWL.2da~
-
- // PC races and classes allowed to use this kit, from KITTABLE.2da
- ~K_B_H K_B_E K_B_HE K_B_HL K_B_G K_B_D K_B_HO~
-
- // usability flags, added to the end of the KITLIST.2da entry
- ~0x00400000     5~
-
- // HLA table to use; see LUABBR.2da
- ~C0WL~
-
- // list of starting equipment for PCs starting in ToB. Appended column-wise to 25STWEAP.2da
- ~CHAN16 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
-
- // Lower, mixed, and help kit names and descriptions, added to KITLIST.2da
-  SAY ~warlock~
-  SAY ~Warlock~
-  SAY ~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
+    kit_class     = 5
+	
+    mixed         = RESOLVE_STR_REF(~Warlock~)
+	
+    lower         = RESOLVE_STR_REF(~warlock~)
+	
+    help          = RESOLVE_STR_REF(~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
 
 CLASS FEATURES:
 
@@ -424,16 +378,97 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 – 24th level: Regeneration rate increased to one hit point per round.
 
 – Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
-– Hit Die: d6~
+– Hit Die: d6~)
 
-LAF fl#add_kit_ee
-  INT_VAR
-	briefdesc = RESOLVE_STR_REF (~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will.~)
 	biography = RESOLVE_STR_REF (~For as long as you recall, you have wielded infernal magic as easily as you draw breath. While your innate magical abilities earned you the fear and scorn of those around you, your mentors sought to raise you as well as they could regardless, urging you to control the dark powers within you and use them for good purposes. Despite this, you have always felt the call of something darker, sinister calling your name, urging you to take a power that is almost within reach.~)
+	
+    briefdesc = RESOLVE_STR_REF(~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power.~)
+	
+	// fallen = 0
+	
   STR_VAR
-    kit_name = C0WLOCK
-	clascolr = ~93 101 100 107 188~
-	clsrcreq = ~1 1 1 1 1 1 1~
+    kit_name      = ~C0WLOCK~
+	
+    unusable      = ~0x00004000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                       T   S           F   Q             S S
+	//                                       W   C           L   U             W I
+	//                               B L S   O   I   W       A   A             O N
+	//                               A O H   H   M   A       I   R C   S       R G
+	//               L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//               _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+    // weapprof      = ~0 1 0 0 1 0 0 1 0 1 1 0 0 1 1 1 0 1 0 0 0 0 1 1 0 1 1 1 1 1 1 1~
+	
+    abclasrq      = ~0 12 0 12 0 16~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    alignmnt      = ~0 0 1 0 0 1 1 1 1~
+	
+    // dualclas      = ~0 1 1 1 1 0~
+	
+    luabbr        = ~C0WL~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0CLABWL.2da~
+	
+    // kittable      = ~K_F_H K_F_E K_F_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    // hpclass       = ~HPPRS~
+	
+    // numwslot      = ~4~
+	
+    clascolr = ~93 101 100 107 188~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	// thiefscl = ~0 0 0 0 0 0 0 0~
+	
+	// backstab = ~1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2~
+	
+	// sneakatt = ~1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	// thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
 END
 
 ACTION_IF NOT GAME_IS ~IWDEE~ AND FILE_EXISTS_IN_GAME ~baldur.bcs~ THEN BEGIN
@@ -2297,6 +2332,164 @@ END
 	STR_VAR
 	  resource = %c0wlsp4c%
 END
+
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls012.spl~
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls013.spl~
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls014.spl~
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls015.spl~
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls016.spl~
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls021.spl~
+WRITE_SHORT 0x34 2
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls022.spl~
+WRITE_SHORT 0x34 2
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls023.spl~
+WRITE_SHORT 0x34 2
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls024.spl~
+WRITE_SHORT 0x34 2
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls025.spl~
+WRITE_SHORT 0x34 2
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls026.spl~
+WRITE_SHORT 0x34 2
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls031.spl~
+WRITE_SHORT 0x34 3
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls032.spl~
+WRITE_SHORT 0x34 3
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls033.spl~
+WRITE_SHORT 0x34 3
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls034.spl~
+WRITE_SHORT 0x34 3
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls035.spl~
+WRITE_SHORT 0x34 3
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls036.spl~
+WRITE_SHORT 0x34 3
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls041.spl~
+WRITE_SHORT 0x34 4
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls042.spl~
+WRITE_SHORT 0x34 4
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls043.spl~
+WRITE_SHORT 0x34 4
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls044.spl~
+WRITE_SHORT 0x34 4
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls045.spl~
+WRITE_SHORT 0x34 4
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls046.spl~
+WRITE_SHORT 0x34 4
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls051.spl~
+WRITE_SHORT 0x34 5
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls052.spl~
+WRITE_SHORT 0x34 5
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls053.spl~
+WRITE_SHORT 0x34 5
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls054.spl~
+WRITE_SHORT 0x34 5
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls055.spl~
+WRITE_SHORT 0x34 5
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls056.spl~
+WRITE_SHORT 0x34 5
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls061.spl~
+WRITE_SHORT 0x34 6
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls062.spl~
+WRITE_SHORT 0x34 6
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls063.spl~
+WRITE_SHORT 0x34 6
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls064.spl~
+WRITE_SHORT 0x34 6
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls065.spl~
+WRITE_SHORT 0x34 6
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls066.spl~
+WRITE_SHORT 0x34 6
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls071.spl~
+WRITE_SHORT 0x34 7
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls072.spl~
+WRITE_SHORT 0x34 7
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls073.spl~
+WRITE_SHORT 0x34 7
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls074.spl~
+WRITE_SHORT 0x34 7
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls075.spl~
+WRITE_SHORT 0x34 7
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls076.spl~
+WRITE_SHORT 0x34 7
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls081.spl~
+WRITE_SHORT 0x34 8
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls082.spl~
+WRITE_SHORT 0x34 8
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls083.spl~
+WRITE_SHORT 0x34 8
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls084.spl~
+WRITE_SHORT 0x34 8
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls085.spl~
+WRITE_SHORT 0x34 8
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls086.spl~
+WRITE_SHORT 0x34 8
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls091.spl~
+WRITE_SHORT 0x34 9
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls092.spl~
+WRITE_SHORT 0x34 9
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls093.spl~
+WRITE_SHORT 0x34 9
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls094.spl~
+WRITE_SHORT 0x34 9
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls095.spl~
+WRITE_SHORT 0x34 9
+COPY_EXISTING ~c0wls011.spl~ ~override/c0wls096.spl~
+WRITE_SHORT 0x34 9
+
+COPY_EXISTING ~C0WLRSE2.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS012% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS013% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS014% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS015% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS016% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS021% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS022% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS023% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS024% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS025% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS026% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS031% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS032% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS033% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS034% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS035% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS036% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS041% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS042% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS043% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS044% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS045% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS046% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS051% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS052% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS053% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS054% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS055% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS056% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS061% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS062% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS063% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS064% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS065% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS066% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS071% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS072% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS073% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS074% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS075% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS076% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS081% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS082% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS083% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS084% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS085% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS086% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS091% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS092% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS093% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS094% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS095% END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = %C0WLS011% resource = %C0WLS096% END
+
 
 COPY_EXISTING ~c0wl008.spl~ ~override~
 SAY NAME1 ~Invocations~
@@ -7084,8 +7277,5 @@ END
 	BUT_ONLY
 	END
 	END
-	/*
-//INCLUDE ~%MOD_FOLDER%/lib/LearnClassSpell.tpa~
-ACTION_FOR_EACH eblasts IN 101 200 106 106D 107 107D 201 201D 202 202D 203 203D 301 301D 302 302D 303 303D 304 304D 401 401D 402 402D 506A 506D BEGIN
-LAF SPELL_HIT_CHECK INT_VAR BONUS_TO_APPLY = 4 WITH_FEEDBACK = 1 STR_VAR SPELL_TO_PATCH = ~C0WL%eblasts%~ NEW_SPELL_RES = EVAL~C0%eblasts%J~ END
-END*/
+
+INCLUDE ~%MOD_FOLDER%/lib/LearnClassSpell.tpa~
