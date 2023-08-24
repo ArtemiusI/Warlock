@@ -1083,7 +1083,7 @@ WRITE_ASCIIE 0x3a ~C0W#%blasts%C~
 	  parameter2 = IDS_OF_SYMBOL (~SPLSTATE~ ~ELDRITCH_CHAIN~)
   END
   LPF ALTER_SPELL_HEADER INT_VAR speed = 3 STR_VAR icon = EVAL ~C0W#%blasts%B~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 1 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 0 duration = 6 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END
 COPY_EXISTING ~C0WL%blasts%R.spl~ ~override/C0WL%blasts%E.spl~ // CONE
 WRITE_ASCIIE 0x3a ~C0W$%blasts%C~
   LPF ALTER_SPELL_HEADER INT_VAR speed = 5 target = 4 STR_VAR icon = EVAL ~C0W$%blasts%B~ END
@@ -2600,7 +2600,7 @@ COPY_EXISTING ~c0wl200F.spl~ ~override~
 	STR_VAR
 	  icon = ~c0wl200b~
 END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 1 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 0 duration = 6 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END
 SAY NAME1 ~Eldritch Chain~
 
 COPY_EXISTING ~c0wl200c.spl~ ~override~
@@ -7108,7 +7108,7 @@ END
 SAY NAME1 ~Hellfire Blast~
 
 COPY_EXISTING ~c0wl506H.spl~ ~override~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 1 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 4 timing = 0 duration = 6 parameter1 = 199 parameter2 = 2 savetype = 16777216 STR_VAR resource = C0WL200C END
 COPY_EXISTING ~c0wl506H.spl~ ~override/c0wl506x.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
