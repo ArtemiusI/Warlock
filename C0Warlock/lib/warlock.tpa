@@ -6199,11 +6199,24 @@ Saving Throw: None
 
 A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 (additional +1 bonus for every point of Charisma above 16) for the duration.~
 
-COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109c.spl~
+COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109j.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 0
+	  parameter1 = 5
+	STR_VAR resource = C0WL109J
+END
+COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109b.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
 	  parameter1 = 4
+END
+COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109c.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      match_opcode = 0
+	  parameter1 = 3
 END
   LPF ALTER_EFFECT
     INT_VAR
@@ -6214,50 +6227,43 @@ COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109d.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
-	  parameter1 = 3
+	  parameter1 = 2
 	STR_VAR resource = C0WL109D
 END
 COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109e.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
-	  parameter1 = 2
+	  parameter1 = 1
 	STR_VAR resource = C0WL109E
 END
 COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109f.spl~
   LPF ALTER_EFFECT
     INT_VAR
       match_opcode = 0
-	  parameter1 = 1
+	  parameter1 = 0
 	STR_VAR resource = C0WL109F
 END
 COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109g.spl~
-  LPF ALTER_EFFECT
+  LPF ALTER_EFFECT_EX
     INT_VAR
       match_opcode = 0
-	  parameter1 = 0
 	STR_VAR resource = C0WL109G
+	  parameter1_ex = ~"-1"~
 END
 COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109h.spl~
-  LPF ALTER_EFFECT
+  LPF ALTER_EFFECT_EX
     INT_VAR
       match_opcode = 0
-	  parameter1 = (0 - 1)
 	STR_VAR resource = C0WL109H
+	  parameter1_ex = ~"-2"~
 END
 COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109i.spl~
-  LPF ALTER_EFFECT
+  LPF ALTER_EFFECT_EX
     INT_VAR
       match_opcode = 0
-	  parameter1 = (0 - 2)
 	STR_VAR resource = C0WL109I
-END
-COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109j.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      match_opcode = 0
-	  parameter1 = (0 - 3)
-	STR_VAR resource = C0WL109J
+	  parameter1_ex = ~"-3"~
 END
 
 COPY_EXISTING ~c0wl110.spl~ ~override~
