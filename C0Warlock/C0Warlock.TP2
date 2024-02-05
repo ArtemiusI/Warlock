@@ -1,6 +1,6 @@
 BACKUP ~C0Warlock/backup~
 AUTHOR ~Artemius_I/AionZ~
-VERSION ~2.44~
+VERSION ~2.5~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/alter_effect.tpa~
