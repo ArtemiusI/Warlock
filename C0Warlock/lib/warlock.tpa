@@ -520,6 +520,7 @@ END
 
 COPY_EXISTING_REGEXP GLOB ~.*\.dlg~ ~override~
   DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~!Class(Player1,BARD_ALL)~ ~OR(2) !Class(Player1,BARD_ALL) Kit(Player1,C0WLOCK)~
     REPLACE_TEXTUALLY ~Class(Player1,BARD_ALL)~ ~Class(Player1,BARD_ALL) !Kit(Player1,C0WLOCK)~
     REPLACE_TEXTUALLY ~!Class(Player1,BARD_ALL) !Kit(Player1,C0WLOCK)~ ~!Class(Player1,BARD_ALL)~
     REPLACE_TEXTUALLY ~Class(LastTalkedToBy,BARD_ALL)~ ~Class(LastTalkedToBy,BARD_ALL) !Kit(LastTalkedToBy,C0WLOCK)~
