@@ -1,5 +1,5 @@
-BACKUP ~C0Warlock/backup~
-AUTHOR ~Artemius_I/AionZ~
+BACKUP ~weidu_external/backup/C0Warlock~
+AUTHOR ~The Artisan~
 VERSION ~2.5~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
