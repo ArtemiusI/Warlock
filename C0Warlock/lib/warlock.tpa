@@ -3579,7 +3579,7 @@ SAY UNIDENTIFIED_DESC ~UTTERDARK BLAST
 Power: Dark
 Effective Spell Level: 8
 Range: Special
-Duration: 8 hours
+Duration: 24 hours
 Casting Time: Same as blast shape
 Area of Effect: Same as blast shape
 Saving Throw: None
@@ -6252,7 +6252,7 @@ SAY UNIDENTIFIED_DESC ~BEGUILING INFLUENCE
 Power: Least
 Effective Spell Level: 2
 Range: 0
-Duration: 8 hours
+Duration: 24 hours
 Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
@@ -6283,7 +6283,7 @@ SAY UNIDENTIFIED_DESC ~DARK ONE'S OWN LUCK
 Power: Least
 Effective Spell Level: 2
 Range: 0
-Duration: 8 hours
+Duration: 24 hours
 Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
@@ -6432,7 +6432,7 @@ SAY UNIDENTIFIED_DESC ~LEAPS AND BOUNDS
 Power: Least
 Effective Spell Level: 2
 Range: 0
-Duration: 8 hours
+Duration: 24 hours
 Casting Time: 1
 Area of Effect: the caster
 Saving Throw: None
