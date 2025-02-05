@@ -367,7 +367,7 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
-	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.
 
 – 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
 – 8th level: The warlock regenerates one hit point per three rounds.
@@ -1020,7 +1020,7 @@ WRITE_ASCIIE 0x3a ~C0W$%blasts%C~
   LPF ALTER_EFFECT INT_VAR savingthrow = 16777216 END
 COPY_EXISTING ~C0WL%blasts%R.spl~ ~override/C0WL%blasts%F.spl~
 WRITE_ASCIIE 0x3a ~C0W%%blasts%C~
-  LPF ALTER_SPELL_HEADER INT_VAR speed = 7 target = 4 STR_VAR icon = EVAL ~C0W%%blasts%B~ END
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 7 target = 5 STR_VAR icon = EVAL ~C0W%%blasts%B~ END
   LPF ALTER_EFFECT INT_VAR savingthrow = 16777216 END
 END
 END
@@ -2436,7 +2436,7 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
 	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
 	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
-	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 30 ft. radius. Increases casting time by 6.~
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
 
 COPY_EXISTING ~c0wl101A.ITM~ ~override~
 SAY NAME1 ~Eldritch Blast~
@@ -2486,7 +2486,7 @@ END
 SAY NAME1 ~Hideous Blow~
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl103.spl~
-  LPF ALTER_SPELL_HEADER STR_VAR icon = ~c0wl103b~ END
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~c0wl103b~ speed = 3 END
   LPF ALTER_EFFECT STR_VAR resource = C0WL103A END
 SAY NAME1 ~Shape: Spear~
 
@@ -2499,7 +2499,7 @@ SAY NAME1 ~Eldritch Spear~
 SAY NAME2 ~Eldritch Spear~
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl200.spl~
-  LPF ALTER_SPELL_HEADER STR_VAR icon = ~c0wl200b~ END
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~c0wl200b~ speed = 4 END
   LPF ALTER_EFFECT STR_VAR resource = C0WL200A END
 SAY NAME1 ~Shape: Chain~
 
@@ -2583,7 +2583,7 @@ COPY_EXISTING ~c0wl101F.spl~ ~override/c0wl400.spl~
   END
   LPF ALTER_SPELL_HEADER
     INT_VAR
-	  target = 4
+	  target = 5
 	STR_VAR
 	  icon = ~c0wl400b~
 END
@@ -6731,12 +6731,12 @@ Saving Throw: None
 
 The warlock can raise the bones and flesh of the dead into reanimated corpses with <PRO_HISHER> infernal power to serve <PRO_HIMHER> for eight hours. The type and number of the creatures summoned is dependent on the warlock's level:
 
-  1st – 11th: 1d4 skeletons and zombies
-  12th - 16th: 2d4 skeletons, zombies and ghouls
-  17th - 21st: 1d4 skeleton warriors, juju zombies and ghoul lords
-  22nd+: 2d4 skeleton warriors, juju zombies and ghoul lords
+  1st – 11th: 1d2+1 skeletons and zombies
+  12th - 16th: 1d4+1 skeletons, zombies and ghouls
+  17th - 21st: 1d2+1 skeleton warriors, juju zombies and ghoul lords
+  22nd+: 1d4+1 skeleton warriors, juju zombies and ghoul lords
   
-All summoned undead remains animated until they are destroyed in combat, eight hour passes, or turned. This spell cannot be dispelled. The summons created by this spell do not count towards the summoning limit.~
+All summoned undead remains animated until they are destroyed in combat, eight hour passes, or turned. This spell cannot be dispelled. The summons created by this spell cannot be controlled and do not count towards the summoning limit.~
 
 COPY_EXISTING ~c0wl208a.cre~ ~override~
 SAY NAME1 ~Skeleton~
@@ -7364,7 +7364,7 @@ COPY_EXISTING ~c0wl506r.spl~ ~override/c0wl506f.spl~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  speed = 7
-	  target = 4
+	  target = 5
 	STR_VAR
 	  icon = ~C0W%506B~
 	  special = 256
@@ -7450,7 +7450,6 @@ END
 	END
 	END
 
-INCLUDE ~%MOD_FOLDER%/lib/LearnClassSpell.tpa~
 INCLUDE ~%MOD_FOLDER%/lib/replace_multiline.tpa~
 
 ACTION_IF FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~ THEN BEGIN

@@ -1,8 +1,7 @@
 BACKUP ~weidu_external/backup/C0Warlock~
 AUTHOR ~The Artisan~
-VERSION ~2.5~
+VERSION ~2.8~
 ALWAYS
-  INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/alter_effect.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/eet.tph~
   INCLUDE ~%MOD_FOLDER%/lib/functions.tph~
@@ -34,7 +33,7 @@ INCLUDE ~%MOD_FOLDER%/LIB/ITEMS.TPA~
 /////BETA SPELL SYSTEM/////
 ///////////////////////////
 ACTION_IF NOT GAME_IS ~IWDEE~ THEN BEGIN
-PRINT ~Install BETA Spell Learning System?
+PRINT ~Install Contingency UI-based Spell Learning System? (Be cautious of using this with UI mods!)
 [1] Yes
 [2] No~
 
