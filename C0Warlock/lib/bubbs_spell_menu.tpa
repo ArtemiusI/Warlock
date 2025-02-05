@@ -1,0 +1,395 @@
+COPY ~%MOD_FOLDER%/2da/bubb~ ~override~
+
+COPY_EXISTING ~C0WL00X.SPL~ ~OVERRIDE~
+SAY UNIDENTIFIED_DESC ~Disable the currently equipped blast shape.~
+COPY_EXISTING ~C0WL101.SPL~ ~OVERRIDE~
+WRITE_BYTE 0x1C 3
+WRITE_BYTE 0x34 1
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = C0WL101 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = C0WL101 END
+SAY NAME1 ~^0xFFC76771^-Eldritch Blast~
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
+COPY_EXISTING ~C0WL102.SPL~ ~OVERRIDE~
+WRITE_BYTE 0x1C 3
+WRITE_BYTE 0x34 1
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = C0WL102 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = C0WL102 END
+SAY NAME1 ~^0xFFC76772^-Hideous Blow~
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
+COPY_EXISTING ~C0WL103.SPL~ ~OVERRIDE~
+WRITE_BYTE 0x1C 3
+WRITE_BYTE 0x34 1
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = C0WL103 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = C0WL103 END
+SAY NAME1 ~^0xFFC76773^-Eldritch Spear~
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
+COPY_EXISTING ~C0WL500.SPL~ ~OVERRIDE~
+WRITE_BYTE 0x1C 3
+WRITE_BYTE 0x34 2
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = C0WL500 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = C0WL500 END
+SAY NAME1 ~^0xFFC76774^-Eldritch Glaive~
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
+COPY_EXISTING ~C0WL200.SPL~ ~OVERRIDE~
+WRITE_BYTE 0x1C 3
+WRITE_BYTE 0x34 2
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = C0WL200 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = C0WL200 END
+SAY NAME1 ~^0xFFC76775^-Eldritch Chain~
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
+COPY_EXISTING ~C0WL300.SPL~ ~OVERRIDE~
+WRITE_BYTE 0x1C 3
+WRITE_BYTE 0x34 3
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = C0WL300 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = C0WL300 END
+SAY NAME1 ~^0xFFC76776^-Eldritch Cone~
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
+COPY_EXISTING ~C0WL400.SPL~ ~OVERRIDE~
+WRITE_BYTE 0x1C 3
+WRITE_BYTE 0x34 4
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = C0WL400 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = C0WL400 END
+SAY NAME1 ~^0xFFC76777^-Eldritch Doom~
+SAY UNIDENTIFIED_DESC ~ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.~
+
+ACTION_FOR_EACH blast IN 106 107 201 202 203 301 302 303 304 401 402 BEGIN
+COPY ~%MOD_FOLDER%/2da/bubb/C0WL101.2da~ ~override/C0WL%blast%a.2da~
+  REPLACE_TEXTUALLY ~c0wlxxxa~ ~c0wl%blast%a~
+  REPLACE_TEXTUALLY ~c0wlxxxb~ ~c0wl%blast%b~
+COPY ~%MOD_FOLDER%/2da/bubb/C0WL102.2da~ ~override/C0WL%blast%b.2da~
+  REPLACE_TEXTUALLY ~c0wlxxxa~ ~c0wl%blast%a~
+  REPLACE_TEXTUALLY ~c0wlxxxb~ ~c0wl%blast%b~
+  REPLACE_TEXTUALLY ~c0wlxxxc~ ~c0wl%blast%c~
+COPY ~%MOD_FOLDER%/2da/bubb/C0WL103.2da~ ~override/C0WL%blast%c.2da~
+  REPLACE_TEXTUALLY ~c0wlxxxa~ ~c0wl%blast%a~
+  REPLACE_TEXTUALLY ~c0wlxxxb~ ~c0wl%blast%b~
+  REPLACE_TEXTUALLY ~c0wlxxxc~ ~c0wl%blast%c~
+  REPLACE_TEXTUALLY ~c0wlxxxi~ ~c0wl%blast%i~
+COPY ~%MOD_FOLDER%/2da/bubb/C0WL104.2da~ ~override/C0WL%blast%d.2da~
+  REPLACE_TEXTUALLY ~c0wlxxxa~ ~c0wl%blast%a~
+  REPLACE_TEXTUALLY ~c0wlxxxb~ ~c0wl%blast%b~
+  REPLACE_TEXTUALLY ~c0wlxxxc~ ~c0wl%blast%c~
+  REPLACE_TEXTUALLY ~c0wlxxxi~ ~c0wl%blast%i~
+  REPLACE_TEXTUALLY ~c0wlxxxd~ ~c0wl%blast%d~
+COPY ~%MOD_FOLDER%/2da/bubb/C0WL105.2da~ ~override/C0WL%blast%e.2da~
+  REPLACE_TEXTUALLY ~c0wlxxxa~ ~c0wl%blast%a~
+  REPLACE_TEXTUALLY ~c0wlxxxb~ ~c0wl%blast%b~
+  REPLACE_TEXTUALLY ~c0wlxxxc~ ~c0wl%blast%c~
+  REPLACE_TEXTUALLY ~c0wlxxxi~ ~c0wl%blast%i~
+  REPLACE_TEXTUALLY ~c0wlxxxd~ ~c0wl%blast%d~
+  REPLACE_TEXTUALLY ~c0wlxxxe~ ~c0wl%blast%e~
+COPY ~%MOD_FOLDER%/2da/bubb/C0WL106.2da~ ~override/C0WL%blast%f.2da~
+  REPLACE_TEXTUALLY ~c0wlxxxa~ ~c0wl%blast%a~
+  REPLACE_TEXTUALLY ~c0wlxxxb~ ~c0wl%blast%b~
+  REPLACE_TEXTUALLY ~c0wlxxxc~ ~c0wl%blast%c~
+  REPLACE_TEXTUALLY ~c0wlxxxi~ ~c0wl%blast%i~
+  REPLACE_TEXTUALLY ~c0wlxxxd~ ~c0wl%blast%d~
+  REPLACE_TEXTUALLY ~c0wlxxxe~ ~c0wl%blast%e~
+  REPLACE_TEXTUALLY ~c0wlxxxf~ ~c0wl%blast%f~
+COPY_EXISTING ~C0WL%blast%.spl~ ~override/C0WL%blast%a.spl~
+WRITE_SHORT 0x34 1
+
+COPY ~%MOD_FOLDER%/spells/bubb/C0WL100.spl~ ~override/C0WL%blast%.spl~
+LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL ~C0WL%blast%B~ END
+LPF ALTER_EFFECT STR_VAR match_resource = C0WL101A resource = EVAL ~C0WL%blast%~ END
+LPF ALTER_EFFECT STR_VAR match_resource = C0WL101 resource = EVAL ~C0WL%blast%A~ END
+LPF ALTER_EFFECT STR_VAR match_resource = C0WL102 resource = EVAL ~C0WL%blast%B~ END
+LPF ALTER_EFFECT STR_VAR match_resource = C0WL103 resource = EVAL ~C0WL%blast%C~ END
+LPF ALTER_EFFECT STR_VAR match_resource = C0WL104 resource = EVAL ~C0WL%blast%D~ END
+LPF ALTER_EFFECT STR_VAR match_resource = C0WL105 resource = EVAL ~C0WL%blast%E~ END
+LPF ALTER_EFFECT STR_VAR match_resource = C0WL106 resource = EVAL ~C0WL%blast%F~ END
+END
+
+COPY_EXISTING ~C0WL106.spl~ ~override~
+WRITE_SHORT 0x34 1
+WRITE_ASCII 0x3a ~C0WL106C~
+SAY NAME1 ~Draining Blast~
+SAY UNIDENTIFIED_DESC ~DRAINING BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 3 rounds + 1 round/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
+
+COPY_EXISTING ~C0WL107.spl~ ~override~
+WRITE_SHORT 0x34 1
+WRITE_ASCII 0x3a ~C0WL107C~
+SAY NAME1 ~Frightful Blast~
+SAY UNIDENTIFIED_DESC ~FRIGHTFUL BLAST
+(Eldritch Essence) 
+
+Power: Least
+Effective Spell Level: 2
+Range: Special
+Duration: 1 turn
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
+
+COPY_EXISTING ~C0WL201.spl~ ~override~
+WRITE_SHORT 0x34 2
+WRITE_ASCII 0x3a ~C0WL201C~
+SAY NAME1 ~Beshadowed Blast~
+SAY UNIDENTIFIED_DESC ~BESHADOWED BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or become blinded, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
+
+COPY_EXISTING ~C0WL202.spl~ ~override~
+WRITE_SHORT 0x34 2
+WRITE_ASCII 0x3a ~C0WL202C~
+SAY NAME1 ~Brimstone Blast~
+SAY UNIDENTIFIED_DESC ~BRIMSTONE BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds + 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
+
+COPY_EXISTING ~C0WL203.spl~ ~override~
+WRITE_SHORT 0x34 2
+WRITE_ASCII 0x3a ~C0WL203C~
+SAY NAME1 ~Hellrime Blast~
+SAY UNIDENTIFIED_DESC ~HELLRIME BLAST
+(Eldritch Essence) 
+
+Power: Lesser
+Effective Spell Level: 4
+Range: Special
+Duration: 1 turn + 2 rounds/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity and Armor Class. The penalties from multiple hellrime blasts do not stack.~
+
+COPY_EXISTING ~C0WL301.spl~ ~override~
+WRITE_SHORT 0x34 3
+WRITE_ASCII 0x3a ~C0WL301C~
+SAY NAME1 ~Bewitching Blast~
+SAY UNIDENTIFIED_DESC ~BEWITCHING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 3 rounds + 1 round/5 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
+
+COPY_EXISTING ~C0WL302.spl~ ~override~
+WRITE_SHORT 0x34 3
+WRITE_ASCII 0x3a ~C0WL302C~
+SAY NAME1 ~Electrifying Blast~
+SAY UNIDENTIFIED_DESC ~ELECTRIFYING BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 4
+Range: Special
+Duration: 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed. Creatures immune to electrical damage are not affected.~
+
+COPY_EXISTING ~C0WL303.spl~ ~override~
+WRITE_SHORT 0x34 3
+WRITE_ASCII 0x3a ~C0WL303C~
+SAY NAME1 ~Noxious Blast~
+SAY UNIDENTIFIED_DESC ~NOXIOUS BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 1 turn/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: Neg.
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 (additional -1 penalty per two points of caster's Charisma above 17) or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
+
+COPY_EXISTING ~C0WL304.spl~ ~override~
+WRITE_SHORT 0x34 3
+WRITE_ASCII 0x3a ~C0WL304C~
+SAY NAME1 ~Vitriolic Blast~
+SAY UNIDENTIFIED_DESC ~VITRIOLIC BLAST
+(Eldritch Essence) 
+
+Power: Greater
+Effective Spell Level: 6
+Range: Special
+Duration: 2 rounds + 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~
+
+COPY_EXISTING ~C0WL401.spl~ ~override~
+WRITE_SHORT 0x34 4
+WRITE_ASCII 0x3a ~C0WL401C~
+SAY NAME1 ~Binding Blast~
+SAY UNIDENTIFIED_DESC ~BINDING BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 7
+Range: Special
+Duration: 3 rounds + 1 round/10 levels
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 (additional -1 penalty per two points of caster's Charisma above 17) or be stunned for 1 round.~
+
+COPY_EXISTING ~C0WL402.spl~ ~override~
+WRITE_SHORT 0x34 4
+WRITE_ASCII 0x3a ~C0WL402C~
+SAY NAME1 ~Utterdark Blast~
+SAY UNIDENTIFIED_DESC ~UTTERDARK BLAST
+(Eldritch Essence) 
+
+Power: Dark
+Effective Spell Level: 8
+Range: Special
+Duration: 24 hours
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for eight hours. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
+
+ACTION_FOR_EACH blasts_level IN 106 107 201 202 203 301 302 303 304 401 402 BEGIN
+COPY_EXISTING ~C0WL%blasts_level%b.spl~ ~override~
+WRITE_SHORT 0x34 1
+COPY_EXISTING ~C0WL%blasts_level%c.spl~ ~override~
+WRITE_SHORT 0x34 1
+COPY_EXISTING ~C0WL%blasts_level%d.spl~ ~override~
+WRITE_SHORT 0x34 2
+COPY_EXISTING ~C0WL%blasts_level%e.spl~ ~override~
+WRITE_SHORT 0x34 3
+COPY_EXISTING ~C0WL%blasts_level%f.spl~ ~override~
+WRITE_SHORT 0x34 4
+COPY_EXISTING ~C0WL%blasts_level%i.spl~ ~override~
+WRITE_SHORT 0x34 2
+END
+
+ACTION_FOR_EACH lv1spell IN 104 105 106 107 108 109 110 111 112 113 114 BEGIN
+COPY_EXISTING ~C0WL%lv1spell%.spl~ ~override/C0W^%lv1spell%.spl~
+COPY_EXISTING ~C0WL%lv1spell%.spl~ ~override~
+WRITE_SHORT 0x1C 3 
+LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv1spell%~ END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv1spell%~ END
+END
+
+ACTION_FOR_EACH lv2spell IN 201 202 203 204 205 206 207 208 209 210 211 BEGIN
+COPY_EXISTING ~C0WL%lv2spell%.spl~ ~override/C0W^%lv2spell%.spl~
+COPY_EXISTING ~C0WL%lv2spell%.spl~ ~override~
+WRITE_SHORT 0x1C 3
+LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv2spell%~ END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv2spell%~ END
+END
+
+ACTION_FOR_EACH lv3spell IN 301 302 303 304 305 306 307 308 309 310 BEGIN
+COPY_EXISTING ~C0WL%lv3spell%.spl~ ~override/C0W^%lv3spell%.spl~
+COPY_EXISTING ~C0WL%lv3spell%.spl~ ~override~
+WRITE_SHORT 0x1C 3
+LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv3spell%~ END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv3spell%~ END
+END
+
+ACTION_FOR_EACH lv4spell IN 401 402 403 404 405 406 407 408 BEGIN
+COPY_EXISTING ~C0WL%lv4spell%.spl~ ~override/C0W^%lv4spell%.spl~
+COPY_EXISTING ~C0WL%lv4spell%.spl~ ~override~
+WRITE_SHORT 0x1C 3
+LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 171 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv4spell%~ END
+LPF ADD_SPELL_CFEFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = EVAL ~C0WL%lv4spell%~ END
+END

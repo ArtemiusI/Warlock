@@ -1,4 +1,3 @@
-COPY ~%MOD_FOLDER%/2da/spellselect~ ~override~
 COMPILE ~%MOD_FOLDER%/dialogue/spellselect/c0wltalk.d~
 COMPILE ~%MOD_FOLDER%/dialogue/spellselect/c0wlhla.d~
 
@@ -34,7 +33,12 @@ SAY NAME1 @129 /* Extra Invocation IV */
 SAY UNIDENTIFIED_DESC @130 /* EXTRA INVOCATION IV
 Choosing this ability allows the wizard to cast one additional Dark Invocation. */
 
+ACTION_IF NOT MOD_IS_INSTALLED ~BUBB_SPELL_MENU_EXTENDED/BUBB_SPELL_MENU_EXTENDED.TP2~ ~0~ THEN BEGIN
+
+COPY ~%MOD_FOLDER%/2da/spellselect~ ~override~
+
 INCLUDE	~%MOD_FOLDER%/lib/WL_SEQUENCER_MENU.TPA~
+
 OUTER_SPRINT	title ~Invocation Selection~	OUTER_SPRINT	action ~Select an invocation to Learn~
 LAF	CREATE_SEQUENCER_MENU
 	INT_VAR	maxlevel = 4	exclude = 0x00004000	tip = RESOLVE_STR_REF	(~Select an invocation to learn from the provided lists. The total number of invocations allowed for the given level is shown below. An 'X' symbol means that the requirements have not been fulfilled.~)	name = RESOLVE_STR_REF	(~Invocation Selection~)	desc = RESOLVE_STR_REF	(~Invocation Selection~)	global = 2
@@ -43,6 +47,7 @@ END
 
 ACTION_FOR_EACH lv1 IN C0WL104L C0WL105L C0WL106L C0WL107L C0WL108L C0WL109L C0WL110L C0WL111L C0WL112L C0WL113L C0WL114L BEGIN
 COPY_EXISTING ~%lv1%.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
 WRITE_SHORT 0x1C 4 
 SAY NAME1 #-1
 	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP1~	END
@@ -50,6 +55,7 @@ END
 
 ACTION_FOR_EACH lv2 IN C0WL201L C0WL202L C0WL203L C0WL204L C0WL205L C0WL206L C0WL207L C0WL208L C0WL209L C0WL210L C0WL211L BEGIN
 COPY_EXISTING ~%lv2%.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
 WRITE_SHORT 0x1C 4 
 SAY NAME1 #-1
 	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP2~	END
@@ -57,6 +63,7 @@ END
 
 ACTION_FOR_EACH lv3 IN C0WL301L C0WL302L C0WL303L C0WL304L C0WL305L C0WL306L C0WL307L C0WL308L C0WL309L C0WL310L BEGIN
 COPY_EXISTING ~%lv3%.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
 WRITE_SHORT 0x1C 4 
 SAY NAME1 #-1
 	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP3~	END
@@ -64,6 +71,7 @@ END
 
 ACTION_FOR_EACH lv4 IN C0WL401L C0WL402L C0WL403L C0WL404L C0WL405L C0WL406L C0WL407L C0WL408L BEGIN
 COPY_EXISTING ~%lv4%.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
 WRITE_SHORT 0x1C 4 
 SAY NAME1 #-1
 	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP4~	END
@@ -71,6 +79,7 @@ END
 
 ACTION_FOR_EACH blast IN C0WL106 C0WL107 C0WL201 C0WL202 C0WL203 C0WL301 C0WL302 C0WL303 C0WL304 C0WL401 C0WL402 BEGIN
 COPY_EXISTING ~%blast%L.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
 WRITE_SHORT 0x1C 4 
 SAY NAME1 #-1
 	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 146	target = 1 timing = 1 parameter1 = 0 parameter2 = 1	STR_VAR	resource = EVAL ~%blast%A~	END
@@ -81,4 +90,65 @@ LPF ADD_SPELL_EFFECT INT_VAR	opcode = 206 target = 1 duration = 2 STR_VAR resour
 END
 COPY_EXISTING ~C0WLLSD.SPL~ ~OVERRIDE~
 LPF ADD_SPELL_EFFECT INT_VAR	opcode = 266 target = 2 STR_VAR resource = ~C0WLLS~
+END
+END
+
+ACTION_IF MOD_IS_INSTALLED ~BUBB_SPELL_MENU_EXTENDED/BUBB_SPELL_MENU_EXTENDED.TP2~ ~0~ THEN BEGIN
+
+COPY ~%MOD_FOLDER%/2da/bubb/spellselect~ ~override~
+
+INCLUDE	~%MOD_FOLDER%/lib/WL_SEQUENCER_MENU.TPA~
+
+OUTER_SPRINT	title ~Invocation Selection~	OUTER_SPRINT	action ~Select an invocation to Learn~
+LAF	CREATE_SEQUENCER_MENU
+	INT_VAR	maxlevel = 4	exclude = 0x00004000	tip = RESOLVE_STR_REF	(~Select an invocation to learn from the provided lists. The total number of invocations allowed for the given level is shown below. An 'X' symbol means that the requirements have not been fulfilled.~)	name = RESOLVE_STR_REF	(~Invocation Selection~)	desc = RESOLVE_STR_REF	(~Invocation Selection~)	global = 2
+	STR_VAR	spelltable = ~C0WLLS~ spelllist = ~C0WLSP~ resref = ~C0WLLS~	icon = ~~	title	action
+END
+
+ACTION_FOR_EACH lv1 IN 104 105 106 107 108 109 110 111 112 113 114 BEGIN
+COPY_EXISTING ~C0W^%lv1%L.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
+WRITE_SHORT 0x1C 4 
+SAY NAME1 #-1
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP1~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 172	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv1%~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 171	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv1%~	END
+END
+
+ACTION_FOR_EACH lv2 IN 201 202 203 204 205 206 207 208 209 210 211 BEGIN
+COPY_EXISTING ~C0W^%lv2%L.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
+WRITE_SHORT 0x1C 4 
+SAY NAME1 #-1
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP2~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 172	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv2%~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 171	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv2%~	END
+END
+
+ACTION_FOR_EACH lv3 IN 301 302 303 304 305 306 307 308 309 310 BEGIN
+COPY_EXISTING ~C0W^%lv3%L.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
+WRITE_SHORT 0x1C 4 
+SAY NAME1 #-1
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP3~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 172	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv3%~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 171	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv3%~	END
+END
+
+ACTION_FOR_EACH lv4 IN 401 402 403 404 405 406 407 408 BEGIN
+COPY_EXISTING ~C0W^%lv4%L.spl~ ~override~
+LPF ALTER_SPELL_HEADER INT_VAR projectile = 0 END
+WRITE_SHORT 0x1C 4 
+SAY NAME1 #-1
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 309	target = 1 timing = 1 parameter1 = 0 - 1 parameter2 = 1	STR_VAR	resource = EVAL ~C0WLSP4~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 172	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv4%~	END
+	LPF	ADD_SPELL_EFFECT	INT_VAR	opcode = 171	target = 1 timing = 1 STR_VAR	resource = EVAL ~C0WL%lv4%~	END
+END
+
+COPY_EXISTING ~C0WLLS.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR	opcode = 206 target = 1 duration = 2 STR_VAR resource = ~C0WLLS~
+END
+COPY_EXISTING ~C0WLLSD.SPL~ ~OVERRIDE~
+LPF ADD_SPELL_EFFECT INT_VAR	opcode = 266 target = 2 STR_VAR resource = ~C0WLLS~
+END
 END

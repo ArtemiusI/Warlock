@@ -360,7 +360,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 8th level and +6 at 16th level. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl104")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl104") AddSpecialAbility("C0W^104")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -377,7 +377,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to Luck and all Saving Throws. An additional +1 bonus is gained for every two points of the warlock's Charisma above 16. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl105")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl105") AddSpecialAbility("C0W^105")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -394,7 +394,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl106") ReallyForceSpellRES("c0wl106A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl106") AddSpecialAbility("C0W^106") ReallyForceSpellRES("c0wl106A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -411,7 +411,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl107") ReallyForceSpellRES("c0wl107A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl107") AddSpecialAbility("C0W^107") ReallyForceSpellRES("c0wl107A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -428,7 +428,7 @@ Area of Effect: 20 ft.
 Saving Throw: None
 
 The warlock creates an area of deepest shadow at range in a 20-foot radius. All creatures in the area suffer a -4 penalty to hit rolls and greatly reduced vision range until they leave the area of effect. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl108")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl108") AddSpecialAbility("C0W^108")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -445,7 +445,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 for the duration. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl109")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl109") AddSpecialAbility("C0W^109")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -462,7 +462,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 This invocation grants the warlock amazing agility. For the duration of the spell, the warlock gains a +2 bonus to Dexterity and Armor Class. An additional +1 bonus is granted for every two points of the warlock's Charisma above 16. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl110")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl110") AddSpecialAbility("C0W^110")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -479,7 +479,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps. <PRO_HESHE> also gains infravision for the duration. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl111")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl111") AddSpecialAbility("C0W^111")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -496,7 +496,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 With this invocation, the warlock gains the visual acuity of a devil for 24 hours, gaining Infravision as well as the ability to target partially concealed creatures with spells. Additionally, while not within sunlight, <PRO_HISHER> visual range is increased. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl112")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl112") AddSpecialAbility("C0W^112")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -513,7 +513,7 @@ Area of Effect: 1 creature
 Saving Throw: Neg.
 
 This invocation allows the warlock to communicate with creatures of the wild and influence their actions. The targeted animal or plant must succeed on a Save vs. Spells at -5 or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. From 10th level onwards, monsters such as wyverns may be affected, and from 20th level onwards, the targeted creature's Strength and Dexterity are increased to 25 while charmed. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl113")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl113") AddSpecialAbility("C0W^113")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -530,7 +530,7 @@ Area of Effect: 20-ft. from caster
 Saving Throw: None
 
 With this invocation, the warlock floods the surrounding area of negative energy that preys upon the weakened. Any creature with current hit points lower than the warlock's level within a 20-ft. radius of the warlock is slain instantly. For each slain enemy, the warlock gains 1 temporary hit point per 10 caster levels for 8 hours. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl114")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP1","LOCALS",-1) AddSpecialAbility("c0wl114") AddSpecialAbility("C0W^114")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -547,7 +547,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death or become blinded for one round, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl201") ReallyForceSpellRES("c0wl201A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl201") AddSpecialAbility("C0W^201") ReallyForceSpellRES("c0wl201A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -564,7 +564,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl202") ReallyForceSpellRES("c0wl202A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl202") AddSpecialAbility("C0W^202") ReallyForceSpellRES("c0wl202A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -581,7 +581,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death or take a -4 penalty to Dexterity for one turn. The Dexterity penalties from multiple hellrime blasts do not stack. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl203") ReallyForceSpellRES("c0wl203A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl203") AddSpecialAbility("C0W^203") ReallyForceSpellRES("c0wl203A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -598,7 +598,7 @@ Area of Effect: One creature
 Saving Throw: None
 
 This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl204")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl204") AddSpecialAbility("C0W^204")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -615,7 +615,7 @@ Area of Effect: One creature
 Saving Throw: Special
 
 This invocation bestows a permanent curse upon a touched opponent, lowering all the target's ability scores by 3 if the target fails a Save vs. Spells permanently until cured via a Remove Curse spell. Even if the save against this invocation succeeds, the target takes a -1 penalty on attack rolls for one turn. This curse does not stack with itself. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl205")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl205") AddSpecialAbility("C0W^205")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -632,7 +632,7 @@ Area of Effect: One creature
 Saving Throw: Neg.
 
 The warlock speaks a word that sends wracking pain through the limbs of a single target creature. If the target fails a Save vs. Death, it suffers a -3 penalty to attack rolls and Armor Class as well as 50% penalty to movement speed for 3 rounds. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl206")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl206") AddSpecialAbility("C0W^206")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -649,7 +649,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 This invocation allows the warlock to make a quick escape when necessary. Upon casting this invocation, the warlock teleports to a location within <PRO_HISHER> vision range, becoming invisible and leaving an illusion of <PRO_HIMHER>self behind for one round. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl207")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl207") AddSpecialAbility("C0W^207")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -673,7 +673,7 @@ The warlock can summon undead creatures with <PRO_HISHER> infernal power to serv
   15th and up: a 9 HD skeleton warrior wielding a two-handed sword +1.
   
 The skeleton warrior can follow the caster, remain in an area and attack any creature entering the place, etc. It remains animated until it is destroyed in combat, one hour passes, or it is turned. This spell cannot be dispelled. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl208")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl208") AddSpecialAbility("C0W^208")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -692,7 +692,7 @@ Saving Throw: None
 This invocation attempts to dispel magical effects upon a target creature. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Voracious Dispelling is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Voracious Dispelling is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the warlock is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
 
 Additionally, regardless of whether the dispel is successful, the target takes one point of magical damage per two levels of the warlock. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl209")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl209") AddSpecialAbility("C0W^209")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -709,7 +709,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 The warlock may cast this invocation to become invisible. The effect ends immediately if <PRO_HESHE> attacks or casts a spell. Otherwise, the effect lasts 24 hours. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl210")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl210") AddSpecialAbility("C0W^210")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -726,7 +726,7 @@ Area of Effect: The caster
 Saving Throw: None
 
 The warlock creates a magical eye that can see with normal vision up to 60 ft. away in brightly lit areas. The eye can travel in any direction as long as the spell lasts. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl211")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP2","LOCALS",-1) AddSpecialAbility("c0wl211") AddSpecialAbility("C0W^211")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -743,7 +743,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 or become confused for three rounds. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl301") ReallyForceSpellRES("c0wl301A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl301") AddSpecialAbility("C0W^301") ReallyForceSpellRES("c0wl301A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -760,7 +760,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 become paralyzed for one round. Creatures immune to electrical damage are not affected. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl302") ReallyForceSpellRES("c0wl302A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl302") AddSpecialAbility("C0W^302") ReallyForceSpellRES("c0wl302A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -777,7 +777,7 @@ Area of Effect: Blast Shape
 Saving Throw: Neg.
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl303") ReallyForceSpellRES("c0wl303A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl303") AddSpecialAbility("C0W^303") ReallyForceSpellRES("c0wl303A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -794,7 +794,7 @@ Area of Effect: Blast Shape
 Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl304") ReallyForceSpellRES("c0wl304A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl304") AddSpecialAbility("C0W^304") ReallyForceSpellRES("c0wl304A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -811,7 +811,7 @@ Area of Effect: 15-ft. radius
 Saving Throw: None
 
 This invocation allows you to conjure forth a field of soul-chilling tentacles that ooze from the ground, groping for victims. For every round that a creature is caught in the area of effect, it suffers an attack from tentacles, suffering 1d6+4 crushing damage and becoming paralyzed for one round on a failed Save vs. Breath. In addition, each creature within the area of the invocation takes 2d6 points of cold damage each round regardless of whether they are struck by any tentacles. The tentacles last for 4 rounds. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl305")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl305") AddSpecialAbility("C0W^305")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -830,7 +830,7 @@ Saving Throw: None
 This invocation dispels the magical effects upon any enemies within the area. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Devour Magic is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Devour Magic is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the caster is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
 
 Additionally, for each enemy affected by Devour Magic, the warlock temporarily gains two extra hit points to <PRO_HISHER> maximum for four rounds. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl306")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl306") AddSpecialAbility("C0W^306")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -847,7 +847,7 @@ Area of Effect: 15 ft. radius
 Saving Throw: None
 
 The Summon Insects spell attracts a cloud or swarm of normal insects to that jump first to the target, then to the nearest allies of the target. This swarm gathers at a point chosen by the caster within the spell's range and attacks any single creature the caster points to. Each victim may make a Saving Throw vs. Breath Weapon with a -4 penalty to escape the swarm; otherwise, they receive 1 point of piercing damage and 1d4 points of magical damage every 2 seconds for the duration of the spell. Moreover, each victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The swarm will repeatedly bite the target, making it very difficult to cast spells (50% chance of spell failure). */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl307")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl307") AddSpecialAbility("C0W^307")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -864,7 +864,7 @@ Area of Effect: 15 ft. radius
 Saving Throw: None
 
 You conjure a curtain of fire that deals 2d6 points of damage to any creature that attempts to pass through it. Half the wall's fire damage results from supernatural power and deals magical damage, therefore not being subject to being reduced by resistance to fire. The curtain of flame lasts for 3 rounds before dissipating. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl308")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl308") AddSpecialAbility("C0W^308")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -881,7 +881,7 @@ Area of Effect: 30-ft. radius
 Saving Throw: Neg.
 
 The warlock cloaks the surrounding area with phantasmagoric figures, transforming it into the image of a nightmarish hellscape. Creatures within the area of effect must make a Save vs. Spells at -2 or become entangled in illusory vines for 3 rounds, suffering 4d6 magic damage. Sleeping creatures are entangled and take 8d6 magic damage without save. Additionally, if the caster is within the area of effect, they become invisible for 3 rounds. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl309")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl309") AddSpecialAbility("C0W^309")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -898,7 +898,7 @@ Area of Effect: 1 creature
 Saving Throw: Neg.
 
 This invocation puts the target into a magically-induced slumber. If the target fails a Save vs. Spells at -4, they are put to sleep for a minimum of 5 rounds, after which they must make another identical saving throw or remain asleep for another 5 rounds. Therefore, the effect may last indefinitely so long as the target does not make a successful saving throw. If the target is awakened prematurely, they take unmitigated damage equal to the warlock's level. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl310")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP3","LOCALS",-1) AddSpecialAbility("c0wl310") AddSpecialAbility("C0W^310")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -915,7 +915,7 @@ Area of Effect: Blast Shape
 Saving Throw: None
 
 This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 or be stunned for 1 round. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl401") ReallyForceSpellRES("c0wl401A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl401") AddSpecialAbility("C0W^401") ReallyForceSpellRES("c0wl401A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -932,7 +932,7 @@ Area of Effect: Blast Shape
 Saving Throw: None
 
 This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death or lose four levels for one hour. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl402") ReallyForceSpellRES("c0wl402A",Myself)~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl402") AddSpecialAbility("C0W^402") ReallyForceSpellRES("c0wl402A",Myself)~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -949,7 +949,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 The warlock's dark powers allow <PRO_HIMHER> to glimpse the future, granting a +10 bonus to Armor Class, +5 bonus to all saving throws, 20% damage resistance and immunity to backstab. The effects of this invocation are non-cumulative. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl403")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl403") AddSpecialAbility("C0W^403")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -966,7 +966,7 @@ Area of Effect: the caster
 Saving Throw: Special
 
 This invocation grants the warlock the effects of Improved Invisibility for three rounds. The invisibility cannot be dispelled, and at the end of its duration, a shock wave releases from the warlock's body in a small burst, dealing 4d6 magical damage to all nearby creatures and stunning them for one round. (Save vs. Death to avoid stun and half damage) */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl404")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl404") AddSpecialAbility("C0W^404")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -983,7 +983,7 @@ Area of Effect: the caster
 Saving Throw: None
 
 With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl405")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl405") AddSpecialAbility("C0W^405")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -1000,7 +1000,7 @@ Area of Effect: The caster
 Saving Throw: None
 
 With this invocation, the warlock steps into the realm of shadows for ten seconds, though the equivalent time spent within the realm is much longer compared to the Prime Material Plane. For the duration, the warlock regenerates 1d10 hit points per second. The warlock cannot attack or cast spells for the duration. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl406")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl406") AddSpecialAbility("C0W^406")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -1017,7 +1017,7 @@ Area of Effect: 1 creature
 Saving Throw: Neg.
 
 This invocation allows the warlock to wrest control of a summoned or bound creature from its original master. If the targeted summoned creature fails a Save vs. Spells at -6, their allegiance permanently shifts to the caster's until their original summoned duration expires. This invocation can affect all summoned creatures, including those gated from other planes such as fiends and angelic beings. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl407")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl407") AddSpecialAbility("C0W^407")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 
@@ -1034,7 +1034,7 @@ Area of Effect: The caster
 Saving Throw: None
 
 This powerful invocation imbues the warlock with a powerful boon. Upon completing the invocation, the warlock suffers 80% of their maximum hit points in damage, but for the next 24 hours gains +2 to Strength. Additionally, for every 10% of their maximum hit points they are missing, they deal 5% increased non-physical damage from all sources as well as increased duration of invocations, up to a maximum of 40% when missing 80% of their hit points. */
-++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl408")~ + NEXT
+++ @48 /* Learn spell. */ DO ~IncrementGlobal("C0WLSP4","LOCALS",-1) AddSpecialAbility("c0wl408") AddSpecialAbility("C0W^408")~ + NEXT
 ++ @49 /* Return to spell selection. */ + learn
 END
 

@@ -1135,813 +1135,26 @@ WRITE_ASCII 0x8 ~C0WL506Y~
 
 // SPELLS
 
-COPY_EXISTING ~c0wl000.spl~ ~override~
-  LPF ADD_SPELL_EFFECT
-	INT_VAR
-	  opcode = 72
-	  target = 2
-	  timing = 1
-	  parameter2 = 4
-	  parameter1 = IDS_OF_SYMBOL (~SPECIFIC~ ~WARLOCK_L12~)
+ACTION_FOR_EACH warlock_remove IN 104 105 106 107 108 109 110 111 112 113 114 201 202 203 204 205 206 207 208 209 210 211 301 302 303 304 305 306 307 308 309 310 401 402 403 404 405 406 407 408 BEGIN
+COPY_EXISTING ~C0WL%warlock_remove%Z.spl~ ~override~
+  LPF CLONE_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~c0w^%warlock_remove%~
 END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl104z.spl~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
       check_headers = 1
       match_opcode = 172
 	STR_VAR
-	  resource = %c0wl104%
+	  resource = EVAL ~c0wl%warlock_remove%~
+END
 END
 
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl105z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl105%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl106z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl106%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl106b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl106c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl106d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl106e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl106f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl106i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl107z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl107%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl107b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl107c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl107d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl107e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl107f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl107i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl108z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl108%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl109z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl109%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl110z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl110%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl111z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl111%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl112z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl112%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl113z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl113%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl114z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl114%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl201z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl201%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl201b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl201c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl201d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl201e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl201f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl201i%
-END
-
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl202z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl202%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl202b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl202c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl202d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl202e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl202f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl202i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl203z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl203%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl203b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl203c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl203d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl203e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl203f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl203i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl204z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl204%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl205z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl205%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl206z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl206%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl207z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl207%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl208z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl208%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl209z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl209%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl210z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl210%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl211z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl211%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl301z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl301%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl301b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl301c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl301d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl301e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl301f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl301i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl302z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl302%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl302b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl302c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl302d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl302e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl302f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl302i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl303z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl303%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl303b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl303c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl303d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl303e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl303f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl303i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl304z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl304%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl304b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl304c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl304d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl304e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl304f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl304i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl305z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl305%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl306z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl306%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl307z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl307%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl308z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl308%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl309z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl309%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl310z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl310%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl401z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl401%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl401b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl401c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl401d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl401e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl401f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl401i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl402z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl402%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl402b%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl402c%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl402d%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl402e%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl402f%
-END
-  LPF CLONE_EFFECT
-    INT_VAR
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl402i%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl403z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl403%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl404z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl404%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl405z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl405%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl406z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl406%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl407z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl407%
-END
-
-COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl408z.spl~
-  LPF ALTER_EFFECT
-    INT_VAR
-      check_globals = 1
-      check_headers = 1
-      match_opcode = 172
-	STR_VAR
-	  resource = %c0wl408%
-END
-  
 COPY_EXISTING ~c0wlsp1.spl~ ~override/c0wlsp1a.spl~
   LPF ALTER_EFFECT
     INT_VAR
@@ -7020,7 +6233,19 @@ Casting Time: 9
 Area of Effect: the caster
 Saving Throw: None
 
-With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed.~
+With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed.
+
+The statistics of the form are as follows:
+  Strength: 24
+  Dexterity: 22
+  3 attacks per round
+  Regenerate 1hp/3 seconds
+  Immunity to weapons of +1 enchantment and below
+  Immunity to charm, poison, domination, fear and confusion
+  Creature attack attributes:
+    1d6+3 slashing damage
+    stun the target on a failed Save vs. Breath for 10 seconds
+    poison the target on a failed Save vs. Death at -2 for 1 damage per second for 10 seconds~
 
 COPY_EXISTING ~c0wl405b.spl~ ~override~
 SAY NAME1 ~Shapeshift: Natural Form~
@@ -7150,10 +6375,25 @@ This eldritch essence invocation allows you to change your eldritch blast into a
 However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 COPY_EXISTING ~c0wl101.spl~ ~override/c0wl506a.spl~
+WRITE_SHORT 0x34 1
 WRITE_ASCII 0x3a ~C0WL506B~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl506b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL506 END
 SAY NAME1 ~Hellfire Blast~
+SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 COPY_EXISTING ~c0wl101a.ITM~ ~override/c0wl506.itm~
   LPF ALTER_ITEM_HEADER
@@ -7185,10 +6425,25 @@ COPY_EXISTING ~c0wl506R.spl~ ~override/c0wl506v.spl~
   END
 
 COPY_EXISTING ~c0wl103.spl~ ~override/c0wl506c.spl~
+WRITE_SHORT 0x34 1
 WRITE_ASCII 0x3a ~C0W@506C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = "C0W@506B" END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL506S END
 SAY NAME1 ~Hellfire Blast: Spear~
+SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl506s.itm~
   LPF ALTER_ITEM_HEADER
@@ -7207,9 +6462,24 @@ SAY NAME2 ~Hellfire Blast: Spear~
 
 COPY_EXISTING ~c0wl500.spl~ ~override/C0WL506I.spl~
 WRITE_ASCII 0x3a ~C0WG506C~
+WRITE_SHORT 0x34 2
 LPF ALTER_SPELL_HEADER STR_VAR icon = "C0WG506B" END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL506I END
 SAY NAME1 ~Hellfire Blast: Glaive~
+SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 COPY_EXISTING ~c0wl500.ITM~ ~override/C0WL506I.itm~
   LPF ALTER_ITEM_HEADER
@@ -7233,10 +6503,25 @@ SAY NAME1 #-1
 LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
 
 COPY_EXISTING ~c0wl200.spl~ ~override/c0wl506d.spl~
+WRITE_SHORT 0x34 2
 WRITE_ASCII 0x3a ~C0W#506C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = "c0w#506b" END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL506H END
 SAY NAME1 ~Hellfire Blast: Chain~
+SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 COPY_EXISTING ~c0wl200a.ITM~ ~override/c0wl506H.itm~
   LPF ALTER_ITEM_HEADER
@@ -7302,12 +6587,27 @@ COPY_EXISTING ~C0WL506T.SPL~ ~OVERRIDE~
   END
 
 COPY_EXISTING ~c0wl506b.spl~ ~override~
+WRITE_SHORT 0x34 1
   LPF ALTER_EFFECT
     INT_VAR
 	  match_opcode = 142
 	  parameter2 = c0wlic13
 	END
 SAY NAME1 ~Hellfire Blast: Hideous Blow~
+SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 COPY_EXISTING ~c0wl506r.spl~ ~override/c0wl506#.spl~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
@@ -7339,6 +6639,7 @@ END
 SAY NAME1 ~Hideous Blow: Hellfire Blast~
 
 COPY_EXISTING ~c0wl506r.spl~ ~override/c0wl506e.spl~
+WRITE_SHORT 0x34 3
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
   LPF ALTER_SPELL_HEADER
     INT_VAR
@@ -7354,8 +6655,23 @@ COPY_EXISTING ~c0wl506r.spl~ ~override/c0wl506e.spl~
   END
   LPF ALTER_SPELL_HEADER INT_VAR speed = 5 END
 SAY NAME1 ~Hellfire Blast: Cone~
+SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 COPY_EXISTING ~c0wl506r.spl~ ~override/c0wl506f.spl~
+WRITE_SHORT 0x34 4
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 probability1 = 100 STR_VAR resource = C0WL506T END
   LPF ALTER_SPELL_HEADER
     INT_VAR
@@ -7370,6 +6686,20 @@ COPY_EXISTING ~c0wl506r.spl~ ~override/c0wl506f.spl~
 	  special = 256
   END
 SAY NAME1 ~Hellfire Blast: Doom~
+SAY UNIDENTIFIED_DESC ~HELLFIRE BLAST
+(Eldritch Essence) 
+
+Power: Epic
+Effective Spell Level: 9
+Range: Special
+Duration: Instant
+Casting Time: Same as blast shape
+Area of Effect: Same as blast shape
+Saving Throw: None
+
+This eldritch essence invocation allows you to change your eldritch blast into a hellfire blast. A hellfire blast deals unmitigated fire damage and increases the Eldritch Blast's damage to d10. Hellfire is far hotter than regular fire and therefore is not affected by fire resistance.
+
+However, this power comes at a cost. Each time the warlock uses this ability, <PRO_HESHE> takes one point of Constitution damage that lasts for the next 8 hours, which may only be restored prematurely via a Greater Restoration spell. Should <PRO_HISHER> Constitution drop to zero, <PRO_HESHE> will be killed instantly.~
 
 ACTION_IF FILE_EXISTS_IN_GAME ~SPPR713.SPL~ BEGIN
 COPY_EXISTING ~SPPR713.SPL~ ~OVERRIDE~
