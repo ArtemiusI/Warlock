@@ -987,6 +987,53 @@ ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp104.PRO~
 ADD_PROJECTILE ~%MOD_FOLDER%/pro/c0wlp105.PRO~
 
 ACTION_FOR_EACH blasts IN 106 107 201 202 203 301 302 303 304 401 402  BEGIN
+
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl%blasts%z.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~C0WL%blasts%A~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~C0WL%blasts%B~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~C0WL%blasts%C~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~C0WL%blasts%D~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~C0WL%blasts%E~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~C0WL%blasts%F~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~C0WL%blasts%I~
+END
+
 ACTION_IF FILE_EXISTS_IN_GAME ~C0WL%blasts%R.spl~ BEGIN
 COPY_EXISTING ~C0WL%blasts%R.spl~ OVERRIDE // BLAST
 	LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL ~C0WL%blasts%B~ END
@@ -1135,7 +1182,26 @@ WRITE_ASCII 0x8 ~C0WL506Y~
 
 // SPELLS
 
+COPY_EXISTING ~c0wl000.spl~ ~override~
+  LPF ADD_SPELL_EFFECT
+	INT_VAR
+	  opcode = 72
+	  target = 2
+	  timing = 1
+	  parameter2 = 4
+	  parameter1 = IDS_OF_SYMBOL (~SPECIFIC~ ~WARLOCK_L12~)
+END
+
 ACTION_FOR_EACH warlock_remove IN 104 105 106 107 108 109 110 111 112 113 114 201 202 203 204 205 206 207 208 209 210 211 301 302 303 304 305 306 307 308 309 310 401 402 403 404 405 406 407 408 BEGIN
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl%warlock_remove%z.spl~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~c0wl%warlock_remove%~
+END
 COPY_EXISTING ~C0WL%warlock_remove%Z.spl~ ~override~
   LPF CLONE_EFFECT
     INT_VAR
