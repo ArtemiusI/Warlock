@@ -1,7 +1,8 @@
 COPY ~%MOD_FOLDER%/2da/bubb~ ~override~
 
 COPY_EXISTING ~C0WL00X.SPL~ ~OVERRIDE~
-SAY UNIDENTIFIED_DESC ~Disable the currently equipped blast shape.~
+SAY NAME1 ~Deactivate Blast Shape~
+SAY UNIDENTIFIED_DESC ~Deactivate the currently equipped blast shape.~
 COPY_EXISTING ~C0WL101.SPL~ ~OVERRIDE~
 WRITE_BYTE 0x1C 3
 WRITE_BYTE 0x34 1
