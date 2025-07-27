@@ -19,9 +19,18 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 	BUT_ONLY
 END
 
-ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
-APPEND ~ANIMATE.IDS~ ~0x7F58 ABISHAI_BLACK~ UNLESS ~\bABISHAI_BLACK\b~
-APPEND ~ANISND.IDS~ ~0x7F58 MABB     CGAMEANIMATIONTYPE_ABISHAI_BLACK~ UNLESS ~\CGAMEANIMATIONTYPE_ABISHAI_BLACK\b~
+ACTION_DEFINE_ASSOCIATIVE_ARRAY warlock_anims_Exxx BEGIN
+    ~horned_devil~ => ~C0_Horned_Devil~
+  END
+  ACTION_PHP_EACH warlock_anims_Exxx AS warlock_folder => symbol BEGIN
+    ACTION_BASH_FOR ~%MOD_FOLDER%/bam/%warlock_folder%~ ~.+\.bam~ ~%MOD_FOLDER%/animations/%warlock_folder%~ ~.+\.bmp~ BEGIN
+      COPY ~%BASH_FOR_FILESPEC%~ ~override~
+    END
+    LAF FIND_FREE_ANIM_SLOT INT_VAR slotMin = 0xE000 RET slot END
+    LAF TO_HEX_NUMBER INT_VAR value = slot minDigits = 4 RET hexNumber END
+    COPY ~%MOD_FOLDER%/bam/%warlock_folder%/Exxx.ini~ ~override/%hexNumber%.ini~
+    OUTER_SET EVAL ~slot_%warlock_folder%~ = slot   // save animation slot number for later
+    APPEND ~ANIMATE.IDS~ ~0x%hexNumber% %symbol%~
 END
 
 // CURRENT HP CHECK
@@ -6312,6 +6321,9 @@ The statistics of the form are as follows:
     1d6+3 slashing damage
     stun the target on a failed Save vs. Breath for 10 seconds
     poison the target on a failed Save vs. Death at -2 for 1 damage per second for 10 seconds~
+
+COPY_EXISTING ~c0wl405a.itm~ ~override~
+LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_HORNED_DEVIL~) END
 
 COPY_EXISTING ~c0wl405b.spl~ ~override~
 SAY NAME1 ~Shapeshift: Natural Form~
