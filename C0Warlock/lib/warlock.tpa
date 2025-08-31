@@ -1,4 +1,3 @@
-
 // SPLSTATE
 LAF ADD_IDS_ENTRY INT_VAR preferredValue = 127 STR_VAR idsFile = "splstate.ids" identifier = "BEGUILING_INFLUENCE" RET value END
 LAF ADD_IDS_ENTRY INT_VAR preferredValue = 128 STR_VAR idsFile = "splstate.ids" identifier = "DARK_ONES_OWN_LUCK" RET value END
@@ -6972,3 +6971,4 @@ ACTION_FOR_EACH description IN
   END
   END
   
+LAF ADD_CLASS_SPELL STR_VAR excludeAllNormalWizardSpellsFromThisKit=~C0WLOCK~ END
