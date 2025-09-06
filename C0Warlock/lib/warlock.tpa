@@ -4,20 +4,6 @@ LAF ADD_IDS_ENTRY INT_VAR preferredValue = 128 STR_VAR idsFile = "splstate.ids" 
 LAF ADD_IDS_ENTRY INT_VAR preferredValue = 129 STR_VAR idsFile = "splstate.ids" identifier = "LEAPS_AND_BOUNDS" RET value END
 LAF ADD_IDS_ENTRY INT_VAR preferredValue = 130 STR_VAR idsFile = "splstate.ids" identifier = "ELDRITCH_CHAIN" RET value END
 
-//ENABLE BARD FOR ALL___________________________________________________________
-//
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
-		SET_2DA_ENTRY 25 1 8 ~1~
-		SET_2DA_ENTRY 25 2 8 ~1~
-		SET_2DA_ENTRY 25 3 8 ~1~
-		SET_2DA_ENTRY 25 4 8 ~1~
-		SET_2DA_ENTRY 25 5 8 ~1~
-		SET_2DA_ENTRY 25 6 8 ~1~
-		SET_2DA_ENTRY 25 7 8 ~1~
-	BUT_ONLY
-END
-
 ACTION_DEFINE_ASSOCIATIVE_ARRAY warlock_anims_Exxx BEGIN
     ~horned_devil~ => ~C0_Horned_Devil~
   END
@@ -202,6 +188,79 @@ END
    END
  END
 
+ACTION_IF (FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~) BEGIN
+
+LAF ADD_IDS_ENTRY INT_VAR minValue = 1 preferredValue = 200 STR_VAR idsFile = "stats.ids" identifier = "WARLOCK_L12_DECEIVE_ITEM" RET value END
+
+OUTER_SET WARLOCK_L12_DECEIVE_ITEM = IDS_OF_SYMBOL (~STATS~ ~WARLOCK_L12_DECEIVE_ITEM~)
+
+APPEND ~splprot.2da~ ~WARLOCK_L12_DECEIVE_ITEM %WARLOCK_L12_DECEIVE_ITEM% 1 1~ UNLESS ~WARLOCK_L12_DECEIVE_ITEM %WARLOCK_L12_DECEIVE_ITEM% 1 1~
+COPY_EXISTING ~splprot.2da~ ~override~ 
+	COUNT_2DA_COLS cols // amount of columns
+	READ_2DA_ENTRIES_NOW rows cols // read all file into memory  
+	FOR (row = 1; row < rows; ++row) BEGIN // iterate over rows
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~ // read column value
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~WARLOCK_L12_DECEIVE_ITEM~ BEGIN
+	    SET WARLOCK_L12_DECEIVE_ITEM = %row%
+	  END
+	END
+
+ OUTER_SET scroll_count = 0
+ OUTER_SPRINT $use_scrolls(~%scroll_count%~) ~scroll~
+ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+  READ_BYTE     0x2f current ELSE 0
+  READ_BYTE     0x2b current2 ELSE 0
+  READ_LONG 0x64 headoffset  ELSE 0
+  READ_SHORT 0x68 headcount  ELSE 0
+  READ_LONG 0x6a effectsoffset  ELSE 0
+  haslearn = 0
+  hascast = 0
+//	  PATCH_IF (headcount = 2) BEGIN
+    FOR (headcyc = 0; headcyc < headcount ; headcyc = headcyc + 1) BEGIN
+      thishead = 0
+      READ_SHORT (headoffset + (headcyc * 0x38) + 0x1e) effcount  ELSE 0
+      READ_SHORT (headoffset + (headcyc * 0x38) + 0x20) effectsindex  ELSE 0
+      FOR (effcyc = 0; effcyc < effcount; effcyc = effcyc + 1) BEGIN
+        READ_SHORT (effectsoffset + (effectsindex + effcyc)* 0x30) opcode ELSE 0
+        PATCH_IF (opcode = 0x93) AND (thishead = 0) BEGIN
+          READ_ASCII (effectsoffset + 0x14 + (effectsindex + effcyc)* 0x30) resref_learn  ELSE 0
+          INNER_PATCH_FILE ~%resref_learn%.spl~ BEGIN
+            READ_SHORT 0x1c type
+          END
+          PATCH_IF (type = 1) BEGIN // spell scroll
+            thishead = 1
+            haslearn = 1
+          END
+        END // PATCH_IF... (opcode = learn spell)
+        PATCH_IF ((opcode = 0x92) OR (opcode = 0x94)) AND (thishead = 0) BEGIN
+          READ_ASCII (effectsoffset + 0x14 + (effectsindex + effcyc)* 0x30) resref_cast  ELSE 0
+          INNER_PATCH_FILE ~%resref_cast%.spl~ BEGIN
+            READ_SHORT 0x1c type
+          END
+          PATCH_IF (type = 1) OR (type = 2) BEGIN // spell scroll
+            thishead = 1
+            hascast = 1
+          END
+        END // PATCH_IF (opcode = cast spell)
+      END // FOR... effect_cycle
+    END // FOR... header cycle
+//  END // PATCH_IF... have exactly 2 headers
+  PATCH_IF (haslearn = 1) AND (hascast = 1) /*AND (~%resref_cast%~ STRING_EQUAL_CASE ~%resref_learn%~) */BEGIN
+	SPRINT $use_scrolls(~%scroll_count%~) ~%SOURCE_RES%~
+	SET ++scroll_count
+  END
+ BUT_ONLY
+ ACTION_PHP_EACH use_scrolls AS num => scroll BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME ~%scroll%.itm~ BEGIN
+	PRINT ~%scroll% is a wizard scroll~
+	COPY_EXISTING ~%scroll%.itm~ ~override~
+        LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter1 = 0 parameter2 = WARLOCK_L12_DECEIVE_ITEM timing = 2 power = 2 END
+	BUT_ONLY
+  END
+ END
+ 
+  END ELSE BEGIN
+
 LAF ADD_IDS_ENTRY INT_VAR minValue = 200 maxValue = 255 preferredValue = 200 STR_VAR idsFile = "specific.ids" identifier = "WARLOCK_L12" RET value END
 
  OUTER_SET nscrl_specific = %value%
@@ -260,6 +319,8 @@ LAF ADD_IDS_ENTRY INT_VAR minValue = 200 maxValue = 255 preferredValue = 200 STR
   END
  END
  
+  END
+
 // ICONS
 
 COPY ~%MOD_FOLDER%/2da~ ~override~
@@ -345,6 +406,163 @@ LAF ADD_KIT_EX
 	// Sorcerer = 19
 	// Monk = 20
 	// Shaman = 21
+    kit_class     = 4
+	
+    mixed         = RESOLVE_STR_REF(~Warlock~)
+	
+    lower         = RESOLVE_STR_REF(~warlock~)
+	
+    help          = RESOLVE_STR_REF(~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
+
+CLASS FEATURES:
+
+– May not wear armor heavier than chain mail.
+– May not equip shields larger than bucklers.
+– May only become Proficient (one slot) in any weapon class.
+– May only become Proficient (one slot) in any fighting style.
+– Thieving abilities: Pick Pockets.
+– Eldritch Lore: The warlock gains 10 base Lore per level.
+– May cast Invocations.
+
+INVOCATIONS: A Warlock does not prepare or cast spells as other wielders of arcane magic do. Instead, he possesses a repertoire of attacks, defenses, and abilities known as invocations that require him to focus the wild energy that suffuses his soul. A Warlock can use any invocation he knows at will. The four grades of invocation, in order of their relative power, are least, lesser, greater and dark.
+
+– May use the Eldritch Blast ability at will.
+
+ELDRITCH BLAST: A warlock attacks <PRO_HISHER> foes with Eldritch power, using baleful magical energy to deal damage and sometimes impart other debilitating effects. An Eldritch Blast deals 1d6 points of magical damage at 1st level and increases by 1d6 in power for every three levels gained (up to 14d6 at 40th level). The default blast shape has a casting time of 1, while advanced blast shapes have longer casting times. The blast is treated as a ranged attack with a +4 modifier to hit, and can critically strike, inflicting damage and additional effects twice. There is no Saving Throw against this attack, but Magic Resistance can negate it.
+
+As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldritch Blast into different forms.
+	3rd level: HIDEOUS BLOW: The first melee attack each round channels an Eldritch Blast.
+	7th level: ELDRITCH SPEAR: Eldritch Blast penetrates through all enemies between the caster and target. Sets attacks per round to 1.
+	9th level: ELDRITCH GLAIVE: Eldritch Blast is shaped into a melee weapon which deals blast damage in a small cone in front of the warlock.
+	11th level: ELDRITCH CHAIN: Eldritch Blast chains to one extra target per 3 levels, dealing 1d6 reduced damage per target. Sets attacks per round to 1.
+	15th level: ELDRITCH CONE: Eldritch Blast takes the shape of a 90-degree cone. Increases casting time by 4.
+	19th level: ELDRITCH DOOM: Eldritch Blast affects all enemies within a 15-ft. radius of the caster. Increases casting time by 6.
+
+– 5th level: Gains 10% resistance to crushing, slashing, piercing, and missile damage. An additional 5% is gained at levels 15, 25 and 35.
+– 8th level: The warlock regenerates one hit point per three rounds.
+– 10th level: Gains 10% resistance to acid, cold, electrical, fire and magical damage. An additional 10% is gained at levels 20, 30 and 40.
+– 12th level: Deceive Item: The warlock gains the ability to use Mage scrolls.
+– 16th level: Regeneration rate increased to one hit point per two rounds.
+– 22nd level: Becomes immune to non-magical weapons.
+– 24th level: Regeneration rate increased to one hit point per round.
+
+– Alignment restricted to chaotic good, chaotic neutral, lawful evil, neutral evil and chaotic evil.
+– Hit Die: d6~)
+
+	biography = RESOLVE_STR_REF (~For as long as you recall, you have wielded infernal magic as easily as you draw breath. While your innate magical abilities earned you the fear and scorn of those around you, your mentors sought to raise you as well as they could regardless, urging you to control the dark powers within you and use them for good purposes. Despite this, you have always felt the call of something darker, sinister calling your name, urging you to take a power that is almost within reach.~)
+	
+    briefdesc = RESOLVE_STR_REF(~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power.~)
+	
+	// fallen = 0
+	
+  STR_VAR
+    kit_name      = ~C0WLOCK_FILL~
+	
+    unusable      = ~0x00004000~
+    // clasweap      = ~1 1 1 1 1 1 1 1~
+	//                                        T   S           F   Q             S S
+	//                                        W   C           L   U             W I
+	//                                B L S   O   I   W       A   A             O N
+	//                                A O H   H   M   A       I   R C   S       R G
+	//                L S           M S N O   A   I   R     H L   T R L H     2 D L 2
+	//                _ _       S   I T G R   N K T D H     A M   E O O O     H A E W
+	//                S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E
+	//                W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A
+	//                O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P
+	//                R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O
+	//                D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N
+   weapprof      = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1~
+	
+   abclasrq      = ~0 12 0 12 0 16~
+	
+    // abclsmod      = ~0 0 0 0 0 0~
+	
+    // abdcdsrq      = ~0 0 0 = 0 =~
+	
+    // abdcscrq      = ~15 0 0 0 0 0~
+	
+	//               L L L N N N C C C
+	//               G N E G N E G N E
+    alignmnt      = ~0 0 1 0 0 1 1 1 1~
+	
+    dualclas      = ~0 0 0 0 0 0~
+	
+    luabbr        = ~C0WL~
+	
+    // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
+	
+    clab_path     = ~override/C0CLABWF.2da~
+	
+    // kittable      = ~K_F_H K_F_E K_F_HE~
+	
+	// base_class = 
+	
+	// clab_base_f = 
+	
+	// clab_base_p = 
+	
+	// clab_base_d = 
+	
+	// clab_base_r = 
+	
+	// clab_base_m = 
+	
+	// clab_base_t = 
+	
+    // clsrcreq      = ~1 1 1 1 1 1 1~
+	
+    // clswpbon      = ~1 0 2~
+	
+    // hpclass       = ~HPPRS~
+	
+    // numwslot      = ~4~
+	
+    clascolr = ~93 101 100 107 188~
+	
+	// clasiskl = ~0 0 0 0 0 0 0~
+	
+	// clasthac = ~0~
+	
+	 thiefscl = ~100 0 100 0 0 100 0 0~
+	
+	// backstab = ~1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2~
+	
+	// sneakatt = ~1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 6~
+	
+	// crippstr = ~0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4~
+	
+	thiefskl = ~0 0~
+	
+	// traplimt = ~6~
+	
+    // bdstweap      = ~CHAN04 SHLD04 HELM01 * RING06 * * * * BRAC09 BELT02 AROW02,40 BULL02,40 BOLT02,40 POTN08,5 POTN17,3 POTN12,1 * SW1H05 HAMM02~
+  RET
+    kit_id
+END
+
+LAF ADD_KIT_EX
+  INT_VAR
+    // Mage	= 1
+	// Fighter = 2
+	// Cleric = 3
+	// Thief = 4
+	// Bard = 5
+	// Paladin = 6
+	// Fighter/Mage = 7
+	// Fighter/Cleric = 8
+	// Fighter/Thief = 9
+	// Fighter/Mage/Thief = 10
+	// Druid = 11
+	// Ranger = 12
+	// Mage/Thief = 13
+	// Cleric/Mage = 14
+	// Cleric/Thief = 15
+	// Fighter/Druid = 16
+	// Fighter/Mage/Cleric = 17
+	// Cleric/Ranger = 18
+	// Sorcerer = 19
+	// Monk = 20
+	// Shaman = 21
     kit_class     = 5
 	
     mixed         = RESOLVE_STR_REF(~Warlock~)
@@ -392,6 +610,8 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 	
     briefdesc = RESOLVE_STR_REF(~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power.~)
 	
+  visible = 0
+
 	// fallen = 0
 	
   STR_VAR
@@ -564,8 +784,13 @@ EXTEND_TOP ~bddefai.bcs~ ~%MOD_FOLDER%/scripts/bddefai.baf~
 ///////////ITEMS////////////////////////
 ////////////////////////////////////////
 
-ACTION_IF FILE_EXISTS_IN_GAME ~chan15.itm~ THEN BEGIN
-COPY_EXISTING ~chan15.itm~ ~override~
+COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~ //copies all item files
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items
+    READ_BYTE    0x1E row1
+    READ_BYTE    0x1F row2
+    READ_BYTE    0x20 row3
+    READ_BYTE    0x21 row4
+    PATCH_IF ((row1 BAND 0b10000000) = 0b10000000) AND ((row2 BAND 0b11111111) = 0b11111111) AND ((row3 BAND 0b01111111) = 0b01111111) AND ((row4 BAND 0b01100000) = 0b01100000) BEGIN 
   LPF ADD_ITEM_EQEFFECT
     INT_VAR
       opcode = 319
@@ -575,100 +800,11 @@ COPY_EXISTING ~chan15.itm~ ~override~
 	  parameter2 = 9
 	  power = 0
 	  special = RESOLVE_STR_REF (~Warlock~)
-END
-END
-  
-ACTION_IF FILE_EXISTS_IN_GAME ~misc3m.itm~ THEN BEGIN
-COPY_EXISTING ~misc3m.itm~ ~override~
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 319
-	  target = 1
-	  timing = 2
-	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
-	  parameter2 = 9
-	  power = 0
-END
-END
-  
-ACTION_IF FILE_EXISTS_IN_GAME ~misc3n.itm~ THEN BEGIN
-COPY_EXISTING ~misc3n.itm~ ~override~
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 319
-	  target = 1
-	  timing = 2
-	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
-	  parameter2 = 9
-	  power = 0
-END
-END
-  
-ACTION_IF FILE_EXISTS_IN_GAME ~misc3o.itm~ THEN BEGIN
-COPY_EXISTING ~misc3o.itm~ ~override~
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 319
-	  target = 1
-	  timing = 2
-	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
-	  parameter2 = 9
-	  power = 0
-END
-END
-  
-ACTION_IF FILE_EXISTS_IN_GAME ~wa2harp.itm~ THEN BEGIN
-COPY_EXISTING ~wa2harp.itm~ ~override~
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 319
-	  target = 1
-	  timing = 2
-	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
-	  parameter2 = 9
-	  power = 0
-END
-END
-  
-ACTION_IF FILE_EXISTS_IN_GAME ~bdhelm11.itm~ THEN BEGIN
-COPY_EXISTING ~bdhelm11.itm~ ~override~
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 319
-	  target = 1
-	  timing = 2
-	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
-	  parameter2 = 9
-	  power = 0
-END
-END
-  
-ACTION_IF FILE_EXISTS_IN_GAME ~brac24.itm~ THEN BEGIN
-COPY_EXISTING ~brac24.itm~ ~override~
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 319
-	  target = 1
-	  timing = 2
-	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
-	  parameter2 = 9
-	  power = 0
-END
-END
+      END
+    END
+    END
+BUT_ONLY
 
-ACTION_IF FILE_EXISTS_IN_GAME ~brac25.itm~ THEN BEGIN
-COPY_EXISTING ~brac25.itm~ ~override~
-  LPF ADD_ITEM_EQEFFECT
-    INT_VAR
-      opcode = 319
-	  target = 1
-	  timing = 2
-	  parameter1 = (IDS_OF_SYMBOL (~KIT~ ~c0wlock~))
-	  parameter2 = 9
-	  power = 0
-END
-END
-  
 ////////////////////////////////////////
 /////////PROJECTILES////////////////////
 ////////////////////////////////////////
@@ -1190,6 +1326,17 @@ WRITE_ASCII 0x8 ~C0WL506Y~
 
 // SPELLS
 
+ACTION_IF (FILE_EXISTS_IN_GAME ~EEex_Actionbar.lua~) BEGIN
+
+COPY_EXISTING ~c0wl000.spl~ ~override~
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~WARLOCK_L12_DECEIVE_ITEM~) parameter1 = 1 parameter2 = 1 END
+
+COPY_EXISTING ~c0wl009.spl~ ~override~
+    LPF DELETE_EFFECT INT_VAR match_opcode = 72 END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 401 target = 1 timing = 9 special = IDS_OF_SYMBOL (~STATS~ ~WARLOCK_L12_DECEIVE_ITEM~) parameter1 = 0 parameter2 = 1 END
+
+  END ELSE BEGIN
+
 COPY_EXISTING ~c0wl000.spl~ ~override~
   LPF ADD_SPELL_EFFECT
 	INT_VAR
@@ -1199,6 +1346,8 @@ COPY_EXISTING ~c0wl000.spl~ ~override~
 	  parameter2 = 4
 	  parameter1 = IDS_OF_SYMBOL (~SPECIFIC~ ~WARLOCK_L12~)
 END
+
+  END
 
 ACTION_FOR_EACH warlock_remove IN 104 105 106 107 108 109 110 111 112 113 114 201 202 203 204 205 206 207 208 209 210 211 301 302 303 304 305 306 307 308 309 310 401 402 403 404 405 406 407 408 BEGIN
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl%warlock_remove%z.spl~
@@ -6913,6 +7062,32 @@ COPY_EXISTING ~clasiskl.2da~ ~override~
   
 END
 
+ACTION_IF FILE_EXISTS_IN_GAME ~C0CLABWF.2DA~ BEGIN
+COPY_EXISTING ~C0CLABWF.2DA~ OVERRIDE
+  // Borrowed from Rogue Rebalancing
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 1 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 2 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 3 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 4 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 5 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 6 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 7 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 8 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 9 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 10 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 11 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 12 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 13 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 14 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 15 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 16 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 17 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 18 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 19 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  LPF set_clab_2da_entries INT_VAR f_MinLevel = 20 f_MaxLevel = 20 STR_VAR f_Entry = AP_C0WLSKL END // FIND TRAP/ILLUSION POINTS
+  PRETTY_PRINT_2DA
+END
+
 ACTION_IF FILE_EXISTS_IN_GAME ~C0CLABWL.2DA~ BEGIN
 COPY_EXISTING ~C0CLABWL.2DA~ OVERRIDE
   // Borrowed from Rogue Rebalancing
@@ -6943,7 +7118,9 @@ BUT_ONLY
 // Update Kit Descriptions                                               //
 ///////////////////////////////////////////////////////////////////////////
 ACTION_FOR_EACH description IN 
+    blclatxt  
     clastext  
+    sodcltxt 
   BEGIN
     ACTION_IF FILE_EXISTS_IN_GAME ~%description%.2da~ BEGIN
       COPY_EXISTING ~%description%.2DA~ ~override~
@@ -6952,7 +7129,7 @@ ACTION_FOR_EACH description IN
       FOR (index = 0; index < rows; ++index) BEGIN
         READ_2DA_ENTRY index 0 col_count row_name
 //WARLOCK
-        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0WLOCK" BEGIN
+        PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0WLOCK_FILL" BEGIN
           READ_2DA_ENTRY index 4 col_count warlock_desc
           SPRINT old_warlock ~– Thieving abilities: Pick Pockets.~
           SPRINT new_warlock ~– Thieving abilities: May use Pick Pockets, Find Traps and Detect Illusion.~

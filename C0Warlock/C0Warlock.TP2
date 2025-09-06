@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/backup/C0Warlock~
 AUTHOR ~The Artisan~
-VERSION ~2.8~
+VERSION ~3.0~
 ALWAYS
   INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
   INCLUDE ~%MOD_FOLDER%/lib/alter_effect.tpa~
