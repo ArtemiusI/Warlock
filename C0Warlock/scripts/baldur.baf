@@ -94,7 +94,7 @@ THEN
 END
 
 IF
-	Kit(Player1,C0WLOCK_FILL)
+	Kit(Player1,C0FILL_WLOCK)
 THEN
   RESPONSE #100
 	ChangeClass(Player1,BARD)
@@ -103,7 +103,7 @@ THEN
 END
 
 IF
-	Kit(Player2,C0WLOCK_FILL)
+	Kit(Player2,C0FILL_WLOCK)
 THEN
   RESPONSE #100
 	ChangeClass(Player2,BARD)
@@ -112,7 +112,7 @@ THEN
 END
 
 IF
-	Kit(Player3,C0WLOCK_FILL)
+	Kit(Player3,C0FILL_WLOCK)
 THEN
   RESPONSE #100
 	ChangeClass(Player3,BARD)
@@ -121,7 +121,7 @@ THEN
 END
 
 IF
-	Kit(Player4,C0WLOCK_FILL)
+	Kit(Player4,C0FILL_WLOCK)
 THEN
   RESPONSE #100
 	ChangeClass(Player4,BARD)
@@ -130,7 +130,7 @@ THEN
 END
 
 IF
-	Kit(Player5,C0WLOCK_FILL)
+	Kit(Player5,C0FILL_WLOCK)
 THEN
   RESPONSE #100
 	ChangeClass(Player5,BARD)
@@ -139,7 +139,7 @@ THEN
 END
 
 IF
-	Kit(Player6,C0WLOCK_FILL)
+	Kit(Player6,C0FILL_WLOCK)
 THEN
   RESPONSE #100
 	ChangeClass(Player6,BARD)
