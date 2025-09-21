@@ -7183,3 +7183,39 @@ ACTION_FOR_EACH description IN
   END
   
 LAF ADD_CLASS_SPELL STR_VAR excludeAllNormalWizardSpellsFromThisKit=~C0WLOCK~ END
+
+ACTION_IF MOD_IS_INSTALLED ~candlekeep_revisited.tp2~ ~1~ THEN BEGIN
+
+EXTEND_TOP ~ar2600.bcs~ ~candlekeep_revisited/bcs/ar2600-warlock.baf~
+
+ACTION_IF !FILE_EXISTS_IN_GAME ~C0CR#WLK.ITM~ THEN BEGIN
+COPY ~candlekeep_revisited/ITM/C0CR#WLK.ITM~ ~OVERRIDE~
+  LPF ADD_ITEM_EQEFFECT
+    INT_VAR
+      opcode = 319
+	  target = 1
+	  timing = 2
+	  parameter1 = (IDS_OF_SYMBOL (~kit~ ~C0WLOCK~))
+	  parameter2 = 9
+	  power = 1
+	  special = RESOLVE_STR_REF (~Warlock~)
+END
+SAY NAME1 ~Leather Armor~
+SAY NAME2 ~Leather Armor of Darkness~
+SAY DESC ~Leather armor, despite the popular misconception, is not soft and supple like the leather used to make a Ranger's boots or a Druid's robe. That kind of leather offers no better protection than common clothing.
+
+This particular set of leather was dyed a dark hue by <CHARNAME> not long ago after <PRO_HESHE> apparently received a certain 'dark boon', and while most of those within Candlekeep considered it merely a typical adolescent phase that they would inevitably tire of, <PRO_HESHE> continues to wear this armor comfortably.
+
+STATISTICS:
+
+Equipped abilities:
+– Save vs. Death: +1
+
+Armor Class: 8 (10 vs. piercing and missile)
+Requires:
+ 4 Strength
+
+Weight: 5~
+END
+
+END
