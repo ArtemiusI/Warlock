@@ -7186,7 +7186,18 @@ LAF ADD_CLASS_SPELL STR_VAR excludeAllNormalWizardSpellsFromThisKit=~C0WLOCK~ EN
 
 ACTION_IF MOD_IS_INSTALLED ~candlekeep_revisited.tp2~ ~1~ THEN BEGIN
 
-EXTEND_TOP ~ar2600.bcs~ ~candlekeep_revisited/bcs/ar2600-warlock.baf~
+ACTION_IF FILE_EXISTS_IN_GAME ~C0CLABWL.2DA~ BEGIN
+
+	OUTER_SPRINT wlock_check ~  !Kit(Player1,C0FILL_WLOCK)
+	!Kit(Player1,C0WLOCK)~
+
+END ELSE BEGIN
+
+	OUTER_SPRINT wlock_check ~~
+
+	END
+
+EXTEND_TOP ~%bg1_eet_symbol%2600.bcs~ ~candlekeep_revisited/bcs/ar2600-warlock.baf~ EVAL
 
 ACTION_IF !FILE_EXISTS_IN_GAME ~C0CR#WLK.ITM~ THEN BEGIN
 COPY ~candlekeep_revisited/ITM/C0CR#WLK.ITM~ ~OVERRIDE~
