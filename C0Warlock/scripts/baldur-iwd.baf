@@ -87,3 +87,57 @@ THEN
   RESPONSE #100
 	ActionOverride(Player6,StartDialogOverride("c0wltalk",Myself))
 END
+
+IF
+	Kit(Player1,C0FILL_WLOCK)
+THEN
+  RESPONSE #100
+	ChangeClass(Player1,BARD)
+	ActionOverride(Player1,AddKit(C0WLOCK))
+	ActionOverride(Player1,MakeUnselectable(1))
+END
+
+IF
+	Kit(Player2,C0FILL_WLOCK)
+THEN
+  RESPONSE #100
+	ChangeClass(Player2,BARD)
+	ActionOverride(Player2,AddKit(C0WLOCK))
+	ActionOverride(Player2,MakeUnselectable(1))
+END
+
+IF
+	Kit(Player3,C0FILL_WLOCK)
+THEN
+  RESPONSE #100
+	ChangeClass(Player3,BARD)
+	ActionOverride(Player3,AddKit(C0WLOCK))
+	ActionOverride(Player3,MakeUnselectable(1))
+END
+
+IF
+	Kit(Player4,C0FILL_WLOCK)
+THEN
+  RESPONSE #100
+	ChangeClass(Player4,BARD)
+	ActionOverride(Player4,AddKit(C0WLOCK))
+	ActionOverride(Player4,MakeUnselectable(1))
+END
+
+IF
+	Kit(Player5,C0FILL_WLOCK)
+THEN
+  RESPONSE #100
+	ChangeClass(Player5,BARD)
+	ActionOverride(Player5,AddKit(C0WLOCK))
+	ActionOverride(Player5,MakeUnselectable(1))
+END
+
+IF
+	Kit(Player6,C0FILL_WLOCK)
+THEN
+  RESPONSE #100
+	ChangeClass(Player6,BARD)
+	ActionOverride(Player6,AddKit(C0WLOCK))
+	ActionOverride(Player6,MakeUnselectable(1))
+END

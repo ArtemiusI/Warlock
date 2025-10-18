@@ -40,7 +40,7 @@ EraseJournalEntry(23551)
 SetGlobal("PlayerHasStronghold","GLOBAL",1)
 SetGlobal("PCSphere","GLOBAL",1)~ EXTERN LAVOK 60
 
-CHAIN IF ~Global("LavokOutside","GLOBAL",1)
+CHAIN IF WEIGHT #-1 ~Global("LavokOutside","GLOBAL",1)
 Global("PlayerHasStronghold","GLOBAL",0)
 Kit(Player1,C0WLOCK)~ THEN LAVOK C0LAVOKWARLOCK2
 @4 /* Ah, it is the sky after all. I had forgotten how it looked after so long. I thank you... and I wish to repay you for your kindness... */
