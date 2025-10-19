@@ -7184,22 +7184,14 @@ ACTION_FOR_EACH description IN
   
 LAF ADD_CLASS_SPELL STR_VAR excludeAllNormalWizardSpellsFromThisKit=~C0WLOCK~ END
 
-ACTION_IF MOD_IS_INSTALLED ~candlekeep_revisited.tp2~ ~1~ THEN BEGIN
+ACTION_IF MOD_IS_INSTALLED ~CANDLEKEEP_REVISITED/CANDLEKEEP_REVISITED.TP2~ ~1~ THEN BEGIN
 
-ACTION_IF FILE_EXISTS_IN_GAME ~C0CLABWL.2DA~ BEGIN
-
-	OUTER_SPRINT wlock_check ~  !Kit(Player1,C0FILL_WLOCK)
-	!Kit(Player1,C0WLOCK)~
-
-END ELSE BEGIN
-
-	OUTER_SPRINT wlock_check ~~
-
-	END
+ACTION_IF GAME_IS ~EET~ THEN BEGIN
+EXTEND_TOP ~%bg1_eet_symbol%2600.bcs~ ~candlekeep_revisited/bcs/ar2600-eet.baf~ EVAL
+END
 
 EXTEND_TOP ~%bg1_eet_symbol%2600.bcs~ ~candlekeep_revisited/bcs/ar2600-warlock.baf~ EVAL
 
-ACTION_IF !FILE_EXISTS_IN_GAME ~C0CR#WLK.ITM~ THEN BEGIN
 COPY ~candlekeep_revisited/ITM/C0CR#WLK.ITM~ ~OVERRIDE~
   LPF ADD_ITEM_EQEFFECT
     INT_VAR
@@ -7227,6 +7219,5 @@ Requires:
  4 Strength
 
 Weight: 5~
-END
 
 END
