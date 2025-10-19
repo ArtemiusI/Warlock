@@ -2083,19 +2083,8 @@ WRITE_SHORT 0x34 1
 WRITE_ASCII 0x3a ~C0WL106C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl106b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL106 END
-SAY NAME1 ~Draining Blast~
-SAY UNIDENTIFIED_DESC ~DRAINING BLAST
-(Eldritch Essence) 
-
-Power: Least
-Effective Spell Level: 2
-Range: Special
-Duration: 3 rounds + 1 round/5 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a draining blast. The draining blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become slowed. A slowed creature moves and attacks at a drastically reduced rate, taking a -1 penalty on attack rolls, AC, and saving throws and moving at half its normal speed. Multiple slow effects don't stack. This invocation counters and dispels haste.~
+SAY NAME1 ~%C0WL106-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL106-DESC%~
 
 COPY_EXISTING ~c0wl106R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2145,19 +2134,8 @@ WRITE_SHORT 0x34 1
 WRITE_ASCII 0x3a ~C0WL107C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl107b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL107 END
-SAY NAME1 ~Frightful Blast~
-SAY UNIDENTIFIED_DESC ~FRIGHTFUL BLAST
-(Eldritch Essence) 
-
-Power: Least
-Effective Spell Level: 2
-Range: Special
-Duration: 1 turn
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a frightful blast. The frightful blast reduces the Eldritch Blast's damage by half, but forces any creature struck to make a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) or become shaken for one turn, taking a -2 penalty to attack rolls, saving throws, and morale. Creatures with more than 6 HD gain a +4 bonus to their rolls to save.~
+SAY NAME1 ~%C0WL107-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL107-DESC%~
 
 COPY_EXISTING ~c0wl107R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2207,19 +2185,8 @@ WRITE_SHORT 0x34 2
 WRITE_ASCII 0x3a ~C0WL201C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl201b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL201 END
-SAY NAME1 ~Beshadowed Blast~
-SAY UNIDENTIFIED_DESC ~BESHADOWED BLAST
-(Eldritch Essence) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Special
-Duration: 1 round/5 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a beshadowed blast. The beshadowed blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or become blinded, receiving a -4 penalty to attack rolls and Armor Class as well as halved movement rate.~
+SAY NAME1 ~%C0WL201-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL201-DESC%~
 
 COPY_EXISTING ~c0wl201R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2305,19 +2272,8 @@ WRITE_SHORT 0x34 2
 WRITE_ASCII 0x3a ~C0WL202C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl202b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL202 END
-SAY NAME1 ~Brimstone Blast~
-SAY UNIDENTIFIED_DESC ~BRIMSTONE BLAST
-(Eldritch Essence) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Special
-Duration: 3 rounds + 1 round/10 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a brimstone blast. A brimstone blast deals fire damage. Any creature struck by a brimstone blast must succeed on a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) or catch on fire, taking 2d6 points of fire damage per round until the duration expires. A creature burning in this way never takes more than 2d6 points of fire damage in a round, even if it has been hit by more than one brimstone blast.~
+SAY NAME1 ~%C0WL202-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL202-DESC%~
 
 COPY_EXISTING ~c0wl202R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2418,19 +2374,8 @@ WRITE_SHORT 0x34 2
 WRITE_ASCII 0x3a ~C0WL203C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl203b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL203 END
-SAY NAME1 ~Hellrime Blast~
-SAY UNIDENTIFIED_DESC ~HELLRIME BLAST
-(Eldritch Essence) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Special
-Duration: 1 turn + 2 rounds/5 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a hellrime blast. A hellrime blast deals cold damage. Any creature struck by the attack must make a Save vs. Death at -1 (additional -1 penalty per two points of caster's Charisma above 17) or take a -4 penalty to Dexterity and Armor Class. The penalties from multiple hellrime blasts do not stack.~
+SAY NAME1 ~%C0WL203-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL203-DESC%~
 
 COPY_EXISTING ~c0wl203R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2531,19 +2476,8 @@ WRITE_SHORT 0x34 3
 WRITE_ASCII 0x3a ~C0WL301C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl301b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL301 END
-SAY NAME1 ~Bewitching Blast~
-SAY UNIDENTIFIED_DESC ~BEWITCHING BLAST
-(Eldritch Essence) 
-
-Power: Greater
-Effective Spell Level: 4
-Range: Special
-Duration: 3 rounds + 1 round/5 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a bewitching blast. The bewitching blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -2 (additional -1 penalty per two points of caster's Charisma above 17) or become confused. A confused target will either wander randomly, attack a random nearby creature (even allies), or simply stand still.~
+SAY NAME1 ~%C0WL301-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL301-DESC%~
 
 COPY_EXISTING ~c0wl301R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2629,19 +2563,8 @@ WRITE_SHORT 0x34 3
 WRITE_ASCII 0x3a ~C0WL302C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl302b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL302 END
-SAY NAME1 ~Electrifying Blast~
-SAY UNIDENTIFIED_DESC ~ELECTRIFYING BLAST
-(Eldritch Essence) 
-
-Power: Greater
-Effective Spell Level: 4
-Range: Special
-Duration: 1 round/10 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into an electrifying blast. An electrifying blast deals electrical damage. Any creature struck by the attack must make a Save vs. Breath at -2 (additional -1 penalty per two points of caster's Charisma above 17) become paralyzed. Creatures immune to electrical damage are not affected.~
+SAY NAME1 ~%C0WL302-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL302-DESC%~
 
 COPY_EXISTING ~c0wl302R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2737,19 +2660,8 @@ WRITE_SHORT 0x34 3
 WRITE_ASCII 0x3a ~C0WL303C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl303b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL303 END
-SAY NAME1 ~Noxious Blast~
-SAY UNIDENTIFIED_DESC ~NOXIOUS BLAST
-(Eldritch Essence) 
-
-Power: Greater
-Effective Spell Level: 6
-Range: Special
-Duration: 1 turn/10 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: Neg.
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a noxious blast. A noxious blast deals poison damage. Any creature struck by the attack must make a Save vs. Death at -2 (additional -1 penalty per two points of caster's Charisma above 17) or suffer a -2 penalty to all attributes and a -4 penalty to all saving throws for one turn. The effects do not stack, and creatures immune to poison are not affected.~
+SAY NAME1 ~%C0WL303-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL303-DESC%~
 
 COPY_EXISTING ~c0wl303R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2845,19 +2757,8 @@ WRITE_SHORT 0x34 3
 WRITE_ASCII 0x3a ~C0WL304C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl304b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL304 END
-SAY NAME1 ~Vitriolic Blast~
-SAY UNIDENTIFIED_DESC ~VITRIOLIC BLAST
-(Eldritch Essence) 
-
-Power: Greater
-Effective Spell Level: 6
-Range: Special
-Duration: 2 rounds + 1 round/10 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: None
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a vitriolic blast. A vitriolic blast deals acidic damage and is formed from conjured acid, making it different from all other eldritch essences because it ignores Magic Resistance. Creatures struck by a vitriolic blast automatically take an extra 2d6 points of acid damage on following rounds. A creature taking damage in this way never takes more than 2d6 points of acid damage in a round, even if it has been hit by more than one vitriolic blast. Creatures immune to acid damage are not affected.~
+SAY NAME1 ~%C0WL304-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL304-DESC%~
 
 COPY_EXISTING ~c0wl304R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -2910,19 +2811,8 @@ WRITE_SHORT 0x34 4
 WRITE_ASCII 0x3a ~C0WL401C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl401b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL401 END
-SAY NAME1 ~Binding Blast~
-SAY UNIDENTIFIED_DESC ~BINDING BLAST
-(Eldritch Essence) 
-
-Power: Dark
-Effective Spell Level: 7
-Range: Special
-Duration: 3 rounds + 1 round/10 levels
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: None
-
-This eldritch essence invocation allows the warlock to change <PRO_HISHER> eldritch blast into a binding blast. The binding blast reduces the Eldritch Blast's damage to d4, but forces any creature struck to make a Save vs. Spells at -4 (additional -1 penalty per two points of caster's Charisma above 17) or be stunned for 1 round.~
+SAY NAME1 ~%C0WL401-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL401-DESC%~
 
 COPY_EXISTING ~c0wl401R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -3008,19 +2898,8 @@ WRITE_SHORT 0x34 4
 WRITE_ASCII 0x3a ~C0WL402C~
 LPF ALTER_SPELL_HEADER STR_VAR icon = c0wl402b END
 LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = C0WL402 END
-SAY NAME1 ~Utterdark Blast~
-SAY UNIDENTIFIED_DESC ~UTTERDARK BLAST
-(Eldritch Essence) 
-
-Power: Dark
-Effective Spell Level: 8
-Range: Special
-Duration: 24 hours
-Casting Time: Same as blast shape
-Area of Effect: Same as blast shape
-Saving Throw: None
-
-This eldritch essence invocation allows you to change your eldritch blast into an utterdark blast. An utterdark blast reduces the Eldritch Blast's damage to d4, but drains hit points from the target and transfers it to the caster. Any creature struck by the attack must also make a Save vs. Death at -4 (additional -1 penalty per two points of caster's Charisma above 17) or lose four levels for eight hours. If a target ever has as many negative levels as Hit Dice, it dies. The effects of this invocation do not stack with further applications of utterdark blast.~
+SAY NAME1 ~%C0WL402-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL402-DESC%~
 
 COPY_EXISTING ~c0wl402R.spl~ ~override~
   LPF ALTER_SPELL_HEADER
@@ -5681,19 +5560,8 @@ COPY_EXISTING ~c0wl104.spl~ ~override~
 			resist_dispel = 1
 			special = 1
 	END
-SAY NAME1 ~Beguiling Influence~
-SAY UNIDENTIFIED_DESC ~BEGUILING INFLUENCE
-(Enchantment/Charm) 
-
-Power: Least
-Effective Spell Level: 2
-Range: 0
-Duration: 24 hours
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: None
-
-This invocation allows the warlock to beguile and bewitch <PRO_HISHER> foes, gaining two points of Charisma. This bonus increases to +4 at 12th level and +6 at 24th level.~
+SAY NAME1 ~%C0WL104-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL104-DESC%~
 
 COPY_EXISTING ~c0wl105.spl~ ~override~
   LPF ALTER_EFFECT
@@ -5712,38 +5580,16 @@ COPY_EXISTING ~c0wl105.spl~ ~override~
 			resist_dispel = 1
 			special = 1
 	END
-SAY NAME1 ~Dark One's Own Luck~
-SAY UNIDENTIFIED_DESC ~DARK ONE'S OWN LUCK
-(Enchantment/Charm)
-
-Power: Least
-Effective Spell Level: 2
-Range: 0
-Duration: 24 hours
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: None
-
-The warlock who possesses this invocation is favored by the dark powers. For the duration, the warlock gains a +2 bonus to all attack/skill rolls and Saving Throws. An additional +1 bonus is gained for every three points of the warlock's Charisma above 16.~
+SAY NAME1 ~%C0WL105-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL105-DESC%~
 
 COPY_EXISTING ~c0wl108.spl~ ~override~
   LPF ALTER_SPELL_HEADER
     INT_VAR
 	  projectile = c0wlp101
   END
-SAY NAME1 ~Darkness~ 
-SAY UNIDENTIFIED_DESC ~DARKNESS
-(Invocation/Evocation) 
-
-Power: Least
-Effective Spell Level: 1
-Range: 0
-Duration: 6 rounds
-Casting Time: 4
-Area of Effect: 20 ft.
-Saving Throw: None
-
-The warlock creates an area of deepest shadow at range in a 20-foot radius. All creatures in the area suffer a -4 penalty to hit rolls and greatly reduced vision range until they leave the area of effect.~ 
+SAY NAME1 ~%C0WL108-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL108-DESC%~
 
 COPY_EXISTING ~c0wl109.spl~ ~override~
   LPF ALTER_EFFECT
@@ -5758,19 +5604,8 @@ COPY_EXISTING ~c0wl109.spl~ ~override~
       match_parameter2 = 132
 	  parameter2 = EVAL %C0WLCHA%
 END
-SAY NAME1 ~Entropic Warding~
-SAY UNIDENTIFIED_DESC ~ENTROPIC WARDING
-(Abjuration) 
-
-Power: Least
-Effective Spell Level: 2
-Range: 0
-Duration: 1 turn/level
-Casting Time: 6
-Area of Effect: the caster
-Saving Throw: None
-
-A magical field appears around the warlock, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. All missiles that require an attack roll to hit are made with a -4 penalty. Magically targeted missiles, such as Melf's Acid Arrow, are not affected. Additionally, the warlock's base Armor Class is set to 6 (additional +1 bonus for every point of Charisma above 16) for the duration.~
+SAY NAME1 ~%C0WL109-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL109-DESC%~
 
 COPY_EXISTING ~c0wl109b.spl~ ~override/c0wl109j.spl~
   LPF ALTER_EFFECT
@@ -5861,34 +5696,12 @@ COPY_EXISTING ~c0wl110.spl~ ~override~
 	  match_opcode = 139
 	  parameter1 = RESOLVE_STR_REF (~Dexterity Modification~)
 END
-SAY NAME1 ~Leaps and Bounds~
-SAY UNIDENTIFIED_DESC ~LEAPS AND BOUNDS
-(Alteration) 
-
-Power: Least
-Effective Spell Level: 2
-Range: 0
-Duration: 24 hours
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: None
-
-This invocation grants the warlock amazing agility. For the duration of the spell, the warlock's Dexterity is set to 18, if higher than their current value, and their base Movement Rate increased by 2 points. An additional +1 to base Dexterity and Movement Rate is granted for every three points of the warlock's Charisma above 16.~
+SAY NAME1 ~%C0WL110-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL110-DESC%~
 
 COPY_EXISTING ~c0wl111.spl~ ~override~
-SAY NAME1 ~See the Unseen~
-SAY UNIDENTIFIED_DESC ~SEE THE UNSEEN
-(Divination) 
-
-Power: Least
-Effective Spell Level: 2
-Range: 0
-Duration: 5 rounds
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: None
-
-With the invocation, the warlock may activate great powers of vision, allowing <PRO_HIMHER> to see invisible creatures and hidden traps.~
+SAY NAME1 ~%C0WL111-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL111-DESC%~
 
 COPY_EXISTING ~c0wl112.spl~ ~override~
   LPF ALTER_EFFECT
@@ -5896,19 +5709,8 @@ COPY_EXISTING ~c0wl112.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic22
 	END
-SAY NAME1 ~Devil's Sight~
-SAY UNIDENTIFIED_DESC ~DEVIL'S SIGHT 
-(Divination)
-
-Power: Least
-Effective Spell Level: 2
-Range: 0
-Duration: 24 hours
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: None
-
-With this invocation, the warlock gains the visual acuity of a devil for 24 hours, gaining Infravision as well as the ability to target partially concealed creatures with spells. Additionally, while not within sunlight, <PRO_HISHER> visual range is increased.~
+SAY NAME1 ~%C0WL112-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL112-DESC%~
 
 COPY_EXISTING ~c0wl112A.spl~ ~override~
 LPF ALTER_EFFECT
@@ -5918,19 +5720,8 @@ LPF ALTER_EFFECT
 END
 
 COPY_EXISTING ~c0wl113.spl~ ~override~
-SAY NAME1 ~Call of the Beast~
-SAY UNIDENTIFIED_DESC ~CALL OF THE BEAST 
-(Enchantment/Charm)
-
-Power: Least
-Effective Spell Level: 2
-Range: 50
-Duration: 10 turns
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: Neg.
-
-This invocation allows the warlock to communicate with creatures of the wild and influence their actions. The targeted animal or plant must succeed on a Save vs. Spells at -5 or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. From 10th level onwards, monsters such as wyverns may be affected, and from 20th level onwards, the targeted creature's Strength and Dexterity are increased to 25 while charmed.~
+SAY NAME1 ~%C0WL113-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL113-DESC%~
 
 COPY_EXISTING ~c0wl113a.spl~ ~override~
   LPF ALTER_EFFECT
@@ -5945,19 +5736,8 @@ COPY_EXISTING ~c0wl114.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic23
 	END
-SAY NAME1 ~Soulreaving Aura~
-SAY UNIDENTIFIED_DESC ~SOULREAVING AURA 
-(Necromancy)
-
-Power: Least
-Effective Spell Level: 2
-Range: Self
-Duration: 24 hours
-Casting Time: 2
-Area of Effect: 20-ft. from caster
-Saving Throw: None
-
-With this invocation, the warlock surrounds <PRO_HIMHER>self with a malignant aura which floods the surrounding area of negative energy that preys upon the weakened. Any creature with current hit points lower than the warlock's level within a 20-ft. radius of the warlock is slain instantly. For each slain enemy, the warlock gains 1 temporary hit point per 10 caster levels for 8 hours.~
+SAY NAME1 ~%C0WL114-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL114-DESC%~
 
 COPY_EXISTING ~c0wl114b.spl~ ~override~
 	LPF ALTER_EFFECT
@@ -5974,19 +5754,8 @@ COPY_EXISTING ~c0wl204.spl~ ~override~
       match_parameter2 = 136
 	  parameter2 = %C0WLCHA%
 END
-SAY NAME1 ~Charm~
-SAY UNIDENTIFIED_DESC ~CHARM
-(Enchantment/Charm) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Special
-Duration: 5 rounds + 1 round/5 levels
-Casting Time: 5
-Area of Effect: One creature
-Saving Throw: None
-
-This invocation enables the warlock to control the actions of any creature while the spell is in effect. This control is maintained through a telepathic link between the warlock and the victim. The creature must succeed on a Save vs. Spells at -5 (additional -1 penalty per two points of caster's Charisma above 16) or instantly come to regard you as a trusted friend, willing to follow <PRO_HISHER> commands. Hostile creatures make a save at no penalty. This spell is not regarded as hostile and targets are normally unaware of being enchanted after the effects have expired.~
+SAY NAME1 ~%C0WL204-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL204-DESC%~
 
 COPY_EXISTING ~c0wl204a.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6047,19 +5816,8 @@ COPY_EXISTING ~c0wl205.spl~ ~override~
       match_parameter2 = 136
 	  parameter2 = %C0WLCHA%
 END
-SAY NAME1 ~Curse of Despair~
-SAY UNIDENTIFIED_DESC ~CURSE OF DESPAIR
-(Enchantment/Charm) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Touch
-Duration: Permanent
-Casting Time: 4
-Area of Effect: One creature
-Saving Throw: Special
-
-This invocation bestows a permanent curse upon a touched opponent, lowering all the target's ability scores by 3 if the target fails a Save vs. Spells (additional -1 penalty per two points of caster's Charisma above 17) permanently until cured via a Remove Curse spell. Even if the save against this invocation succeeds, the target takes a -1 penalty on attack rolls for one turn. This curse does not stack with itself.~
+SAY NAME1 ~%C0WL205-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL205-DESC%~
 
 COPY_EXISTING ~c0wl205a.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6096,19 +5854,8 @@ COPY_EXISTING ~c0wl206.spl~ ~override~
       match_parameter2 = 136
 	  parameter2 = %C0WLCHA%
 END
-SAY NAME1 ~Dread Seizure~
-SAY UNIDENTIFIED_DESC ~DREAD SEIZURE
-(Enchantment/Charm) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Visual range of the caster
-Duration: 2 rounds + 1 round/5 levels
-Casting Time: 2
-Area of Effect: One creature
-Saving Throw: Neg.
-
-The warlock speaks a word that sends wracking pain through the limbs of a single target creature. If the target fails a Save vs. Death (additional -1 penalty per two points of caster's Charisma above 16), it suffers a -3 penalty to attack rolls and Armor Class as well as 50% penalty to movement speed for 3 rounds.~ 
+SAY NAME1 ~%C0WL206-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL206-DESC%~
 
 COPY_EXISTING ~c0wl206a.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6138,41 +5885,12 @@ COPY_EXISTING ~c0wl206B.spl~ ~override/c0wl206f.spl~
 END
 
 COPY_EXISTING ~c0wl207.spl~ ~override~
-SAY NAME1 ~Flee the Scene~
-SAY UNIDENTIFIED_DESC ~FLEE THE SCENE
-(Alteration) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Visual range of the caster
-Duration: 1 round
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: None
-
-This invocation allows the warlock to make a quick escape when necessary. Upon casting this invocation, the warlock teleports to a location within <PRO_HISHER> vision range, becoming invisible and leaving an illusion of <PRO_HIMHER>self behind for one round.~
+SAY NAME1 ~%C0WL207-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL207-DESC%~
 
 COPY_EXISTING ~c0wl208.spl~ ~override~
-SAY NAME1 ~The Dead Walk~ 
-SAY UNIDENTIFIED_DESC ~THE DEAD WALK
-(Necromancy) 
-
-Power: Lesser
-Effective Spell Level: 5
-Range: Visual range of the caster
-Duration: 8 hours
-Casting Time: 9
-Area of Effect: the caster
-Saving Throw: None
-
-The warlock can raise the bones and flesh of the dead into reanimated corpses with <PRO_HISHER> infernal power to serve <PRO_HIMHER> for eight hours. The type and number of the creatures summoned is dependent on the warlock's level:
-
-  1st – 11th: 1d2+1 skeletons and zombies
-  12th - 16th: 1d4+1 skeletons, zombies and ghouls
-  17th - 21st: 1d2+1 skeleton warriors, juju zombies and ghoul lords
-  22nd+: 1d4+1 skeleton warriors, juju zombies and ghoul lords
-  
-All summoned undead remains animated until they are destroyed in combat, eight hour passes, or turned. This spell cannot be dispelled. The summons created by this spell cannot be controlled and do not count towards the summoning limit.~
+SAY NAME1 ~%C0WL208-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL208-DESC%~
 
 COPY_EXISTING ~c0wl208a.cre~ ~override~
 SAY NAME1 ~Skeleton~
@@ -6204,21 +5922,8 @@ COPY_EXISTING ~c0wl209.spl~ ~override~
 	  match_opcode = 139
 	  parameter1 = RESOLVE_STR_REF (~Dispel Effects~)
 END
-SAY NAME1 ~Voracious Dispelling~
-SAY UNIDENTIFIED_DESC ~VORACIOUS DISPELLING
-(Abjuration) 
-
-Power: Lesser
-Effective Spell Level: 4
-Range: Touch
-Duration: Instant
-Casting Time: 3
-Area of Effect: One creature
-Saving Throw: None
-
-This invocation attempts to dispel magical effects upon a target creature. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Voracious Dispelling is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Voracious Dispelling is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the warlock is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
-
-Additionally, for each enemy affected that is of a primarily spellcasting class (mage, cleric, druid, bard, shaman), they suffer 1 point of magic damage per 2 caster levels without save. Arcane spellcasters lose one memorized spell on a failed Save vs. Spells at -2.~
+SAY NAME1 ~%C0WL209-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL209-DESC%~
 
 COPY_EXISTING ~c0wl210.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6226,37 +5931,15 @@ COPY_EXISTING ~c0wl210.spl~ ~override~
 	  match_opcode = 139
 	  parameter1 = RESOLVE_STR_REF (~Invisible~)
 END
-SAY NAME1 ~Walk Unseen~
-SAY UNIDENTIFIED_DESC ~WALK UNSEEN
-(Illusion/Phantasm) 
-
-Power: Lesser
-Effective Spell Level: 2
-Range: Self
-Duration: 24 hours
-Casting Time: 2
-Area of Effect: the caster
-Saving Throw: None
-
-The warlock may cast this invocation to become invisible. The effect ends immediately if <PRO_HESHE> attacks or casts a spell. Otherwise, the effect lasts 24 hours.~
+SAY NAME1 ~%C0WL210-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL210-DESC%~
 
 COPY_EXISTING ~WIZEYE.cre~ ~override/C0WLEYE.CRE~
 SAY NAME1 ~Crawling Eye~
 SAY NAME2 ~Crawling Eye~
 COPY_EXISTING ~c0wl211.spl~ ~override~
-SAY NAME1 ~Crawling Eye~ 
-SAY UNIDENTIFIED_DESC ~CRAWLING EYE 
-(Alteration)
-
-Power: Lesser
-Effective Spell Level: 3
-Range: Self
-Duration: 5 turns
-Casting Time: 4
-Area of Effect: The caster
-Saving Throw: None
-
-The warlock creates a magical eye that can see with normal vision up to 60 ft. away in brightly lit areas. The eye can travel in any direction as long as the spell lasts.~ 
+SAY NAME1 ~%C0WL211-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL211-DESC%~
 
 COPY_EXISTING ~c0wl305.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6270,19 +5953,8 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp102%~
 END
-SAY NAME1 ~Chilling Tentacles~ 
-SAY UNIDENTIFIED_DESC ~CHILLING TENTACLES
-(Conjuration/Summoning)
-
-Power: Greater
-Effective Spell Level: 5
-Range: 40 ft.
-Duration: 4 rounds
-Casting Time: 6
-Area of Effect: 15-ft. radius
-Saving Throw: None
-
-This invocation allows you to conjure forth a field of soul-chilling tentacles that ooze from the ground, groping for victims. For every round that a creature is caught in the area of effect, it suffers an attack from tentacles, suffering 1d6+4 crushing damage and becoming paralyzed for one round on a failed Save vs. Breath. In addition, each creature within the area of the invocation takes 2d6 points of cold damage each round regardless of whether they are struck by any tentacles. The tentacles last for 4 rounds.~
+SAY NAME1 ~%C0WL305-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL305-DESC%~
 
 COPY_EXISTING ~c0wl306.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -6291,21 +5963,8 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp104%~
 END
-SAY NAME1 ~Devour Magic~
-SAY UNIDENTIFIED_DESC ~DEVOUR MAGIC
-(Abjuration)
-
-Power: Greater
-Effective Spell Level: 6
-Range: 40 ft.
-Duration: 1 turn
-Casting Time: 3
-Area of Effect: 15-ft. radius
-Saving Throw: None
-
-This invocation dispels the magical effects upon any enemies within the area. This includes effects given from spells, potions, and certain magical items such as wands. It does not, however, affect enchanted magical items. The chance of the dispel succeeding is determined by the level of the warlock and the level of the magic being dispelled. The base chance of successfully dispelling is 50%. For every level that the caster of Devour Magic is above the original caster, <PRO_HISHER> chance of success increases by 5%. For every level that the caster of Devour Magic is below the original caster, <PRO_HISHER> chance of success decreases by 10%. However, despite the difference in levels, there is always at least a 1% chance of success or failure. Thus, if a caster is 10 levels higher than the magic <PRO_HESHE> is trying to dispel, there is only a 1% chance of failure. Similarly, if the caster is 4 levels lower than the magic <PRO_HESHE> is trying to dispel, there is only a 10% chance of success. Intuitively, this spell is almost useless if the target is 5 or more levels higher than the warlock.
-
-Additionally, for each enemy affected that is of a primarily spellcasting class (mage, cleric, druid, bard, shaman), they take 2d6 magic damage, which are transferred to the warlock as temporary hit points for 1 turn. Arcane spellcasters lose one memorized spell on a failed Save vs. Spells.~
+SAY NAME1 ~%C0WL306-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL306-DESC%~
 
 COPY_EXISTING ~c0wl306a.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6315,19 +5974,8 @@ COPY_EXISTING ~c0wl306a.spl~ ~override~
 END
 
 COPY_EXISTING ~c0wl307.spl~ ~override~
-SAY NAME1 ~Tenacious Plague~
-SAY UNIDENTIFIED_DESC ~TENACIOUS PLAGUE
-(Conjuration/Summoning)
-
-Power: Greater
-Effective Spell Level: 6
-Range: Visual range of the caster
-Duration: 3 rounds
-Casting Time: 6
-Area of Effect: 15 ft. radius
-Saving Throw: None
-
-The Tenacious Plague spell attracts a cloud or swarm of magical insects to that jump first to the target, then to the nearest allies of the target. This swarm gathers at a point chosen by the caster within the spell's range and attacks any single creature the caster points to. Each victim may make a Saving Throw vs. Breath Weapon with a -4 penalty to escape the swarm; otherwise, they receive 1 point of piercing damage and 1d4 points of magical damage every 2 seconds for the duration of the spell. Moreover, each victim fights with a -2 penalty to <PRO_HISHER> attack roll and a -2 penalty to <PRO_HISHER> Armor Class. The swarm will repeatedly bite the target, making it very difficult to cast spells (50% chance of spell failure).~ 
+SAY NAME1 ~%C0WL307-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL307-DESC%~
 
 COPY_EXISTING ~c0wl308.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -6336,19 +5984,8 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp103%~
 END
-SAY NAME1 ~Wall of Perilous Flame~
-SAY UNIDENTIFIED_DESC ~WALL OF PERILOUS FLAME
-(Invocation/Evocation)
-
-Power: Greater
-Effective Spell Level: 6
-Range: Visual range of the caster
-Duration: 3 rounds
-Casting Time: 6
-Area of Effect: 15 ft. radius
-Saving Throw: None
-
-You conjure a curtain of fire that deals 2d6 points of damage to any creature that attempts to pass through it. Half the wall's fire damage results from supernatural power and deals magical damage, therefore not being subject to being reduced by resistance to fire. The curtain of flame lasts for 3 rounds before dissipating.~ 
+SAY NAME1 ~%C0WL308-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL308-DESC%~
 
 COPY_EXISTING ~c0wl309.spl~ ~override~
 READ_LONG 0x64 "abil_off"
@@ -6357,34 +5994,12 @@ SET "delta" = 0
 FOR (index = 0; index < abil_num; index = index + 1) BEGIN
 WRITE_SHORT (%abil_off% + (0x28 * %index%) + 0x26) ~%c0wlp105%~
 END
-SAY NAME1 ~Nightmares Made Real~
-SAY UNIDENTIFIED_DESC ~NIGHTMARES MADE REAL 
-(Illusion/Phantasm)
-
-Power: Greater
-Effective Spell Level: 6
-Range: 30
-Duration: 3 rounds
-Casting Time: 7
-Area of Effect: 30-ft. radius
-Saving Throw: Neg.
-
-The warlock cloaks the surrounding area with phantasmagoric figures, transforming it into the image of a nightmarish hellscape. Creatures within the area of effect must make a Save vs. Spells at -2 or become entangled in illusory vines for 3 rounds, suffering 4d6 magic damage. Sleeping creatures are entangled and take 8d6 magic damage without save. Additionally, if the caster is within the area of effect, they become invisible for 3 rounds.~ 
+SAY NAME1 ~%C0WL309-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL309-DESC%~
 
 COPY_EXISTING ~c0wl310.spl~ ~override~
-SAY NAME1 ~Painful Slumber of Ages~
-SAY UNIDENTIFIED_DESC ~PAINFUL SLUMBER OF AGES
-(Enchantment/Charm)
-
-Power: Greater
-Effective Spell Level: 6
-Range: 30
-Duration: 5 rounds
-Casting Time: 2
-Area of Effect: 1 creature
-Saving Throw: Neg.
-
-This invocation puts the target into a magically-induced slumber. If the target fails a Save vs. Spells at -4, they are put to sleep for a minimum of 5 rounds, after which they must make another identical saving throw or remain asleep for another 5 rounds. Therefore, the effect may last indefinitely so long as the target does not make a successful saving throw. If the target is awakened prematurely, they take nonlethal damage equal to the warlock's level.~
+SAY NAME1 ~%C0WL310-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL310-DESC%~
 
 COPY_EXISTING ~c0wl403.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6407,34 +6022,12 @@ END
 	  header = 4
 	  duration = 36
 END
-SAY NAME1 ~Dark Foresight~
-SAY UNIDENTIFIED_DESC ~DARK FORESIGHT
-(Divination) 
-
-Power: Dark
-Effective Spell Level: 9
-Range: Self
-Duration: 2 rounds + 1 round/10 levels
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: None
-
-The warlock's dark powers allow <PRO_HIMHER> to glimpse the future, granting a +10 bonus to Armor Class, +5 bonus to all saving throws, 20% damage resistance and immunity to backstab. The effects of this invocation are non-cumulative.~
+SAY NAME1 ~%C0WL403-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL403-DESC%~
 
 COPY_EXISTING ~c0wl404.spl~ ~override~
-SAY NAME1 ~Retributive Invisibility~
-SAY UNIDENTIFIED_DESC ~RETRIBUTIVE INVISIBILITY
-(Illusion/Phantasm) 
-
-Power: Dark
-Effective Spell Level: 6
-Range: Self
-Duration: 3 rounds
-Casting Time: 1
-Area of Effect: the caster
-Saving Throw: Special
-
-This invocation grants the warlock the effects of Improved Invisibility for three rounds. The invisibility cannot be dispelled, and at the end of its duration, a shock wave releases from the warlock's body in a small burst, dealing 4d6 magical damage to all nearby creatures and stunning them for one round. (Save vs. Death to avoid stun and half damage)~
+SAY NAME1 ~%C0WL404-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL404-DESC%~
 
 COPY_EXISTING ~c0wl404a.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6444,31 +6037,8 @@ COPY_EXISTING ~c0wl404a.spl~ ~override~
 END
 
 COPY_EXISTING ~c0wl405.spl~ ~override~
-SAY NAME1 ~Word of Changing~
-SAY UNIDENTIFIED_DESC ~WORD OF CHANGING
-(Alteration) 
-
-Power: Dark
-Effective Spell Level: 5
-Range: Self
-Duration: 10 turns
-Casting Time: 9
-Area of Effect: the caster
-Saving Throw: None
-
-With this invocation, the warlock utters a powerful word that transforms him into a devilish being, often connected to whatever outsider granted the warlock <PRO_HISHER> fiendish powers. The warlock may not use invocations while transformed.
-
-The statistics of the form are as follows:
-  Strength: 24
-  Dexterity: 22
-  3 attacks per round
-  Regenerate 1hp/3 seconds
-  Immunity to weapons of +1 enchantment and below
-  Immunity to charm, poison, domination, fear and confusion
-  Creature attack attributes:
-    1d6+3 slashing damage
-    stun the target on a failed Save vs. Breath for 10 seconds
-    poison the target on a failed Save vs. Death at -2 for 1 damage per second for 10 seconds~
+SAY NAME1 ~%C0WL405-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL405-DESC%~
 
 COPY_EXISTING ~c0wl405a.itm~ ~override~
 LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = IDS_OF_SYMBOL (~ANIMATE~ ~C0_HORNED_DEVIL~) END
@@ -6479,34 +6049,12 @@ SAY UNIDENTIFIED_DESC ~Shapeshift: Natural Form
 This ability causes the character to return to <PRO_HISHER> natural shape and ends the polymorph effect.~
 
 COPY_EXISTING ~c0wl406.spl~ ~override~
-SAY NAME1 ~Path of Shadow~
-SAY UNIDENTIFIED_DESC ~PATH OF SHADOW 
-(Alteration)
-
-Power: Dark
-Effective Spell Level: 6
-Range: Self
-Duration: 10 seconds
-Casting Time: 7
-Area of Effect: The caster
-Saving Throw: None
-
-With this invocation, the warlock steps into the realm of shadows for ten seconds, though the equivalent time spent within the realm is much longer compared to the Prime Material Plane. For the duration, the warlock regenerates 1d10 hit points per second. The warlock cannot attack or cast spells for the duration.~ 
+SAY NAME1 ~%C0WL406-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL406-DESC%~
 
 COPY_EXISTING ~c0wl407.spl~ ~override~
-SAY NAME1 ~Steal Summoning~
-SAY UNIDENTIFIED_DESC ~STEAL SUMMONING 
-(Enchantment/Charm)
-
-Power: Dark
-Effective Spell Level: 6
-Range: 30
-Duration: Permanent
-Casting Time: 8
-Area of Effect: 1 creature
-Saving Throw: Neg.
-
-This invocation allows the warlock to wrest control of a summoned or bound creature from its original master. If the targeted summoned creature fails a Save vs. Spells at -6, their allegiance permanently shifts to the caster's until their original summoned duration expires. This invocation can affect all summoned creatures, including those gated from other planes such as fiends and angelic beings.~ 
+SAY NAME1 ~%C0WL407-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL407-DESC%~
 
 COPY_EXISTING ~c0wl408.spl~ ~override~
   LPF ALTER_EFFECT
@@ -6514,19 +6062,8 @@ COPY_EXISTING ~c0wl408.spl~ ~override~
 	  match_opcode = 142
 	  parameter2 = c0wlic25
 	END
-SAY NAME1 ~Infernal Crest~
-SAY UNIDENTIFIED_DESC ~INFERNAL CREST 
-(Abjuration)
-
-Power: Dark
-Effective Spell Level: 8
-Range: Self
-Duration: 24 hours
-Casting Time: 9
-Area of Effect: The caster
-Saving Throw: None
-
-This powerful invocation imbues the warlock with a powerful boon. Upon completing the invocation, the warlock suffers 80% of their maximum hit points in damage, but for the next 24 hours gains +2 to Strength. Additionally, for every 10% of their maximum hit points they are missing, they deal 5% increased non-physical damage from all sources as well as increased duration of invocations, up to a maximum of 40% when missing 80% of their hit points.~ 
+SAY NAME1 ~%C0WL408-NAME%~
+SAY UNIDENTIFIED_DESC ~%C0WL408-DESC%~
 
 COPY_EXISTING ~c0wl501.spl~ ~override~
   LPF ALTER_EFFECT
