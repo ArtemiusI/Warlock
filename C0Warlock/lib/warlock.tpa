@@ -5895,26 +5895,32 @@ SAY UNIDENTIFIED_DESC ~%C0WL208-DESC%~
 COPY_EXISTING ~c0wl208a.cre~ ~override~
 SAY NAME1 ~Skeleton~
 SAY NAME2 ~Skeleton~
+  WRITE_ASCII 0x268 ~C0WL208~ #8   //default
 
 COPY_EXISTING ~c0wl208b.cre~ ~override~
 SAY NAME1 ~Zombie~
 SAY NAME2 ~Zombie~
+  WRITE_ASCII 0x268 ~C0WL208~ #8   //default
 
 COPY_EXISTING ~c0wl208c.cre~ ~override~
 SAY NAME1 ~Ghoul~
 SAY NAME2 ~Ghoul~
+  WRITE_ASCII 0x268 ~C0WL208~ #8   //default
 
 COPY_EXISTING ~c0wl208d.cre~ ~override~
 SAY NAME1 ~Skeleton Warrior~
 SAY NAME2 ~Skeleton Warrior~
+  WRITE_ASCII 0x268 ~C0WL208~ #8   //default
 
 COPY_EXISTING ~c0wl208e.cre~ ~override~
 SAY NAME1 ~Juju Zombie~
 SAY NAME2 ~Juju Zombie~
+  WRITE_ASCII 0x268 ~C0WL208~ #8   //default
 
 COPY_EXISTING ~c0wl208f.cre~ ~override~
 SAY NAME1 ~Ghoul Lord~
 SAY NAME2 ~Ghoul Lord~
+  WRITE_ASCII 0x268 ~C0WL208~ #8   //default
 
 COPY_EXISTING ~c0wl209.spl~ ~override~
   LPF ALTER_EFFECT

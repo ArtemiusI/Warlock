@@ -1,19 +1,4 @@
 IF
-	Die()
-THEN
-	RESPONSE #100
-		CreateVisualEffectObject("SPDEATH3",Myself)
-		DestroySelf()
-END
-
-IF
-	NumCreatureGT("C0WL208",1)
-THEN
-	RESPONSE #100
-	Kill(Myself)
-END
-
-IF
 	Heard([ANYONE],111)
 THEN
 	RESPONSE #100
@@ -25,4 +10,23 @@ IF
 THEN
 	RESPONSE #100
 		AttackReevaluate(NearestEnemyOf(Myself),30)
+END
+
+IF
+	!ActuallyInCombat(Myself)
+	!See(NearestEnemyOf(Myself))
+	See(LastSummonerOf(Myself))
+THEN
+	RESPONSE #100
+		MoveToObjectFollow(LastSummonerOf(Myself))
+END
+
+IF
+	!ActuallyInCombat(Myself)
+	!See(NearestEnemyOf(Myself))
+	!See(LastSummonerOf(Myself))
+	See(NearestAllyOf(Myself))
+THEN
+	RESPONSE #100
+		MoveToObjectFollow(NearestAllyOf(Myself))
 END
