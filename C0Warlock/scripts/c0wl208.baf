@@ -13,7 +13,7 @@ THEN
 END
 
 IF
-	!ActuallyInCombat(Myself)
+	!ActuallyInCombat()
 	!See(NearestEnemyOf(Myself))
 	See(LastSummonerOf(Myself))
 THEN
@@ -22,7 +22,7 @@ THEN
 END
 
 IF
-	!ActuallyInCombat(Myself)
+	!ActuallyInCombat()
 	!See(NearestEnemyOf(Myself))
 	!See(LastSummonerOf(Myself))
 	See(NearestAllyOf(Myself))
