@@ -542,6 +542,10 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
     kit_id
 END
 
+  INCLUDE ~%MOD_FOLDER%/lib/ClassSpellTool.tpa~
+  INCLUDE ~%MOD_FOLDER%/lib/LearnClassSpell.tpa~
+
+
 LAF ADD_KIT_EX
   INT_VAR
     // Mage	= 1
@@ -567,11 +571,11 @@ LAF ADD_KIT_EX
 	// Shaman = 21
     kit_class     = 4
 	
-    mixed         = RESOLVE_STR_REF(~^0xFFC76777^-Warlock~)
+    mixed         = RESOLVE_STR_REF(~Warlock~)
 	
-    lower         = RESOLVE_STR_REF(~^0xFFC76777^-warlock~)
+    lower         = RESOLVE_STR_REF(~warlock~)
 	
-    help          = RESOLVE_STR_REF(~^0xFFC76777^-WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
+    help          = RESOLVE_STR_REF(~WARLOCK: Born of a supernatural bloodline, a warlock seeks to master the perilous magic that suffuses <PRO_HISHER> soul. Unlike sorcerers and wizards, who approach arcane magic through the medium of spells, a warlock invokes powerful magic through nothing more than an effort of will. The font of dark magic burning in their souls makes them resistant to many forms of attack and arms them with dangerous power. Warlocks learn to harness their power to perform a small number of specific attacks and tricks called invocations. Warlocks make up for their lack of versatility by being tougher and more resilient than sorcerers or wizards. By harnessing <PRO_HISHER> innate magical gift through fearsome determination and willpower, a warlock can perform feats of supernatural stealth, beguile the weak-minded, or scour <PRO_HISHER> foes with blasts of Eldritch power.
 
 CLASS FEATURES:
 
@@ -646,7 +650,7 @@ As the warlock gains in levels, <PRO_HESHE> is able to shape <PRO_HISHER> Eldrit
 	
     dualclas      = ~0 0 0 0 0 0~
 	
-    luabbr        = ~C0WL~
+    // luabbr        = ~C0WL~
 	
     // stweap        = ~CHAN09 * HELM07 BAG20 RING06 RING31 * BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN4,2 POTN14,5 HAM07 SW1H27 STAF08~
 	
@@ -1349,8 +1353,9 @@ END
 
   END
 
-ACTION_FOR_EACH warlock_remove IN 104 105 106 107 108 109 110 111 112 113 114 201 202 203 204 205 206 207 208 209 210 211 301 302 303 304 305 306 307 308 309 310 401 402 403 404 405 406 407 408 BEGIN
+ACTION_FOR_EACH warlock_remove IN 104 105 108 109 110 111 112 113 114 204 205 206 207 208 209 210 211 305 306 307 308 309 310 403 404 405 406 407 408 BEGIN
 COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl%warlock_remove%z.spl~
+COPY_EXISTING ~C0WL%warlock_remove%Z.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR
       check_globals = 1
@@ -1359,22 +1364,72 @@ COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl%warlock_remove%z.spl~
 	STR_VAR
 	  resource = EVAL ~c0wl%warlock_remove%~
 END
+END
+
+ACTION_FOR_EACH warlock_remove IN 106 107 201 202 203 301 302 303 304 401 402 403 404 405 406 407 408 BEGIN
+COPY_EXISTING ~c0wl000z.spl~ ~override/c0wl%warlock_remove%z.spl~
 COPY_EXISTING ~C0WL%warlock_remove%Z.spl~ ~override~
+  LPF ALTER_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+	  resource = EVAL ~c0wl%warlock_remove%~
+END
   LPF CLONE_EFFECT
     INT_VAR
       check_globals = 1
       check_headers = 1
       match_opcode = 172
 	STR_VAR
-	  resource = EVAL ~c0w^%warlock_remove%~
+    match_resource = EVAL ~C0WL%warlock_remove%~
+	  resource = EVAL ~C0WL%warlock_remove%B~
 END
-  LPF ALTER_EFFECT
+  LPF CLONE_EFFECT
     INT_VAR
       check_globals = 1
       check_headers = 1
       match_opcode = 172
 	STR_VAR
-	  resource = EVAL ~c0wl%warlock_remove%~
+    match_resource = EVAL ~C0WL%warlock_remove%~
+	  resource = EVAL ~C0WL%warlock_remove%C~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+    match_resource = EVAL ~C0WL%warlock_remove%~
+	  resource = EVAL ~C0WL%warlock_remove%D~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+    match_resource = EVAL ~C0WL%warlock_remove%~
+	  resource = EVAL ~C0WL%warlock_remove%E~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+    match_resource = EVAL ~C0WL%warlock_remove%~
+	  resource = EVAL ~C0WL%warlock_remove%F~
+END
+  LPF CLONE_EFFECT
+    INT_VAR
+      check_globals = 1
+      check_headers = 1
+      match_opcode = 172
+	STR_VAR
+    match_resource = EVAL ~C0WL%warlock_remove%~
+	  resource = EVAL ~C0WL%warlock_remove%I~
 END
 END
 
@@ -6725,7 +6780,6 @@ ACTION_FOR_EACH description IN
   END
   END
   
-LAF ADD_CLASS_SPELL STR_VAR excludeAllNormalWizardSpellsFromThisKit=~C0WLOCK~ END
 
 ACTION_IF MOD_IS_INSTALLED ~CANDLEKEEP_REVISITED/CANDLEKEEP_REVISITED.TP2~ ~1~ THEN BEGIN
 
