@@ -28,9 +28,6 @@ END
 
 END
 
-
-AUTO_TRA ~C0Warlock/tra/%s~
-
 LANGUAGE ~English~
          ~english~
          ~%MOD_FOLDER%/tra/english/setup.tra~
