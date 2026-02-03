@@ -35,6 +35,10 @@ LANGUAGE ~English~
          ~english~
          ~%MOD_FOLDER%/tra/english/setup.tra~
 
+LANGUAGE ~Simplified Chinese by Lzw104522773~
+         ~schinese~
+         ~%MOD_FOLDER%/tra/schinese/setup.tra~
+
 BEGIN @0 /* Warlock Kit */
 
 INCLUDE ~%MOD_FOLDER%/LIB/WARLOCK_SPELLS_DESC.TPA~
