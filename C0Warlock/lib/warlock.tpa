@@ -6136,11 +6136,24 @@ SAY NAME1 ~Eldritch Pact~
 SAY UNIDENTIFIED_DESC ~ELDRITCH PACT
 The warlock gains a boon from an otherworldly power, whether fiendish or fey, granting a permanent +15% bonus Magic Resistance, +1 bonus to casting time, and +30% duration to all invocations.~
 
+// Writes a new item type into the itemtype.2da and returns the reference value.
+LAF ADD_ITEMTYPE_IN_2DA
+		INT_VAR
+			inventorySlotType 	= 35
+		RET
+			eldritch_blast 		= typeNumber
+END
+
 COPY_EXISTING ~c0wl502.spl~ ~override~
   LPF ALTER_EFFECT
     INT_VAR
 	  match_opcode = 142
 	  parameter2 = c0wlic24
+	END
+  LPF ALTER_EFFECT
+    INT_VAR
+	  match_opcode = 183
+	  parameter2 = %eldritch_blast%
 	END
 SAY NAME1 ~Eldritch Focus~
 SAY UNIDENTIFIED_DESC ~ELDRITCH FOCUS
@@ -6585,10 +6598,11 @@ END
 	BUT_ONLY
 	END
 	END
-	
+
  ACTION_FOR_EACH allblasts IN 101A 103A 106 106H 106I 106S 107 107H 107I 107S 200A 201 201H 201I 201S 202 202H 202I 202S 203 203H 203I 203S 301 301H 301I 301S 302 302H 302I 302S 303 303H 303I 303S 304 304H 304I 304S 401 401H 401I 401S 402 402H 402I 402S 506 506A 506B 506H 506I 506S BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME ~C0WL%allblasts%.itm~ BEGIN
 	COPY_EXISTING ~C0WL%allblasts%.itm~ ~override~
+	WRITE_SHORT 0x001c	~%eldritch_blast%~
   LPF ADD_ITEM_EFFECT
 	INT_VAR
 	  insert_point = 0
@@ -6763,8 +6777,8 @@ ACTION_FOR_EACH description IN
 //WARLOCK
         PATCH_IF "%row_name%" STRING_EQUAL_CASE "C0WLOCK_FILL" BEGIN
           READ_2DA_ENTRY index 4 col_count warlock_desc
-          SPRINT old_warlock ~– Thieving abilities: Pick Pockets.~
-          SPRINT new_warlock ~– Thieving abilities: May use Pick Pockets, Find Traps and Detect Illusion.~
+          SPRINT old_warlock ~Pick Pockets.~
+          SPRINT new_warlock ~May use Pick Pockets, Find Traps and Detect Illusion.~
           GET_STRREF %warlock_desc% warlock_text
           INNER_PATCH_SAVE warlock_text ~%warlock_text%~ BEGIN
             REPLACE_TEXTUALLY ~%old_warlock%~ ~%new_warlock%~
